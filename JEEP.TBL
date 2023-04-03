@@ -1,0 +1,78 @@
+	.DATA
+JEEP:
+	.word   79,114
+	.long   054d2a0H
+	.word   40,-7,06000H
+	.long   JEEPP
+JEEPDRVRS:
+	.word   51,17
+	.long   055a5c0H
+	.word   25,-53,06000H
+	.long   JEEPP
+JSHAD:
+	.word   21,90
+	.long   055ba20H
+	.word   -37,-30,06000H
+	.long   JEEPP
+JEEP2:
+	.word   79,101
+	.long   055e670H
+	.word   40,-20,06000H
+	.long   JEEPP
+JSHAD2:
+	.word   21,90
+	.long   056a180H
+	.word   -37,-30,06000H
+	.long   JEEPP
+JEEP4:
+	.word   129,76
+	.long   056cdd0H
+	.word   57,-21,06000H
+	.long   JEEPP
+AKHSHAD:
+	.word   191,14
+	.long   057b3a0H
+	.word   93,-86,06000H
+	.long   JEEPP
+AKHBITCH1:
+	.word   26,30
+	.long   057f250H
+	.word   15,-38,06000H
+	.long   BOOBP
+AKHLIMO:
+	.word   199,78
+	.long   05804a0H
+	.word   107,-7,06000H
+	.long   LIMOP
+AKHTIREA:
+	.word   29,21
+	.long   0597070H
+	.word   0,0,06000H
+	.long   JEEPP
+AKHTIREB:
+	.word   29,21
+	.long   0597ec0H
+	.word   0,0,06000H
+	.long   JEEPP
+AKHBITCH2:
+	.word   25,30
+	.long   0598d10H
+	.word   14,-38,06000H
+AKHBITCH3:
+	.word   28,30
+	.long   0599eb0H
+	.word   17,-38,06000H
+AKHBITCH4:
+	.word   26,30
+	.long   059b260H
+	.word   15,-38,06000H
+AKHBITCH5:
+	.word   27,30
+	.long   059c4b0H
+	.word   16,-38,06000H
+AKHBITCH6:
+	.word   30,30
+	.long   059d7b0H
+	.word   19,-38,06000H
+	.TEXT
+

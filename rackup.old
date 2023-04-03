@@ -1,0 +1,736 @@
+TMS340 COFF Macro Assembler Version 6.10     Mon Apr 03 23:43:03 2023
+ Copyright (c) 1985-1991  Texas Instruments Incorporated 
+
+                                                                     PAGE    1
+
+       1                    **************************************************************
+       2                    *
+       3                    * Software:             Shawn Liptak
+       4                    * Initiated:            June 6,1991
+       5                    *
+       6                    * Modified:             !
+       7                    *
+       8                    * COPYRIGHT (C) 1991 WILLIAMS ELECTRONICS GAMES, INC.
+       9                    *
+      10                    *.Last mod - 1/7/92 14:02
+      11                    **************************************************************
+      12                            .FILE   "RACKUP.ASM"
+      14                            .WIDTH  132
+      15                            .OPTION B,D,L,T
+      16                            .MNOLIST
+      17                    
+      18                            .include        "mproc.equ"
+      19                            .include        "disp.equ"
+      20                            .include        "sys.inc"
+      21                            .include        "game.equ"
+      22                            .include        "imgtbl.glo"
+      23                            .include        "audit.equ"
+      24                            .include        "shawn.hdr"             ;My macros
+      25                            .include        "rackup.tbl"
+      26                    
+      27                    
+      28                    
+      29                    ;sound headers used
+      30                    
+      31                            .ref    GLSEXP,NOWAY,SETDWN,TUNE3,TUNE2,STATSND
+      32                    
+      33 00000000     f0f0  CVSDOFF .word   0F0F0H,10,0807DH,0              ;SPEECH OFF
+      34 00000040     f3fe  TUNE4   .word   0f3feH,10,08007H,0              ;Rackup tune
+      35 00000080     f280  racksup .word   0f280H,1,080b3H,0                       ;Rackup bonus sweep up
+      36 000000c0     fa81  rackoff .word   0fa81H,1,080a7H,0                       ;Rackup bonus off
+      37 00000100     f000  kilfgnd .word   0f000H,1,0807fH,0                       ;Kill foregnd snds
+      38 00000140     fa80  rackp1p .word   0fa80H,1,080b4H,0                       ;Rackup P1 gets 1000 pts
+      39 00000180     fa80  rackp2p .word   0fa80H,1,080b5H,0                       ;^ P2
+      40 000001c0     f280  stats1  .word   0f280H,1,08100H,0                       ;Rackup stat line snd
+      41 00000200     f280  stats2  .word   0f280H,1,08101H,0                       ;^
+      42 00000240     f280  stats3  .word   0f280H,1,08102H,0                       ;^
+      43 00000280     f280  stats4  .word   0f280H,1,08103H,0                       ;^
+      44 000002c0     f280  stats5  .word   0f280H,1,08104H,0                       ;^
+      45 00000300     f280  stats6  .word   0f280H,1,08105H,0                       ;^
+      46 00000340     f280  stats7  .word   0f280H,1,08106H,0                       ;^
+      47 00000380     f280  stats8  .word   0f280H,1,08107H,0                       ;^
+      48 000003c0     f280  stats9  .word   0f280H,1,08108H,0                       ;^
+      49 00000400     f280  stats10 .word   0f280H,1,08109H,0                       ;^
+      50 00000440     f280  stats11 .word   0f280H,1,0810aH,0                       ;^
+      51 00000480     f280  stats12 .word   0f280H,1,0810bH,0                       ;^
+      52 000004c0     f3f7  txtssnd .word   0f3f7H,8,080b1H,0                       ;Text shrink
+      53 00000500     f1a0  shout   .word   0f1a0H,60,080feH,0              ;Rackup victory shout
+      54 00000540     fca0  rackgun .word   0fca0H,4,08030H,0                       ;Player shoots gun
+      55 00000580     f9a0  gigle1  .word   0f9a0H,60,080f3H,0              ;Rackup winner laughs
+      56 000005c0     f9a0  ahkb1   .word   0f9a0H,10,080ebH,0              ;Akhboob speech
+TMS340 COFF Macro Assembler Version 6.10     Mon Apr 03 23:43:03 2023
+ Copyright (c) 1985-1991  Texas Instruments Incorporated 
+
+TOTAL CARNAGE GAME PROGRAM                                           PAGE    2
+
+      57 00000600     f9a0  ahkb2   .word   0f9a0H,10,080ecH,0              ;^
+      58 00000640     f9a0  ahkb3   .word   0f9a0H,10,080edH,0              ;^
+      59 00000680     f9a0  ahkbsta .word   0f9a0H,10,080eeH,0              ;^ start angry
+      60 000006c0     f9a0  ahkbang .word   0f9a0H,10,080efH,0              ;^ angry
+      61 00000700     f9f7  DOLLAR  .WORD   0F9F7H,050H,0814EH,0            ;BUY 4 DOLLAR
+      62                    ;CITIZEN        .WORD   0F9F7H,050H,08155H,0            ;PEACEFUL CITIZEN
+      63 00000740     f9a0  yousuck .word   0f9a0H,10,080c5H,0              ;You suck at this game!
+      64 00000780     fca0  fisthit .word   0fca0H,10,0803cH,0              ;Ahkboob hits desk
+      65 000007c0     f3f0  ermtune .word   0f3f0H,10,08004H,0              ;Electrocution tune
+      66 00000800     f540  fshock  .word   0f540H,20,080bbH,0              ;Electric chair shocks
+      67 00000840     f048  fburn   .word   0f048H,30,080d7H,0              ;^ burn
+      68 00000880     f965  fpain1  .word   0f965H,20,080f6H,0              ;Player in pain
+      69 000008c0     f160  fpain2  .word   0f160H,20,080f7H,0              ;^
+      70 00000900     f160  fpain3  .word   0f160H,20,080fdH,0              ;^
+      71 00000940     f460  fskullb .word   0f460H,20,08040H,0              ;Skull bounce
+      72 00000980     fc50  fryexp  .word   0fc50H,6,0803eH,0                       ;Fry explosion
+      73 000009c0     fd50  fryexp2 .word   0fd50H,8,080d9H,0                       ;^
+      74 00000a00     f980  totcarn .word   0f980H,30,080cfH,0              ;Total carnage!
+      75 00000a40     f1f7  gluck   .word   0f1f7H,040H,080e5H,0            ;"Good luck"
+      76                    ;TURMELL
+      77 00000a80     f3f7  TXTSND1 .WORD   0F3F7H,08H,080AEH,0
+      78                    
+      79                    
+      80                    ;symbols externally defined
+      81                    
+      82                            .ref    anim_script,anim_kilslp,animscnt,anim_killall,anim_wait
+      83                            .ref    COLTAB,CYCLE_TABLE,STATIC_COVER,PLYRPRCS,INTRO,AIRSCRM
+      84                            .ref    RACKBMOD,RANDOM,GPALOBJ,PALSET,FINDPAL,GETFPAL,PCNT,WAVE
+      85                            .ref    IRQSKYE,ERASE_TXT,HEXTOASC,FRANIM,HSTGLST,HALT,PLYROBJS
+      86                            .ref    CRMP,BCDBIN,BINBCD
+      87                            .ref    WSPEED,STRT_S,STATUS,STOPPLYR
+ *********  SYMBOL USED IN BOTH REF AND DEF
+      88                            .ref    COLCYC,BGND_UD1,BAKMODS,WNDWON,WNDWOFF,NO_START,WRLD
+      89                            .ref    KILBGND
+      90                            .ref    STRCNRMO,STRCNRMO_1,STRCNRM,LOWZ
+      91                            .ref    RD15FONT,RD7FONT,RD8FONT
+      92                    
+      93                            .ref    P1DATA,P2DATA,HSTGS_LOST
+      94                    
+      95                            .IF     DEBUG
+      96                            .ref    SLDEBUG
+      97                            .ENDIF
+      98                    
+      99                            .ref    timerp1,timerp2
+     100                            .ref    PCOUNT,TAUNTOUT
+     101                            .ref    RNDRNG,RNDRNG0
+     102                            .ref    ELECRM1BMOD,CHAIR2BMOD
+     103                            .ref    BLUEEXP,FIREEXP,XBOOM2,BOOM3
+     104                            .ref    FRANIMQ
+     105                            .ref    TNT_TYPE,SHAKER
+     106                            .ref    STRT_CRM,CYCSPECT
+     107                            .ref    NOCAN2,START,YESPWRD
+     108                            .ref    GET_ADJ,aud_addnumplyrs,AUD
+     109                            .ref    DELAYALL,DELOFFBOTL,ZERO_BITS
+     110                    
+TMS340 COFF Macro Assembler Version 6.10     Mon Apr 03 23:43:03 2023
+ Copyright (c) 1985-1991  Texas Instruments Incorporated 
+
+TOTAL CARNAGE GAME PROGRAM                                           PAGE    3
+
+     111                    ;symbols defined in this file
+     112                    
+     113                            .def    frypbg_t,DEATHS
+ *********  UNDEFINED SYMBOL
+LAST ERROR AT  87
+     114                    
+     115                    ;uninitialized ram definitions
+     116                    
+     117 00000000                   .bss    cycmem          ,5*16*2 ;Allocate 2 x color area in ram
+     118 000000a0                   .bss    statspal        ,31*16  ;Statistics palette
+     119 00000290                   .bss    boanimdeath1    ,16     ;CntDn for bonus anim procs to die
+     120 000002a0                   .bss    boanimdeath2    ,16     ;^
+     121 000002b0                   .bss    scoredie        ,16     ;00H=Score processes die
+     122 000002c0                   .bss    hitpercent1     ,16     ;Player1 %
+     123 000002d0                   .bss    hitpercent2     ,16     ;Player2 %
+     124 000002e0                   .bss    hitsmin1        ,16     ;Player1 hits per minute
+     125 000002f0                   .bss    hitsmin2        ,16     ;Player2 ^
+     126 00000300                   .bss    score1old       ,32     ;P1 score before bonuses
+     127 00000320                   .bss    score2old       ,32     ;P2 ^
+     128                    
+     129 00000340                   .bss    bonusstat       ,16     ;Status of bonus
+     130                    
+     131 00000350                   .bss    fryp1palmem     ,65*16  ;P1 mem for pallette pulse
+     132 00000760                   .bss    fryp2palmem     ,65*16  ;P2 ^
+     133                    
+     134 00000b70                   .bss    DEATHS          ,16     ;DEATH STATUS 0,1,2, OR 3 WHEN DONE
+     135                    
+     136 00000ac0                   .text
+     137                    
+     138                    
+     139                    ********************************
+     140                    * Do dictator taunt 1
+     141                    
+     142 00000ac0            SUBR   DO_MAN
+     143                    
+     144 00000ac0                   SLEEPK  10
+     145 00000b00     576b          clr     a11                     ;1st taunt
+     146 00000b10     c000          jruc    dictt
+         00000b20     017c  
+     147                    
+     148                    
+     149                    ********************************
+     150                    * Print incoming trans text
+     151                    
+     152 00000b30            SUBR   INCOM_TRAN              ;A1=Rackup # (0-2)
+     153 00000b30                   PUSH    a1
+     154 00000b40     4c22          move    a1,a2
+     155 00000b50     09e0          movi    incom_st,a0             ;*Text
+         00000b60 00000de0' 
+     156 00000b80     1422          subk    1,a2
+     157 00000b90     c408          jrlt    it20                    ;0?
+     158 00000ba0     ca04          jreq    it10                    ;1?
+     159 00000bb0     09e1          movi    [0,0fcbdH],a1           ;Fix X for purple guy eating
+         00000bc0 0000fcbd  
+     160 00000be0     c003          jruc    it20
+TMS340 COFF Macro Assembler Version 6.10     Mon Apr 03 23:43:03 2023
+ Copyright (c) 1985-1991  Texas Instruments Incorporated 
+
+TOTAL CARNAGE GAME PROGRAM                                           PAGE    4
+
+     161 00000bf0     09e1  it10    movi    [0,-40],a1              ;Fix X
+         00000c00 0000ffd8  
+     162 00000c20     5642  it20    clr     a2
+     163 00000c30     0582          move    a2,@WRLD                ;Do world adj
+         00000c40 00000000! 
+     164 00000c60     0d3f          callr   prt_xy
+         00000c70     01c5  
+     165                    
+     166 00000c80                   PULL    A1
+     167 00000c90     4c22          move    a1,a2
+     168 00000ca0     09e0          movi    incom_st2,a0            ;*Text
+         00000cb0 00000e40' 
+     169 00000cd0     1422          subk    1,a2
+     170 00000ce0     c408          jrlt    Mit20                   ;0?
+     171 00000cf0     ca04          jreq    Mit10                   ;1?
+     172 00000d00     09e1          movi    [0,0fcbdH],a1           ;Fix X for purple guy eating
+         00000d10 0000fcbd  
+     173 00000d30     c003          jruc    Mit20
+     174 00000d40     09e1  Mit10   movi    [0,-40],a1              ;Fix X
+         00000d50 0000ffd8  
+     175 00000d70     5642  Mit20   clr     a2
+     176 00000d80     0582          move    a2,@WRLD                ;Do world adj
+         00000d90 00000000! 
+     177 00000db0     0d3f          callr   prt_xy
+         00000dc0     01b0  
+     178 00000dd0     0960          RETS
+     179                    
+     180 00000de0           incom_st
+     181 00000de0                   XYTXT   PRTF15,652,55,1,"INCOMING TRANSMISSION"
+ *********  AN IDENTIFIER IN THE EXPRESSION IS INVALID
+LAST ERROR AT  113
+     182 00000e30     ffff          .word   -1
+     183                    ;TURMELL
+     184 00000e40           incom_st2
+     185 00000e40                   XYTXT   0,652,45,1,"UNITED NATIONS"
+ *********  AN IDENTIFIER IN THE EXPRESSION IS INVALID
+LAST ERROR AT  181
+     186 00000e90     ffff          .word   -1
+     187                    
+     188                    
+     189                    ********************************
+     190                    * Rack it up!
+     191                    
+     192 00000ea0            SUBR   DO_RACKUP
+     193                    
+     194 00000ea0     0d5f          calla   STOPOBJS                ;Keep all objs still
+         00000eb0 00000000! 
+     195                    
+     196 00000ed0     1820          movk    1,a0                    ;Delay start of a 2nd plyr flag
+     197 00000ee0     0580          move    a0,@NO_START
+         00000ef0 00000000! 
+     198 00000f10     0580          move    a0,@INTRO
+         00000f20 00000000! 
+     199 00000f40     5600          clr     a0
+     200 00000f50     0580          move    a0,@IRQSKYE
+TMS340 COFF Macro Assembler Version 6.10     Mon Apr 03 23:43:03 2023
+ Copyright (c) 1985-1991  Texas Instruments Incorporated 
+
+TOTAL CARNAGE GAME PROGRAM                                           PAGE    5
+
+         00000f60 00000000! 
+     201                    
+     202 00000f80     09e0          movi    TUNE4,a0
+         00000f90 00000040' 
+     203 00000fb0     0d5f          calla   ONESND
+         00000fc0 00000000! 
+     204                    
+     205 00000fe0                   SLEEP   96
+     206                    
+     207 00001030     07a9          move    @PLYROBJS,a9,L
+         00001040 00000000! 
+     208 00001060     ca03          jrz     rp10
+     209 00001070     0d5f          calla   STOPPLYR
+         00001080 00000000! 
+     210 000010a0     07a9  rp10    move    @PLYROBJS+32,a9,L
+         000010b0 00000020! 
+     211 000010d0     ca03          jrz     rp12
+     212 000010e0     0d5f          calla   STOPPLYR
+         000010f0 00000000! 
+     213 00001110           rp12
+     214 00001110     5600          clr     a0
+     215 00001120     0580          move    a0,@HALT
+         00001130 00000000! 
+     216                                                            ;>Make tiles
+     217 00001150     1801          movk    8*4,a1                  ;# Panels
+     218 00001160     09e2          movi    -4*025800H+012c00H,a2   ;Velocity
+         00001170 fff7cc00  
+     219 00001190     1943          movk    10,a3
+     220 000011a0     09c5          movi    200,a5
+         000011b0     00c8  
+     221 000011c0     09ee  rp20    movi    panel_t,a14
+         000011d0 000024b0' 
+     222 000011f0     0d5f          calla   GPALOBJ                 ;Get palette & obj
+         00001200 00000000! 
+     223 00001220     0d5f          calla   STFOBJ                  ;Stuff object data
+         00001230 00000000! 
+     224 00001250     b240          move    a2,*a0(OXVEL),L         ;Set XVEL
+         00001260     0020  
+     225 00001270     b060          move    a3,*a0(OYPOS)           ;New Y
+         00001280     0090  
+     226 00001290     0b03          addi    46,a3
+         000012a0     002e  
+     227 000012b0     b0a0          move    a5,*a0(OZPOS)
+         000012c0     00a0  
+     228 000012d0     1864          movk    3,a4
+     229 000012e0     5024          and     a1,a4
+     230 000012f0     1424          subk    1,a4
+     231 00001300     cb06          jrne    rp30
+     232 00001310     0b22          addi    025800H,a2
+         00001320 00025800  
+     233 00001340     1943          movk    10,a3
+     234 00001350     1824          movk    1,a4
+     235 00001360     5685          xor     a4,a5                   ;Toggle 0 Bit
+     236 00001370     0d5f  rp30    calla   ADJSTWTL                ;Adjust into world
+         00001380 00000000! 
+TMS340 COFF Macro Assembler Version 6.10     Mon Apr 03 23:43:03 2023
+ Copyright (c) 1985-1991  Texas Instruments Incorporated 
+
+TOTAL CARNAGE GAME PROGRAM                                           PAGE    6
+
+     237 000013a0     0d5f          calla   INSOBJ                  ;Insert obj
+         000013b0 00000000! 
+     238 000013d0     0d81          dsj     a1,rp20
+         000013e0     ffdd  
+     239                    
+     240 000013f0                   SLEEPK  20
+     241                    
+     242 00001430     0d5f          calla   STOPOBJS                ;Stop tiles
+         00001440 00000000! 
+     243                    
+     244 00001460     0d3f          callr   scores_bcdbin
+         00001470     feb8' 
+ *********  AN IDENTIFIER IN THE EXPRESSION IS INVALID
+LAST ERROR AT  185
+     245                    
+     246 00001480     05a1          move    @P1DATA+THITS,a1        ;0CaHlc P1 % & hitsmin
+         00001490 00000210! 
+     247 000014b0     4c23          move    a1,a3
+     248 000014c0     09c0          movi    100,a0
+         000014d0     0064  
+     249 000014e0     5e01          mpyu    a0,a1
+     250 000014f0     05a2          move    @P1DATA+TSHOTS,a2
+         00001500 00000060! 
+     251 00001520     5a41          divu    a2,a1
+     252 00001530     0581          move    a1,@hitpercent1
+         00001540 000002c0- 
+     253                    
+     254 00001560     09c0          movi    60,a0
+         00001570     003c  
+     255 00001580     5e03          mpyu    a0,a3
+     256 00001590     05a2          move    @timerp1,a2
+         000015a0 00000000! 
+     257 000015c0     5a43          divu    a2,a3
+     258 000015d0     0583          move    a3,@hitsmin1
+         000015e0 000002e0- 
+     259                    
+     260 00001600     05a1          move    @P2DATA+THITS,a1        ;0CaHlc P2 % & hitsmin
+         00001610 00000210! 
+     261 00001630     4c23          move    a1,a3
+     262 00001640     09c0          movi    100,a0
+         00001650     0064  
+     263 00001660     5e01          mpyu    a0,a1
+     264 00001670     05a2          move    @P2DATA+TSHOTS,a2
+         00001680 00000060! 
+     265 000016a0     5a41          divu    a2,a1
+     266 000016b0     0581          move    a1,@hitpercent2
+         000016c0 000002d0- 
+     267                    
+     268 000016e0     09c0          movi    60,a0
+         000016f0     003c  
+     269 00001700     5e03          mpyu    a0,a3
+     270 00001710     05a2          move    @timerp2,a2
+         00001720 00000000! 
+     271 00001740     5a43          divu    a2,a3
+     272 00001750     0583          move    a3,@hitsmin2
+TMS340 COFF Macro Assembler Version 6.10     Mon Apr 03 23:43:03 2023
+ Copyright (c) 1985-1991  Texas Instruments Incorporated 
+
+TOTAL CARNAGE GAME PROGRAM                                           PAGE    7
+
+         00001760 000002f0- 
+     273                    
+     274 00001780     09e8          movi    [2,30],a8               ;Color 2, 30 colors
+         00001790 0002001e  
+     275 000017b0     09e9          movi    SCOREPAL,a9
+         000017c0 00000000! 
+     276 000017e0     09ea          movi    COLTAB,a10              ;Color table
+         000017f0 00000000! 
+     277 00001810     18eb          movk    7,a11                   ;Rate of cycle
+     278 00001820                   CREATE  CYCPID,CYCLE_TABLE
+     279 000018a0     09e8          movi    [1,1],a8
+         000018b0 00010001  
+     280 000018d0     09e9          movi    SCOREPAL,a9
+         000018e0 00000000! 
+     281 00001900     09ea          movi    statscolor_t,a10
+         00001910 00002580' 
+     282 00001930     186b          movk    3,a11
+     283 00001940                   CREATE  CYCPID,CYCLE_TABLE
+     284 000019c0     09e8          movi    [32,2],a8
+         000019d0 00200002  
+     285 000019f0     09e9          movi    SCOREPAL,a9
+         00001a00 00000000! 
+     286 00001a20     09ea          movi    statscolor_t,a10
+         00001a30 00002580' 
+     287 00001a50     18ab          movk    5,a11
+     288 00001a60                   CREATE  CYCPID,CYCLE_TABLE
+     289                    
+     290 00001ae0                   CREATE0 score_prt
+ *********  AN IDENTIFIER IN THE EXPRESSION IS INVALID
+LAST ERROR AT  244
+     291 00001b50                   SLEEPK  1
+     292 00001b90                   CREATE0 scorebonus_prt
+ *********  AN IDENTIFIER IN THE EXPRESSION IS INVALID
+LAST ERROR AT  290
+     293                    
+     294 00001c00                   JSRP    bonus_main
+ *********  AN IDENTIFIER IN THE EXPRESSION IS INVALID
+LAST ERROR AT  292
+     295                    
+     296 00001c70                   JSRP    player_showstats
+ *********  AN IDENTIFIER IN THE EXPRESSION IS INVALID
+LAST ERROR AT  294
+     297                    
+     298 00001ce0     1820          movk    1,a0
+     299 00001cf0     0580          move    a0,@scoredie            ;Kill score processes
+         00001d00 000002b0- 
+     300 00001d20                   SLEEPK  8
+     301                    
+     302 00001d60     18ab          movk    5,a11
+     303 00001d70                   JSRP    text_shrink
+ *********  AN IDENTIFIER IN THE EXPRESSION IS INVALID
+LAST ERROR AT  296
+     304                    
+     305 00001de0                   JSRP    player_bonuswin         ;Show bonus winner!
+ *********  AN IDENTIFIER IN THE EXPRESSION IS INVALID
+TMS340 COFF Macro Assembler Version 6.10     Mon Apr 03 23:43:03 2023
+ Copyright (c) 1985-1991  Texas Instruments Incorporated 
+
+TOTAL CARNAGE GAME PROGRAM                                           PAGE    8
+
+LAST ERROR AT  303
+     306                    
+     307                    
+     308 00001e50     09c0          movi    60*7,a0                 ;8
+         00001e60     01a4  
+     309 00001e70     0d3f          callr   sleep_var
+         00001e80     fe17' 
+ *********  AN IDENTIFIER IN THE EXPRESSION IS INVALID
+LAST ERROR AT  305
+     310                    
+     311                    
+     312 00001e90     0d3f          callr   scores_binbcd
+         00001ea0     fe15' 
+ *********  AN IDENTIFIER IN THE EXPRESSION IS INVALID
+LAST ERROR AT  309
+     313                    
+     314 00001eb0     09c0          movi    CYCPID,a0
+         00001ec0     006d  
+     315 00001ed0     0d5f          calla   KIL1C
+         00001ee0 00000000! 
+     316                    
+     317 00001f00     182b  debug   movk    1,a11
+     318 00001f10                   CREATE0 STATIC_COVER
+     319                    
+     320 00001f80     09e0          movi    TUNE3,a0                ;Turn on dictator taunt music
+         00001f90 00000000! 
+     321 00001fb0     0d5f          calla   ONESND
+         00001fc0 00000000! 
+     322                            
+     323 00001fe0                   SLEEPK  25
+     324                    
+     325 00002020     09e0          movi    SCOREPAL,a0             ;*Color
+         00002030 00000000! 
+     326 00002050     5621          clr     a1                      ;Palette 0, Color 0
+     327 00002060     9402          move    *a0+,a2                 ;# Colors
+     328 00002070     0d5f          calla   PALSET
+         00002080 00000000! 
+     329 000020a0     09e0          movi    DESRTPL,a0              ;*Color
+         000020b0 00000000! 
+     330 000020d0     8402          move    *a0,a2                  ;# Colors
+     331 000020e0     0d5f          calla   GETFPAL
+         000020f0 00000000! 
+     332 00002110     2f00          srl     8,a0
+     333 00002120     2500          sll     8,a0
+     334 00002130     4c01          move    a0,a1
+     335 00002140     09e0          movi    DESRTPL+16,a0           ;*Color
+         00002150 00000010! 
+     336 00002170     0d5f          calla   PALSET
+         00002180 00000000! 
+     337                    
+     338 000021a0     09c0          movi    2*32*32+2*32+2,a0
+         000021b0     0842  
+     339 000021c0     0580          move    a0,@IRQSKYE             ;Dark grey background behind dictator
+         000021d0 00000000! 
+     340                    
+TMS340 COFF Macro Assembler Version 6.10     Mon Apr 03 23:43:03 2023
+ Copyright (c) 1985-1991  Texas Instruments Incorporated 
+
+TOTAL CARNAGE GAME PROGRAM                                           PAGE    9
+
+     341 000021f0     0d5f          calla   ERASE_TXT
+         00002200 00000000! 
+     342 00002220     0d5f          calla   anim_killall
+         00002230 00000000! 
+     343                    
+     344 00002250     05a0          move    @WAVE,a0
+         00002260 00000000! 
+     345 00002280     0b40          cmpi    33,a0
+         00002290     ffde  
+     346 000022a0     c519          jrge    dictx
+     347                    
+     348 000022b0     0d5f          calla   STRT_CRM                ;Start headquarters cycle
+         000022c0 00000000! 
+     349                    
+     350 000022e0     182b          movk    1,a11                   ;2nd taunt
+     351 000022f0     09e8  dictt   movi    engtran_s,a8
+         00002300 000026d0' 
+     352 00002320     09c9          movi    40,a9
+         00002330     0028  
+     353 00002340                   CREATE  MADPID,prt_inrackwin
+ *********  AN IDENTIFIER IN THE EXPRESSION IS INVALID
+LAST ERROR AT  312
+     354                    
+     355 000023c0     4d60          move    a11,a0
+     356 000023d0                   JSRP    dictator_taunt
+ *********  AN IDENTIFIER IN THE EXPRESSION IS INVALID
+LAST ERROR AT  353
+     357                    
+     358 00002440     1860  dictx   movk    3,a0
+     359 00002450     0580          move    a0,@TAUNTOUT            ;Taunt over
+         00002460 00000000! 
+     360 00002480                   DIE
+     361                    
+     362                    
+     363                    
+     364 000024b0 00b10000  panel_t .long   [177,0],[0,0],RACKBLK           ;x,y,img name
+     365 00002510     00c8          .word   200,DMAWNZ+M_NOCOLL,CLSDEAD     ;zpos,oflags,oid
+     366 00002540 00000000          .long   0,0                             ;xvel,yvel
+     367                    
+     368 00002580           statscolor_t
+     369 00002580                   COLORW  16,0,0
+ *********  A COMPONENT OF THE EXPRESSION IS INVALID
+LAST ERROR AT  356
+ *********  A COMPONENT OF THE EXPRESSION IS INVALID
+LAST ERROR AT  369
+ *********  A COMPONENT OF THE EXPRESSION IS INVALID
+LAST ERROR AT  369
+     370 00002590                   COLORW  20,00,08, 24,00,12, 28,00,16, 31,00,20
+     371 000025d0                   COLORW  28,00,24, 24,00,28, 20,00,31, 16,00,28
+     372 00002610                   COLORW  08,20,00, 16,24,00, 24,28,00, 31,31,00
+     373 00002650                   COLORW  20,28,00, 12,24,00, 08,20,00, 02,16,00
+     374 00002690                   COLORW  00,08,20, 00,16,24, 00,24,28, 00,31,31
+     375 000026a0                   COLORW  00,20,28, 00,10,24, 00,00,20, 00,00,16
+     376 000026b0                   COLORW  16,0,0
+ *********  A COMPONENT OF THE EXPRESSION IS INVALID
+TMS340 COFF Macro Assembler Version 6.10     Mon Apr 03 23:43:03 2023
+ Copyright (c) 1985-1991  Texas Instruments Incorporated 
+
+TOTAL CARNAGE GAME PROGRAM                                           PAGE   10
+
+LAST ERROR AT  369
+ *********  A COMPONENT OF THE EXPRESSION IS INVALID
+LAST ERROR AT  376
+ *********  A COMPONENT OF THE EXPRESSION IS INVALID
+LAST ERROR AT  376
+     377 000026c0     ffff          .word   -1
+     378                    
+     379 000026d0           engtran_s
+     380 000026d0       45          .byte   "ENGLISH TRANSLATION",0
+     381 00002770                   .even
+     382                    
+     383                    
+     384                    ********************************
+     385                    * Print XY sting set if player in game
+     386                    * Trashes A2-A6
+     387                    
+     388 00002770            SUBRP  printifp_xy     ;A0=*Plyr1 string, A1=*Plyr2 string
+     389                    
+     390 00002770                   PUSH    a8
+     391 00002780     4c28          move    a1,a8
+     392                    
+     393 00002790     05a1          move    @STATUS,a1
+         000027a0 0000000c! 
+     394 000027c0     1fe1          btst    0,a1
+     395 000027d0     ca03          jrz     pipx10
+     396 000027e0     0d5f          calla   prt0_xy         ;P1
+         000027f0 000028c0' 
+     397                    
+     398 00002810     05a1  pipx10  move    @STATUS,a1
+         00002820 0000000c! 
+     399 00002840     1fc1          btst    1,a1
+     400 00002850     ca04          jrz     pipx20
+     401 00002860     4d00          move    a8,a0
+     402 00002870     0d5f          calla   prt0_xy         ;P2
+         00002880 000028c0' 
+     403                    
+     404 000028a0           pipx20  PULL    a8
+     405 000028b0     0960          rets
+     406                    
+     407                    ********************************
+     408                    * Print an XY string set
+     409                    * A0=*XY text
+     410                    * A1=Y:X offset
+     411                    * Trashes A1-A5
+     412                    * Rets: A0=*Next XY or End
+     413                    
+     414 000028c0            SUBR   prt0_xy
+     415                    
+     416 000028c0     5621          clr     a1              ;No offset
+     417                    
+     418 000028d0            SUBRP  prt_xy
+     419                    
+     420 000028d0                   PUSH    a6,a7,a8,a9,a10,a11
+     421                    
+     422 000028f0     4c08          move    a0,a8                   ;A8=*Txt data
+TMS340 COFF Macro Assembler Version 6.10     Mon Apr 03 23:43:03 2023
+ Copyright (c) 1985-1991  Texas Instruments Incorporated 
+
+TOTAL CARNAGE GAME PROGRAM                                           PAGE   11
+
+     423 00002900     4c23          move    a1,a3                   ;A3=Y:X offset
+     424 00002910     9501  prtxy5  move    *a8+,a1                 ;Mode word
+     425 00002920     9709          move    *a8+,a9,L               ;Scrn Y:X
+     426 00002930     e069          addxy   a3,a9                   ;+Offset
+     427 00002940     1f41          btst    PRTOBJB,a1
+     428 00002950     cb4b          jrnz    pxy300
+     429                    
+     430 00002960     182a          movk    [0,1],a10               ;Char Y:X spacing
+     431 00002970     09eb          movi    RD7FONT,a11             ;*Font
+         00002980 00000000! 
+     432 000029a0     1fe1          btst    PRTF15B,a1
+     433 000029b0     ca03          jrz     prtxy10
+     434 000029c0     09eb          movi    RD15FONT,a11            ;*Font
+         000029d0 00000000! 
+     435 000029f0     9506  prtxy10 move    *a8+,a6                 ;Color
+     436 00002a00     4cc0          move    a6,a0
+     437 00002a10     2506          sll     8,a6
+     438 00002a20     5406          or      a0,a6
+     439                    
+     440 00002a30     1fa1          btst    PRTDECB,a1
+     441 00002a40     ca0a          jrz     prtxy30
+     442 00002a50     9702          move    *a8+,a2,L               ;Binary mode
+     443 00002a60                   PUSH    a8
+     444 00002a70     8448          move    *a2,a8                  ;Get word
+     445 00002a80     1f61          btst    PRTLB,a1
+     446 00002a90     ca01          jrz     prtxy20
+     447 00002aa0     8648          move    *a2,a8,L                ;Get long
+     448 00002ab0     0d5f  prtxy20 calla   HEXTOASC
+         00002ac0 00000000! 
+     449 00002ae0     c002          jruc    prtxy40
+     450                    
+     451 00002af0     1f81  prtxy30 btst    PRTBCDB,a1
+     452 00002b00     c00a          jruc    prtxy70
+     453                    ;       jrz     prtxy70
+     454                    ;       move    *a8+,a0,L               ;BCD mode
+     455                    ;       move    *a0,a0,L
+     456                    ;       callr   bcdtoasc
+     457                    ;       PUSH    a8
+     458                    ;       move    a0,a8
+     459 00002b10     5600  prtxy40 clr     a0
+     460 00002b20                   JSRP    STRCNRMO
+     461 00002b90                   PULL    a8
+     462 00002ba0     c020          jruc    pxy80
+     463                    
+     464 00002bb0           prtxy70                                 ;>String mode
+     465 00002bb0     1fc1          btst    PRTF8B,a1
+     466 00002bc0     ca13          jrz     prtxy74
+     467 00002bd0     09e0          movi    BLLNP5,a0
+         00002be0 00000000! 
+     468 00002c00     0d5f          calla   FINDPAL
+         00002c10 00000000! 
+     469 00002c30     4c06          move    a0,a6
+     470 00002c40     09eb          movi    RD8FONT,a11
+         00002c50 00000000! 
+     471 00002c70     5600          clr     a0
+TMS340 COFF Macro Assembler Version 6.10     Mon Apr 03 23:43:03 2023
+ Copyright (c) 1985-1991  Texas Instruments Incorporated 
+
+TOTAL CARNAGE GAME PROGRAM                                           PAGE   12
+
+     472 00002c80                   JSRP    STRCNRMO_1              ;Full color font
+     473 00002cf0     c008          jruc    prtxy77
+     474                    
+     475 00002d00     5600  prtxy74 clr     a0                      ;Sleep time
+     476 00002d10                   JSRP    STRCNRMO                ;Print string, objects
+     477 00002d80     1108  prtxy77 addk    8,a8                    ;Round up
+     478 00002d90     2f88          srl     4,a8
+     479 00002da0     2488          sll     4,a8
+     480 00002db0     8500  pxy80   move    *a8,a0                  ;-=End
+     481 00002dc0     c5b4          jrge    prtxy5
+     482                    
+     483 00002dd0     4d00          move    a8,a0
+     484 00002de0                   PULL    a6,a7,a8,a9,a10,a11
+     485 00002e00     0960          rets
+     486                    
+     487 00002e10     4c6a  pxy300  move    a3,a10                  ;>Print obj
+     488 00002e20     9503          move    *a8+,a3                 ;Z
+     489 00002e30     9702          move    *a8+,a2,L               ;*Img
+     490 00002e40     8441          move    *a2,a1                  ;Get ISIZEX
+     491 00002e50     2fe1          srl     1,a1                    ;/2
+     492 00002e60     4d20          move    a9,a0
+     493 00002e70     4420          sub     a1,a0                   ;Center
+     494 00002e80     2600          sll     16,a0                   ;X
+     495 00002e90     5621          clr     a1
+     496 00002ea0     ef21          movy    a9,a1                   ;Y
+     497 00002eb0     09e4          movi    DMAWNZ+M_NOCOLL,a4
+         00002ec0 00008802  
+     498 00002ee0     09c5          movi    CLSNEUT|TYPTEXT|SUBTXT,a5
+         00002ef0     0701  
+     499 00002f00     56c6          clr     a6
+     500 00002f10     56e7          clr     a7
+     501 00002f20     4d09          move    a8,a9
+     502 00002f30     0d5f          calla   BEGINOBJ
+         00002f40 00000000! 
+     503 00002f60     4d28          move    a9,a8
+     504 00002f70     4d43          move    a10,a3
+     505 00002f80     c0e2          jruc    pxy80
+     506                    
+     507                    
+     508                    ********************************
+     509                    * Print an XY string set number with no objects
+     510                    * Trashes A2-A7
+     511                    
+     512 00002f90                   NOTINUSE
+ *********  UNEXPECTED .ENDM DIRECTIVE ENCOUNTERD
+LAST ERROR AT  376
+ *********  MISSING .ENDIF DIRECTIVE
+LAST ERROR AT  512
+ *********  WARNING - BLOCK OPEN AT END OF FILE
+LAST ERROR AT  512
+TMS340 COFF Macro Assembler Version 6.10     Mon Apr 03 23:43:03 2023
+ Copyright (c) 1985-1991  Texas Instruments Incorporated 
+
+TOTAL CARNAGE GAME PROGRAM                                           PAGE   13
+
+The following symbols are undefined:
+  text_shrink
+  scores_binbcd
+  player_bonuswin
+  UNITED
+  scores_bcdbin
+  dictator_taunt
+  player_showstats
+  INCOMING
+  score_prt
+  sleep_var
+  scorebonus_prt
+  bonus_main
+  prt_inrackwin
+
+ 23 Errors, 1 Warning

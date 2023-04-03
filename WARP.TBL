@@ -1,0 +1,78 @@
+	.DATA
+WTIMER0:
+	.word   5,7
+	.long   0540890H
+	.word   0,0,06000H
+	.long   WARPP
+SHLD1:
+	.word   34,33
+	.long   0540970H
+	.word   17,16,06000H
+	.long   WARPP
+SHLD2:
+	.word   36,33
+	.long   05423c0H
+	.word   18,16,06000H
+	.long   WARPP
+WTIMER2:
+	.word   5,7
+	.long   0543fa0H
+	.word   0,0,06000H
+WTIMER3:
+	.word   5,7
+	.long   0543fa0H
+	.word   0,0,06000H
+WTIMER4:
+	.word   5,7
+	.long   0544080H
+	.word   0,0,06000H
+WTIMER5:
+	.word   5,7
+	.long   0543fa0H
+	.word   0,0,06000H
+WTIMER6:
+	.word   5,7
+	.long   0544160H
+	.word   0,0,06000H
+WTIMER7:
+	.word   5,7
+	.long   0544240H
+	.word   0,0,06000H
+WTIMER8:
+	.word   5,7
+	.long   0544320H
+	.word   0,0,06000H
+WTIMER9:
+	.word   5,7
+	.long   0544160H
+	.word   0,0,06000H
+SPIN2:
+	.word   31,28
+	.long   0544400H
+	.word   0,0,06000H
+SPIN3:
+	.word   31,28
+	.long   0545860H
+	.word   0,0,06000H
+SPIN4:
+	.word   31,28
+	.long   0546cc0H
+	.word   0,0,06000H
+SPIN5:
+	.word   31,28
+	.long   0548120H
+	.word   0,0,06000H
+SPIN6:
+	.word   31,28
+	.long   0549580H
+	.word   0,0,06000H
+SPIN7:
+	.word   31,28
+	.long   054a9e0H
+	.word   0,0,06000H
+SPIN8:
+	.word   31,28
+	.long   054be40H
+	.word   0,0,06000H
+	.TEXT
+

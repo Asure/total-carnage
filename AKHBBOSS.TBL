@@ -1,0 +1,828 @@
+	.DATA
+BBTURRET1:
+	.word   26,39
+	.long   0e68aa0H
+	.word   13,-98,06000H
+	.long   BBSHPAL
+BBTURRET2:
+	.word   30,35
+	.long   0e6a270H
+	.word   17,-98,06000H
+	.long   BBSHPAL
+BBTURRET3:
+	.word   39,28
+	.long   0e6bb10H
+	.word   26,-98,06000H
+	.long   BBSHPAL
+BBTURRET4:
+	.word   43,19
+	.long   0e6d4b0H
+	.word   30,-98,06000H
+	.long   BBSHPAL
+BBTURRET5:
+	.word   49,15
+	.long   0e6e7e0H
+	.word   35,-98,06000H
+	.long   BBSHPAL
+LASER1:
+	.word   5,13
+	.long   0e6f920H
+	.word   2,7,06000H
+	.long   GRNFCP
+LASER2:
+	.word   9,12
+	.long   0e6fab0H
+	.word   4,6,06000H
+	.long   GRNFCP
+LASER3:
+	.word   11,11
+	.long   0e6fd40H
+	.word   5,6,06000H
+	.long   GRNFCP
+LASER4:
+	.word   13,8
+	.long   0e70020H
+	.word   6,4,06000H
+	.long   GRNFCP
+LASER5:
+	.word   15,4
+	.long   0e70290H
+	.word   8,2,06000H
+	.long   GRNFCP
+LBLAST1:
+	.word   13,13
+	.long   0e70400H
+	.word   7,7,06000H
+	.long   GRNFCP
+LBLAST2:
+	.word   7,7
+	.long   0e70800H
+	.word   3,4,06000H
+	.long   GRNFCP
+LSPLAT1:
+	.word   15,19
+	.long   0e70930H
+	.word   7,11,06000H
+	.long   GRNFCP
+LSPLAT2:
+	.word   14,18
+	.long   0e70fe0H
+	.word   7,11,06000H
+	.long   GRNFCP
+LILBBSHP1:
+	.word   36,39
+	.long   0e715d0H
+	.word   36,22,06000H
+	.long   BBSHPAL
+LILBBSHP2:
+	.word   44,49
+	.long   0e736c0H
+	.word   44,27,06000H
+	.long   BBSHPAL
+LILBBSHP3:
+	.word   59,65
+	.long   0e76950H
+	.word   59,37,06000H
+	.long   BBSHPAL
+BBSHP1:
+	.word   49,18
+	.long   0e7c340H
+	.word   24,-19,06000H
+	.long   BBSHPAL
+BBSHP2:
+	.word   36,49
+	.long   0e7d7f0H
+	.word   18,-37,06000H
+	.long   BBSHPAL
+BBSHP3:
+	.word   36,15
+	.long   0e80150H
+	.word   18,-86,06000H
+	.long   BBSHPAL
+BBSHP4:
+	.word   17,63
+	.long   0e80e00H
+	.word   35,-36,06000H
+	.long   BBSHPAL
+BBSHP5:
+	.word   24,49
+	.long   0e82720H
+	.word   59,-46,06000H
+	.long   BBSHPAL
+AKB1ARMUP1:
+	.word   23,27
+	.long   0e842b0H
+	.word   11,-38,06000H
+	.long   BBSHPAL
+AKB1ARMUP2:
+	.word   24,28
+	.long   0e85140H
+	.word   12,-38,06000H
+	.long   BBSHPAL
+AKB1ARMUP3:
+	.word   24,28
+	.long   0e86100H
+	.word   12,-38,06000H
+	.long   BBSHPAL
+AKB1ARMUP4:
+	.word   24,29
+	.long   0e870c0H
+	.word   12,-37,06000H
+	.long   BBSHPAL
+AKB1ARMUP5:
+	.word   24,30
+	.long   0e88110H
+	.word   12,-36,06000H
+	.long   BBSHPAL
+AKB1ARMUP6:
+	.word   28,30
+	.long   0e891f0H
+	.word   16,-36,06000H
+	.long   BBSHPAL
+AKB2ARMUP1:
+	.word   25,22
+	.long   0e8a5a0H
+	.word   12,-38,06000H
+	.long   BBSHPAL
+AKB2ARMUP2:
+	.word   25,20
+	.long   0e8b290H
+	.word   12,-38,06000H
+	.long   BBSHPAL
+AKB2ARMUP3:
+	.word   25,21
+	.long   0e8be50H
+	.word   12,-37,06000H
+	.long   BBSHPAL
+AKB2ARMUP4:
+	.word   25,22
+	.long   0e8caa0H
+	.word   12,-36,06000H
+	.long   BBSHPAL
+AKB2ARMUP5:
+	.word   33,22
+	.long   0e8d790H
+	.word   16,-36,06000H
+	.long   BBSHPAL
+AKBREACH:
+	.word   28,27
+	.long   0e8e8a0H
+	.word   16,-38,06000H
+	.long   BBSHPAL
+AKBHEDTURN:
+	.word   23,27
+	.long   0e8fa60H
+	.word   11,-38,06000H
+	.long   BBSHPAL
+AKBYAK:
+	.word   23,29
+	.long   0e908f0H
+	.word   11,-36,06000H
+	.long   BBSHPAL
+AKBLEAN1:
+	.word   26,26
+	.long   0e918a0H
+	.word   15,-39,06000H
+	.long   BBSHPAL
+AKBLEAN2:
+	.word   26,26
+	.long   0e92880H
+	.word   15,-39,06000H
+	.long   BBSHPAL
+AKBLEAN3:
+	.word   26,24
+	.long   0e93860H
+	.word   15,-39,06000H
+	.long   BBSHPAL
+AKBLEAN4:
+	.word   26,24
+	.long   0e94700H
+	.word   15,-39,06000H
+	.long   BBSHPAL
+BBALL1:
+	.word   52,47
+	.long   0e955a0H
+	.word   77,-46,06000H
+	.long   BBSHPAL
+BBALL2:
+	.word   52,47
+	.long   0e98ef0H
+	.word   77,-46,06000H
+	.long   BBSHPAL
+BBALL3:
+	.word   52,47
+	.long   0e9c840H
+	.word   77,-46,06000H
+	.long   BBSHPAL
+BBARM:
+	.word   23,12
+	.long   0ea0190H
+	.word   25,-66,00H
+	.long   BBSHPAL
+BBARM2:
+	.word   23,12
+	.long   0ea0190H
+	.word   2,-66,00H
+	.long   BBSHPAL
+EJECTSEAT:
+	.word   41,59
+	.long   0ea0a30H
+	.word   20,-28,06000H
+	.long   BBSHPAL
+BBALLWRECK:
+	.word   32,54
+	.long   0ea42f0H
+	.word   57,-49,06000H
+	.long   BBSHPAL
+BLLOPEN1:
+	.word   41,19
+	.long   0ea6b70H
+	.word   75,-67,06000H
+	.long   GRNFCP
+BLLOPEN2:
+	.word   43,24
+	.long   0ea7dc0H
+	.word   76,-62,06000H
+	.long   GRNFCP
+BLLFACE1:
+	.word   52,47
+	.long   0ea95f0H
+	.word   77,-46,06000H
+	.long   GRNFCP
+BLLFACE3:
+	.word   52,47
+	.long   0eacf40H
+	.word   77,-46,06000H
+	.long   GRNFCP
+BLLFACE4:
+	.word   52,47
+	.long   0eb0890H
+	.word   77,-46,06000H
+	.long   GRNFCP
+BLLBLOW1:
+	.word   52,47
+	.long   0eb41e0H
+	.word   77,-46,06000H
+	.long   GRNFCP
+BLLBLOW2:
+	.word   52,47
+	.long   0eb7b30H
+	.word   77,-46,06000H
+	.long   GRNFCP
+BLLBLOW3:
+	.word   52,47
+	.long   0ebb480H
+	.word   77,-46,06000H
+	.long   GRNFCP
+BLLBLOW4:
+	.word   54,48
+	.long   0ebedd0H
+	.word   79,-46,06000H
+	.long   GRNFCP
+LILBBSHP1A:
+	.word   7,18
+	.long   0ec2a90H
+	.word   7,-17,06000H
+	.long   BBSHPAL
+LILBBSHP2A:
+	.word   8,21
+	.long   0ec2d90H
+	.word   8,-22,06000H
+	.long   BBSHPAL
+LILBBSHP3A:
+	.word   11,30
+	.long   0ec3180H
+	.word   11,-28,06000H
+	.long   BBSHPAL
+BIGSHAD:
+	.word   71,81
+	.long   0ec3940H
+	.word   71,-45,06000H
+	.long   GRNFCP
+bmeter:
+	.word   71,8
+	.long   0ecc010H
+	.word   0,0,06000H
+	.long   GRNFCP
+STEELPC1:
+	.word   71,27
+	.long   0eccd60H
+	.word   0,0,06000H
+	.long   GRNDP
+STEELPC2:
+	.word   71,33
+	.long   0ecfa50H
+	.word   0,0,06000H
+	.long   GRNDP
+PCCOVER:
+	.word   96,35
+	.long   0ed3140H
+	.word   0,0,06000H
+	.long   UFLP
+BIGDOR:
+	.word   70,63
+	.long   0ed8000H
+	.word   0,0,06000H
+	.long   ENDBSSP
+BGBWL1:
+	.word   43,77
+	.long   0ede760H
+	.word   0,0,06000H
+	.long   ENDBSSP
+BGBWL2:
+	.word   19,92
+	.long   0ee3500H
+	.word   0,0,06000H
+	.long   ENDBSSP
+BGBWL3:
+	.word   15,41
+	.long   0ee5e00H
+	.word   0,0,06000H
+	.long   ENDBSSP
+BGBWL4:
+	.word   79,57
+	.long   0ee6c70H
+	.word   0,0,06000H
+	.long   ENDBSSP
+BGBWL5:
+	.word   69,48
+	.long   0eed600H
+	.word   0,0,06000H
+	.long   ENDBSSP
+BGBWL6:
+	.word   69,51
+	.long   0ef23a0H
+	.word   0,0,06000H
+	.long   ENDBSSP
+BGBWL7:
+	.word   10,81
+	.long   0ef7620H
+	.word   0,0,06000H
+	.long   ENDBSSP
+PANEL1:
+	.word   44,31
+	.long   0ef8920H
+	.word   0,0,06000H
+	.long   ENDBSSP
+PANEL2:
+	.word   44,31
+	.long   0efa920H
+	.word   0,0,06000H
+	.long   ENDBSSP
+PANEL3:
+	.word   44,31
+	.long   0efc920H
+	.word   0,0,06000H
+	.long   ENDBSSP
+BGSD1:
+	.word   26,68
+	.long   0efe920H
+	.word   0,0,06000H
+	.long   ENDBSSP
+BGSD2:
+	.word   25,79
+	.long   0f01290H
+	.word   0,0,06000H
+	.long   ENDBSSP
+BGSD3:
+	.word   25,56
+	.long   0f040e0H
+	.word   0,0,06000H
+	.long   ENDBSSP
+BGSD4:
+	.word   35,62
+	.long   0f061b0H
+	.word   0,0,06000H
+	.long   ENDBSSP
+BGSD5:
+	.word   29,44
+	.long   0f09490H
+	.word   0,0,06000H
+	.long   ENDBSSP
+BGENRTR1:
+	.word   48,91
+	.long   0f0b280H
+	.word   0,0,06000H
+	.long   ENDBSSP
+BGENRTR1A:
+	.word   15,7
+	.long   0f118e0H
+	.word   0,0,06000H
+	.long   ENDBSSP
+BSFLR1:
+	.word   22,63
+	.long   0f11b60H
+	.word   0,0,06000H
+	.long   GRNCYCLE
+BSFLR2A:
+	.word   40,39
+	.long   0f13be0H
+	.word   0,0,06000H
+	.long   GRNCYCLE
+BSFLR2B:
+	.word   69,29
+	.long   0f16070H
+	.word   0,0,06000H
+	.long   GRNCYCLE
+BSFLR2C:
+	.word   68,37
+	.long   0f18f60H
+	.word   0,0,06000H
+	.long   GRNCYCLE
+BSFLR3A:
+	.word   40,39
+	.long   0f1ca60H
+	.word   0,0,06000H
+	.long   GRNCYCLE
+BSFLR3B:
+	.word   46,46
+	.long   0f1eef0H
+	.word   0,0,06000H
+	.long   GRNCYCLE
+BSFLR3C:
+	.word   61,40
+	.long   0f22090H
+	.word   0,0,06000H
+	.long   GRNCYCLE
+BSFLR4:
+	.word   50,47
+	.long   0f259c0H
+	.word   0,0,06000H
+	.long   GRNCYCLE
+BSFLR5:
+	.word   22,149
+	.long   0f290e0H
+	.word   0,0,06000H
+	.long   GRNCYCLE
+BOSSFLR:
+	.word   58,64
+	.long   0f2ddc0H
+	.word   0,0,06000H
+	.long   GRNCYCLE
+BOSSFLR2:
+	.word   11,60
+	.long   0f334c0H
+	.word   0,0,06000H
+	.long   ENDBSSP
+TURBL1:
+	.word   31,45
+	.long   0f34440H
+	.word   14,0,06000H
+	.long   ENDBSSP
+TURBL2:
+	.word   20,23
+	.long   0f36500H
+	.word   8,23,06000H
+	.long   ENDBSSP
+TURGN6:
+	.word   4,22
+	.long   0f36fd0H
+	.word   2,-33,06000H
+	.long   ENDBSSP
+TURGN7:
+	.word   12,19
+	.long   0f371e0H
+	.word   17,-33,06000H
+	.long   ENDBSSP
+TURGN8:
+	.word   17,17
+	.long   0f37740H
+	.word   25,-28,06000H
+	.long   ENDBSSP
+TURGN8A:
+	.word   17,10
+	.long   0f37e10H
+	.word   29,-24,06000H
+	.long   ENDBSSP
+TURGN9:
+	.word   17,4
+	.long   0f38210H
+	.word   31,-19,06000H
+	.long   ENDBSSP
+TURGN10:
+	.word   15,11
+	.long   0f383b0H
+	.word   27,-7,06000H
+	.long   ENDBSSP
+TURGN11:
+	.word   14,14
+	.long   0f38790H
+	.word   21,2,06000H
+	.long   ENDBSSP
+DCIMTH5A:
+	.word   22,36
+	.long   0f38c30H
+	.word   22,-63,06000H
+	.long   BGFACEP
+TOPHED:
+	.word   55,39
+	.long   0f39ec0H
+	.word   55,-7,06000H
+	.long   BGFACEP
+CHIN:
+	.word   38,16
+	.long   0f3d110H
+	.word   38,-125,06000H
+	.long   BGFACEP
+CHEEK:
+	.word   26,62
+	.long   0f3df50H
+	.word   57,-63,06000H
+	.long   BGFACEP
+EAR:
+	.word   24,17
+	.long   0f40520H
+	.word   55,-46,06000H
+	.long   BGFACEP
+HEDTUBES:
+	.word   13,26
+	.long   0f40eb0H
+	.word   68,-23,06000H
+	.long   BGFACEP
+DCI1:
+	.word   31,18
+	.long   0f416a0H
+	.word   31,-45,06000H
+	.long   BGFACEP
+DCI1A:
+	.word   31,18
+	.long   0f423c0H
+	.word   31,-45,06000H
+	.long   BGFACEP
+DCI1B:
+	.word   31,18
+	.long   0f430e0H
+	.word   31,-45,06000H
+	.long   BGFACEP
+DCI1C:
+	.word   31,18
+	.long   0f43e00H
+	.word   31,-45,06000H
+	.long   BGFACEP
+DCICLOSED:
+	.word   31,18
+	.long   0f44b20H
+	.word   31,-45,06000H
+	.long   BGFACEP
+DCICLOSED2:
+	.word   31,18
+	.long   0f45840H
+	.word   31,-45,06000H
+	.long   BGFACEP
+DCIMTH1:
+	.word   31,62
+	.long   0f46560H
+	.word   31,-63,06000H
+	.long   BGFACEP
+DCIMTH2:
+	.word   31,62
+	.long   0f49270H
+	.word   31,-63,06000H
+	.long   BGFACEP
+DCIMTH3:
+	.word   31,62
+	.long   0f4bf80H
+	.word   31,-63,06000H
+	.long   BGFACEP
+DCIMTH4:
+	.word   31,62
+	.long   0f4ec90H
+	.word   31,-63,06000H
+	.long   BGFACEP
+DCIMTH5:
+	.word   31,62
+	.long   0f519a0H
+	.word   31,-63,06000H
+	.long   BGFACEP
+DCI1D:
+	.word   31,18
+	.long   0f546b0H
+	.word   31,-45,06000H
+	.long   BGFACEP
+DCI1E:
+	.word   31,18
+	.long   0f553d0H
+	.word   31,-45,06000H
+	.long   BGFACEP
+DCI1F:
+	.word   31,18
+	.long   0f560f0H
+	.word   31,-45,06000H
+	.long   BGFACEP
+HTLRTPHED:
+	.word   110,39
+	.long   0f56e10H
+	.word   55,-7,06000H
+	.long   HTLRP
+HTLRMTH1:
+	.word   31,62
+	.long   0f5d2a0H
+	.word   31,-63,06000H
+	.long   HTLRP
+HTLRMTH2:
+	.word   31,62
+	.long   0f5ffb0H
+	.word   31,-63,06000H
+	.long   HTLRP
+HTLRMTH3:
+	.word   31,62
+	.long   0f62cc0H
+	.word   31,-63,06000H
+	.long   HTLRP
+HTLRMTH4:
+	.word   31,62
+	.long   0f659d0H
+	.word   31,-63,06000H
+	.long   HTLRP
+HTLRMTH5:
+	.word   31,62
+	.long   0f686e0H
+	.word   31,-63,06000H
+	.long   HTLRP
+HTLRMTH5A:
+	.word   22,36
+	.long   0f6b3f0H
+	.word   22,-63,06000H
+	.long   HTLRP
+HTLRI1:
+	.word   31,17
+	.long   0f6c680H
+	.word   31,-46,06000H
+	.long   HTLRP
+HTLRI1A:
+	.word   31,17
+	.long   0f6d2e0H
+	.word   31,-46,06000H
+	.long   HTLRP
+HTLRI1B:
+	.word   31,17
+	.long   0f6df40H
+	.word   31,-46,06000H
+	.long   HTLRP
+HTLRI1C:
+	.word   31,17
+	.long   0f6eba0H
+	.word   31,-46,06000H
+	.long   HTLRP
+HTLRI1D:
+	.word   31,17
+	.long   0f6f800H
+	.word   31,-46,06000H
+	.long   HTLRP
+HTLRI1E:
+	.word   31,17
+	.long   0f70460H
+	.word   31,-46,06000H
+	.long   HTLRP
+HTLRI1F:
+	.word   31,17
+	.long   0f710c0H
+	.word   31,-46,06000H
+	.long   HTLRP
+HTLRICLOSED:
+	.word   31,17
+	.long   0f71d20H
+	.word   31,-46,06000H
+	.long   HTLRP
+HTLRICLOSED2:
+	.word   31,17
+	.long   0f72980H
+	.word   31,-46,06000H
+	.long   HTLRP
+SKULLTP:
+	.word   34,42
+	.long   0f735e0H
+	.word   34,-12,06000H
+	.long   RDSKULLP
+SKULLCHEEK:
+	.word   26,56
+	.long   0f75760H
+	.word   57,-69,06000H
+	.long   RDSKULLP
+SKULLCHIN:
+	.word   38,16
+	.long   0f77980H
+	.word   38,-125,06000H
+	.long   RDSKULLP
+SKULLMTH1:
+	.word   31,56
+	.long   0f787c0H
+	.word   31,-69,06000H
+	.long   RDSKULLP
+SKULLMTH2:
+	.word   31,56
+	.long   0f7b070H
+	.word   31,-69,06000H
+	.long   RDSKULLP
+SKULLMTH3:
+	.word   31,56
+	.long   0f7d920H
+	.word   31,-69,06000H
+	.long   RDSKULLP
+SKULLMTH4:
+	.word   21,31
+	.long   0f801d0H
+	.word   21,-69,06000H
+	.long   RDSKULLP
+SKULLRECK:
+	.word   57,100
+	.long   0f81120H
+	.word   57,-42,06000H
+	.long   RDSKULLP
+SKULLI1:
+	.word   37,15
+	.long   0f896c0H
+	.word   37,-54,06000H
+	.long   RDSKULLP
+SKULLI2:
+	.word   37,15
+	.long   0f8a3d0H
+	.word   37,-54,06000H
+	.long   RDSKULLP
+SKULLI3:
+	.word   37,15
+	.long   0f8b0e0H
+	.word   37,-54,06000H
+	.long   RDSKULLP
+SKPIPES:
+	.word   23,36
+	.long   0f8bdf0H
+	.word   23,-6,06000H
+	.long   RDSKULLP
+fount1:
+	.word   45,65
+	.long   0f8d160H
+	.word   0,0,06000H
+	.long   water_p
+fount2:
+	.word   45,65
+	.long   0f915f0H
+	.word   0,0,06000H
+	.long   water_p
+fount3:
+	.word   45,65
+	.long   0f95a80H
+	.word   0,0,06000H
+	.long   water_p
+fount4:
+	.word   45,65
+	.long   0f99f10H
+	.word   0,0,06000H
+	.long   water_p
+nside1:
+	.word   38,21
+	.long   0f9e3a0H
+	.word   0,0,06000H
+	.long   water_p
+nside2:
+	.word   38,21
+	.long   0f9f660H
+	.word   0,0,06000H
+	.long   water_p
+nside3:
+	.word   38,21
+	.long   0fa0920H
+	.word   0,0,06000H
+	.long   water_p
+nside4:
+	.word   38,21
+	.long   0fa1be0H
+	.word   0,0,06000H
+	.long   water_p
+wside1:
+	.word   15,59
+	.long   0fa2ea0H
+	.word   0,0,06000H
+	.long   water_p
+wside2:
+	.word   15,59
+	.long   0fa4360H
+	.word   0,0,06000H
+	.long   water_p
+wside3:
+	.word   15,59
+	.long   0fa5820H
+	.word   0,0,06000H
+	.long   water_p
+wside4:
+	.word   15,59
+	.long   0fa6ce0H
+	.word   0,0,06000H
+	.long   water_p
+WATR1:
+	.word   65,39
+	.long   0fa81a0H
+	.word   0,0,06000H
+	.long   sign_p
+WATR2:
+	.word   65,39
+	.long   0fabd10H
+	.word   0,0,06000H
+	.long   sign_p
+WATR3:
+	.word   65,39
+	.long   0faf880H
+	.word   0,0,06000H
+	.long   sign_p
+	.TEXT
+

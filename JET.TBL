@@ -1,0 +1,72 @@
+	.DATA
+JTBOD:
+	.word   240,34
+	.long   013fb70H
+	.word   105,-6,00H
+	.long   BLUJET
+JTBOD2:
+	.word   240,34
+	.long   013fb70H
+	.word   105,-6,00H
+	.long   GRNJET
+JTSMWNG:
+	.word   41,19
+	.long   014fa70H
+	.word   106,-40,06000H
+	.long   BLUJET
+JTBGWNG:
+	.word   100,42
+	.long   0150cc0H
+	.word   57,-40,06000H
+	.long   BLUJET
+JTWHL:
+	.word   16,13
+	.long   0156f30H
+	.word   -65,-35,06000H
+	.long   BLUJET
+JTWNGTP:
+	.word   84,25
+	.long   0157410H
+	.word   114,19,06000H
+	.long   BLUJET
+JTSHD1:
+	.word   239,20
+	.long   015a550H
+	.word   98,-42,06000H
+	.long   BLUJET
+JTSHD2:
+	.word   97,41
+	.long   0161560H
+	.word   50,-62,06000H
+	.long   BLUJET
+JTSHD3:
+	.word   40,18
+	.long   01672a0H
+	.word   100,-63,06000H
+	.long   BLUJET
+JETWRECK:
+	.word   240,34
+	.long   0168380H
+	.word   105,-6,06000H
+JTSMWNG2:
+	.word   41,19
+	.long   01742c0H
+	.word   106,-40,06000H
+JTBGWNG2:
+	.word   98,42
+	.long   0175510H
+	.word   55,-40,06000H
+JTWNGTP2:
+	.word   84,25
+	.long   017b590H
+	.word   114,19,06000H
+JTSHAD2A:
+	.word   95,41
+	.long   017e6d0H
+	.word   49,-61,06000H
+JTSHAD3A:
+	.word   40,18
+	.long   0184220H
+	.word   102,-63,06000H
+	.TEXT
+

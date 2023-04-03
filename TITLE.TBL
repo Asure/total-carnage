@@ -1,0 +1,93 @@
+	.DATA
+BLOCKSIZE:
+	.word   200,128
+	.long   04864c0H
+	.word   0,0,05000H
+	.long   BLUP
+TITPC1:
+	.word   206,97
+	.long   04a58c0H
+	.word   0,0,06000H
+	.long   TITPCP
+TITPC2:
+	.word   154,97
+	.long   04c2d20H
+	.word   0,0,06000H
+	.long   TITPCP
+MIDWAY:
+	.word   197,49
+	.long   04d8b40H
+	.word   0,0,05000H
+	.long   MIDWAYP
+COPYR:
+	.word   294,8
+	.long   04e47d0H
+	.word   0,0,06000H
+	.long   BLASTP
+TTLBLAST:
+	.word   136,33
+	.long   04e7ef0H
+	.word   -3,33,00H
+	.long   BLASTP
+TTLBLASTF:
+	.word   136,33
+	.long   04e7ef0H
+	.word   -3,33,00H
+	.long   FLASH
+TTLHED1:
+	.word   56,73
+	.long   04f0b30H
+	.word   24,-7,07000H
+	.long   TTLCOLR
+TTLPC1:
+	.word   21,25
+	.long   04f7b00H
+	.word   45,-55,07000H
+	.long   TTLCOLR
+TTLPC2:
+	.word   70,33
+	.long   04f8960H
+	.word   -32,-47,07000H
+	.long   TTLCOLR
+TTLPC3:
+	.word   175,90
+	.long   04fc890H
+	.word   62,-80,07000H
+	.long   TTLCOLR
+TTLPC4:
+	.word   171,35
+	.long   0517740H
+	.word   35,-170,07000H
+	.long   TTLCOLR
+TTLPC5:
+	.word   45,88
+	.long   0521af0H
+	.word   -113,-87,07000H
+	.long   TTLCOLR
+TTLPC6:
+	.word   56,100
+	.long   0528740H
+	.word   -158,-79,07000H
+	.long   TTLCOLR
+TTLPC7:
+	.word   44,26
+	.long   0532060H
+	.word   -148,-179,07000H
+	.long   TTLCOLR
+TTLPC8:
+	.word   15,90
+	.long   0533fb0H
+	.word   -215,-94,07000H
+	.long   TTLCOLR
+TTLPC9:
+	.word   108,39
+	.long   05364a0H
+	.word   -231,-89,07000H
+	.long   TTLCOLR
+TTLPC10:
+	.word   33,54
+	.long   053d7d0H
+	.word   -230,-134,07000H
+	.long   TTLCOLR
+	.TEXT
+

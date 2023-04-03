@@ -1,0 +1,55 @@
+	.DATA
+THROW1:
+	.word   12,11
+	.long   0bd6820H
+	.word   5,5,00H
+THROW2:
+	.word   22,22
+	.long   0bfc300H
+	.word   12,11,00H
+THROW3:
+	.word   32,31
+	.long   0bfe5d0H
+	.word   16,15,00H
+THROW5:
+	.word   69,66
+	.long   0c22530H
+	.word   35,34,00H
+THROW6:
+	.word   83,81
+	.long   0c2b380H
+	.word   43,41,00H
+THROW7:
+	.word   88,88
+	.long   0c385a0H
+	.word   47,44,00H
+THROW4:
+	.word   58,56
+	.long   0c004d0H
+	.word   30,29,07000H
+THROW8:
+	.word   87,87
+	.long   0c477a0H
+	.word   43,44,00H
+THROW9:
+	.word   86,85
+	.long   0c56430H
+	.word   43,40,00H
+THROW10:
+	.word   87,84
+	.long   0c648a0H
+	.word   45,39,00H
+THROW11:
+	.word   87,84
+	.long   0c72d00H
+	.word   44,42,00H
+THROW12:
+	.word   85,79
+	.long   0c81160H
+	.word   41,32,00H
+THROW13:
+	.word   75,65
+	.long   0c8e340H
+	.word   37,25,00H
+	.TEXT
+

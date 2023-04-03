@@ -1,0 +1,522 @@
+	.DATA
+ORCHD1:
+	.word   44,60
+	.long   00H
+	.word   22,-8,06000H
+	.long   ORCP1
+ORCHD1A:
+	.word   44,60
+	.long   03de0H
+	.word   22,-8,06000H
+	.long   ORCP1
+ORCHD1B:
+	.word   44,62
+	.long   07bc0H
+	.word   22,-6,06000H
+	.long   ORCP1
+ORCHD1C:
+	.word   44,60
+	.long   0bbb0H
+	.word   22,-8,06000H
+	.long   ORCP1
+ORCHD1D:
+	.word   44,62
+	.long   0f990H
+	.word   22,-6,06000H
+	.long   ORCP1
+ORCHD2:
+	.word   44,61
+	.long   013980H
+	.word   22,-7,06000H
+	.long   ORCP1
+ORCHD2A:
+	.word   44,61
+	.long   017870H
+	.word   22,-7,06000H
+	.long   ORCP1
+ORCHD3:
+	.word   44,62
+	.long   01b760H
+	.word   22,-6,06000H
+	.long   ORCP1
+ORCHD3A:
+	.word   44,62
+	.long   01f750H
+	.word   22,-6,06000H
+	.long   ORCP1
+ORCHD4:
+	.word   44,63
+	.long   023740H
+	.word   22,-5,06000H
+	.long   ORCP1
+ORCHD5:
+	.word   44,68
+	.long   027840H
+	.word   22,0,06000H
+	.long   ORCP1
+ORCHD6:
+	.word   44,68
+	.long   02be60H
+	.word   22,0,06000H
+	.long   ORCP1
+SHLDR:
+	.word   20,48
+	.long   030480H
+	.word   42,-20,06000H
+	.long   ORCP1
+SIDEPC:
+	.word   13,71
+	.long   031b00H
+	.word   53,-56,06000H
+	.long   ORCP1
+HDRIP:
+	.word   44,49
+	.long   0330b0H
+	.word   22,-19,06000H
+	.long   ORCP1
+ARMRIP:
+	.word   57,64
+	.long   036340H
+	.word   88,-32,06000H
+	.long   ORCP1
+BASERIP:
+	.word   56,109
+	.long   03b8c0H
+	.word   56,-31,06000H
+	.long   RIPAL
+TOPRIP:
+	.word   56,43
+	.long   0447d0H
+	.word   55,-25,06000H
+	.long   RIPAL
+BLD1:
+	.word   6,6
+	.long   048040H
+	.word   3,2,06000H
+	.long   RIPAL
+BLD2:
+	.word   8,9
+	.long   048120H
+	.word   4,4,06000H
+	.long   RIPAL
+BLD3:
+	.word   12,13
+	.long   0482d0H
+	.word   6,6,06000H
+	.long   RIPAL
+BLD4:
+	.word   15,15
+	.long   048680H
+	.word   7,7,06000H
+	.long   RIPAL
+BLD5:
+	.word   18,19
+	.long   048bd0H
+	.word   9,9,06000H
+	.long   RIPAL
+BLD6:
+	.word   23,25
+	.long   0493e0H
+	.word   12,12,06000H
+	.long   RIPAL
+BLDSPLT1:
+	.word   10,12
+	.long   04a160H
+	.word   5,6,06000H
+	.long   RIPAL
+BLDSPLT2:
+	.word   14,15
+	.long   04a430H
+	.word   7,7,06000H
+	.long   RIPAL
+BLDSPLT3:
+	.word   18,20
+	.long   04a920H
+	.word   9,9,06000H
+	.long   RIPAL
+TUNG1A:
+	.word   22,31
+	.long   04b190H
+	.word   11,-118,06000H
+	.long   RIPAL
+TUNG1B:
+	.word   16,23
+	.long   04c190H
+	.word   8,-118,06000H
+	.long   RIPAL
+TUNG1C:
+	.word   14,18
+	.long   04ca30H
+	.word   7,-118,06000H
+	.long   RIPAL
+TUNG1D:
+	.word   14,13
+	.long   04d020H
+	.word   7,-118,06000H
+	.long   RIPAL
+TUNG1:
+	.word   22,37
+	.long   04d470H
+	.word   11,-118,06000H
+	.long   RIPAL
+TUNG2:
+	.word   25,37
+	.long   04e790H
+	.word   14,-118,06000H
+	.long   RIPAL
+TUNG3:
+	.word   25,37
+	.long   04e790H
+	.word   11,-118,06000H
+	.long   RIPAL
+OARM1A:
+	.word   52,116
+	.long   04fd40H
+	.word   92,-32,06000H
+	.long   ORCP1
+OARM1B:
+	.word   52,109
+	.long   058aa0H
+	.word   92,-32,06000H
+	.long   ORCP1
+OARM1:
+	.word   55,127
+	.long   060f80H
+	.word   92,-32,00H
+	.long   ORCP1
+OARM2:
+	.word   70,116
+	.long   06e9d0H
+	.word   107,-32,00H
+	.long   ORCP1
+OARM3:
+	.word   85,102
+	.long   07e790H
+	.word   122,-32,00H
+	.long   ORCP1
+OARM4:
+	.word   96,80
+	.long   08f680H
+	.word   133,-32,00H
+	.long   ORCP1
+OARM5:
+	.word   101,64
+	.long   09e680H
+	.word   138,-32,00H
+	.long   ORCP1
+OARM6:
+	.word   54,121
+	.long   0ab080H
+	.word   83,-32,00H
+	.long   ORCP1
+OARM1PT:
+	.word   55,127
+	.long   060f80H
+	.word   92,-28,00H
+	.long   ORCP1
+OARM2PT:
+	.word   70,116
+	.long   06e9d0H
+	.word   103,-28,00H
+	.long   ORCP1
+OARM3PT:
+	.word   85,102
+	.long   07e790H
+	.word   118,-28,00H
+	.long   ORCP1
+OARM4PT:
+	.word   96,80
+	.long   08f680H
+	.word   129,-30,00H
+	.long   ORCP1
+OARM5PT:
+	.word   101,64
+	.long   09e680H
+	.word   134,-32,00H
+	.long   ORCP1
+OARM6PT:
+	.word   54,121
+	.long   0ab080H
+	.word   85,-30,00H
+	.long   ORCP1
+OEYES1:
+	.word   40,28
+	.long   0b7cb0H
+	.word   40,-68,06000H
+	.long   ORCP1
+OEYES1A:
+	.word   40,29
+	.long   0b96f0H
+	.word   40,-68,06000H
+	.long   ORCP1
+OEYES1B:
+	.word   40,29
+	.long   0bb220H
+	.word   40,-68,06000H
+	.long   ORCP1
+OEYES2:
+	.word   40,29
+	.long   0bcd50H
+	.word   40,-68,06000H
+	.long   ORCP1
+OEYES3:
+	.word   40,28
+	.long   0be880H
+	.word   40,-68,06000H
+	.long   ORCP1
+OEYES3A:
+	.word   40,28
+	.long   0c02c0H
+	.word   40,-68,06000H
+	.long   ORCP1
+OEYES4:
+	.word   40,28
+	.long   0c1d00H
+	.word   40,-68,06000H
+	.long   ORCP1
+OEYES4A:
+	.word   40,28
+	.long   0c3740H
+	.word   40,-68,06000H
+	.long   ORCP1
+OMTH1:
+	.word   42,56
+	.long   0c5180H
+	.word   42,-84,06000H
+	.long   ORCP1
+OMTH2:
+	.word   42,56
+	.long   0c88a0H
+	.word   42,-84,06000H
+	.long   ORCP1
+OMTH3:
+	.word   42,57
+	.long   0cbfc0H
+	.word   42,-84,06000H
+	.long   ORCP1
+OMTH4:
+	.word   42,61
+	.long   0cf7e0H
+	.word   42,-84,06000H
+	.long   ORCP1
+OMTH1A:
+	.word   42,56
+	.long   0d33f0H
+	.word   42,-84,06000H
+	.long   ORCP1
+OMTH2A:
+	.word   42,56
+	.long   0d6b10H
+	.word   42,-84,06000H
+	.long   ORCP1
+OMTH3A:
+	.word   42,57
+	.long   0da230H
+	.word   42,-84,06000H
+	.long   ORCP1
+OMTH4A:
+	.word   42,61
+	.long   0dda50H
+	.word   42,-84,06000H
+	.long   ORCP1
+OMTH1B:
+	.word   42,56
+	.long   0e1660H
+	.word   42,-84,06000H
+	.long   ORCP1
+OMTH2B:
+	.word   42,56
+	.long   0e4d80H
+	.word   42,-84,06000H
+	.long   ORCP1
+OMTH3B:
+	.word   42,57
+	.long   0e84a0H
+	.word   42,-84,06000H
+	.long   ORCP1
+OMTH4B:
+	.word   42,61
+	.long   0ebcc0H
+	.word   42,-84,06000H
+	.long   ORCP1
+OEYES1C:
+	.word   40,28
+	.long   0ef8d0H
+	.word   40,-68,06000H
+	.long   ORCP1
+ORCFLM1:
+	.word   19,17
+	.long   0f1310H
+	.word   46,-126,06000H
+	.long   BLUBOOM
+ORCFLM2:
+	.word   20,24
+	.long   0f1ab0H
+	.word   47,-124,06000H
+	.long   BLUBOOM
+NUSHAD:
+	.word   53,97
+	.long   0f25f0H
+	.word   51,-54,06000H
+	.long   ORCP1
+GUNRIP1:
+	.word   42,92
+	.long   0f9e70H
+	.word   22,40,06000H
+	.long   ORCP1
+GUNRIP2:
+	.word   59,82
+	.long   0ff900H
+	.word   29,32,06000H
+	.long   ORCP1
+GUNRIP3:
+	.word   71,69
+	.long   0106a70H
+	.word   38,29,06000H
+	.long   ORCP1
+GUNRIP4:
+	.word   81,51
+	.long   010dd50H
+	.word   48,20,06000H
+	.long   ORCP1
+GUNRIP5:
+	.word   87,37
+	.long   0113e30H
+	.word   48,15,06000H
+	.long   ORCP1
+GUNRIP6:
+	.word   54,90
+	.long   01189b0H
+	.word   33,37,06000H
+	.long   ORCP1
+FLYHD1:
+	.word   34,43
+	.long   011fba0H
+	.word   17,-8,06000H
+	.long   ORCP1
+FLYHD2:
+	.word   31,44
+	.long   0121df0H
+	.word   15,-7,06000H
+	.long   ORCP1
+FLYHD3:
+	.word   28,46
+	.long   0123df0H
+	.word   14,-6,06000H
+	.long   ORCP1
+FLYHD4:
+	.word   31,48
+	.long   0125c20H
+	.word   17,-5,06000H
+	.long   ORCP1
+FLYHD5:
+	.word   36,46
+	.long   0127f00H
+	.word   19,0,06000H
+	.long   ORCP1
+FLYHD6:
+	.word   35,44
+	.long   012a5d0H
+	.word   20,0,06000H
+	.long   ORCP1
+OFLESH1:
+	.word   18,17
+	.long   012c9f0H
+	.word   9,7,06000H
+	.long   RIPAL
+OFLESH2:
+	.word   22,15
+	.long   012d120H
+	.word   11,7,06000H
+	.long   RIPAL
+OFLESH3:
+	.word   22,14
+	.long   012d8e0H
+	.word   11,6,06000H
+	.long   RIPAL
+OFLESH4:
+	.word   21,13
+	.long   012e020H
+	.word   10,6,06000H
+	.long   RIPAL
+OFLESH5:
+	.word   19,17
+	.long   012e690H
+	.word   9,7,06000H
+	.long   RIPAL
+OFLESH6:
+	.word   16,22
+	.long   012ee30H
+	.word   8,10,06000H
+	.long   RIPAL
+OFLESH7:
+	.word   13,23
+	.long   012f670H
+	.word   6,11,06000H
+	.long   RIPAL
+OFLESH8:
+	.word   16,21
+	.long   012fd80H
+	.word   8,10,06000H
+	.long   RIPAL
+OFLESH9:
+	.word   20,18
+	.long   0130560H
+	.word   10,9,06000H
+	.long   RIPAL
+OFLESH10:
+	.word   22,14
+	.long   0130dd0H
+	.word   11,6,06000H
+	.long   RIPAL
+OFLESH11:
+	.word   21,14
+	.long   0131510H
+	.word   10,7,06000H
+	.long   RIPAL
+OFLESH12:
+	.word   17,20
+	.long   0131c00H
+	.word   9,10,06000H
+	.long   RIPAL
+OFLESH13:
+	.word   14,24
+	.long   0132400H
+	.word   7,11,06000H
+	.long   RIPAL
+OFLESH1A:
+	.word   24,17
+	.long   0132be0H
+	.word   12,8,06000H
+	.long   RIPAL
+OFLESH1B:
+	.word   28,19
+	.long   0133570H
+	.word   14,9,06000H
+	.long   RIPAL
+OFLESH1C:
+	.word   34,27
+	.long   01341f0H
+	.word   16,12,06000H
+	.long   RIPAL
+OFLESH1D:
+	.word   33,37
+	.long   0135780H
+	.word   16,17,06000H
+	.long   RIPAL
+OFLESH1E:
+	.word   33,46
+	.long   0137420H
+	.word   18,23,06000H
+	.long   RIPAL
+OFLESH1F:
+	.word   34,52
+	.long   01397c0H
+	.word   19,26,06000H
+	.long   RIPAL
+ORCHINT:
+	.word   69,36
+	.long   013c130H
+	.word   0,0,06000H
+	.TEXT
+

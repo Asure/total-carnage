@@ -1,0 +1,1078 @@
+	.DATA
+FONT8A:
+	.word   7,9
+	.long   09153c0H
+	.word   0,0,04000H
+	.long   BLLNP5
+FONT8B:
+	.word   6,9
+	.long   09154c0H
+	.word   0,0,04000H
+	.long   BLLNP5
+FONT8C:
+	.word   6,9
+	.long   09155a0H
+	.word   0,0,04000H
+	.long   BLLNP5
+FONT8D:
+	.word   6,9
+	.long   0915680H
+	.word   0,0,04000H
+	.long   BLLNP5
+FONT8E:
+	.word   7,9
+	.long   0915760H
+	.word   0,0,04000H
+	.long   BLLNP5
+FONT8F:
+	.word   7,9
+	.long   0915860H
+	.word   0,0,04000H
+	.long   BLLNP5
+FONT8G:
+	.word   7,9
+	.long   0915960H
+	.word   0,0,04000H
+	.long   BLLNP5
+FONT8H:
+	.word   6,9
+	.long   0915a60H
+	.word   0,0,04000H
+	.long   BLLNP5
+FONT8I:
+	.word   4,9
+	.long   0915b40H
+	.word   0,0,04000H
+	.long   BLLNP5
+FONT8J:
+	.word   6,9
+	.long   0915bd0H
+	.word   0,0,04000H
+	.long   BLLNP5
+FONT8K:
+	.word   6,9
+	.long   0915cb0H
+	.word   0,0,04000H
+	.long   BLLNP5
+FONT8L:
+	.word   7,9
+	.long   0915d90H
+	.word   0,0,04000H
+	.long   BLLNP5
+FONT8M:
+	.word   8,9
+	.long   0915e90H
+	.word   0,0,04000H
+	.long   BLLNP5
+FONT8N:
+	.word   6,9
+	.long   0915fb0H
+	.word   0,0,04000H
+	.long   BLLNP5
+FONT8O:
+	.word   6,9
+	.long   0916090H
+	.word   0,0,04000H
+	.long   BLLNP5
+FONT8P:
+	.word   7,9
+	.long   0916170H
+	.word   0,0,04000H
+	.long   BLLNP5
+FONT8Q:
+	.word   7,9
+	.long   0916270H
+	.word   0,0,04000H
+	.long   BLLNP5
+FONT8R:
+	.word   7,9
+	.long   0916370H
+	.word   0,0,04000H
+	.long   BLLNP5
+FONT8S:
+	.word   6,9
+	.long   0916470H
+	.word   0,0,04000H
+	.long   BLLNP5
+FONT8T:
+	.word   7,9
+	.long   0916550H
+	.word   0,0,04000H
+	.long   BLLNP5
+FONT8U:
+	.word   6,9
+	.long   0916650H
+	.word   0,0,04000H
+	.long   BLLNP5
+FONT8V:
+	.word   7,9
+	.long   0916730H
+	.word   0,0,04000H
+	.long   BLLNP5
+FONT8W:
+	.word   12,9
+	.long   0916830H
+	.word   0,0,04000H
+	.long   BLLNP5
+FONT8X:
+	.word   6,9
+	.long   09169e0H
+	.word   0,0,04000H
+	.long   BLLNP5
+FONT8Y:
+	.word   8,10
+	.long   0916ac0H
+	.word   0,0,04000H
+	.long   BLLNP5
+FONT8Z:
+	.word   7,9
+	.long   0916c00H
+	.word   0,0,04000H
+	.long   BLLNP5
+FONT81:
+	.word   7,9
+	.long   0916d00H
+	.word   0,0,04000H
+	.long   BLLNP5
+FONT8QUE:
+	.word   7,9
+	.long   0916e00H
+	.word   0,0,04000H
+	.long   BLLNP5
+FONT82:
+	.word   7,9
+	.long   0916f00H
+	.word   0,0,04000H
+	.long   BLLNP5
+FONT8PERIOD:
+	.word   3,4
+	.long   0917000H
+	.word   0,-5,04000H
+	.long   BLLNP5
+FONT8EXCLAM:
+	.word   4,12
+	.long   0917030H
+	.word   0,2,04000H
+	.long   BLLNP5
+FONT8DASH:
+	.word   6,2
+	.long   09170f0H
+	.word   0,-3,04000H
+	.long   BLLNP5
+FONT8COMMA:
+	.word   4,6
+	.long   0917120H
+	.word   0,-5,04000H
+	.long   BLLNP5
+FONT8APOST:
+	.word   3,5
+	.long   0917180H
+	.word   -1,2,04000H
+	.long   BLLNP5
+FON150:
+	.word   12,15
+	.long   0abafb0H
+	.word   0,0,04000H
+	.long   DUXPAL
+FON151:
+	.word   6,15
+	.long   0abb280H
+	.word   0,0,04000H
+	.long   DUXPAL
+FON152:
+	.word   12,15
+	.long   0abb3f0H
+	.word   0,0,04000H
+	.long   DUXPAL
+FON153:
+	.word   12,15
+	.long   0abb6c0H
+	.word   0,0,04000H
+	.long   DUXPAL
+FON154:
+	.word   13,15
+	.long   0abb990H
+	.word   0,0,04000H
+	.long   DUXPAL
+FON155:
+	.word   12,15
+	.long   0abbca0H
+	.word   0,0,04000H
+	.long   DUXPAL
+FON156:
+	.word   13,15
+	.long   0abbf70H
+	.word   0,0,04000H
+	.long   DUXPAL
+FON157:
+	.word   13,15
+	.long   0abc280H
+	.word   0,0,04000H
+	.long   DUXPAL
+FON158:
+	.word   12,15
+	.long   0abc590H
+	.word   0,0,04000H
+	.long   DUXPAL
+FON159:
+	.word   13,15
+	.long   0abbf70H
+	.word   0,0,04000H
+	.long   DUXPAL
+FON15A:
+	.word   11,15
+	.long   0abc860H
+	.word   0,0,04000H
+	.long   DUXPAL
+FON15B:
+	.word   11,15
+	.long   0abcb00H
+	.word   0,0,04000H
+	.long   DUXPAL
+FON15C:
+	.word   11,15
+	.long   0abcda0H
+	.word   0,0,04000H
+	.long   DUXPAL
+FON15CR:
+	.word   15,11
+	.long   0abd040H
+	.word   0,0,04000H
+	.long   DUXPAL
+FON15D:
+	.word   12,15
+	.long   0abd2e0H
+	.word   0,0,04000H
+	.long   DUXPAL
+FON15E:
+	.word   11,15
+	.long   0abd5b0H
+	.word   0,0,04000H
+	.long   DUXPAL
+FON15F:
+	.word   11,15
+	.long   0abd850H
+	.word   0,0,04000H
+	.long   DUXPAL
+FON15G:
+	.word   12,15
+	.long   0abdaf0H
+	.word   0,0,04000H
+	.long   DUXPAL
+FON15H:
+	.word   12,15
+	.long   0abddc0H
+	.word   0,0,04000H
+	.long   DUXPAL
+FON15I:
+	.word   3,15
+	.long   0abe090H
+	.word   0,0,04000H
+	.long   DUXPAL
+FON15J:
+	.word   10,15
+	.long   0abe150H
+	.word   0,0,04000H
+	.long   DUXPAL
+FON15K:
+	.word   12,15
+	.long   0abe3b0H
+	.word   0,0,04000H
+	.long   DUXPAL
+FON15L:
+	.word   10,15
+	.long   0abe680H
+	.word   0,0,04000H
+	.long   DUXPAL
+FON15M:
+	.word   16,15
+	.long   0abe8e0H
+	.word   0,0,04000H
+	.long   DUXPAL
+FON15N:
+	.word   12,15
+	.long   0abeca0H
+	.word   0,0,04000H
+	.long   DUXPAL
+FON15O:
+	.word   12,15
+	.long   0abafb0H
+	.word   0,0,04000H
+	.long   DUXPAL
+FON15P:
+	.word   11,15
+	.long   0abef70H
+	.word   0,0,04000H
+	.long   DUXPAL
+FON15Q:
+	.word   13,17
+	.long   0abf210H
+	.word   0,0,04000H
+	.long   DUXPAL
+FON15R:
+	.word   11,15
+	.long   0abf590H
+	.word   0,0,04000H
+	.long   DUXPAL
+FON15S:
+	.word   12,15
+	.long   0abf830H
+	.word   0,0,04000H
+	.long   DUXPAL
+FON15T:
+	.word   11,15
+	.long   0abfb00H
+	.word   0,0,04000H
+	.long   DUXPAL
+FON15U:
+	.word   11,15
+	.long   0abfda0H
+	.word   0,0,04000H
+	.long   DUXPAL
+FON15V:
+	.word   14,15
+	.long   0ac0040H
+	.word   0,0,04000H
+	.long   DUXPAL
+FON15W:
+	.word   16,15
+	.long   0ac0390H
+	.word   0,0,04000H
+	.long   DUXPAL
+FON15X:
+	.word   15,15
+	.long   0ac0750H
+	.word   0,0,04000H
+	.long   DUXPAL
+FON15Y:
+	.word   13,15
+	.long   0ac0ae0H
+	.word   0,0,04000H
+	.long   DUXPAL
+FON15Z:
+	.word   13,15
+	.long   0ac0df0H
+	.word   0,0,04000H
+	.long   DUXPAL
+FON15and:
+	.word   13,15
+	.long   0ac1100H
+	.word   0,0,04000H
+	.long   DUXPAL
+FON15apos:
+	.word   4,6
+	.long   0ac1410H
+	.word   0,0,04000H
+	.long   DUXPAL
+FON15apos1:
+	.word   4,6
+	.long   0ac1470H
+	.word   0,0,04000H
+	.long   DUXPAL
+FON15ast:
+	.word   7,7
+	.long   0ac14d0H
+	.word   -2,-3,04000H
+	.long   DUXPAL
+FON15backsp:
+	.word   9,15
+	.long   0ac15a0H
+	.word   0,0,04000H
+	.long   DUXPAL
+FON15brackl:
+	.word   5,19
+	.long   0ac17c0H
+	.word   0,0,04000H
+	.long   DUXPAL
+FON15brackr:
+	.word   5,19
+	.long   0ac17c0H
+	.word   0,0,04000H
+	.long   DUXPAL
+FON15break:
+	.word   3,15
+	.long   0ac1940H
+	.word   0,0,04000H
+	.long   DUXPAL
+FON15carr:
+	.word   9,5
+	.long   0ac1a00H
+	.word   0,0,04000H
+	.long   DUXPAL
+FON15colon:
+	.word   4,11
+	.long   0ac1ac0H
+	.word   0,-2,04000H
+	.long   DUXPAL
+FON15comma:
+	.word   4,6
+	.long   0ac1410H
+	.word   0,-10,04000H
+	.long   DUXPAL
+FON15dash:
+	.word   7,3
+	.long   0ac1b70H
+	.word   0,-7,04000H
+	.long   DUXPAL
+FON15doll:
+	.word   11,20
+	.long   0ac1bd0H
+	.word   0,2,04000H
+	.long   DUXPAL
+FON15engPOUN:
+	.word   11,15
+	.long   0ac1f40H
+	.word   0,0,04000H
+	.long   DUXPAL
+FON15equal:
+	.word   7,8
+	.long   0ac21e0H
+	.word   -2,-4,04000H
+	.long   DUXPAL
+FON15excla:
+	.word   3,15
+	.long   0ac22c0H
+	.word   0,0,04000H
+	.long   DUXPAL
+FON15forsp:
+	.word   9,15
+	.long   0ac15a0H
+	.word   0,0,04000H
+	.long   DUXPAL
+FON15la:
+	.word   11,10
+	.long   0ac2380H
+	.word   0,-5,04000H
+	.long   DUXPAL
+FON15lb:
+	.word   10,15
+	.long   0ac2540H
+	.word   0,0,04000H
+	.long   DUXPAL
+FON15lc:
+	.word   8,10
+	.long   0ac27a0H
+	.word   0,-5,04000H
+	.long   DUXPAL
+FON15ld:
+	.word   11,15
+	.long   0ac28e0H
+	.word   0,0,04000H
+	.long   DUXPAL
+FON15le:
+	.word   10,10
+	.long   0ac2b80H
+	.word   0,-5,04000H
+	.long   DUXPAL
+FON15less:
+	.word   6,9
+	.long   0ac2d10H
+	.word   -2,-4,04000H
+	.long   DUXPAL
+FON15lf:
+	.word   7,20
+	.long   0ac2df0H
+	.word   0,1,04000H
+	.long   DUXPAL
+FON15lg:
+	.word   10,15
+	.long   0ac3020H
+	.word   0,-5,04000H
+	.long   DUXPAL
+FON15lh:
+	.word   12,15
+	.long   0ac3280H
+	.word   0,0,04000H
+	.long   DUXPAL
+FON15li:
+	.word   3,15
+	.long   0ac3550H
+	.word   0,0,04000H
+	.long   DUXPAL
+FON15line:
+	.word   11,3
+	.long   0ac3610H
+	.word   0,-6,04000H
+	.long   DUXPAL
+FON15lj:
+	.word   4,20
+	.long   0ac36a0H
+	.word   0,1,04000H
+	.long   DUXPAL
+FON15lk:
+	.word   11,15
+	.long   0ac37e0H
+	.word   0,0,04000H
+	.long   DUXPAL
+FON15ll:
+	.word   3,15
+	.long   0abe090H
+	.word   0,0,04000H
+	.long   DUXPAL
+FON15lm:
+	.word   14,10
+	.long   0ac3a80H
+	.word   0,-5,04000H
+	.long   DUXPAL
+FON15ln:
+	.word   11,10
+	.long   0ac3cb0H
+	.word   0,-5,04000H
+	.long   DUXPAL
+FON15lo:
+	.word   10,10
+	.long   0ac2b80H
+	.word   0,-5,04000H
+	.long   DUXPAL
+FON15lp:
+	.word   10,14
+	.long   0ac3e70H
+	.word   0,-5,04000H
+	.long   DUXPAL
+FON15lq:
+	.word   11,14
+	.long   0ac40a0H
+	.word   0,-5,04000H
+	.long   DUXPAL
+FON15lr:
+	.word   7,10
+	.long   0ac4310H
+	.word   0,-5,04000H
+	.long   DUXPAL
+FON15ls:
+	.word   10,10
+	.long   0ac4430H
+	.word   0,-5,04000H
+	.long   DUXPAL
+FON15lt:
+	.word   8,15
+	.long   0ac45c0H
+	.word   0,0,04000H
+	.long   DUXPAL
+FON15lu:
+	.word   11,10
+	.long   0ac47a0H
+	.word   0,-5,04000H
+	.long   DUXPAL
+FON15lv:
+	.word   12,10
+	.long   0ac4960H
+	.word   0,-5,04000H
+	.long   DUXPAL
+FON15lw:
+	.word   15,10
+	.long   0ac4b40H
+	.word   0,-5,04000H
+	.long   DUXPAL
+FON15lx:
+	.word   11,10
+	.long   0ac4da0H
+	.word   0,-5,04000H
+	.long   DUXPAL
+FON15ly:
+	.word   12,14
+	.long   0ac4f60H
+	.word   0,-5,04000H
+	.long   DUXPAL
+FON15lz:
+	.word   11,10
+	.long   0ac5200H
+	.word   0,-5,04000H
+	.long   DUXPAL
+FON15more:
+	.word   6,9
+	.long   0ac53c0H
+	.word   -3,-4,04000H
+	.long   DUXPAL
+FON15paren2l:
+	.word   7,19
+	.long   0ac54a0H
+	.word   0,2,04000H
+	.long   DUXPAL
+FON15paren2r:
+	.word   7,19
+	.long   0ac56c0H
+	.word   0,2,04000H
+	.long   DUXPAL
+FON15parenl:
+	.word   6,17
+	.long   0ac58e0H
+	.word   0,1,04000H
+	.long   DUXPAL
+FON15parenr:
+	.word   6,17
+	.long   0ac5a80H
+	.word   0,1,04000H
+	.long   DUXPAL
+FON15perc:
+	.word   13,15
+	.long   0ac5c20H
+	.word   0,0,04000H
+	.long   DUXPAL
+FON15period:
+	.word   4,4
+	.long   0ac5f30H
+	.word   0,-11,04000H
+	.long   DUXPAL
+FON15plus:
+	.word   7,8
+	.long   0ac5f70H
+	.word   -2,-4,04000H
+	.long   DUXPAL
+FON15poun:
+	.word   12,10
+	.long   0ac6050H
+	.word   0,-2,04000H
+	.long   DUXPAL
+FON15quest:
+	.word   10,15
+	.long   0ac6230H
+	.word   0,0,04000H
+	.long   DUXPAL
+FON15quote:
+	.word   10,6
+	.long   0ac6490H
+	.word   0,1,04000H
+	.long   DUXPAL
+FON15rquote:
+	.word   10,6
+	.long   0ac6580H
+	.word   0,1,04000H
+	.long   DUXPAL
+FON15semicol:
+	.word   4,13
+	.long   0ac6670H
+	.word   0,-2,04000H
+	.long   DUXPAL
+FONT7A:
+	.word   6,8
+	.long   0ac6740H
+	.word   0,0,03000H
+	.long   DUXPAL
+FONT7B:
+	.word   6,8
+	.long   0ac67d0H
+	.word   0,0,03000H
+	.long   DUXPAL
+FONT7C:
+	.word   6,8
+	.long   0ac6860H
+	.word   0,0,03000H
+	.long   DUXPAL
+FONT7D:
+	.word   6,8
+	.long   0ac68f0H
+	.word   0,0,03000H
+	.long   DUXPAL
+FONT7E:
+	.word   6,8
+	.long   0ac68f0H
+	.word   0,0,03000H
+	.long   DUXPAL
+FONT7F:
+	.word   6,8
+	.long   0ac6980H
+	.word   0,0,03000H
+	.long   DUXPAL
+FONT7G:
+	.word   6,8
+	.long   0ac6a10H
+	.word   0,0,03000H
+	.long   DUXPAL
+FONT7H:
+	.word   6,8
+	.long   0ac6aa0H
+	.word   0,0,03000H
+	.long   DUXPAL
+FONT7I:
+	.word   3,8
+	.long   0ac6b30H
+	.word   0,0,03000H
+	.long   DUXPAL
+FONT7J:
+	.word   6,8
+	.long   0ac6b80H
+	.word   0,0,03000H
+	.long   DUXPAL
+FONT7K:
+	.word   6,8
+	.long   0ac6c10H
+	.word   0,0,03000H
+	.long   DUXPAL
+FONT7L:
+	.word   5,8
+	.long   0ac6ca0H
+	.word   0,0,03000H
+	.long   DUXPAL
+FONT7M:
+	.word   10,8
+	.long   0ac6d20H
+	.word   0,0,03000H
+	.long   DUXPAL
+FONT7N:
+	.word   7,8
+	.long   0ac6e10H
+	.word   0,0,03000H
+	.long   DUXPAL
+FONT7O:
+	.word   7,8
+	.long   0ac6ec0H
+	.word   0,0,03000H
+	.long   DUXPAL
+FONT7P:
+	.word   6,8
+	.long   0ac6f70H
+	.word   0,0,03000H
+	.long   DUXPAL
+FONT7Q:
+	.word   7,10
+	.long   0ac7000H
+	.word   0,0,03000H
+	.long   DUXPAL
+FONT7R:
+	.word   6,8
+	.long   0ac68f0H
+	.word   0,0,03000H
+	.long   DUXPAL
+FONT7S:
+	.word   6,8
+	.long   0ac6aa0H
+	.word   0,0,03000H
+	.long   DUXPAL
+FONT7T:
+	.word   6,8
+	.long   0ac6b80H
+	.word   0,0,03000H
+	.long   DUXPAL
+FONT7U:
+	.word   6,8
+	.long   0ac70e0H
+	.word   0,0,03000H
+	.long   DUXPAL
+FONT7V:
+	.word   7,8
+	.long   0ac7170H
+	.word   0,0,03000H
+	.long   DUXPAL
+FONT7W:
+	.word   11,8
+	.long   0ac7220H
+	.word   0,0,03000H
+	.long   DUXPAL
+FONT7X:
+	.word   7,8
+	.long   0ac7330H
+	.word   0,0,03000H
+	.long   DUXPAL
+FONT7Y:
+	.word   6,8
+	.long   0ac6b80H
+	.word   0,0,03000H
+	.long   DUXPAL
+FONT7Z:
+	.word   6,8
+	.long   0ac6aa0H
+	.word   0,0,03000H
+	.long   DUXPAL
+FONT7a:
+	.word   7,6
+	.long   0ac73e0H
+	.word   0,-2,03000H
+	.long   DUXPAL
+FONT7b:
+	.word   6,8
+	.long   0ac6980H
+	.word   0,0,03000H
+	.long   DUXPAL
+FONT7c:
+	.word   6,6
+	.long   0ac7460H
+	.word   0,-2,03000H
+	.long   DUXPAL
+FONT7d:
+	.word   7,8
+	.long   0ac74d0H
+	.word   0,0,03000H
+	.long   DUXPAL
+FONT7e:
+	.word   6,6
+	.long   0ac7580H
+	.word   0,-2,03000H
+	.long   DUXPAL
+FONT7f:
+	.word   4,10
+	.long   0ac75f0H
+	.word   0,0,03000H
+	.long   DUXPAL
+FONT7g:
+	.word   6,8
+	.long   0ac7670H
+	.word   0,-2,03000H
+	.long   DUXPAL
+FONT7h:
+	.word   6,8
+	.long   0ac7700H
+	.word   0,0,03000H
+	.long   DUXPAL
+FONT7i:
+	.word   3,8
+	.long   0ac7790H
+	.word   0,0,03000H
+	.long   DUXPAL
+FONT7j:
+	.word   3,10
+	.long   0ac77e0H
+	.word   -28,32,03000H
+	.long   DUXPAL
+FONT7k:
+	.word   7,8
+	.long   0ac7840H
+	.word   0,0,03000H
+	.long   DUXPAL
+FONT7l:
+	.word   3,8
+	.long   0ac6b30H
+	.word   0,0,03000H
+	.long   DUXPAL
+FONT7m:
+	.word   11,6
+	.long   0ac78f0H
+	.word   0,-2,03000H
+	.long   DUXPAL
+FONT7n:
+	.word   7,6
+	.long   0ac79c0H
+	.word   0,-2,03000H
+	.long   DUXPAL
+FONT7o:
+	.word   6,6
+	.long   0ac7a40H
+	.word   0,-2,03000H
+	.long   DUXPAL
+FONT7p:
+	.word   6,8
+	.long   0ac6980H
+	.word   0,-2,03000H
+	.long   DUXPAL
+FONT7q:
+	.word   7,8
+	.long   0ac7ab0H
+	.word   0,-2,03000H
+	.long   DUXPAL
+FONT7r:
+	.word   5,6
+	.long   0ac7b60H
+	.word   0,-2,03000H
+	.long   DUXPAL
+FONT7s:
+	.word   6,6
+	.long   0ac7bc0H
+	.word   0,-2,03000H
+	.long   DUXPAL
+FONT7t:
+	.word   5,8
+	.long   0ac7c30H
+	.word   0,0,03000H
+	.long   DUXPAL
+FONT7u:
+	.word   7,6
+	.long   0ac7cb0H
+	.word   0,-2,03000H
+	.long   DUXPAL
+FONT7v:
+	.word   6,6
+	.long   0ac7d30H
+	.word   0,-2,03000H
+	.long   DUXPAL
+FONT71:
+	.word   4,8
+	.long   0ac7da0H
+	.word   0,0,03000H
+	.long   DUXPAL
+FONT72:
+	.word   6,8
+	.long   0ac7670H
+	.word   0,0,03000H
+	.long   DUXPAL
+FONT73:
+	.word   6,8
+	.long   0ac7e00H
+	.word   0,0,03000H
+	.long   DUXPAL
+FONT74:
+	.word   6,8
+	.long   0ac7e90H
+	.word   0,0,03000H
+	.long   DUXPAL
+FONT75:
+	.word   6,8
+	.long   0ac68f0H
+	.word   0,0,03000H
+	.long   DUXPAL
+FONT76:
+	.word   6,8
+	.long   0ac6740H
+	.word   0,0,03000H
+	.long   DUXPAL
+FONT77:
+	.word   6,8
+	.long   0ac6b80H
+	.word   0,0,03000H
+	.long   DUXPAL
+FONT78:
+	.word   6,8
+	.long   0ac6aa0H
+	.word   0,0,03000H
+	.long   DUXPAL
+FONT79:
+	.word   6,8
+	.long   0ac6740H
+	.word   0,0,03000H
+	.long   DUXPAL
+FONT70:
+	.word   6,8
+	.long   0ac6aa0H
+	.word   0,0,03000H
+	.long   DUXPAL
+FONT7excla:
+	.word   3,8
+	.long   0ac7790H
+	.word   0,0,03000H
+	.long   DUXPAL
+FONT7pound:
+	.word   10,8
+	.long   0ac7f20H
+	.word   0,0,03000H
+	.long   DUXPAL
+FONT7doll:
+	.word   6,9
+	.long   0ac8010H
+	.word   0,1,03000H
+	.long   DUXPAL
+FONT7percen:
+	.word   11,8
+	.long   0ac80c0H
+	.word   0,0,03000H
+	.long   DUXPAL
+FONT7and:
+	.word   7,8
+	.long   0ac81d0H
+	.word   0,0,03000H
+	.long   DUXPAL
+FONT7ast:
+	.word   7,8
+	.long   0ac8280H
+	.word   1,-1,03000H
+	.long   DUXPAL
+FONT7parenl:
+	.word   3,10
+	.long   0ac8330H
+	.word   0,1,03000H
+	.long   DUXPAL
+FONT7parenr:
+	.word   3,10
+	.long   0ac8390H
+	.word   0,1,03000H
+	.long   DUXPAL
+FONT7dash:
+	.word   5,2
+	.long   0ac83f0H
+	.word   0,-4,03000H
+	.long   DUXPAL
+FONT7line:
+	.word   6,2
+	.long   0ac8410H
+	.word   0,-6,03000H
+	.long   DUXPAL
+FONT7equal:
+	.word   5,5
+	.long   0ac8440H
+	.word   0,-2,03000H
+	.long   DUXPAL
+FONT7plus:
+	.word   6,6
+	.long   0ac8490H
+	.word   0,-2,03000H
+	.long   DUXPAL
+FONT7bracl:
+	.word   3,10
+	.long   0ac8500H
+	.word   0,0,03000H
+	.long   DUXPAL
+FONT7bracr:
+	.word   3,10
+	.long   0ac8500H
+	.word   0,0,03000H
+	.long   DUXPAL
+FONT7backsp:
+	.word   5,8
+	.long   0ac8560H
+	.word   0,0,03000H
+	.long   DUXPAL
+FONT7paren2l:
+	.word   4,10
+	.long   0ac85e0H
+	.word   0,0,03000H
+	.long   DUXPAL
+FONT7paren2r:
+	.word   4,10
+	.long   0ac8660H
+	.word   0,0,03000H
+	.long   DUXPAL
+FONT7break:
+	.word   3,8
+	.long   0ac6b30H
+	.word   0,0,03000H
+	.long   DUXPAL
+FONT7semicol:
+	.word   3,8
+	.long   0ac86e0H
+	.word   0,0,03000H
+	.long   DUXPAL
+FONT7apost:
+	.word   3,4
+	.long   0ac8730H
+	.word   0,0,03000H
+	.long   DUXPAL
+FONT7colon:
+	.word   3,6
+	.long   0ac8760H
+	.word   0,-1,03000H
+	.long   DUXPAL
+FONT7quote:
+	.word   6,4
+	.long   0ac87a0H
+	.word   0,0,03000H
+	.long   DUXPAL
+FONT7comma:
+	.word   3,4
+	.long   0ac8730H
+	.word   0,-5,03000H
+	.long   DUXPAL
+FONT7period:
+	.word   3,2
+	.long   0ac87f0H
+	.word   0,-6,03000H
+	.long   DUXPAL
+FONT7forsp:
+	.word   5,8
+	.long   0ac8560H
+	.word   0,0,03000H
+	.long   DUXPAL
+FONT7less:
+	.word   4,7
+	.long   0ac8810H
+	.word   0,0,03000H
+	.long   DUXPAL
+FONT7more:
+	.word   5,10
+	.long   0ac8870H
+	.word   0,0,03000H
+	.long   DUXPAL
+FONT7quest:
+	.word   6,8
+	.long   0ac8910H
+	.word   0,0,03000H
+	.long   DUXPAL
+	.TEXT
+
