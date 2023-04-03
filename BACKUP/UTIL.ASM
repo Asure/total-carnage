@@ -11,7 +11,7 @@
 *
 *.Last mod - 9/24/91 19:28
 **************************************************************
-	.FILE	'UTIL.ASM'
+	.FILE	"UTIL.ASM"
 	.TITLE	" UTILITY - GENERAL PURPOSE SUBROUTINES"
 	.WIDTH	132
 	.OPTION	B,D,L
@@ -19,9 +19,9 @@
 
 	.INCLUDE	"MPROC.EQU"
 	.INCLUDE	"DISP.EQU"
-	.INCLUDE	"\VIDEO\SYS\GSP.INC"
-	.INCLUDE	"\VIDEO\SYS\SYS.INC"
-	.INCLUDE	"\VIDEO\SYS\MACROS.HDR"
+	.include	"gsp.inc"
+	.include	"sys.inc"
+	.include	"macros.hdr"
 	.INCLUDE	GAME.EQU
 	.include	"shawn.hdr"		;Macros
 
@@ -76,7 +76,7 @@ FLASHME
 	clr	a0
 	move	a0,*a8(OCONST)		;Clr color
 	move	*a8(OFLAGS),a0
-	andi	>fff5,a0		;Clr constant & nonzero
+	andi	0fff5H,a0		;Clr constant & nonzero
 	addk	2,a0			;Set nonzero
 	move	a0,*a8(OFLAGS)
 fmx	DIE
@@ -122,7 +122,7 @@ COLCYC1	MOVE	*A5+,A7		;TRANSFER IT TWICE
 	ADD	A0,A10			;COLRAM DESTINATION
 
 COLCYCB
-	MOVE	A8,*A13(PDATA+>20),L	;SAVE RAM ADDRESS
+	MOVE	A8,*A13(PDATA+020H),L	;SAVE RAM ADDRESS
 COLCYCBL
 	MOVE	A8,A0			;GET SOURCE ADDRESS
 	MOVE	A10,A1			;GET DESTINATION CONSTANT
@@ -131,7 +131,7 @@ COLCYCBL
 	SUBK	16,A8
 	CMP	A8,A9
 	JRLO	CCYCBSLP
-	MOVE	*A13(PDATA+>20),A8,L	;GET SOURCE TABLE START
+	MOVE	*A13(PDATA+020H),A8,L	;GET SOURCE TABLE START
 CCYCBSLP
 	MOVE	A11,A0		;GET SLEEP TIME
 	CALLA	PRCSLP
@@ -166,7 +166,7 @@ LOOP	MOVE	A8,A1
 	CALLA	PALSET			;DO THE TRANSFER
 	MOVE	A11,A0
 	CALLA	PRCSLP
-	ADDK	>10,A9
+	ADDK	010H,A9
 	MOVE	*A9,A0
 	JRN	RESTUFF
 	MOVE	*A13(PDATA+16),A1	;PDATA+16=ENTRY WE STOP AT
@@ -275,21 +275,21 @@ STRRNRM
 STRLNRMO
 	mmtm	a12,a1,a2,a3,a4,a6,a14
 	movi	DMACNZ+M_NOCOLL,a4
-	movi	>10000,a14
+	movi	010000H,a14
 	jruc	stringr1
 
 *STRING ENTRYPOINT, CENTER JUSTIFY, NORMAL, OBJECT LIST
 STRCNRMO
 	mmtm	a12,a1,a2,a3,a4,a6,a14
 	movi	DMACNZ+M_NOCOLL,a4
-	movi	>10001,a14
+	movi	010001H,a14
 	jruc	stringr1
 
 *STRING ENTRYPOINT, CENTER JUSTIFY, NORMAL, OBJECT LIST, MULTIPLE COLORS!
 STRCNRMO_1
 	mmtm	a12,a1,a2,a3,a4,a6,a14
 	movi	DMAWNZ+M_NOCOLL,a4
-	movi	>10001,a14
+	movi	010001H,a14
 	move	a6,a5
 	jruc	stringr1_1
 
@@ -329,7 +329,7 @@ strr10	movb	*a8,a1			;Get a character
 					;Save sleep time
 strr20	PUSH	a0
 
-	subk	1,a1			;>Calc table offset
+	subk	1,a1			;0CaHlc table offset
 	sll	5,a1			;*32
 	add	a11,a1
 	move	*a1,a1,L		;Get * image header
@@ -505,7 +505,7 @@ GBPALOX	RETS
 *A3=OXVEL
 ;SHVELFLP:
 ;	CALLR	SHVELCPY
-;	MOVE	*A8(OXVEL+>10),A14,W		;TEST X VELOCITY
+;	MOVE	*A8(OXVEL+010H),A14,W		;TEST X VELOCITY
 *FLIPDUDE
 *A8=OBJECT, N=SIGN OF XVEL
 FLP	jrn	YFLP
@@ -1023,7 +1023,7 @@ RANGRAND
 *
 * Preserves Regs 2-13
 *
-* >A0 = RANDOM # (A0 to A1)
+* 0A0H = RANDOM # (A0 to A1)
 **************************************************************************
 RNDRNG
 	sub	a0,a1		;Normalize the range
@@ -1048,7 +1048,7 @@ RNDRNG
 *
 * Preserves Regs 2-13
 *
-* >A0 = RANDOM # (0 to A0)
+* 0A0H = RANDOM # (0 to A0)
 **************************************************************************
 RNDRNG0
 	addk	1,a0
@@ -1511,7 +1511,7 @@ CLRLP	MOVE	A0,*A1+,L
 FRANIM
 	MMTM	A12,A3,A4
 
-	cmpi	>ffc00000,a9		;Check for bogus script pointer
+	cmpi	0ffc00000H,a9		;Check for bogus script pointer
 	jrhs	FRAN1
 
 	.IF	DEBUG
@@ -1529,7 +1529,7 @@ FRANL	MOVE	*A9+,A1,L		;GET THE FRAME
 
 	MOVE	*A8(OFLAGS),A4		;NORMAL FLAGS TO BE USED
 	MOVE	*A9+,A0			;GET SLEEP TIME
-	CMPI	>100,A0			;SPECIAL FUNCTION?
+	CMPI	0100H,A0			;SPECIAL FUNCTION?
 	JRLO	FRAN2			;NO, BLOW OUT OF HERE
 	
 	MMTM	SP,A2,A7
@@ -1598,7 +1598,7 @@ FRANND	MOVE	A3,A1		;RESTORE A1
 
 FRANIMQ		;Trashes a0,a1,a2,a4
 
-	cmpi	>ffc00000,a9		;Check for bogus script pointer
+	cmpi	0ffc00000H,a9		;Check for bogus script pointer
 	jrhs	frq80
 
 	.IF	DEBUG
@@ -1611,7 +1611,7 @@ FRANIMQ		;Trashes a0,a1,a2,a4
 
 frqlp	move	*a8(OFLAGS),a4		;Normal flags to be used
 	move	*a9+,a0			;Get sleep time
-	cmpi	>100,a0			;Special function?
+	cmpi	0100H,a0			;Special function?
 	jrlo	frq70
 	
 	btst	BFLIPBIT,a0		;New flip?

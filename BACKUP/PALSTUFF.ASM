@@ -9,8 +9,8 @@
 * COPYRIGHT (C) 1991 WILLIAMS ELECTRONICS GAMES, INC.
 *
 **************************************************************
-	.TITLE	'PALSTUFF.ASM'
-	.FILE	'PALETTE FADER CONTROL'
+	.TITLE	"PALSTUFF.ASM"
+	.FILE	"PALETTE FADER CONTROL"
 	.WIDTH	132
 	.OPTION	B,D,L,T
 	.MNOLIST
@@ -18,7 +18,7 @@
 
 	.INCLUDE	"MPROC.EQU"		;MPROC EQUATES
 	.INCLUDE	"DISP.EQU"		;DISPLAY PROC. EQUATES
-	.INCLUDE	"\VIDEO\SYS\SYS.INC"	;Z UNIT SYSTEM EQUATES
+	.include	"sys.inc"	;z unit system equates
 	.INCLUDE	"BGNDTBL.GLO"
 	.INCLUDE	"IMGTBL.GLO"
 	.INCLUDE	"GAME.EQU"
@@ -161,9 +161,9 @@ DO_MULT
 	MOVE	A14,*A0+,W
 	SLL	23,A14		;TOP BITS OF FIELD ARE FLAGS
 	SRL	23,A14		;ONLY 9 BITS NEEDED FOR # COLORS
-	MOVI	>7C00,A4	;A4 - PRE MULT MASK FOR 5 BITS OF RED
-;	MOVI	>03E0,A6	;A6 - PRE MULT MASK FOR 5 BITS OF GREEN
-;	MOVI	>001F,A8	;A8 - PRE MULT MASK FOR 5 BITS OF BLUE
+	MOVI	07C00H,A4	;A4 - PRE MULT MASK FOR 5 BITS OF RED
+;	MOVI	003E0H,A6	;A6 - PRE MULT MASK FOR 5 BITS OF GREEN
+;	MOVI	0001FH,A8	;A8 - PRE MULT MASK FOR 5 BITS OF BLUE
 	MOVE	A4,A9
 ;	MOVE	A6,A10
 ;	MOVE	A8,A11
@@ -419,9 +419,9 @@ fo800	DIE
 
 fp20	sll	23,a14		;Remove any flags
 	srl	23,a14		;9 bits needed for # colors
-	movi	>7c00,a4	;A4=Mask for 5 bits of red
-	movi	>03e0,a6	;A6=Mask for 5 bits of green
-	movk	>1f,a8		;A8=Mask for 5 bits of blue
+	movi	07c00H,a4	;A4=Mask for 5 bits of red
+	movi	003e0H,a6	;A6=Mask for 5 bits of green
+	movk	01fH,a8		;A8=Mask for 5 bits of blue
 	move	a4,a9
 	move	a6,a10
 	move	a8,a11

@@ -13,16 +13,16 @@
 *
 *.Last mod - 9/18/91 20:21
 **************************************************************
-      	.FILE	'SHAWN.ASM'
-	.TITLE	'TOTAL CARNAGE GAME PROGRAM'
+      	.FILE	"SHAWN.ASM"
+	.TITLE	"TOTAL CARNAGE GAME PROGRAM"
 	.WIDTH	132
 	.OPTION	B,D,L,T
 	.MNOLIST
 
 	.include	"mproc.equ"
 	.include	"disp.equ"
-	.include	"\video\sys\sys.inc"
-	.include	"\video\sys\gsp.inc"
+	.include	"sys.inc"
+	.include	"gsp.inc"
 	.include	"game.equ"
 	.include	"imgtbl.glo"
 	.include	"shawn.hdr"
@@ -146,7 +146,7 @@ msltnk_t
 sp100	SLEEPK	1
   	MOVE	@HALT,A0
 	JRNZ	sp100
-	movi	>FF,a0		;FF	
+	movi	0FFH,a0		;FF	
 	callr	rnd
 	addk	20,a0
 	calla	PRCSLP		;SLEEP some
@@ -155,7 +155,7 @@ sp100	SLEEPK	1
 	btst	1,a0		;Rnd mode
 	jrnz	sp500
 
-	move	a0,a11		;>At player 0-1
+	move	a0,a11		;0AHt player 0-1
 	movi	slimepat_t,a9
 	movk	7,a0
 	callr	rnd
@@ -166,7 +166,7 @@ sp200	PUSH	a10
 	CREATE	shawnpid,mortar_atp
 	PULL	a10
 	addk	32,a9		;Next slot
-	movk	>1f,a0
+	movk	01fH,a0
 	callr	rnd
 	jrz	sp300
 	calla	PRCSLP		;SLEEP 0-31
@@ -186,19 +186,19 @@ sp500
 
 sp550	move	a13,a9		;>Random shot
 	addi	slimex,a9
-	movi	>ff,a0
+	movi	0ffH,a0
 	callr	rnd
-	subi	>7f,a0
+	subi	07fH,a0
 	move	a0,*a9		;X
-	movi	>7f,a0
+	movi	07fH,a0
 	callr	rnd
-	subi	>3f,a0
+	subi	03fH,a0
 	move	a0,*a9(16)	;Y
 	movi	goob_l,a10
 	CREATE	shawnpid,mortar_relsrc
 	jruc	sp800
 
-sp600	movi	slimepat2_t-512,a9	;>Circle pattern
+sp600	movi	slimepat2_t-512,a9	;0CHircle pattern
   	movk	1,a0
 	move	a0,@CIRCL_FLG
 sp605	movk	3,a0
@@ -293,7 +293,7 @@ slimesplat_l
 
  SUBRP	eye
 	callr	obj_get
-e100	movi	>7f,a0
+e100	movi	07fH,a0
 	callr	rnd
 	calla	PRCSLP		;SLEEP some
 	movk	3,a0
@@ -301,9 +301,9 @@ e100	movi	>7f,a0
 	btst	1,a0		;Rnd mode
 	jrnz	e500
 
-	move	a0,a11		;>At player 0-1
+	move	a0,a11		;0AHt player 0-1
 	movi	eyepat_t,a9
-	movk	>f,a0
+	movk	0fH,a0
 	callr	rnd
 	addk	1,a0
 	move	a0,a10		;Loop 1-16
@@ -314,7 +314,7 @@ e200	PUSH	a10
 	move	a1,*a0(msinea)
 	PULL	a10
 	addk	32,a9		;Next slot
-	movk	>f,a0
+	movk	0fH,a0
 	callr	rnd
 	jrz	e300
 	calla	PRCSLP		;SLEEP 0-31
@@ -327,13 +327,13 @@ e500	movk	7,a0
 
 	move	a13,a9		;>Random shot
 	addi	eyex,a9
-	movi	>ff,a0
+	movi	0ffH,a0
 	callr	rnd
-	subi	>7f,a0
+	subi	07fH,a0
 	move	a0,*a9		;X
-	movi	>7f,a0
+	movi	07fH,a0
 	callr	rnd
-	subi	>3f,a0
+	subi	03fH,a0
 	move	a0,*a9(16)	;Y
 	PUSH	a10
 	movi	eye_l,a10
@@ -343,7 +343,7 @@ e500	movk	7,a0
 	PULL	a10
 	jruc	e800
 
-e600	movi	eyepat2_t,a9	;>Circle pattern
+e600	movi	eyepat2_t,a9	;0CHircle pattern
 	movk	16,a10
 e620	PUSH	a10
 	movi	eye_l,a10
@@ -399,7 +399,7 @@ eyesplat_l
  SUBRP	morttnk
 	callr	obj_get
 	movi	-1,a11
-mt100	movi	>ff,a0
+mt100	movi	0ffH,a0
 	callr	rnd
 ;	movk	7,a0		;DEBUG
 	calla	PRCSLP
@@ -447,7 +447,7 @@ mortar_l
 spi100	SLEEPK	1
 	callr	getcloseplyr
 	jrz	spi100
-	movi	>800,a3
+	movi	0800H,a3
 	callr	seekob_vel
 	move	*a8(OXVEL),a0,L
 	move	a0,a1
@@ -462,12 +462,12 @@ spi100	SLEEPK	1
 	add	a7,a0			;+Vel
 	move	a0,*a8(OYVEL),L
 
-;	movi	>ff,a0
+;	movi	0ffH,a0
 ;	callr	rnd
 ;	jrnz	spi150
 ;	CREATE	shawnpid,missile_fire	OLD!
 
-spi150	movi	>ff,a0
+spi150	movi	0ffH,a0
 	callr	rnd
 	jruc	spi800			;DEBUG
 	jrnz	spi800
@@ -554,7 +554,7 @@ ma20	btst	0,a3			;P1 valid?
 ma30	move	@PLYRPRCS+32,a2,L
 ma40	move	*a2(LEG_PTR),a2,L
 	move	*a2(OXPOS),a6
-	cmpi	>1a00,a6			;Off screen?
+	cmpi	01a00H,a6			;Off screen?
 	jrge	ms900
 	addk	10,a6
 	move	*a2(OYPOS),a7
@@ -625,7 +625,7 @@ ms60	sra	1,a6			;>Scale down to A11
 	cmp	a11,a2
 	jrgt	ms60
 
-	move	a6,a4			;>Fine scale up to A11
+	move	a6,a4			;0FHine scale up to A11
 	move	a7,a5
 	sra	4,a4			;/16
 	sra	4,a5
@@ -778,7 +778,7 @@ gslime_l
 
 SPDMZ	.equ	155
 ;TURMELL
-SPDMPTS	.equ	>50	;BCD
+SPDMPTS	.equ	050H	;BCD
 
 
  SUBR	spidmom_start		;A8=X, A9=Y
@@ -848,7 +848,7 @@ sm400	move	*a9+,a1,L		;Get *Img
 	addk	28,a8
 	move	*a6(OYPOS),a9
 	addk	2,a9
-	movi	>ff,a0
+	movi	0ffH,a0
 	callr	rnd
 	addi	60,a0
 	move	a0,a10
@@ -901,7 +901,7 @@ spidmmpat_t	;Missiles!
 	WORDPD	ABSRB,16	;# hits taken 0-?
 
 SPDBZ	.equ	150
-SPDBPTS	.equ	>10
+SPDBPTS	.equ	010H
 
  SUBRP	spidb_shootegg		;A8=*SpidMom obj, A10=Hatch time
 
@@ -914,7 +914,7 @@ SPDBPTS	.equ	>10
 	movk	5,a0			;>Speed
 	callr	rndrng0
 	addk	1,a0
-	sll	13,a0			;*>200
+	sll	13,a0			;*0200H
 	move	a0,a11
 
 	movk	25,a0			;>Random origin
@@ -1217,7 +1217,7 @@ sb120	subk	1,a11
 	movk	7,a0
 	callr	rnd
 	addk	5,a0
-	sll	9,a0			;*>200
+	sll	9,a0			;*0200H
 	move	a0,*a13(sbdis)
 
 	movi	spidb_l,a10
@@ -1258,9 +1258,9 @@ sb160	move	*a13(sbseekr),a0
 	add	a2,a6
 	jruc	sb172
 sb170	movi	80,a2
-	movi	>ff,a0
+	movi	0ffH,a0
 	callr	rnd
-	subi	>7f,a0
+	subi	07fH,a0
 	jrnn	sb171
 	neg	a2
 sb171	add	a2,a0
@@ -1279,9 +1279,9 @@ sb172	move	*a13(sby),a7
 	add	a2,a7
 	jruc	sb185
 sb180	movi	60,a2
-	movi	>7f,a0
+	movi	07fH,a0
 	callr	rnd
-	subi	>3f,a0
+	subi	03fH,a0
 	jrnn	sb182
 	neg	a2
 sb182	add	a2,a0
@@ -1299,11 +1299,11 @@ sb190	callr	getcloseplyr		;>Go for player
 	addk	10,a6
 	move	*a0(OYPOS),a7
 	addk	16,a7
-	movk	>f,a0
+	movk	0fH,a0
 	callr	rnd
 	subk	7,a0
 	add	a0,a6			;X offset -7 to 8
-	movk	>f,a0
+	movk	0fH,a0
 	callr	rnd
 	subk	7,a0
 	add	a0,a7			;Y^
@@ -1374,7 +1374,7 @@ sb350	move	*a13(sbsobj_p),a5,L
 	move	*a13(sbvhitsl),a0	;Hits left?
 	jrnz	sb365
 
-	move	*a5(OXPOS),a2		;>Chk if close to screen edge
+	move	*a5(OXPOS),a2		;0CHhk if close to screen edge
 	move	@WORLDTLX+16,a1
 	sub	a1,a2
 	subk	10,a2			;Offset
@@ -1547,11 +1547,11 @@ SN100
 
 BMB_CYCS
 ;START 1 OVERALL COLOR CYCLER FOR ALL BOMBS
-	movi	NEUTRONP,a8 		;>Cycle red zone
+	movi	NEUTRONP,a8 		;0CHycle red zone
 	movi	bombnpalmem1,a9		;*ram
 	movi	[17,22],a10
 	movk	6,a11			;Rate
-	CREATE	CYCPID,COLCYC		;>Cycle green/blue lights
+	CREATE	CYCPID,COLCYC		;0CHycle green/blue lights
 	MOVE	A0,*A13(PDATA),L
 	movi	bombnpalmem2,a9
 	movi	[22,25],a10
@@ -1805,7 +1805,7 @@ TAG01	MOVE	@PLYRPRCS+32,A0,L
 	MOVE	*A0(DELYDET),A0
 	JRNZ	bsn540
 TAG02
-	movi	DMAWNZ+M_NOCOLL,a0	;>Detonate!
+	movi	DMAWNZ+M_NOCOLL,a0	;0DeHtonate!
 	move	a0,*a8(OFLAGS)
 
 	MOVE	@IN_BOMB,A0
@@ -1853,7 +1853,7 @@ bsn770
 	addk	30,a0
 	move	a0,*a8(OYPOS)		;New pos for explosion
 
-	movi	XBOOM2,a9		;>Explode
+	movi	XBOOM2,a9		;0EHxplode
 	JSRP	FRANIMQ
 	calla	DELOBJA8
 
@@ -1889,12 +1889,12 @@ whp2	SLEEPK	3
 	calla	ONESND
 	jruc	whp2
 
-BNCSND	.WORD	>F865,05,>80D4,0		;NEUTRON BNC SND
-WARNING	.WORD	>F87E,>8,>80D6,0		;WARNING WHISTLE
-WARNING2 .WORD	>F3EE,>5,>80AC,0		;WARNING WHISTLE FOR BIG BOMB
-DISSND	.WORD	>F3EE,>18,>80B0,0		;KEY MELODY TYPE SND
-BAMSND	.WORD	>F3EE,>1,>8081,0		;BOOM
-BAMSND2	.WORD	>F3EE,>1,>8082,0		;BOOM2
+BNCSND	.WORD	0F865H,05,080D4H,0		;NEUTRON BNC SND
+WARNING	.WORD	0F87EH,08H,080D6H,0		;WARNING WHISTLE
+WARNING2 .WORD	0F3EEH,05H,080ACH,0		;WARNING WHISTLE FOR BIG BOMB
+DISSND	.WORD	0F3EEH,018H,080B0H,0		;KEY MELODY TYPE SND
+BAMSND	.WORD	0F3EEH,01H,08081H,0		;BOOM
+BAMSND2	.WORD	0F3EEH,01H,08082H,0		;BOOM2
 
 
 
@@ -2132,7 +2132,7 @@ bn400	move	*a9+,a1,L		;Get *Img
 	callr	bombn_cleanup
 	jruc	bn900
 
-bn600	movk	30,a10			;>Detonate!
+bn600	movk	30,a10			;0DeHtonate!
 	calla	SHAKER
 	CREATE	0,SBSND
 	move	@PLYROBJS+32,a2,L
@@ -2163,7 +2163,7 @@ bn760	CREATE	0,SBOMB
 	addk	30,a0
 	move	a0,*a8(OYPOS)		;New pos for explosion
 
-	movi	XBOOM2,a9		;>Explode
+	movi	XBOOM2,a9		;0EHxplode
 	JSRP	FRANIMQ
 	calla	DELOBJA8
 
@@ -2190,11 +2190,11 @@ bombnpal_t	.long	SCOREPAL,0
 
  SUBRP	bombn_cycon
 
-	movi	NEUTRONP,a8 		;>Cycle red zone
+	movi	NEUTRONP,a8 		;0CHycle red zone
 	movi	bombnpalmem1,a9		;*ram
 	movi	[17,22],a10
 	movk	6,a11			;Rate
-	CREATE	CYCPID,COLCYC		;>Cycle green/blue lights
+	CREATE	CYCPID,COLCYC		;0CHycle green/blue lights
 	move	a0,*a13(bncyc1_p),L
 	movi	bombnpalmem2,a9
 	movi	[22,25],a10
@@ -2240,7 +2240,7 @@ bombnpal_t	.long	SCOREPAL,0
 	calla	BEGINOBJ2		;Get digit 1
 	move	a8,a9
 	PULL	a0,a1
-	addi	>70000,a0		;Next X
+	addi	070000H,a0		;Next X
 	calla	BEGINOBJ2		;Get digit 2
 
 	movi	digit_t+10*32,a11
@@ -2282,7 +2282,7 @@ bnc800	calla	DELOBJA8
 	clr	a0
 	move	a0,@SLOW_DWN
 
-	move	a2,a0			;>A0=Explode (!0=Yes)
+	move	a2,a0			;0A0H=Explode (!0=Yes)
 	RETP				;Pass CC
 
 
@@ -2443,10 +2443,10 @@ set20
 	JAUC	INHERE			;FLY OFF TO SCOREBOARD
 
 SNDLST	.LONG	EGG1,EGG2,EGG3,EGG4
-EGG1	.WORD	>F395,08,>8092,0 
-EGG2	.WORD	>F395,08,>8093,0 
-EGG3	.WORD	>F395,08,>8094,0 
-EGG4	.WORD	>F395,08,>8095,0
+EGG1	.WORD	0F395H,08,08092H,0 
+EGG2	.WORD	0F395H,08,08093H,0 
+EGG3	.WORD	0F395H,08,08094H,0 
+EGG4	.WORD	0F395H,08,08095H,0
 
 eggb_l	LWL	EGGBON,NEWPALET+2,PPLP
 	.long	0	
@@ -2469,7 +2469,7 @@ eggb_l	LWL	EGGBON,NEWPALET+2,PPLP
 	cmpi	SUBMSL,a2
 	jrz	missile_hit
 
-	movi	>3f3f0000,a9		;Flash color
+	movi	03f3f0000H,a9		;Flash color
 	CREATE	0,FLASHME
 
 	subk	SUBSM,a2
@@ -2685,7 +2685,7 @@ sbdx	movi	spidb_exp,a7
 	callr	rnd
 	addk	7,a0
 	move	a0,a4
-sme20	movi	>3ff,a0
+sme20	movi	03ffH,a0
 	callr	rnd
 	move	a0,a10
 	addi	60,a10
@@ -2696,7 +2696,7 @@ sme20	movi	>3ff,a0
 	subk	20,a0
 	jrgt	sme200
 	clr	a9			;A9=XVel
-	movi	>10000,a10		;A10=YVel
+	movi	010000H,a10		;A10=YVel
 	movi	spidmomch_t,a11
 	CREATE	CMAN,CHUNK_OBJ
 	move	a9,*a0(PDATA)		;no pal change
@@ -2847,7 +2847,7 @@ ssbe5	jauc	DELOBJDIE
  SUBRP	msltnk
 
 	callr	obj_get
-mst100	movi	>ff,a0
+mst100	movi	0ffH,a0
 	callr	rnd
 ;	movk	7,a0		;DEBUG
 	calla	PRCSLP
@@ -2873,7 +2873,7 @@ mtmpat_t	;Missiles!
  SUBRP	mslstrike
 
 	DIE
-mss100	movi	>ff,a0
+mss100	movi	0ffH,a0
 	callr	rnd
 	calla	PRCSLP
 	movk	20,a11		;#Shots in pattern
@@ -2944,7 +2944,7 @@ mif250	move	a1,a1
 	subk	2,a10			;-1
 mif260	addk	1,a10			;+1
 
-mif300	ANDK	>1f,a10			;Make 0-31
+mif300	ANDK	01fH,a10			;Make 0-31
 
 	move	a10,a0			;>New image
 	sll	4,a0			;*16
@@ -3093,7 +3093,7 @@ rof250	move	a1,a1
 	subk	2,a10			;-1
 rof260	addk	1,a10			;+1
 
-rof300	ANDK	>1f,a10			;Make 0-31
+rof300	ANDK	01fH,a10			;Make 0-31
 
 	move	a10,a0
 	sll	4,a0			;*16
@@ -3150,7 +3150,7 @@ rof700	move	*a13(rockfuel),a0
 	clr	a6
 	clr	a7
 	calla	BEGINOBJ
-	rets			;>A8=*Object
+	rets			;0A8H=*Object
 
 
 ********************************
@@ -3174,7 +3174,7 @@ rof700	move	*a13(rockfuel),a0
 * Quickly produce a random # in range 0-X
 * A0=X
 * Preserves Regs 2-13
-* >A0 = RANDOM # (0 to A0)
+* 0A0H = RANDOM # (0 to A0)
 
  SUBRP	rndrng0			;A0=X
 
@@ -3266,7 +3266,7 @@ sov60	sra	1,a6			;>Scale down to A3
 	cmp	a3,a2
 	jrgt	sov60
 
-	move	a6,a4			;>Fine scale up to A3
+	move	a6,a4			;0FHine scale up to A3
 	move	a7,a5
 	sra	4,a4			;/16
 	sra	4,a5
@@ -3286,7 +3286,7 @@ sov150	add	a4,a6
 
 sov200
 	PULL	a0
-	rets				;>A6=XV, A7=YV
+	rets				;0A6H=XV, A7=YV
 
 
 ********************************
@@ -3329,7 +3329,7 @@ sod100	movk	16,a2			;Oct 4-5
 	movk	16+8,a2			;Oct 6-7
 sod160	SWAP	a0,a1
 
-sod200	cmp	a1,a0			;>Cmp slope
+sod200	cmp	a1,a0			;0CHmp slope
 	jrhs	sod300
 
 	move	a0,a3
@@ -3351,9 +3351,9 @@ sod350	cmp	a0,a1
 	jrhi	sod320
 
 
-sod400	movk	>1f,a0
+sod400	movk	01fH,a0
 	and	a2,a0
-	rets				;>A0=Dir 0-31
+	rets				;0A0H=Dir 0-31
 
 
 ********************************
@@ -3369,7 +3369,7 @@ sod400	movk	>1f,a0
 sin10	sll	4,a0		;*16
 	addi	sine_t,a0
 	move	*a0,a0
-	zext	a0		;>A0=Sin 0-4096
+	zext	a0		;0A0H=Sin 0-4096
 	rets
 
 

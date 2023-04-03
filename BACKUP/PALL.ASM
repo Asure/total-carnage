@@ -14,8 +14,8 @@
 *
 *.Last mod - 9/21/91 14:04
 **************************************************************
-	.TITLE	'PALETTE ALLOCATOR V1.0 AND FADER CONTROL'
-	.FILE	'PALL.ASM'
+	.TITLE	"PALETTE ALLOCATOR V1.0 AND FADER CONTROL"
+	.FILE	"PALL.ASM"
 	.WIDTH	132
 	.OPTION	B,D,L,T
 	.MNOLIST
@@ -23,8 +23,8 @@
 
 	.include	"mproc.equ"
 	.include	"disp.equ"
-	.include	"\video\sys\sys.inc"
-	.include	"\video\sys\gsp.inc"
+	.include	"sys.inc"
+	.include	"gsp.inc"
 	.include	"bgndtbl.glo"
 	.include	"imgtbl.glo"
 	.include	"game.equ"
@@ -78,7 +78,7 @@ CLNPAL
 	PUSH	a0,a1,a2,a3,a4
 	movi	FPALRAM+PALRSIZ,a1	;Skip 1st pal
 	movk	NMFPAL-1,a3		;Chk all fgnd pals
-	movi	>0101,a4		;2nd PAL #
+	movi	00101H,a4		;2nd PAL #
 
 cp10	move	@OBJLST,a0,L
 	jrz	cp30			;No objs, chk backgnd
@@ -101,10 +101,10 @@ cp50	move	*a0(OPAL),a2
 cp60	clr	a0			;Palette not used, free it up
 	move	a0,*a1,L
 
-cp80	addi	>0101,a4		;Next pal
+cp80	addi	00101H,a4		;Next pal
 	btst	4,a4
 	jrz	cp90
-	addi	>3030,a4
+	addi	03030H,a4
 	sext	a4			;For compare
 
 cp90	addk	PALRSIZ,a1
@@ -120,7 +120,7 @@ CLNBPAL
 	PUSH	a0,a1,a2,a3,a4
 	movi	BPALRAM,a1
 	movk	NMBPAL,a3		;Chk all bgnd pals
-	movi	>8080,a4		;1nd bgnd PAL #
+	movi	08080H,a4		;1nd bgnd PAL #
 	jruc	cp10
 
 
@@ -182,7 +182,7 @@ findp1	subi	NUMPAL,a3	;COMPUTE PALETTE #
 	neg	a3
 
 	.if	YUNIT
-	movk	>f,a2
+	movk	0fH,a2
 	and	a3,a2		;A2=4 low bits
 	srl	4,a3		;Move B4/B5 to B6/B7
 	sll	6,a3
@@ -241,7 +241,7 @@ INITBPAL
 
 GETFPAL
 	PUSH	a1,a2,a3
-	movi	PALRAM,a1	;>Check if palette already exists
+	movi	PALRAM,a1	;0CHheck if palette already exists
 	movi	NUMPAL,a3
 
 gfp4	move	*a1+,a2,L	;Get *palette
@@ -249,7 +249,7 @@ gfp4	move	*a1+,a2,L	;Get *palette
 	jreq	getpn		;Already in color ram?
 	dsj	a3,gfp4
 
-	movi	FPALRAM,a1	;>Check for a spare palette
+	movi	FPALRAM,a1	;0CHheck for a spare palette
 	movk	NMFPAL,a3
 
 gfp8	move	*a1+,a2,L
@@ -267,7 +267,7 @@ gfp8	move	*a1+,a2,L
 
 GETBPAL
 	PUSH	a1,a2,a3
-	movi	PALRAM,a1	;>Check if palette already exists
+	movi	PALRAM,a1	;0CHheck if palette already exists
 	movi	NUMPAL,a3
 
 gbp4	move	*a1+,a2,L	;Get *palette
@@ -275,7 +275,7 @@ gbp4	move	*a1+,a2,L	;Get *palette
 	jreq	getpn		;Already in color ram?
 	dsj	a3,gbp4
 
-	movi	BPALRAM,a1	;>Check for a spare palette
+	movi	BPALRAM,a1	;0CHheck for a spare palette
 	movk	NMBPAL,a3
 
 gbp8	move	*a1+,a2,L
@@ -291,7 +291,7 @@ gbp30	PUSH	a0,a1
 	neg	a1
 
 	.if	YUNIT
-	movk	>f,a2
+	movk	0fH,a2
 	and	a1,a2		;A2=4 low bits
 	srl	4,a1		;Move B4/B5 to B6/B7
 	sll	6,a1
@@ -310,7 +310,7 @@ getpn	subi	NUMPAL,a3	;Compute palette #
 	neg	a3
 
 	.if	YUNIT
-	movk	>f,a2
+	movk	0fH,a2
 	and	a3,a2		;A2=4 low bits
 	srl	4,a3		;Move B4/B5 to B6/B7
 	sll	6,a3
@@ -363,7 +363,7 @@ getpe2
 ;	SRL	32-8,A0
 ;
 ;	.if	YUNIT
-;	movk	>f,a1
+;	movk	0fH,a1
 ;	and	a0,a1		;A1=4 low bits
 ;	srl	6,a0		;Move B6/B7 to B4/B5
 ;	sll	4,a0
@@ -412,7 +412,7 @@ UNGETPAL
 	srl	32-8,a0
 
 	.IF	YUNIT
-	movk	>f,a1
+	movk	0fH,a1
 	and	a0,a1		;A1=4 low bits
 	srl	6,a0		;Move B6/B7 to B4/B5
 	sll	4,a0
@@ -634,9 +634,9 @@ DO_MULT
 	move	a14,*a0+
 	SLL	23,A14		;TOP BITS OF FIELD ARE FLAGS
 	SRL	23,A14		;ONLY 9 BITS NEEDED FOR # COLORS
-	MOVI	>7C00,A4	;A4 - PRE MULT MASK FOR 5 BITS OF RED
-;	MOVI	>03E0,A6	;A6 - PRE MULT MASK FOR 5 BITS OF GREEN
-;	MOVI	>001F,A8	;A8 - PRE MULT MASK FOR 5 BITS OF BLUE
+	MOVI	07C00H,A4	;A4 - PRE MULT MASK FOR 5 BITS OF RED
+;	MOVI	003E0H,A6	;A6 - PRE MULT MASK FOR 5 BITS OF GREEN
+;	MOVI	0001FH,A8	;A8 - PRE MULT MASK FOR 5 BITS OF BLUE
 	MOVE	A4,A9
 ;	MOVE	A6,A10
 ;	MOVE	A8,A11
@@ -871,13 +871,13 @@ fo800	DIE
 	sll	32-9,a14	;Remove any flags
 	srl	32-9,a14	;9 bits needed for # colors
 
-pf1c	movk	>1f,a8		;A8=5 bit color mask
+pf1c	movk	01fH,a8		;A8=5 bit color mask
 
 pf100	move	*a1+,a3
-	movk	>1f,a7
+	movk	01fH,a7
 	and	a3,a7		;A7=Blue
 	srl	5,a3
-	movk	>1f,a5
+	movk	01fH,a5
 	and	a3,a5		;A5=Green
 	srl	5,a3		;A3=Red
 
@@ -967,7 +967,7 @@ fbfx	PULL	a0,a1,a2,a6,a7,a8,a9,a10
 fadeonep
 
 	.if	YUNIT
-	movk	>f,a2
+	movk	0fH,a2
 	and	a9,a2		;A2=4 low bits
 	srl	4,a9		;Move B4/B5 to B6/B7
 	sll	6,a9
@@ -1074,7 +1074,7 @@ ptwx	PULL	a2,a6,a7,a8,a9,a10
 
 brightenonep
 	.if	YUNIT
-	movk	>f,a2
+	movk	0fH,a2
 	and	a9,a2		;A2=4 low bits
 	srl	4,a9		;Move B4/B5 to B6/B7
 	sll	6,a9
@@ -1163,13 +1163,13 @@ abaex	DIE
 	sll	23,a14		;Remove any flags
 	srl	23,a14		;9 bits needed for # colors
 
-pb1c	movk	>1f,a8		;A8=Mask for 5 bits of color
+pb1c	movk	01fH,a8		;A8=Mask for 5 bits of color
 
 pb100	move	*a1+,a3
-	movk	>1f,a7
+	movk	01fH,a7
 	and	a3,a7		;A7=Blue
 	srl	5,a3
-	movk	>1f,a5
+	movk	01fH,a5
 	and	a3,a5		;A5=Green
 	srl	5,a3		;A3=Red
 

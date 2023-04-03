@@ -13,7 +13,7 @@
 *
 *.Last mod - 9/24/91 23:46
 **************************************************************
-	.FILE	'COLL2.ASM'
+	.FILE	"COLL2.ASM"
 	.TITLE	"COLLISION ROUTINES"
 	.WIDTH	132
 	.OPTION	B,D,L,T
@@ -42,9 +42,9 @@
 
 	.INCLUDE	"MPROC.EQU"		;MPROC EQUATES
 	.INCLUDE	"DISP.EQU"		;DISPLAY PROCESSOR EQUATES
-	.INCLUDE	"\VIDEO\SYS\SYS.INC"	;ZUNIT SYSTEM EQUATES
-	.INCLUDE	"\VIDEO\SYS\GSP.INC"	;ZUNIT SYSTEM EQUATES
-	.INCLUDE	"\VIDEO\SYS\MACROS.HDR"	;MACROS, YEAH!
+	.include	"sys.inc"	;zunit system equates
+	.include	"gsp.inc"	;zunit system equates
+	.include	"macros.hdr"	;macros, yeah!
 	.INCLUDE	"GAME.EQU"
 	.INCLUDE	"IMGTBL.GLO"
 
@@ -125,7 +125,7 @@ XmaxOk	movi	OBJLST,a0	;Object list to check
 	move	@VCOUNT,b0
 	sub	b5,b0
 	jrhs	coll10
-	addi	>120,b0		;VTOTAL
+	addi	0120H,b0		;VTOTAL
 coll10	move	@debugtime,b1
 	add	b0,b1
 	srl	1,b1
@@ -329,7 +329,7 @@ PScnLp1	move	*a6+,a2,L
 	cmp	a9,a0
 	jrle	PScnLp1			;X2Max <= X1Min?
 
-	callr	ColFunc			;>Call colfunc for obj A1 and A2
+	callr	ColFunc			;0CaHll colfunc for obj A1 and A2
 	move	b0,b1			;B1=*Collision routine for obj A1
 	SWAP	a1,a2
 	callr	ColFunc
@@ -689,8 +689,8 @@ HUPL				;IF HULK HIT RINGS THEN KILL HULK
 	MOVE	*A1(OPLINK),A0,L	;IS THIS HULK ALREADY SWINGING?
 	MOVE	*A0(IBAT),A0
 	JRZ	BPY
-	addk	1,a0		;andi	>FF
-	sll	32-8,a0		;cmpi	>FF
+	addk	1,a0		;andi	0FFH
+	sll	32-8,a0		;cmpi	0FFH
 	JRNZ	NULL
 BPY
 	MOVI	BAT_PLYR,B0
@@ -748,7 +748,7 @@ CRBL	;CRATE/BULLET
 
 CRBM	;CRATE/TIME BOMB
 	MOVE	@PCNT,A0
-	MOVK	>F,A14
+	MOVK	0FH,A14
 	AND	A14,A0
 	JRNZ	NULL
 	MOVI	KILL_CRT2,B0		;KILL CRATE DEAD
@@ -1012,7 +1012,7 @@ PIXSCAN
 
 *A11=XOFF0
 *A12=XOFF1
-	move	a3,a2		;>Calc XOFF0,XOFF1,XSCAN
+	move	a3,a2		;0CaHlc XOFF0,XOFF1,XSCAN
 	subxy	a4,a2
 	sext	a2
 	jrnn	clx1	
@@ -1034,7 +1034,7 @@ clx3	subxy	a6,a13
 clx4	sext	a13
 	neg	a13		;A13=XSCAN
 
-				;>Calc YOFF0,YOFF1,YSCAN
+				;0CaHlc YOFF0,YOFF1,YSCAN
 	sra	16,a3		;Kill X half
 	sra	16,a4
 	sra	16,a5
@@ -1113,7 +1113,7 @@ CL0HF	BTST	B_FLIPV,B0	;VERT FLIP TOO?
 	JRUC	CLOBJ1
 
 				;VERTICAL FLIP
-CL0VF	MOVE	*A9(ISIZE+>10),A1	;GET HEIGHT
+CL0VF	MOVE	*A9(ISIZE+010H),A1	;GET HEIGHT
 	SUB	A2,A1			;SUBTRACT YOFF0
 	DEC	A1
 	MPYU	A5,A1		;MULTIPLY BY WIDTH
@@ -1127,7 +1127,7 @@ CL0VF	MOVE	*A9(ISIZE+>10),A1	;GET HEIGHT
 	JRUC	CLOBJ1
 
 				;VERTICAL AND HORIZONTAL FLIP
-CL0HVF	MOVE	*A9(ISIZE+>10),A1	;GET HEIGHT
+CL0HVF	MOVE	*A9(ISIZE+010H),A1	;GET HEIGHT
 	SUB	A2,A1			;SUBTRACT YOFF0
 	DEC	A1
 	MPYU	A5,A1		;MULTIPLY BY WIDTH
@@ -1206,7 +1206,7 @@ CL1HF	BTST	B_FLIPV,B1	;VERT FLIP TOO?
 *A3=HINC1=8
 *A11=VINC1=-W1-XSCAN
 *A6=STARTAD1=IMAGEAD1+(H1-YOFF1-1)W1+XOFF1
-CL1VF	MOVE	*A7(ISIZE+>10),A1	;GET HEIGHT
+CL1VF	MOVE	*A7(ISIZE+010H),A1	;GET HEIGHT
 	SUB	A3,A1			;SUBTRACT YOFF1
 	DEC	A1
 	MPYU	A11,A1		;MULTIPLY BY WIDTH
@@ -1223,7 +1223,7 @@ CL1VF	MOVE	*A7(ISIZE+>10),A1	;GET HEIGHT
 *A3=HINC1=-8
 *A11=VINC1=-W1-XSCAN
 *A6=STARTAD1=(H1-YOFF1-1)W1+W1-XOFF1-1
-CL1HVF	MOVE	*A7(ISIZE+>10),A1	;GET HEIGHT
+CL1HVF	MOVE	*A7(ISIZE+010H),A1	;GET HEIGHT
 	SUB	A3,A1			;SUBTRACT YOFF1
 	DEC	A1
 	MPYU	A11,A1		;MULTIPLY BY WIDTH
@@ -1251,9 +1251,9 @@ CL1HVF	MOVE	*A7(ISIZE+>10),A1	;GET HEIGHT
 *A13=WIDTH COUNT XSCAN
 *A14=HEIGHT COUNT YSCAN
 
-CSH	cmpi	>80,a14		;no scan if xscan, yscan values out of range
+CSH	cmpi	080H,a14		;no scan if xscan, yscan values out of range
 	jrhs	CSFAIL
-	cmpi	>80,a13
+	cmpi	080H,a13
 	jrhs	CSFAIL
 
 	dint

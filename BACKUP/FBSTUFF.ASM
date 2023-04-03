@@ -1,4 +1,4 @@
-	.TITLE	'FBSTUFF.ASM'
+	.TITLE	"FBSTUFF.ASM"
 	.WIDTH	132
 	.OPTION	B,D,L,T
 	.MNOLIST
@@ -15,8 +15,8 @@
 ; GET THE SYSTEM STUFF
 
 	.INCLUDE	"MPROC.EQU"		;MPROC EQUATES
-	.INCLUDE	"\VIDEO\SYS\SYS.INC"	;Z UNIT SYSTEM EQUATES
-	.INCLUDE	"\VIDEO\SYS\MACROS.HDR"	;MACROS DEFINITIONS
+	.include	"sys.inc"	;z unit system equates
+	.include	"macros.hdr"	;macros definitions
 	.INCLUDE	"GAME.EQU"
 ;
 ;SOUNDS
@@ -251,9 +251,9 @@ FadePal:
 	sll	23,A14		;top bits of field are flags
 	srl	23,A14		;	only 9 bits needed for # colors
 
-	movi	>7C00,A4	;A4 - Pre Mult Mask for 5 bits of red
-	movi	>03E0,A6	;A6 - Pre Mult Mask for 5 bits of green
-	movi	>001F,A8	;A8 - Pre Mult Mask for 5 bits of blue
+	movi	07C00H,A4	;A4 - Pre Mult Mask for 5 bits of red
+	movi	003E0H,A6	;A6 - Pre Mult Mask for 5 bits of green
+	movi	0001FH,A8	;A8 - Pre Mult Mask for 5 bits of blue
 	move	A4,A9
 	move	A6,A10
 	move	A8,A11
@@ -296,8 +296,8 @@ BlueOk:
 	mmfm	SP,A8,A9,A10,A11
 	rets
 
-FadeIn	.word	0,0,8,16,24,32,40,48,56,64,72,80,88,96,104,112,120,128,>FFFF
-FadeOut	.word	120,112,104,96,88,80,72,64,56,48,40,32,24,16,8,0,>FFFF
+FadeIn	.word	0,0,8,16,24,32,40,48,56,64,72,80,88,96,104,112,120,128,0FFFFH
+FadeOut	.word	120,112,104,96,88,80,72,64,56,48,40,32,24,16,8,0,0FFFFH
 
 	.END
 

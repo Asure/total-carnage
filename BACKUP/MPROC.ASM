@@ -11,7 +11,7 @@
 *
 *.Last mod - 8/12/91 17:39
 **************************************************************
-	.FILE	'MPROC.ASM'
+	.FILE	"MPROC.ASM"
 	.TITLE	"GSP MULTI-PROCESSING SYSTEM"
 	.WIDTH	132
 	.OPTION	B,D,L,T
@@ -20,9 +20,9 @@
 
 * FILES REQUIRED FOR ASSEMBLY
 
-	.INCLUDE	\VIDEO\SYS\GSP.INC	;GSP ASSEMBLER EQUATES
-	.INCLUDE	\VIDEO\SYS\SYS.INC	;ZUNIT SYSTEM EQUATES
-	.INCLUDE	\VIDEO\SYS\MACROS.HDR	;MACROS
+	.include	gsp.inc	;gsp assembler equates
+	.include	sys.inc	;zunit system equates
+	.include	macros.hdr	;macros
 	.INCLUDE	MPROC.EQU
 	.INCLUDE	DISP.EQU
 
@@ -77,7 +77,7 @@ PRCWTSRT
 *TOS IS WAKEUP ADDR ,A0 = SLEEP TIME
 
 PRCSLP
-	move	*SP+,A7,L		;CALLING PC->A7
+	move	*SP+,A7,L		;CALLING PC-0A7H
 
 PRCLSP	move	A13,A1
 	addi	PDATA,A1
@@ -112,7 +112,7 @@ PRCD1A
 *PROCESS IS READY FOR DISPATCH
 
 PRCD2	move	A13,A1
-	addi	>40,A1
+	addi	040H,A1
 	mmfm	A1,A7,A8,A9,A10,A11,A12	;wake, regs, stack ptr
 	jump	A7			;fire off proc
 

@@ -39,6 +39,9 @@ for asmfile in (asmfiles + tblfiles + macfiles + hdrfiles + equfiles + incfiles 
             
         elif "$END" in line and "$ENDM" not in line and "$ENDIF" not in line:
             out.write(line.replace("$END", "$ENDM"))    # GSPA 6.10
+# Shawn.hdr has lower case
+        elif "$end" in line and "$endm" not in line and "$endif" not in line:
+            out.write(line.replace("$end", "$endm"))    # GSPA 6.10
 
         elif "INIT_M" in line or "S_CHAR" in line:
             out.write(line.replace("\"", "'"))          # GSPA 6.10

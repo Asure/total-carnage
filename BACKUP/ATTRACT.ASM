@@ -8,7 +8,7 @@
 *.Last mod - 9/25/91 14:22
 ****************************************************************
 
-	.FILE	'ATTRACT.ASM'
+	.FILE	"ATTRACT.ASM"
 	.TITLE	"ATTRACT MODE"
 	.WIDTH	132
 	.OPTION	B,D,L,T
@@ -16,8 +16,8 @@
 
 	.INCLUDE	"MPROC.EQU"		;MPROC EQUATES
 	.INCLUDE	"DISP.EQU"		;DISPLAY PROC. EQUATES
-	.INCLUDE	"\VIDEO\SYS\SYS.INC"	;Z UNIT SYSTEM EQUATES
-	.INCLUDE	"\VIDEO\SYS\GSP.INC"
+	.include	"sys.inc"	;z unit system equates
+	.include	"gsp.inc"
 	.INCLUDE	"MAC2.ASM"		;MACRO 2 DEFINITIONS
 	.INCLUDE	"IMGTBL.GLO"
 	.INCLUDE	"BGNDTBL.GLO"		;BACKGROUND EQUATES
@@ -137,7 +137,7 @@ SYSINITL
 
 TITLE	.long	TITLEBMOD		;THIS IS FROM BLIMP (MODULE NAME)
 	.WORD	9H,03EAH		;x,y start pos.
-	.LONG	>FFFFFFFF
+	.LONG	0FFFFFFFFH
 
 
 ;ATTRACT MODE START UP ROUTINE
@@ -227,20 +227,20 @@ NONO
 	
 	SLEEP	60*6
 	RETP
-yousuck	.word	>f9a0,10,>80c5,0		;You suck at this game!
+yousuck	.word	0f9a0H,10,080c5H,0		;You suck at this game!
 
 ;TPG_TBL
 ;;GOTTEN FROM WIMP DUMP TO PALSRC.ASM (PALCRNCH IT!)
-;	.word	>144F,>1450,>1451,>1452,>1453,>1454,>1455
-;	.word	>1456,>1457,>1458,>1459,>145A,>145B,>145C,>145D
-;	.word	>145E,>145F,>145E,>145D,>145C,>145B,>145A,>1459
-;	.word	>1458,>1457,>1456,>1455,>1454,>1453,>1452,>1451
+;	.word	0144FH,01450H,01451H,01452H,01453H,01454H,01455H
+;	.word	01456H,01457H,01458H,01459H,0145AH,0145BH,0145CH,0145DH
+;	.word	0145EH,0145FH,0145EH,0145DH,0145CH,0145BH,0145AH,01459H
+;	.word	01458H,01457H,01456H,01455H,01454H,01453H,01452H,01451H
 ;	.WORD	-1     	;BECAUSE IT IS ONLY 1 COLOR
 ;COPY IT AGAIN!
-;	.word	>144F,>1450,>1451,>1452,>1453,>1454,>1455
-;	.word	>1456,>1457,>1458,>1459,>145A,>145B,>145C,>145D
-;	.word	>145E,>145F,>145E,>145D,>145C,>145B,>145A,>1459
-;	.word	>1458,>1457,>1456,>1455,>1454,>1453,>1452,>1451
+;	.word	0144FH,01450H,01451H,01452H,01453H,01454H,01455H
+;	.word	01456H,01457H,01458H,01459H,0145AH,0145BH,0145CH,0145DH
+;	.word	0145EH,0145FH,0145EH,0145DH,0145CH,0145BH,0145AH,01459H
+;	.word	01458H,01457H,01456H,01455H,01454H,01453H,01452H,01451H
 ;
 DO_CRD_SCRN
 	JSRP	CRD_SCRN		;SHOW CREDITS SCREEN SUPERIMPOSED
@@ -677,7 +677,7 @@ NOADD
 ;;A11=P1 OR P2DATA AREA
 ;	MMTM	SP,A0,A1
 ;	CALLR	ZERO_STATS
-;	MOVI	>100000,A1		;FIRST FREE MAN AT 100000
+;	MOVI	0100000H,A1		;FIRST FREE MAN AT 100000
 ;	CALLR	BCDADD
 ;	MOVE	A0,*A11(PNEXTREP),L
 ;	MMFM	SP,A0,A1
@@ -700,7 +700,7 @@ hst5	move	a0,-*a12
 
 	clr	a0
 	move	a0,@GAMERASE
-	movi	->ff4,a0		;Start display at bottom of screen
+	movi	-0ff4H,a0		;Start display at bottom of screen
 	move	a0,@DPYSTRT
 	JSRP	WNDWON
 	calla	KILBGND			;Kill old background
@@ -742,7 +742,7 @@ hst30	move	a1,*a2+,L
 	jruc	hst120
 
 hst90	move	@SWITCH,a0
-	movk	>11,a1
+	movk	011H,a1
 	and	a1,a0
 	jrz	hst100
 	callr	vidhwfx_flyin
@@ -857,7 +857,7 @@ ps50	CREATE	CYCPID,palnewcol
 
  SUBRP	palnewcol	;A9=*palram, A10=*New color
 
-	movi	120,a8			;>Fade old down
+	movi	120,a8			;0FadeH old down
 	move	*a9,a11			;Get old
 pp50	move	a11,*a9
 	move	a9,a0
@@ -868,7 +868,7 @@ pp50	move	a11,*a9
 	cmpi	16,a8
 	jrgt	pp50
 
-pp100	move	a10,a1			;>Fade new up
+pp100	move	a10,a1			;0FadeH new up
 	move	a9,a0
 	callr	palnewc_set
 	SLEEPK	1
@@ -915,15 +915,15 @@ hsc40	move	*a0+,*a4+		;Shift colors down
  SUBRP	paldump
 
 	movi	palram,a0		;*Color
-	movi	>101,a1			;Palette 1, Color 1
+	movi	0101H,a1			;Palette 1, Color 1
 	movi	60,a2			;# Colors
 	calla	PALSET
 	movi	palram+60*16,a0
-	movi	>201,a1			;Palette 2, Color 1
+	movi	0201H,a1			;Palette 2, Color 1
 	movi	60,a2
 	calla	PALSET
 	movi	palram+120*16,a0
-	movi	>301,a1			;Palette 3, Color 1
+	movi	0301H,a1			;Palette 3, Color 1
 	movi	45,a2
 	calla	PALSET
 	SLEEPK	1
@@ -940,9 +940,9 @@ hsc40	move	*a0+,*a4+		;Shift colors down
 	PUSH	a3,a4,a5,a6,a7,a8,a9,a10,a11
 
 
-	movi	>7c00,a4	;A4=Mask for 5 bits of red
-	movi	>03e0,a6	;A6=Mask for 5 bits of green
-	movk	>1f,a8		;A8=Mask for 5 bits of blue
+	movi	07c00H,a4	;A4=Mask for 5 bits of red
+	movi	003e0H,a6	;A6=Mask for 5 bits of green
+	movk	01fH,a8		;A8=Mask for 5 bits of blue
 	move	a4,a9
 	move	a6,a10
 	move	a8,a11
@@ -995,7 +995,7 @@ FXNUML	.equ	254
 
 	move	@HEBLNK,a10
 
-	movi	FXNUML/2,a0		;>Clr effect list and init lines
+	movi	FXNUML/2,a0		;0CHlr effect list and init lines
 	movi	vhfxmem,a3
 	movi	vhfxlnv,a4
 	move	@HSBLNK,a1
@@ -1015,10 +1015,10 @@ vffi100	move	a1,*a3+			;Set X
 ;	movk	1,b4			;B4=Spawn delay
 ;	move	b4,b3			;B3=Spawn cntdn
 
-	movi	>10f,a11
+	movi	010fH,a11
 
 vffi200	move	@COINS,a0
-	ori	>34,a0
+	ori	034H,a0
 	not	a0
 	jrnz	vffix
 
@@ -1053,7 +1053,7 @@ vffi400	move	*a8,a0			;Get X
 	add	a1,a0			;New pos
 	jrge	vffi500
 	clr	a0
-;	cmpi	>1f,a11			;No bounce at end
+;	cmpi	01fH,a11			;No bounce at end
 ;	jrls	vffi500
 	sra	1,a1
 	neg	a1
@@ -1096,7 +1096,7 @@ vffix	move	a10,@HEBLNK
 	subk	2,a9			;A9=Highest HEBLNK allowed
 	move	@HEBLNK,a10
 
-	movi	FXNUML,a0		;>Clr effect list and init lines
+	movi	FXNUML,a0		;0CHlr effect list and init lines
 	movi	vhfxmem,a3
 	movi	vhfxlnv,a4
 	clr	a1
@@ -1110,10 +1110,10 @@ vffo100	move	a1,*a3+			;Set X
 ;	movk	1,b4			;B4=Spawn delay
 ;	move	b4,b3			;B3=Spawn cntdn
 
-	movi	>4f,a11
+	movi	04fH,a11
 
 vffo200	move	@COINS,a0
-	ori	>34,a0
+	ori	034H,a0
 	not	a0
 	jrnz	vffox
 
@@ -1151,7 +1151,7 @@ vffo400	move	*a8,a0			;Get X
 	add	a1,a0			;New pos
 	jrge	vffo500
 	clr	a0
-;	cmpi	>1f,a11			;No bounce at end
+;	cmpi	01fH,a11			;No bounce at end
 ;	jrls	vffo500
 	sra	1,a1
 	neg	a1
@@ -1199,23 +1199,23 @@ vffox
  SUBRP	vidhwfx_zoomin
 
 
-	movi	FXNUML,a0		;>Clr effect list and init lines
+	movi	FXNUML,a0		;0CHlr effect list and init lines
 	movi	vhfxmem,a3
 	movi	vhfxlnv,a4
 	move	@DPYSTRT,a1
 vfzi100	move	a1,*a3+			;Set Addr
 	move	a1,*a4+			;^
-	subk	>10,a1
+	subk	010H,a1
 	dsj	a0,vfzi100
 
-	movi	>10000,b2		;B2=#Lines per addr
+	movi	010000H,b2		;B2=#Lines per addr
 ;	movk	1,b4			;B4=Spawn delay
 ;	move	b4,b3			;B3=Spawn cntdn
 
-	movi	>10f,a11
+	movi	010fH,a11
 
 vfzi200	move	@COINS,a0
-	ori	>34,a0
+	ori	034H,a0
 	not	a0
 	jrnz	vfzix
 
@@ -1256,12 +1256,12 @@ vfzi430	sll	4,a3			;*16
 	add	b2,b0
 	dsj	a2,vfzi400
 
-	addi	>200,b2			;Inc line skip
+	addi	0200H,b2			;Inc line skip
 ;	jrgt	vfzi550
-;	movi	>100,b2
-;	subi	>200,b2			;Decrease line skip
+;	movi	0100H,b2
+;	subi	0200H,b2			;Decrease line skip
 ;	jrgt	vfzi550
-;	movi	>100,b2
+;	movi	0100H,b2
 vfzi550
 ;	cmpi	FXNUML,b2
 ;	jrhs	vfzi700
@@ -1291,7 +1291,7 @@ vfzix	move	a10,@HEBLNK
 
 	move	@DPYCTL,a10
 
-	movi	FXNUML,a0		;>Clr effect list and init lines
+	movi	FXNUML,a0		;0CHlr effect list and init lines
 	movi	vhfxmem,a3
 	movi	vhfxln,a4
 	clr	a1
@@ -1305,10 +1305,10 @@ vhf100	move	a1,*a3+
 	movi	45,b4			;B4=Spawn delay
 	move	b4,b3			;B3=Spawn cntdn
 
-	movi	>12f,a11
+	movi	012fH,a11
 
 vhf200	move	@COINS,a0
-	ori	>34,a0
+	ori	034H,a0
 	not	a0
 	jrnz	vhfx
 
@@ -1334,7 +1334,7 @@ vhf260	move	*a7,a0			;Wait on vcnt
 	move	a2,*a6			;Stuff value
 	dsj	a5,vhf230
 
-	movi	FXNUML,a0		;>Clr effect list
+	movi	FXNUML,a0		;0CHlr effect list
 	movi	vhfxmem,a3
 	clr	a1
 vhf300	move	a1,*a3+
@@ -1361,7 +1361,7 @@ vhf410	move	*a3+,a0
 vhf450	cmp	a5,a0
 	jrlt	vhf500
 	move	a5,a0
-vhf470	cmpi	>2f,a11			;No bounce at end
+vhf470	cmpi	02fH,a11			;No bounce at end
 	jrls	vhf500
 	neg	a1
 vhf500	addk	4,a1			;Add vel
@@ -1407,7 +1407,7 @@ vhfx	move	a10,@DPYCTL
 
 	move	@DPYCTL,a10
 
-	movi	FXNUML,a0		;>Clr effect list
+	movi	FXNUML,a0		;0CHlr effect list
 	movi	vhfxmem,a3
 	move	a3,a9			;A9=*Next line to show
 	clr	a1
@@ -1417,7 +1417,7 @@ vhfb100	move	a1,*a3+
 	movk	18,a11
 
 vhfb200	move	@COINS,a0
-	ori	>34,a0
+	ori	034H,a0
 	not	a0
 	jrnz	vhfbx
 
@@ -1474,7 +1474,7 @@ vhfbx	move	a10,@DPYCTL
 	move	a1,@FPALRAM+PALRSIZ,L
 
 	movi	hscolorsc_t+30*16,a0	;*Red
-	movi	>101,a1			;Palette 1, Color 1
+	movi	0101H,a1			;Palette 1, Color 1
 	movk	15,a2			;# Colors
 	calla	PALSET
 
@@ -1555,7 +1555,7 @@ hiscoreinit_t
  SUBRP	intgrid_prt
 
 	movi	INITMAT,a4
-	movi	>2525,a6
+	movi	02525H,a6
 	movi	[44,149],a9		;Scrn y/x
 	movk	[0,1],a10		;Spacing
 	movi	RD15FONT,a11
