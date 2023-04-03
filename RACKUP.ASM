@@ -9,15 +9,15 @@
 *
 *.Last mod - 1/7/92 14:02
 **************************************************************
-      	.FILE	'RACKUP.ASM'
-	.TITLE	'TOTAL CARNAGE GAME PROGRAM'
+      	.FILE	"RACKUP.ASM"
+	.TITLE	"TOTAL CARNAGE GAME PROGRAM"
 	.WIDTH	132
 	.OPTION	B,D,L,T
 	.MNOLIST
 
 	.include	"mproc.equ"
 	.include	"disp.equ"
-	.include	"\video\sys\sys.inc"
+	.include	"sys.inc"
 	.include	"game.equ"
 	.include	"imgtbl.glo"
 	.include	"audit.equ"
@@ -30,51 +30,51 @@
 
 	.ref	GLSEXP,NOWAY,SETDWN,TUNE3,TUNE2,STATSND
 
-CVSDOFF .word	>F0F0,10,>807D,0		;SPEECH OFF
-TUNE4	.word	>f3fe,10,>8007,0		;Rackup tune
-racksup	.word	>f280,1,>80b3,0			;Rackup bonus sweep up
-rackoff	.word	>fa81,1,>80a7,0			;Rackup bonus off
-kilfgnd	.word	>f000,1,>807f,0			;Kill foregnd snds
-rackp1p	.word	>fa80,1,>80b4,0			;Rackup P1 gets 1000 pts
-rackp2p	.word	>fa80,1,>80b5,0			;^ P2
-stats1	.word	>f280,1,>8100,0			;Rackup stat line snd
-stats2	.word	>f280,1,>8101,0			;^
-stats3	.word	>f280,1,>8102,0			;^
-stats4	.word	>f280,1,>8103,0			;^
-stats5	.word	>f280,1,>8104,0			;^
-stats6	.word	>f280,1,>8105,0			;^
-stats7	.word	>f280,1,>8106,0			;^
-stats8	.word	>f280,1,>8107,0			;^
-stats9	.word	>f280,1,>8108,0			;^
-stats10	.word	>f280,1,>8109,0			;^
-stats11	.word	>f280,1,>810a,0			;^
-stats12	.word	>f280,1,>810b,0			;^
-txtssnd	.word	>f3f7,8,>80b1,0			;Text shrink
-shout	.word	>f1a0,60,>80fe,0		;Rackup victory shout
-rackgun	.word	>fca0,4,>8030,0			;Player shoots gun
-gigle1	.word	>f9a0,60,>80f3,0		;Rackup winner laughs
-ahkb1	.word	>f9a0,10,>80eb,0		;Akhboob speech
-ahkb2	.word	>f9a0,10,>80ec,0		;^
-ahkb3	.word	>f9a0,10,>80ed,0		;^
-ahkbsta	.word	>f9a0,10,>80ee,0		;^ start angry
-ahkbang	.word	>f9a0,10,>80ef,0		;^ angry
-DOLLAR	.WORD	>F9F7,>50,>814E,0		;BUY 4 DOLLAR
-;CITIZEN	.WORD	>F9F7,>50,>8155,0		;PEACEFUL CITIZEN
-yousuck	.word	>f9a0,10,>80c5,0		;You suck at this game!
-fisthit	.word	>fca0,10,>803c,0		;Ahkboob hits desk
-ermtune	.word	>f3f0,10,>8004,0		;Electrocution tune
-fshock	.word	>f540,20,>80bb,0		;Electric chair shocks
-fburn	.word	>f048,30,>80d7,0		;^ burn
-fpain1	.word	>f965,20,>80f6,0		;Player in pain
-fpain2	.word	>f160,20,>80f7,0		;^
-fpain3	.word	>f160,20,>80fd,0		;^
-fskullb	.word	>f460,20,>8040,0		;Skull bounce
-fryexp	.word	>fc50,6,>803e,0			;Fry explosion
-fryexp2	.word	>fd50,8,>80d9,0			;^
-totcarn	.word	>f980,30,>80cf,0		;Total carnage!
-gluck	.word	>f1f7,>40,>80e5,0		;"Good luck"
+CVSDOFF .word	0F0F0H,10,0807DH,0		;SPEECH OFF
+TUNE4	.word	0f3feH,10,08007H,0		;Rackup tune
+racksup	.word	0f280H,1,080b3H,0			;Rackup bonus sweep up
+rackoff	.word	0fa81H,1,080a7H,0			;Rackup bonus off
+kilfgnd	.word	0f000H,1,0807fH,0			;Kill foregnd snds
+rackp1p	.word	0fa80H,1,080b4H,0			;Rackup P1 gets 1000 pts
+rackp2p	.word	0fa80H,1,080b5H,0			;^ P2
+stats1	.word	0f280H,1,08100H,0			;Rackup stat line snd
+stats2	.word	0f280H,1,08101H,0			;^
+stats3	.word	0f280H,1,08102H,0			;^
+stats4	.word	0f280H,1,08103H,0			;^
+stats5	.word	0f280H,1,08104H,0			;^
+stats6	.word	0f280H,1,08105H,0			;^
+stats7	.word	0f280H,1,08106H,0			;^
+stats8	.word	0f280H,1,08107H,0			;^
+stats9	.word	0f280H,1,08108H,0			;^
+stats10	.word	0f280H,1,08109H,0			;^
+stats11	.word	0f280H,1,0810aH,0			;^
+stats12	.word	0f280H,1,0810bH,0			;^
+txtssnd	.word	0f3f7H,8,080b1H,0			;Text shrink
+shout	.word	0f1a0H,60,080feH,0		;Rackup victory shout
+rackgun	.word	0fca0H,4,08030H,0			;Player shoots gun
+gigle1	.word	0f9a0H,60,080f3H,0		;Rackup winner laughs
+ahkb1	.word	0f9a0H,10,080ebH,0		;Akhboob speech
+ahkb2	.word	0f9a0H,10,080ecH,0		;^
+ahkb3	.word	0f9a0H,10,080edH,0		;^
+ahkbsta	.word	0f9a0H,10,080eeH,0		;^ start angry
+ahkbang	.word	0f9a0H,10,080efH,0		;^ angry
+DOLLAR	.WORD	0F9F7H,050H,0814EH,0		;BUY 4 DOLLAR
+;CITIZEN	.WORD	0F9F7H,050H,08155H,0		;PEACEFUL CITIZEN
+yousuck	.word	0f9a0H,10,080c5H,0		;You suck at this game!
+fisthit	.word	0fca0H,10,0803cH,0		;Ahkboob hits desk
+ermtune	.word	0f3f0H,10,08004H,0		;Electrocution tune
+fshock	.word	0f540H,20,080bbH,0		;Electric chair shocks
+fburn	.word	0f048H,30,080d7H,0		;^ burn
+fpain1	.word	0f965H,20,080f6H,0		;Player in pain
+fpain2	.word	0f160H,20,080f7H,0		;^
+fpain3	.word	0f160H,20,080fdH,0		;^
+fskullb	.word	0f460H,20,08040H,0		;Skull bounce
+fryexp	.word	0fc50H,6,0803eH,0			;Fry explosion
+fryexp2	.word	0fd50H,8,080d9H,0			;^
+totcarn	.word	0f980H,30,080cfH,0		;Total carnage!
+gluck	.word	0f1f7H,040H,080e5H,0		;"Good luck"
 ;TURMELL
-TXTSND1	.WORD	>F3F7,>8,>80AE,0
+TXTSND1	.WORD	0F3F7H,08H,080AEH,0
 
 
 ;symbols externally defined
@@ -118,7 +118,7 @@ TXTSND1	.WORD	>F3F7,>8,>80AE,0
 	.bss	statspal	,31*16 	;Statistics palette
 	.bss	boanimdeath1	,16    	;CntDn for bonus anim procs to die
 	.bss	boanimdeath2	,16    	;^
-	.bss	scoredie	,16	;>0=Score processes die
+	.bss	scoredie	,16	;00H=Score processes die
 	.bss	hitpercent1	,16	;Player1 %
 	.bss	hitpercent2	,16	;Player2 %
 	.bss	hitsmin1	,16	;Player1 hits per minute
@@ -156,7 +156,7 @@ TXTSND1	.WORD	>F3F7,>8,>80AE,0
 	subk	1,a2
 	jrlt	it20			;0?
 	jreq	it10			;1?
-	movi	[0,>fcbd],a1		;Fix X for purple guy eating
+	movi	[0,0fcbdH],a1		;Fix X for purple guy eating
 	jruc	it20
 it10	movi	[0,-40],a1		;Fix X
 it20	clr	a2
@@ -169,7 +169,7 @@ it20	clr	a2
 	subk	1,a2
 	jrlt	Mit20			;0?
 	jreq	Mit10			;1?
-	movi	[0,>fcbd],a1		;Fix X for purple guy eating
+	movi	[0,0fcbdH],a1		;Fix X for purple guy eating
 	jruc	Mit20
 Mit10	movi	[0,-40],a1		;Fix X
 Mit20	clr	a2
@@ -215,7 +215,7 @@ rp12
 	move	a0,@HALT
 					;>Make tiles
 	movk	8*4,a1			;# Panels
-	movi	-4*>25800+>12c00,a2	;Velocity
+	movi	-4*025800H+012c00H,a2	;Velocity
 	movk	10,a3
 	movi	200,a5
 rp20	movi	panel_t,a14
@@ -229,7 +229,7 @@ rp20	movi	panel_t,a14
 	and	a1,a4
 	subk	1,a4
 	jrne	rp30
-	addi	>25800,a2
+	addi	025800H,a2
 	movk	10,a3
 	movk	1,a4
 	xor	a4,a5			;Toggle 0 Bit
@@ -243,7 +243,7 @@ rp30	calla	ADJSTWTL		;Adjust into world
 
 	callr	scores_bcdbin
 
-	move	@P1DATA+THITS,a1	;>Calc P1 % & hitsmin
+	move	@P1DATA+THITS,a1	;0CaHlc P1 % & hitsmin
 	move	a1,a3
 	movi	100,a0
 	mpyu	a0,a1
@@ -257,7 +257,7 @@ rp30	calla	ADJSTWTL		;Adjust into world
 	divu	a2,a3
 	move	a3,@hitsmin1
 
-	move	@P2DATA+THITS,a1	;>Calc P2 % & hitsmin
+	move	@P2DATA+THITS,a1	;0CaHlc P2 % & hitsmin
 	move	a1,a3
 	movi	100,a0
 	mpyu	a0,a1
@@ -561,7 +561,7 @@ pdnoxx	PULL	a8,a9,a10,a11
 txs20	move	a11,a0
 	calla	PRCSLP
 	clr	a8
-	move	@OBJLST,a9,L		;>Find and shrink
+	move	@OBJLST,a9,L		;0FHind and shrink
 txs40	move	*a9(OID),a0
 	cmpi	CLSNEUT|TYPTEXT|SUBTXT,a0
 	jrne	txs70
@@ -654,7 +654,7 @@ pirw10	SLEEPK	10
 	movi	-210,a0
 	move	a0,@LOWZ
 	movi	[187,198],a9		;Y:X
-	movi	>2525,a6
+	movi	02525H,a6
 	clr	a0
 	PUSH	a8
 	JSRP	STRCNRMO
@@ -770,7 +770,7 @@ score2_st
 scbp20	move	@STATUS,a2
 	btst	0,a2
 	jrz	scbp50
-	move	@P1DATA+PSCORE,a8,L	;>Calc bonus score
+	move	@P1DATA+PSCORE,a8,L	;0CaHlc bonus score
 	move	*a13(scorecopy1),a0,L
 	cmp	a0,a8
 	jreq	scbp50
@@ -779,7 +779,7 @@ scbp20	move	@STATUS,a2
 	callr	text_delz
 	move	@score1old,a0,L
 	movi	300-20000,a1
-	movi	>2020,a6
+	movi	02020H,a6
 	movi	[35,85],a9		;Scrn y/x
 	callr	scoreb_prt2
 
@@ -787,7 +787,7 @@ scbp50	SLEEPK	3
 	move	@STATUS,a2
 	btst	1,a2
 	jrz	scbp80
-	move	@P2DATA+PSCORE,a8,L	;>Calc bonus score
+	move	@P2DATA+PSCORE,a8,L	;0CaHlc bonus score
 	move	*a13(scorecopy2),a0,L
 	cmp	a0,a8
 	jreq	scbp80
@@ -796,7 +796,7 @@ scbp50	SLEEPK	3
 	callr	text_delz
 	move	@score2old,a0,L
 	movi	301-20000,a1
-	movi	>2121,a6
+	movi	02121H,a6
 	movi	[35,315],a9		;Scrn y/x
 	callr	scoreb_prt2
 
@@ -827,7 +827,7 @@ scoreb_prt2
 sv20	SLEEPK	1
 	move	@SWITCH+16,a1	;Chk for impatience
 	not	a1
-	andi	>24,a1
+	andi	024H,a1
 	jrnz	sv50
 	dsj	a9,sv20	
 sv50	move	a8,a0
@@ -844,7 +844,7 @@ sv50	move	a8,a0
 ;	movk	3,a0
 ;	move	a0,@STATUS	;DEBUG
 ;
-;	movi	200,a0		;>DEBUG
+;	movi	200,a0		;0DEBHUG
 ;	calla	RNDRNG0
 ;	move	a0,@P1DATA+TFLAGS
 ;	movi	200,a0
@@ -979,7 +979,7 @@ bcu10	PUSH	a2
 
 bcu20	move	@SWITCH+16,a1		;Chk for impatience
 	not	a1
-	andi	>24,a1
+	andi	024H,a1
 	jrnz	bcu25
 	SLEEPK	1
 
@@ -1075,7 +1075,7 @@ bpilp	move	*a13(bonusz),a0
 	PUSH	a8,a9
 	move	*a8,a8			;Get P1 cnt
 	move	a8,a3
-	movi	>2525,a6
+	movi	02525H,a6
 	callr	strcnrmo_nosleep	;Print cnt
 	callr	strcnrmo_nosleep2	;Print score
 	PULL	a8,a9
@@ -1087,7 +1087,7 @@ bpi50	btst	1,a2
 	addi	160,a9			;+X
 	move	*a8(16),a8		;Get P2 cnt
 	move	a8,a3
-	movi	>2525,a6
+	movi	02525H,a6
 	callr	strcnrmo_nosleep	;Print cnt
 	callr	strcnrmo_nosleep2	;Print score
 	PULL	a8,a9
@@ -1120,13 +1120,13 @@ bonusp2_as				;Scripts
 bonusp1_as
 	ASADDW	1,animscnt
 	ASNEW	bonusflag_t
-	ASFRA	flag_l,>20,100
+	ASFRA	flag_l,020H,100
 
 bas10	ASSLP	2
 	ASJMPEQ	-1,bonusstat,bas10
 
 	ASNEW	bonusgem_t
-	ASFRA	gems_l,>21,100
+	ASFRA	gems_l,021H,100
 
 bas20	ASSLP	2
 	ASJMPEQ	0,bonusstat,bas20
@@ -1136,8 +1136,8 @@ bas20	ASSLP	2
 bas30	ASSLP	2
 	ASJMPEQ	1,bonusstat,bas30
 
-	ASKIL	0,>ff
-	ASDELM	0,>ff
+	ASKIL	0,0ffH
+	ASDELM	0,0ffH
 
 	ASADDW	-1,animscnt
 	ASEND
@@ -1168,13 +1168,13 @@ bonus3p2_st
 	.word	-1
 
 bonusflag_t
-	ASITEMN	50,55,FLG1,220,DMAWNZ,>20
+	ASITEMN	50,55,FLG1,220,DMAWNZ,020H
 	.word	-1000
 bonusgem_t
-	ASITEMN	50,90,GEMS1,220,DMAWNZ,>21
+	ASITEMN	50,90,GEMS1,220,DMAWNZ,021H
 	.word	-1000
 bonushstg_t
-	ASITEMN	50,130,HSTGHD,220,DMAWNZ,>21
+	ASITEMN	50,130,HSTGHD,220,DMAWNZ,021H
 	.word	-1000
 
 
@@ -1205,7 +1205,7 @@ bfb20	move	*a1(OZPOS),a0
 	cmp	a11,a0
 	jrhi	bfb30
 	move	a3,*a1(OFLAGS)
-	movi	>909,a0
+	movi	0909H,a0
 	move	a0,*a1(OCONST)
 bfb30	move	*a1,a1,L
 	jrnz	bfb20
@@ -1421,7 +1421,7 @@ pbw230	move	*a1,a1,L
 
 	SLEEP	60
 
-	move	@OBJLST,a0,L		;>Delete tiles
+	move	@OBJLST,a0,L		;0DeHlete tiles
 pbw300	move	*a0(OZPOS),a2
 	subi	200,a2
 	subk	1,a2
@@ -1438,7 +1438,7 @@ pbw340	jrnz	pbw300
 
 ;	movi	plbwpal_t,a0		;*Palette list
 ;	movk	5,a1
-;	movi	>40,a2
+;	movi	040H,a2
 ;	move	a2,@PCOUNT
 ;	calla	FADEOUT2
 ;
@@ -1478,29 +1478,29 @@ win3_s	.byte	"PLAYER TWO KICKED BUTT!",0
 
 plbwp1o_as
 	ASNEW	plyr1wnew_t
-	ASXY	>40,>1f,70,0
+	ASXY	040H,01fH,70,0
 	ASJMP	plbw_as
 
 plbwp2o_as
 	ASNEW	plyr2wnew_t
-	ASXY	>40,>1f,-50,0
+	ASXY	040H,01fH,-50,0
 	ASSVL	BIGPL2
-	ASPAL	>41
-	ASPAL	>54
-	ASPAL	>55
+	ASPAL	041H
+	ASPAL	054H
+	ASPAL	055H
 	ASSVL	GUNSP2
-	ASPAL	>42
-	ASPAL	>48
+	ASPAL	042H
+	ASPAL	048H
 	ASJMP	plbw_as
 
 plbwp1w_as
 	ASNEW	plyr1wnew_t
 	ASNEW	plyr2lnew_t
 	ASSVL	BIGPL2
-	ASPAL	>81
+	ASPAL	081H
 	ASSVL	GUNSP2
-	ASPAL	>82
-	ASPAL	>88
+	ASPAL	082H
+	ASPAL	088H
 	ASRUN	plbw2txt_as
 	ASJMP	plbw_as
 
@@ -1508,84 +1508,84 @@ plbwp2w_as
 	ASNEW	plyr1lnew_t
 	ASNEW	plyr2wnew_t
 	ASSVL	BIGPL2
-	ASPAL	>41
-	ASPAL	>54
-	ASPAL	>55
+	ASPAL	041H
+	ASPAL	054H
+	ASPAL	055H
 	ASSVL	GUNSP2
-	ASPAL	>42
-	ASPAL	>48
+	ASPAL	042H
+	ASPAL	048H
 	ASRUN	plbw1txt_as
 
 plbw_as
 	ASADDW	1,animscnt
 	ASNEW	plyrbgnew_t
-	ASFRA	ribbonb_l,>48,-1
-	ASFRA	ribbonl_l,>88,-1
+	ASFRA	ribbonb_l,048H,-1
+	ASFRA	ribbonl_l,088H,-1
 
 	ASRUN	pbwcloud1_as
 	ASRUN	pbwcloud2_as
 	ASRUN	pbwcloud3_as
 	ASRUN	pbwsnd_as
 	ASSLP	90
-	ASFRA	plhdcc_l,>4c,1
-	ASFRA	plhdmm_l,>4d,1
+	ASFRA	plhdcc_l,04cH,1
+	ASFRA	plhdmm_l,04dH,1
 	ASLAB	5
-	ASXY	0,>ff,0,1	;Pan up
+	ASXY	0,0ffH,0,1	;Pan up
 	ASDSJS1
 	ASLAB	20
-	ASXY	0,>ff,0,2
+	ASXY	0,0ffH,0,2
 	ASDSJS1
 	ASLAB	5
-	ASXY	0,>ff,0,1
+	ASXY	0,0ffH,0,1
 	ASDSJS1
 
-	ASANI	LBOW2,>54
-	ASANI	WRISTBND2,>50
-	ASANI	HAND2,>55
-	ASANI	GUN2,>51
-	ASXY	>44,1,-1000,0	;Put middle strap on screen
+	ASANI	LBOW2,054H
+	ASANI	WRISTBND2,050H
+	ASANI	HAND2,055H
+	ASANI	GUN2,051H
+	ASXY	044H,1,-1000,0	;Put middle strap on screen
 	ASSLP	4
-	ASANI	LBOW1,>54
-	ASANI	WRISTBND1,>50
-	ASANI	HAND1,>55
-	ASANI	GUN1,>51
-	ASXY	>44,1,-1000,0	;Straps off screen
+	ASANI	LBOW1,054H
+	ASANI	WRISTBND1,050H
+	ASANI	HAND1,055H
+	ASANI	GUN1,051H
+	ASXY	044H,1,-1000,0	;Straps off screen
 
 	ASLAB	40
 	ASSND	rackgun
 	ASLAB	2
-	ASXY	>50,>7,0,1	;Shake gun
-	ASXY	>56,0,-1000,0	;Show flame
+	ASXY	050H,07H,0,1	;Shake gun
+	ASXY	056H,0,-1000,0	;Show flame
 	ASDSJS1
 	ASLAB	2
-	ASXY	>50,>7,0,-1
-	ASXY	>56,0,1000,0	;Hide flame
+	ASXY	050H,07H,0,-1
+	ASXY	056H,0,1000,0	;Hide flame
 	ASDSJS1
 	ASDSJ
 
 	ASSLP	30
 	ASLAB	5
-	ASXY	0,>ff,0,-1	;Pan down
+	ASXY	0,0ffH,0,-1	;Pan down
 	ASDSJS1
 	ASLAB	20
-	ASXY	0,>ff,0,-2
+	ASXY	0,0ffH,0,-2
 	ASDSJS1
 	ASLAB	5
-	ASXY	0,>ff,0,-1
+	ASXY	0,0ffH,0,-1
 	ASDSJS1
 
 	ASSLP	20
-	ASANI	LBOW2,>54
-	ASANI	WRISTBND2,>50
-	ASANI	HAND2,>55
-	ASANI	GUN2,>51
-	ASXY	>44,1,1000,0	;Middle strap on screen
+	ASANI	LBOW2,054H
+	ASANI	WRISTBND2,050H
+	ASANI	HAND2,055H
+	ASANI	GUN2,051H
+	ASXY	044H,1,1000,0	;Middle strap on screen
 	ASSLP	4
-	ASANI	LBOW3,>54
-	ASANI	WRISTBND3,>50
-	ASANI	HAND3,>55
-	ASANI	GUN3,>51
-	ASXY	>44,1,1000,0	;1st strap on screen
+	ASANI	LBOW3,054H
+	ASANI	WRISTBND3,050H
+	ASANI	HAND3,055H
+	ASANI	GUN3,051H
+	ASXY	044H,1,1000,0	;1st strap on screen
 	ASADDW	-1,animscnt
 	ASEND
 
@@ -1593,28 +1593,28 @@ plbw_as
 pbwcloud1_as
 	ASLAB	4
 	ASLAB	188
-	ASXY	>10,0,1,0
+	ASXY	010H,0,1,0
 	ASSLP	4
 	ASDSJ
-	ASXY	>10,0,-188,0
+	ASXY	010H,0,-188,0
 	ASDSJ
 	ASEND
 pbwcloud2_as
 	ASLAB	4
 	ASLAB	188
-	ASXY	>11,0,1,0
+	ASXY	011H,0,1,0
 	ASSLP	5
 	ASDSJ
-	ASXY	>11,0,-188,0
+	ASXY	011H,0,-188,0
 	ASDSJ
 	ASEND
 pbwcloud3_as
 	ASLAB	4
 	ASLAB	188
-	ASXY	>12,0,1,0
+	ASXY	012H,0,1,0
 	ASSLP	6
 	ASDSJ
-	ASXY	>12,0,-188,0
+	ASXY	012H,0,-188,0
 	ASDSJ
 	ASEND
 
@@ -1631,15 +1631,15 @@ CLY	.equ	142
 
 plyrbgnew_t	;X,Y,img name,Z,oflags,oid
 
-	ASITEMN	12,-40,CLOUD,25,DMAWNZ+M_FLIPH,>10
-	ASITEMN	200,-40,CLOUD,25,DMAWNZ+M_FLIPH,>10
-	ASITEMN	388,-40,CLOUD,25,DMAWNZ+M_FLIPH,>10
-	ASITEMN	12,-10,CLOUD,24,DMAWNZ+M_FLIPH,>11
-	ASITEMN	200,-10,CLOUD,24,DMAWNZ+M_FLIPH,>11
-	ASITEMN	388,-10,CLOUD,24,DMAWNZ+M_FLIPH,>11
-	ASITEMN	-178,20,CLOUD,23,DMAWNZ,>12
-	ASITEMN	10,20,CLOUD,23,DMAWNZ,>12
-	ASITEMN	198,20,CLOUD,23,DMAWNZ,>12
+	ASITEMN	12,-40,CLOUD,25,DMAWNZ+M_FLIPH,010H
+	ASITEMN	200,-40,CLOUD,25,DMAWNZ+M_FLIPH,010H
+	ASITEMN	388,-40,CLOUD,25,DMAWNZ+M_FLIPH,010H
+	ASITEMN	12,-10,CLOUD,24,DMAWNZ+M_FLIPH,011H
+	ASITEMN	200,-10,CLOUD,24,DMAWNZ+M_FLIPH,011H
+	ASITEMN	388,-10,CLOUD,24,DMAWNZ+M_FLIPH,011H
+	ASITEMN	-178,20,CLOUD,23,DMAWNZ,012H
+	ASITEMN	10,20,CLOUD,23,DMAWNZ,012H
+	ASITEMN	198,20,CLOUD,23,DMAWNZ,012H
 	ASITEMN	10,CLY,CLIFF3A,30,DMAWNZ,8
 	ASITEMN	128,CLY,CLIFF3A,30,DMAWNZ+M_FLIPH,8
 	ASITEMN	129,CLY+6,CLIFF2A,30,DMAWNZ,8
@@ -1659,61 +1659,61 @@ P2LX	.equ	305
 P2LY	.equ	30
 
 plyr1wnew_t
-	ASITEMN	P1X,P1Y,CCHED1,51,DMAWNZ,>4c
-	ASITEMN	P1X,P1Y,RIB1,45,DMAWNZ,>48
-	ASITEMN	P1X,P1Y,BDBOD1,50,DMAWNZ,>40
-	ASITEMN	P1X,P1Y,BDBOD2,50,DMAWNZ,>40
-	ASITEMN	P1X,P1Y,RTARMBND,51,DMAWNZ,>40
-	ASITEMN	P1X,P1Y,RTLBOW1,52,DMAWNZ,>40
-	ASITEMN	P1X,P1Y,RTWRISTBND,53,DMAWNZ,>40
-	ASITEMN	P1X,P1Y,RTHAND1,53,DMAWNZ,>40
-	ASITEMN	P1X,P1Y,LFTARMBND,52,DMAWNZ,>40
-	ASITEMN	P1X,P1Y,LBOW3,51,DMAWNZ,>54
-	ASITEMN	P1X,P1Y,WRISTBND3,52,DMAWNZ,>50
-	ASITEMN	P1X,P1Y,HAND3,54,DMAWNZ,>55
-	ASITEMN	P1X,P1Y,GUN3,53,DMAWNZ,>51
-	ASITEMN	P1X,P1Y,STRAP,51,DMAWNZ,>44
-	ASITEMN	P1X+1000,P1Y,STRAPA,51,DMAWNZ,>45
-	ASITEMN	P1X+1054,P1Y-33,T72BLAST1,55,DMAWNZ+M_FLIPV,>56
-	ASITEMN	P1X+2054,P1Y-33,T72BLAST2,55,DMAWNZ+M_FLIPV,>56
+	ASITEMN	P1X,P1Y,CCHED1,51,DMAWNZ,04cH
+	ASITEMN	P1X,P1Y,RIB1,45,DMAWNZ,048H
+	ASITEMN	P1X,P1Y,BDBOD1,50,DMAWNZ,040H
+	ASITEMN	P1X,P1Y,BDBOD2,50,DMAWNZ,040H
+	ASITEMN	P1X,P1Y,RTARMBND,51,DMAWNZ,040H
+	ASITEMN	P1X,P1Y,RTLBOW1,52,DMAWNZ,040H
+	ASITEMN	P1X,P1Y,RTWRISTBND,53,DMAWNZ,040H
+	ASITEMN	P1X,P1Y,RTHAND1,53,DMAWNZ,040H
+	ASITEMN	P1X,P1Y,LFTARMBND,52,DMAWNZ,040H
+	ASITEMN	P1X,P1Y,LBOW3,51,DMAWNZ,054H
+	ASITEMN	P1X,P1Y,WRISTBND3,52,DMAWNZ,050H
+	ASITEMN	P1X,P1Y,HAND3,54,DMAWNZ,055H
+	ASITEMN	P1X,P1Y,GUN3,53,DMAWNZ,051H
+	ASITEMN	P1X,P1Y,STRAP,51,DMAWNZ,044H
+	ASITEMN	P1X+1000,P1Y,STRAPA,51,DMAWNZ,045H
+	ASITEMN	P1X+1054,P1Y-33,T72BLAST1,55,DMAWNZ+M_FLIPV,056H
+	ASITEMN	P1X+2054,P1Y-33,T72BLAST2,55,DMAWNZ+M_FLIPV,056H
 	.word	-1000
 
 plyr2wnew_t
-	ASITEMN	P2X,P2Y,MMHED1,51,DMAWNZ+M_FLIPH,>4d
-	ASITEMN	P2X,P2Y-5,RIB1,45,DMAWNZ,>48
-	ASITEMN	P2X,P2Y,BDBOD1,50,DMAWNZ+M_FLIPH,>41
-	ASITEMN	P2X,P2Y,BDBOD2,50,DMAWNZ+M_FLIPH,>42
-	ASITEMN	P2X,P2Y,RTARMBND,51,DMAWNZ+M_FLIPH,>40
-	ASITEMN	P2X,P2Y,RTLBOW1,52,DMAWNZ+M_FLIPH,>41
-	ASITEMN	P2X,P2Y,RTWRISTBND,53,DMAWNZ+M_FLIPH,>40
-	ASITEMN	P2X,P2Y,RTHAND1,53,DMAWNZ+M_FLIPH,>41
-	ASITEMN	P2X,P2Y,LFTARMBND,52,DMAWNZ+M_FLIPH,>40
-	ASITEMN	P2X,P2Y,LBOW3,51,DMAWNZ+M_FLIPH,>54
-	ASITEMN	P2X,P2Y,WRISTBND3,52,DMAWNZ+M_FLIPH,>50
-	ASITEMN	P2X,P2Y,HAND3,54,DMAWNZ+M_FLIPH,>55
-	ASITEMN	P2X,P2Y,GUN3,53,DMAWNZ+M_FLIPH,>51
-	ASITEMN	P2X,P2Y,STRAP,51,DMAWNZ+M_FLIPH,>44
-	ASITEMN	P2X+1000,P2Y,STRAPA,51,DMAWNZ+M_FLIPH,>45
-	ASITEMN	P2X+945,P2Y-33,T72BLAST1,55,DMAWNZ+M_FLIPV,>56
-	ASITEMN	P2X+1945,P2Y-33,T72BLAST2,55,DMAWNZ+M_FLIPV,>56
+	ASITEMN	P2X,P2Y,MMHED1,51,DMAWNZ+M_FLIPH,04dH
+	ASITEMN	P2X,P2Y-5,RIB1,45,DMAWNZ,048H
+	ASITEMN	P2X,P2Y,BDBOD1,50,DMAWNZ+M_FLIPH,041H
+	ASITEMN	P2X,P2Y,BDBOD2,50,DMAWNZ+M_FLIPH,042H
+	ASITEMN	P2X,P2Y,RTARMBND,51,DMAWNZ+M_FLIPH,040H
+	ASITEMN	P2X,P2Y,RTLBOW1,52,DMAWNZ+M_FLIPH,041H
+	ASITEMN	P2X,P2Y,RTWRISTBND,53,DMAWNZ+M_FLIPH,040H
+	ASITEMN	P2X,P2Y,RTHAND1,53,DMAWNZ+M_FLIPH,041H
+	ASITEMN	P2X,P2Y,LFTARMBND,52,DMAWNZ+M_FLIPH,040H
+	ASITEMN	P2X,P2Y,LBOW3,51,DMAWNZ+M_FLIPH,054H
+	ASITEMN	P2X,P2Y,WRISTBND3,52,DMAWNZ+M_FLIPH,050H
+	ASITEMN	P2X,P2Y,HAND3,54,DMAWNZ+M_FLIPH,055H
+	ASITEMN	P2X,P2Y,GUN3,53,DMAWNZ+M_FLIPH,051H
+	ASITEMN	P2X,P2Y,STRAP,51,DMAWNZ+M_FLIPH,044H
+	ASITEMN	P2X+1000,P2Y,STRAPA,51,DMAWNZ+M_FLIPH,045H
+	ASITEMN	P2X+945,P2Y-33,T72BLAST1,55,DMAWNZ+M_FLIPV,056H
+	ASITEMN	P2X+1945,P2Y-33,T72BLAST2,55,DMAWNZ+M_FLIPV,056H
 	.word	-1000
 
 plyr1lnew_t
-	ASITEMN	P1LX,P1LY,SMHEAD1,40,DMAWNZ+M_FLIPH,>80
-	ASITEMN	P1LX-10,P1LY,LILRIB1,35,DMAWNZ,>88
-	ASITEMN	P1LX,P1LY,SMBOD1,40,DMAWNZ+M_FLIPH,>81
-	ASITEMN	P1LX,P1LY,SMBOD2,40,DMAWNZ+M_FLIPH,>82
-	ASITEMN	P1LX,P1LY,SMARMBND,41,DMAWNZ+M_FLIPH,>80
-	ASITEMN	P1LX,P1LY,SMWRISTS,41,DMAWNZ+M_FLIPH,>80
+	ASITEMN	P1LX,P1LY,SMHEAD1,40,DMAWNZ+M_FLIPH,080H
+	ASITEMN	P1LX-10,P1LY,LILRIB1,35,DMAWNZ,088H
+	ASITEMN	P1LX,P1LY,SMBOD1,40,DMAWNZ+M_FLIPH,081H
+	ASITEMN	P1LX,P1LY,SMBOD2,40,DMAWNZ+M_FLIPH,082H
+	ASITEMN	P1LX,P1LY,SMARMBND,41,DMAWNZ+M_FLIPH,080H
+	ASITEMN	P1LX,P1LY,SMWRISTS,41,DMAWNZ+M_FLIPH,080H
 	.word	-1000
 
 plyr2lnew_t
-	ASITEMN	P2LX,P2LY,SMHEAD2,40,DMAWNZ,>80
-	ASITEMN	P2LX-1,P2LY-3,LILRIB1,35,DMAWNZ,>88
-	ASITEMN	P2LX,P2LY,SMBOD1,40,DMAWNZ,>81
-	ASITEMN	P2LX,P2LY,SMBOD2,40,DMAWNZ,>82
-	ASITEMN	P2LX,P2LY,SMARMBND,41,DMAWNZ,>80
-	ASITEMN	P2LX,P2LY,SMWRISTS,41,DMAWNZ,>80
+	ASITEMN	P2LX,P2LY,SMHEAD2,40,DMAWNZ,080H
+	ASITEMN	P2LX-1,P2LY-3,LILRIB1,35,DMAWNZ,088H
+	ASITEMN	P2LX,P2LY,SMBOD1,40,DMAWNZ,081H
+	ASITEMN	P2LX,P2LY,SMBOD2,40,DMAWNZ,082H
+	ASITEMN	P2LX,P2LY,SMARMBND,41,DMAWNZ,080H
+	ASITEMN	P2LX,P2LY,SMWRISTS,41,DMAWNZ,080H
 	.word	-1000
 
 
@@ -1903,7 +1903,7 @@ dt20	CREATE	ANIMPID,anim_script
 
 dt50	move	@SWITCH+16,a1		;Chk for impatience
 	not	a1
-	andi	>24,a1
+	andi	024H,a1
 	jrnz	dtx			;Abort?
 	SLEEPK	3
 	move	@animscnt,a1
@@ -1929,7 +1929,7 @@ dictmain_as
 
 	ASSND	txtssnd
 	ASLAB	50			;Scroll up
-	ASXY	0,>1f,0,-4
+	ASXY	0,01fH,0,-4
 	ASDSJS1
 
 	ASSLP	30
@@ -1938,41 +1938,41 @@ dictmain_as
 	ASRUN	dictsnd_as
 	ASRUN	dicteyes_as
 
-	ASFRA	dictmtk_l,>18,3
-	ASFRA	dictmtk_l,>19,3
+	ASFRA	dictmtk_l,018H,3
+	ASFRA	dictmtk_l,019H,3
 
 	ASWAIT
 
-	ASFRA	dictmtk2_l,>18,1
-	ASFRA	dictmtk2_l,>19,1
+	ASFRA	dictmtk2_l,018H,1
+	ASFRA	dictmtk2_l,019H,1
 
 	ASWAIT
 
-	ASFRA	dictmtk_l,>18,1
-	ASFRA	dictmtk_l,>19,1
+	ASFRA	dictmtk_l,018H,1
+	ASFRA	dictmtk_l,019H,1
 
 	ASWAIT
 
-	ASFRA	dictmtk2_l,>18,1
-	ASFRA	dictmtk2_l,>19,1
+	ASFRA	dictmtk2_l,018H,1
+	ASFRA	dictmtk2_l,019H,1
 
 	ASWAIT
 
-	ASFRA	dicteymd_l,>10,1
-	ASFRA	dicteymd_l,>11,1
-	ASFRA	dictmyell_l,>18,1
-	ASFRA	dictmyell_l,>19,1
+	ASFRA	dicteymd_l,010H,1
+	ASFRA	dicteymd_l,011H,1
+	ASFRA	dictmyell_l,018H,1
+	ASFRA	dictmyell_l,019H,1
 
 	ASWAIT
 	ASRUN	dicteyes_as
 	ASSLP	40
-	ASFRA	dictmusuck_l,>18,1
-	ASFRA	dictmusuck_l,>19,1
+	ASFRA	dictmusuck_l,018H,1
+	ASFRA	dictmusuck_l,019H,1
 
 	ASWAIT
 
-	ASFRA	dictsmile_l,>18,1
-	ASFRA	dictsmile_l,>19,1
+	ASFRA	dictsmile_l,018H,1
+	ASFRA	dictsmile_l,019H,1
 
 	ASSLP	60*4
 	ASADDW	-1,animscnt
@@ -2013,7 +2013,7 @@ dictarm_as				;Move arm
 	ASSLP	90
 
 	ASLAB	28
-	ASXY	>20,1,-1,-8
+	ASXY	020H,1,-1,-8
 	ASDSJS1
 
 	ASSLP	20
@@ -2022,45 +2022,45 @@ dictarm_as				;Move arm
 	ASLAB	10
 
 	ASLAB	3
-	ASXY	>20,1,0,1
+	ASXY	020H,1,0,1
 	ASDSJS1
 	ASLAB	3
-	ASXY	>20,1,0,-1
+	ASXY	020H,1,0,-1
 	ASDSJS1
 
 	ASDSJ
 	ASSLP	30
 	ASDSJ
 
-	ASLAB	4		;>Bang arm up and down
+	ASLAB	4		;0BaHng arm up and down
 
 	ASLAB	6
-	ASXY	>20,1,1,14
+	ASXY	020H,1,1,14
 	ASDSJS1
-	ASXY	0,>3f,0,-2	;body up
+	ASXY	0,03fH,0,-2	;body up
 	ASSND	fisthit
 	ASSLP1
-	ASXY	0,>3f,0,2	;body dn
+	ASXY	0,03fH,0,2	;body dn
 
 	ASLAB	6
-	ASXY	>20,1,-1,-14
+	ASXY	020H,1,-1,-14
 	ASDSJS1
 
 	ASDSJ
 
 	ASLAB	8		;>move arm off screen
-	ASXY	>20,1,1,14
+	ASXY	020H,1,1,14
 	ASDSJS1
-	ASXY	0,>3f,0,-2	;body up
+	ASXY	0,03fH,0,-2	;body up
 	ASSND	GLSEXP
 	ASSLP1
-	ASXY	0,>3f,0,2	;body dn
+	ASXY	0,03fH,0,2	;body dn
 
 	ASEND
 
 dicteyes_as
-	ASFRA	dicteybl_l,>10,2
-	ASFRA	dicteybl_l,>11,2
+	ASFRA	dicteybl_l,010H,2
+	ASFRA	dicteybl_l,011H,2
 	ASEND
 
 
@@ -2096,12 +2096,12 @@ dsnd5	ASENDASM
 	ASEND
 
 dictnew_t
-	ASITEMN	67,66,WRINK2,30,DMAWNZ+M_FLIPH+M_FLIPV,>40
-	ASITEMN	328,66,WRINK2,30,DMAWNZ+M_FLIPV,>40
-	ASITEMN	15,132,WRINK1,30,DMAWNZ,>40
-	ASITEMN	370,132,WRINK1,30,DMAWNZ+M_FLIPH,>40
-	ASITEMN	122,25,BIOSIGN,30,DMAWNZ,>40
-	ASITEMN	273,25,BIOSIGN,30,DMAWNZ+M_FLIPH,>40
+	ASITEMN	67,66,WRINK2,30,DMAWNZ+M_FLIPH+M_FLIPV,040H
+	ASITEMN	328,66,WRINK2,30,DMAWNZ+M_FLIPV,040H
+	ASITEMN	15,132,WRINK1,30,DMAWNZ,040H
+	ASITEMN	370,132,WRINK1,30,DMAWNZ+M_FLIPH,040H
+	ASITEMN	122,25,BIOSIGN,30,DMAWNZ,040H
+	ASITEMN	273,25,BIOSIGN,30,DMAWNZ+M_FLIPH,040H
 	.word	-1000				;End
 
 X	.set	145
@@ -2112,18 +2112,18 @@ dictnew2_t
 	ASITEMN	X,210,MADNECK,250,DMAWNZ+M_FLIPH,1
 	ASITEMN	X+1,210,MADHAT,250,DMAWNZ,1
 	ASITEMN	X,210,MADHAT,250,DMAWNZ+M_FLIPH,1
-	ASITEMN	X+1,210,MADEYE1,252,DMAWNZ,>10
-	ASITEMN	X,210,MADEYE1,252,DMAWNZ+M_FLIPH,>11
-	ASITEMN	X+1,210,MTHGRIM,252,DMAWNZ,>18
-	ASITEMN	X,210,MTHGRIM,252,DMAWNZ+M_FLIPH,>19
-	ASITEMN	X+74,300,MADARM,255,DMAWNZ+M_FLIPH,>20
-	ASITEMN	X+74,300,MADFIST,256,DMAWNZ+M_FLIPH,>21
+	ASITEMN	X+1,210,MADEYE1,252,DMAWNZ,010H
+	ASITEMN	X,210,MADEYE1,252,DMAWNZ+M_FLIPH,011H
+	ASITEMN	X+1,210,MTHGRIM,252,DMAWNZ,018H
+	ASITEMN	X,210,MTHGRIM,252,DMAWNZ+M_FLIPH,019H
+	ASITEMN	X+74,300,MADARM,255,DMAWNZ+M_FLIPH,020H
+	ASITEMN	X+74,300,MADFIST,256,DMAWNZ+M_FLIPH,021H
 	.word	-1000
 
 dictboon_t
-	ASITEMN	220,17,BOON1,240,DMAWNZ,>60
-	ASITEMN	350,17,BOON1,240,DMAWNZ+M_FLIPH,>60
-	ASITEMN	270,75,BOON2,240,DMAWNZ+M_FLIPH,>60
+	ASITEMN	220,17,BOON1,240,DMAWNZ,060H
+	ASITEMN	350,17,BOON1,240,DMAWNZ+M_FLIPH,060H
+	ASITEMN	270,75,BOON2,240,DMAWNZ+M_FLIPH,060H
 	.word	-1000
 
 
@@ -2559,7 +2559,7 @@ frydbg_t
 	WORDPD	fmgwts1	,2	;^ Fry dictator by P1
 	WORDPD	fmgwts2	,3	;^ P2
 
-	.bss	fryp1stat,16	;0=Plyr1 OK, -=Fried, 1=Hyper, >1=Bust free
+	.bss	fryp1stat,16	;0=Plyr1 OK, -=Fried, 1=Hyper, 01H=Bust free
 	.bss	fryp2stat,16	;Plyr2 ^
 
 FMTR_X	.equ	14		;Plyr mtr
@@ -2588,7 +2588,7 @@ FGMTR_H	.equ	120
 	movi	CLAMP1,a2
 	movi	198,a3			;Z
 	movi	DMACAL+M_NOCOLL,a4
-	movi	CLSANIM+>180,a5		;Same as ANIM meter ID
+	movi	CLSANIM+0180H,a5		;Same as ANIM meter ID
 	clr	a6
 	clr	a7
 	movk	2,b3			;Cause skip of plyr meter
@@ -2598,7 +2598,7 @@ FGMTR_H	.equ	120
 	jrz	fm20
 	calla	BEGINOBJ
 	move	a8,a10			;A10=*P1 meter
-	movi	>1414,a0
+	movi	01414H,a0
 	move	a0,*a10(OCONST)
 	movk	12,a0
 	move	a0,*a10(OSIZEX)
@@ -2606,12 +2606,12 @@ FGMTR_H	.equ	120
 
 fm20	movi	[372+19,0],a0
 	movi	[FMTR_Y,0],a1
-	movi	CLSANIM+>280,a5		;Same as ANIM meter ID
+	movi	CLSANIM+0280H,a5		;Same as ANIM meter ID
 	btst	1,b2			;Player2
 	jrz	fm30
 	calla	BEGINOBJ
 	move	a8,a11			;A11=*P2 meter
-	movi	>1414,a0
+	movi	01414H,a0
 	move	a0,*a11(OCONST)
 	movk	12,a0
 	move	a0,*a11(OSIZEX)
@@ -2623,7 +2623,7 @@ fm30	move	b3,@fryp1stat
 	movi	[FGMTR_X+19,0],a0
 	movk	1,a1
 	movi	90,a3			;Z
-	movi	CLSANIM+>80,a5
+	movi	CLSANIM+080H,a5
 	calla	BEGINOBJ
 	move	a10,a2
 	clr	a10
@@ -2725,7 +2725,7 @@ fm300	jruc	fmlp
 	movi	CLAMP1,a2
 	movi	90,a3			;Z
 	movi	DMACAL+M_NOCOLL,a4
-	movi	CLSANIM+>80,a5		;Same as ANIM meter ID
+	movi	CLSANIM+080H,a5		;Same as ANIM meter ID
 	clr	a6
 	clr	a7
 	movi	50,a10			;Meter Y offset
@@ -2739,7 +2739,7 @@ fdm20	btst	1,b2			;Player2
 	jrz	fdm80
 	movi	[324+19,0],a0
 	movk	1,a1
-	movi	CLSANIM+>81,a5		;Same as ANIM meter ID
+	movi	CLSANIM+081H,a5		;Same as ANIM meter ID
 	clr	a7
 	calla	BEGINOBJ
 	addk	16,a9
@@ -2852,7 +2852,7 @@ fmss70	SLEEPK	1
 
  SUBRP	fm_gmtr		;A8=*Meter obj, A9=*fmgwts var, A10=Y offset
 
-	movi	>1414,a0
+	movi	01414H,a0
 	move	a0,*a8(OCONST)
 	movk	19,a0
 	move	a0,*a8(OSIZEX)
@@ -2940,13 +2940,13 @@ fppx	DIE
 	sll	23,a14		;Remove any flags
 	srl	23,a14		;9 bits needed for # colors
 
-pb1c	movk	>1f,a8		;A8=Mask for 5 bits of color
+pb1c	movk	01fH,a8		;A8=Mask for 5 bits of color
 
 pb100	move	*a1+,a3
-	movk	>1f,a7
+	movk	01fH,a7
 	and	a3,a7		;A7=Blue
 	srl	5,a3
-	movk	>1f,a5
+	movk	01fH,a5
 	and	a3,a5		;A5=Green
 	srl	5,a3		;A3=Red
 
@@ -2994,7 +2994,7 @@ frypdict_as
 	ASSND	txtssnd
 
 	ASLAB	50			;Scroll up
-	ASXY	0,>1f,0,-4
+	ASXY	0,01fH,0,-4
 	ASDSJS1
 
 	ASSLP	30
@@ -3009,33 +3009,33 @@ fpd60	ASRUN	frypdictarm_as
 	ASRUN	frypdictsnd_as
 	ASRUN	dicteyes_as
 
-	ASFRA	dictmtk_l,>18,1
-	ASFRA	dictmtk_l,>19,1
+	ASFRA	dictmtk_l,018H,1
+	ASFRA	dictmtk_l,019H,1
 
 	ASWAIT
 
 	ASSLP	15
 
-	ASFRA	dicteymd_l,>10,1
-	ASFRA	dicteymd_l,>11,1
-	ASFRA	dictmyell_l,>18,1
-	ASFRA	dictmyell_l,>19,1
+	ASFRA	dicteymd_l,010H,1
+	ASFRA	dicteymd_l,011H,1
+	ASFRA	dictmyell_l,018H,1
+	ASFRA	dictmyell_l,019H,1
 
 	ASWAIT
 
-	ASFRA	dictsmile_l,>18,1
-	ASFRA	dictsmile_l,>19,1
+	ASFRA	dictsmile_l,018H,1
+	ASFRA	dictsmile_l,019H,1
 
 	ASSLP	60
 	ASTXTK
-	ASDEL	>60
+	ASDEL	060H
 
 	ASLAB	25			;Scroll dn
-	ASXY	0,>1f,0,8
+	ASXY	0,01fH,0,8
 	ASDSJS1
 
-	ASKIL	0,>ff
-	ASDELM	0,>ff
+	ASKIL	0,0ffH
+	ASDELM	0,0ffH
 	ASRUN	frypgigmeteron_as
 
 	ASSND	TXTSND1
@@ -3071,41 +3071,41 @@ fryhitbut_st
 
 frypdictarm_as				;Move arm
 	ASLAB	28
-	ASXY	>20,1,-1,-8
+	ASXY	020H,1,-1,-8
 	ASDSJS1
 
 	ASLAB	10		;Vibrate fist
 	ASLAB	3
-	ASXY	>20,1,0,1
+	ASXY	020H,1,0,1
 	ASDSJS1
 	ASLAB	3
-	ASXY	>20,1,0,-1
+	ASXY	020H,1,0,-1
 	ASDSJS1
 	ASDSJ
 
-	ASLAB	4		;>Bang arm up and down
+	ASLAB	4		;0BaHng arm up and down
 
 	ASLAB	6
-	ASXY	>20,1,1,14
+	ASXY	020H,1,1,14
 	ASDSJS1
-	ASXY	0,>3f,0,-2	;body up
+	ASXY	0,03fH,0,-2	;body up
 	ASSND	fisthit
 	ASSLP1
-	ASXY	0,>3f,0,2	;body dn
+	ASXY	0,03fH,0,2	;body dn
 
 	ASLAB	6
-	ASXY	>20,1,-1,-14
+	ASXY	020H,1,-1,-14
 	ASDSJS1
 
 	ASDSJ
 
 	ASLAB	8		;>move arm off screen
-	ASXY	>20,1,1,14
+	ASXY	020H,1,1,14
 	ASDSJS1
-	ASXY	0,>3f,0,-2	;body up
+	ASXY	0,03fH,0,-2	;body up
 	ASSND	GLSEXP
 	ASSLP1
-	ASXY	0,>3f,0,2	;body dn
+	ASXY	0,03fH,0,2	;body dn
 
 	ASEND
 
@@ -3122,13 +3122,13 @@ frypgigmeteron_as			;Scroll in the meter
 	ASSLP	70
 	ASNEW	frypgigmeter_t
 	ASLAB	100
-	ASXY	>82,0,0,2
+	ASXY	082H,0,0,2
 	ASDSJS1
 	ASEND
 
 frypgigmeter_t
-	ASITEMN	172,2-258,GGSWRD,90,DMAWNZ,>82
-	ASITEMN	184,10-258,GGWTTS,91,DMAWNZ,>82
+	ASITEMN	172,2-258,GGSWRD,90,DMAWNZ,082H
+	ASITEMN	184,10-258,GGWTTS,91,DMAWNZ,082H
 	.word	-1000
 	
 
@@ -3143,27 +3143,27 @@ fryp1_as
 	ASSLP	270+60
 	ASRUN	frypdropin_as
 	ASSLP	54
-	ASFRA	fryp1look_l,>40,1
+	ASFRA	fryp1look_l,040H,1
 	ASSLP	60
-	ASFRA	clampclose_l,>20,1
+	ASFRA	clampclose_l,020H,1
 	ASSLP	5
 	ASSND	SETDWN
 	ASSLP	15
-	ASFRA	clampclose_l,>21,1
+	ASFRA	clampclose_l,021H,1
 	ASSLP	5
 	ASSND	SETDWN
 	ASRUN	fryp1meteron_as
 
 	ASSLP	100
 	ASNEW	fryshocks_t
-	ASRUNI	fryshocks_as,>70
-	ASRUNI	fryshakex_as,>10
-	ASRUNI	fryshakey_as,>10
+	ASRUNI	fryshocks_as,070H
+	ASRUNI	fryshakex_as,010H
+	ASRUNI	fryshakey_as,010H
 	ASSLP	30
 
 fryp1_lp
-	ASRUNI	fryshakehdx_as,>30
-	ASRUNI	fryshakehdy_as,>30
+	ASRUNI	fryshakehdx_as,030H
+	ASRUNI	fryshakehdy_as,030H
 
 	ASRUN	fryp1stretch_as
 	ASSLPR	5,14
@@ -3174,30 +3174,30 @@ fryp1_lp
 	ASLABR	1,4
 	ASNEW	fryshockbig_t
 	ASSLPR	1,4
-	ASDEL	>60
+	ASDEL	060H
 	ASNEW	fryshockbigb_t
 	ASSLPR	1,4
-	ASDEL	>60
+	ASDEL	060H
 	ASDSJ
 
 	ASNEW	fryshockbig_t
 	ASSLP	2
-	ASDEL	>60
+	ASDEL	060H
 fryp1_40
 	ASRUN	fryp1unstretch_as
 	ASSLP	16
 
-	ASRUNI	fryp1face_as,>20
+	ASRUNI	fryp1face_as,020H
 
 	ASJMPR	800,fryp1_50		;80% skip slouch
 	ASSND	fpain2
-	ASXY	>40,0,0,9
-	ASANI	ECTOR4,>41		;Slouch
-	ASANI	ECTOR4,>46
+	ASXY	040H,0,0,9
+	ASANI	ECTOR4,041H		;Slouch
+	ASANI	ECTOR4,046H
 	ASSLPR	8,70
-	ASXY	>40,0,0,-9
-	ASANI	ECTOR1,>41
-	ASANI	ECTOR1,>46
+	ASXY	040H,0,0,-9
+	ASANI	ECTOR1,041H
+	ASANI	ECTOR1,046H
 fryp1_50
 	ASCRE	fry_pulsep1,0
 	ASJMPEQ	1,fryp1stat,fryp1h_lp
@@ -3213,17 +3213,17 @@ fryp1_80
 	ASDSJS1
 
 	ASSND	fpain3
-	ASKIL	>20,7
+	ASKIL	020H,7
 
 	ASJMP	fryp1_lp
 
 
 fryp1h_lp				;Hyper loop
 	ASSND	fpain3
-	ASKIL	>20,7
+	ASKIL	020H,7
 
-	ASRUNI	fryshakehdx_as,>30
-	ASRUNI	fryshakehdy_as,>30
+	ASRUNI	fryshakehdx_as,030H
+	ASRUNI	fryshakehdy_as,030H
 
 	ASRUN	fryp1stretch_as
 	ASSLP	4
@@ -3233,21 +3233,21 @@ fryp1h_lp				;Hyper loop
 	ASLABR	1,4
 	ASNEW	fryshockbig_t
 	ASSLPR	1,3
-	ASDEL	>60
+	ASDEL	060H
 	ASNEW	fryshockbigb_t
 	ASSLPR	1,3
-	ASDEL	>60
+	ASDEL	060H
 	ASDSJ
 
-	ASRUNI	frysprks2_as,>70	;More sparks
+	ASRUNI	frysprks2_as,070H	;More sparks
 	ASNEW	fryshockbig_t
 	ASSLP	2
-	ASDEL	>60
+	ASDEL	060H
 
 	ASRUN	fryp1unstretch_as
 	ASSLP	16
 
-	ASRUNI	fryp1face_as,>20
+	ASRUNI	fryp1face_as,020H
 
 	ASCRE	fry_pulsep1,0
 	ASJMPNE	1,fryp1stat,fryp1_80
@@ -3265,49 +3265,49 @@ fryp1_die				;Plyr fries
 fryp1_die2				;P2 entry
 	ASSLP	12
 	ASSND	AIRSCRM			;Death scream	
-	ASRUNI	frysprks3_as,>70
+	ASRUNI	frysprks3_as,070H
 
 	ASLAB	15
 	ASRUN	fryshakescr_as
 	ASNEW	fryshockbig_t
 	ASSLP	2
-	ASDEL	>60
+	ASDEL	060H
 	ASNEW	fryshockbigb_t
 	ASSLP	2
-	ASDEL	>60
+	ASDEL	060H
 	ASDSJ
 
-	ASDELM	>70,>f			;Kill electricity
-	ASKIL	>70,7
-	ASKIL	>10,7
-	ASKIL	>20,7
+	ASDELM	070H,0fH			;Kill electricity
+	ASKIL	070H,7
+	ASKIL	010H,7
+	ASKIL	020H,7
 
 	ASRUN	frysmoke_as
 	ASRUN	frywisp_as
 
 	ASSND	fburn
-	ASXY	>40,>f,0,-12
+	ASXY	040H,0fH,0,-12
 	ASRUN	fryskull_as
-	ASZ	>41,0,117
-	ASZ	>46,0,117
-	ASFRA	bonetor_l,>41,1
-	ASFRA	bonetor_l,>46,1
+	ASZ	041H,0,117
+	ASZ	046H,0,117
+	ASFRA	bonetor_l,041H,1
+	ASFRA	bonetor_l,046H,1
 
-	ASANI	BONEARM,>42		;Make bones
-	ASANI	BONEARM,>47
-	ASANI	BONELEG1,>44
-	ASANI	BONELEG1,>49
-	ASANI	BONELEG2,>45
-	ASANI	BONELEG2,>4a
-	ASDEL	>43
-	ASDEL	>48
+	ASANI	BONEARM,042H		;Make bones
+	ASANI	BONEARM,047H
+	ASANI	BONELEG1,044H
+	ASANI	BONELEG1,049H
+	ASANI	BONELEG2,045H
+	ASANI	BONELEG2,04aH
+	ASDEL	043H
+	ASDEL	048H
 	ASSVL	MTRP			;Bone pal
-	ASPAL	>42
-	ASPAL	>47
-	ASPAL	>44
-	ASPAL	>49
-	ASPAL	>45
-	ASPAL	>4a
+	ASPAL	042H
+	ASPAL	047H
+	ASPAL	044H
+	ASPAL	049H
+	ASPAL	045H
+	ASPAL	04aH
 	ASSLP	60*2
 fry_end_as
 	ASSLP	60*3
@@ -3327,58 +3327,58 @@ fryp1die_st	;Burned
 
 fryp1_brkfree				;Plyr breaks free
 	ASENDASM
-	ASDELM	>70,>f			;Kill electricity
-	ASKIL	>70,7
-	ASKIL	>10,7
-	ASKIL	>20,7
+	ASDELM	070H,0fH			;Kill electricity
+	ASKIL	070H,7
+	ASKIL	010H,7
+	ASKIL	020H,7
 	ASRUN	fry_jmpup_as
-	ASXY	>40,0,0,-8
+	ASXY	040H,0,0,-8
 	ASRUN	fry_clampfly_as
 	ASNEW	fryclexp_t
-	ASFRA	BLUEEXP,>28,1
-	ASFRA	BLUEEXP,>29,1
-	ASFRA	BLUEEXP,>2a,1
-	ASFRA	BLUEEXP,>2b,1
+	ASFRA	BLUEEXP,028H,1
+	ASFRA	BLUEEXP,029H,1
+	ASFRA	BLUEEXP,02aH,1
+	ASFRA	BLUEEXP,02bH,1
 	ASSND	GLSEXP
 
-	ASXYV	>80,0,->30000,0
+	ASXYV	080H,0,-030000H,0
 
-	ASANI	ECPHD1A,>40
-	ASANI	ECTOR5,>41
-	ASANI	ECTOR5,>46
-	ASANI	ECWRIST3,>42
-	ASANI	ECWRIST3,>47
-	ASANI	ECFIST2,>43
-	ASANI	ECFIST2,>48
-	ASANI	ECLEG2,>44
-	ASANI	ECLEG2,>49
-	ASANI	ECLEG2A,>45
-	ASANI	ECLEG2A,>4a
+	ASANI	ECPHD1A,040H
+	ASANI	ECTOR5,041H
+	ASANI	ECTOR5,046H
+	ASANI	ECWRIST3,042H
+	ASANI	ECWRIST3,047H
+	ASANI	ECFIST2,043H
+	ASANI	ECFIST2,048H
+	ASANI	ECLEG2,044H
+	ASANI	ECLEG2,049H
+	ASANI	ECLEG2A,045H
+	ASANI	ECLEG2A,04aH
 
 	ASSLP	10
 
-	ASANI	ECTOR6,>41
-	ASANI	ECTOR6,>46
-	ASANI	ECWRIST4,>42
-	ASANI	ECWRIST4,>47
-	ASANI	ECFIST3,>43
-	ASANI	ECFIST3,>48
-	ASZ	>40,>f,130		;Plyr hi Z
-	ASZ	>40,0,131
+	ASANI	ECTOR6,041H
+	ASANI	ECTOR6,046H
+	ASANI	ECWRIST4,042H
+	ASANI	ECWRIST4,047H
+	ASANI	ECFIST3,043H
+	ASANI	ECFIST3,048H
+	ASZ	040H,0fH,130		;Plyr hi Z
+	ASZ	040H,0,131
 
 	ASSLP	29
-	ASDELM	>28,7			;Kill explosions
+	ASDELM	028H,7			;Kill explosions
 	ASSND	NOWAY
 	ASRUN	fryp1freetxt_as
 	ASSLP	11
-	ASANI	ECPHD1F,>40
+	ASANI	ECPHD1F,040H
 fryp1_brkfree2				;P2 entry
-	ASANI	ECLEG3,>44
-	ASANI	ECLEG3,>49
-	ASDEL	>45
-	ASDEL	>4a
+	ASANI	ECLEG3,044H
+	ASANI	ECLEG3,049H
+	ASDEL	045H
+	ASDEL	04aH
 
-	ASDEL	>80			;Plyrs meter
+	ASDEL	080H			;Plyrs meter
 	ASJMP	fry_end_as
 
 
@@ -3407,15 +3407,15 @@ fryp1free_st	;Escaped
 fryp1meteron_as				;Scroll in the meter
 	ASNEW	fryp1meter_t
 	ASLAB	100
-	ASXY	>80,0,1,0
+	ASXY	080H,0,1,0
 	ASDSJS1
 	ASEND
 
 fryp1meter_t
-	ASITEMN	50-100,10,SM2,200,DMAWNZ,>80
-	ASITEMN	26-100,13,SMARRW2,200,DMAWNZ,>80
-	ASITEMN	8-100,35,STRNGTHMTR,200,DMAWNZ,>80
-	ASITEMN	31-100,35,STRNGTHMTR,200,DMAWNZ+M_FLIPH,>80
+	ASITEMN	50-100,10,SM2,200,DMAWNZ,080H
+	ASITEMN	26-100,13,SMARRW2,200,DMAWNZ,080H
+	ASITEMN	8-100,35,STRNGTHMTR,200,DMAWNZ,080H
+	ASITEMN	31-100,35,STRNGTHMTR,200,DMAWNZ+M_FLIPH,080H
 	.word	-1000
 	
 
@@ -3432,61 +3432,61 @@ fryp1look_l
 
 
 fryp1stretch_as
-	ASANI	ECPHD2,>40
-	ASXY	>40,0,0,-5
-	ASANI	ECTOR2,>41
-	ASANI	ECTOR2,>46
-	ASANI	ECWRIST2,>42
-	ASANI	ECWRIST2,>47
+	ASANI	ECPHD2,040H
+	ASXY	040H,0,0,-5
+	ASANI	ECTOR2,041H
+	ASANI	ECTOR2,046H
+	ASANI	ECWRIST2,042H
+	ASANI	ECWRIST2,047H
 	ASSLP	4
-	ASANI	ECPHD3,>40
-	ASXY	>40,0,0,-5
-	ASANI	ECTOR3,>41
-	ASANI	ECTOR3,>46
+	ASANI	ECPHD3,040H
+	ASXY	040H,0,0,-5
+	ASANI	ECTOR3,041H
+	ASANI	ECTOR3,046H
 	ASEND
 
 fryp1unstretch_as
-	ASANI	ECPHD2,>40
-	ASXY	>40,0,0,5
-	ASANI	ECTOR2,>41
-	ASANI	ECTOR2,>46
+	ASANI	ECPHD2,040H
+	ASXY	040H,0,0,5
+	ASANI	ECTOR2,041H
+	ASANI	ECTOR2,046H
 	ASSLP	4
-	ASANI	ECPHD1H,>40
-	ASXY	>40,0,0,5
-	ASANI	ECTOR1,>41
-	ASANI	ECTOR1,>46
-	ASANI	ECWRIST1,>42
-	ASANI	ECWRIST1,>47
+	ASANI	ECPHD1H,040H
+	ASXY	040H,0,0,5
+	ASANI	ECTOR1,041H
+	ASANI	ECTOR1,046H
+	ASANI	ECWRIST1,042H
+	ASANI	ECWRIST1,047H
 	ASSLP	4
-	ASXY	>40,0,0,9
-	ASANI	ECTOR4,>41		;Slouch
-	ASANI	ECTOR4,>46
+	ASXY	040H,0,0,9
+	ASANI	ECTOR4,041H		;Slouch
+	ASANI	ECTOR4,046H
 	ASSLP	4
-	ASXY	>40,0,0,-9
-	ASANI	ECTOR1,>41
-	ASANI	ECTOR1,>46
+	ASXY	040H,0,0,-9
+	ASANI	ECTOR1,041H
+	ASANI	ECTOR1,046H
 	ASEND
 
 
-fryp1face_as			;ID >20
+fryp1face_as			;ID 020H
 	ASJMPR	700,fp1f10	;70%
-	ASLABR	2,5		;>Blink
+	ASLABR	2,5		;0BHlink
 	ASSLPR	3,20
-	ASANI	ECPHD1G,>40
+	ASANI	ECPHD1G,040H
 	ASSLPR	3,20
-	ASANI	ECPHD1H,>40
+	ASANI	ECPHD1H,040H
 	ASDSJ
 	ASEND
 
 fp1f10	ASSND	fpain2
 
 	ASJMPR	600,fp1f20
-	ASFRA	fp1face1_l,>40,1
+	ASFRA	fp1face1_l,040H,1
 	ASEND
 fp1f20	ASJMPR	200,fp1f30
-	ASFRA	fp1face2_l,>40,1
+	ASFRA	fp1face2_l,040H,1
 	ASEND
-fp1f30	ASFRA	fp1face3_l,>40,1
+fp1f30	ASFRA	fp1face3_l,040H,1
 	ASEND
 
 fp1face1_l
@@ -3534,36 +3534,36 @@ fryp2_as
 	ASBXY	186,0			;Set base
 	ASNEW	fryplyr_t
 	ASSVL	BIGPL2			;Black pal
-	ASPAL	>40
-	ASPAL	>41
-	ASPAL	>43
-	ASPAL	>46
-	ASPAL	>48
+	ASPAL	040H
+	ASPAL	041H
+	ASPAL	043H
+	ASPAL	046H
+	ASPAL	048H
 
 	ASSLP	270+60
 	ASRUN	frypdropin_as
 	ASSLP	54
-	ASFRA	fryp2look_l,>40,1
+	ASFRA	fryp2look_l,040H,1
 	ASSLP	60
-	ASFRA	clampclose_l,>20,1
+	ASFRA	clampclose_l,020H,1
 	ASSLP	5
 	ASSND	SETDWN
 	ASSLP	15
-	ASFRA	clampclose_l,>21,1
+	ASFRA	clampclose_l,021H,1
 	ASSLP	5
 	ASSND	SETDWN
 	ASRUN	fryp2meteron_as
 
 	ASSLP	100
 	ASNEW	fryshocks_t
-	ASRUNI	fryshocks_as,>70
-	ASRUNI	fryshakex_as,>10
-	ASRUNI	fryshakey_as,>10
+	ASRUNI	fryshocks_as,070H
+	ASRUNI	fryshakex_as,010H
+	ASRUNI	fryshakey_as,010H
 	ASSLP	30
 
 fryp2_lp
-	ASRUNI	fryshakehdx_as,>30
-	ASRUNI	fryshakehdy_as,>30
+	ASRUNI	fryshakehdx_as,030H
+	ASRUNI	fryshakehdy_as,030H
 
 	ASRUN	fryp2stretch_as
 	ASSLPR	5,14
@@ -3574,30 +3574,30 @@ fryp2_lp
 	ASLABR	1,4
 	ASNEW	fryshockbig_t
 	ASSLPR	1,4
-	ASDEL	>60
+	ASDEL	060H
 	ASNEW	fryshockbigb_t
 	ASSLPR	1,4
-	ASDEL	>60
+	ASDEL	060H
 	ASDSJ
 
 	ASNEW	fryshockbig_t
 	ASSLP	2
-	ASDEL	>60
+	ASDEL	060H
 fryp2_40
 	ASRUN	fryp2unstretch_as
 	ASSLP	16
 
-	ASRUNI	fryp1face_as,>20
+	ASRUNI	fryp1face_as,020H
 
 	ASJMPR	800,fryp2_50		;80% skip slouch
 	ASSND	fpain2
-	ASXY	>40,0,0,9
-	ASANI	ECTOR4,>41		;Slouch
-	ASANI	ECTOR4,>46
+	ASXY	040H,0,0,9
+	ASANI	ECTOR4,041H		;Slouch
+	ASANI	ECTOR4,046H
 	ASSLPR	8,70
-	ASXY	>40,0,0,-9
-	ASANI	ECTOR1,>41
-	ASANI	ECTOR1,>46
+	ASXY	040H,0,0,-9
+	ASANI	ECTOR1,041H
+	ASANI	ECTOR1,046H
 fryp2_50
 	ASCRE	fry_pulsep2,0
 	ASJMPEQ	1,fryp2stat,fryp2h_lp
@@ -3613,17 +3613,17 @@ fryp2_80
 	ASDSJS1
 
 	ASSND	fpain3
-	ASKIL	>20,7
+	ASKIL	020H,7
 
 	ASJMP	fryp2_lp
 
 
 fryp2h_lp				;Hyper loop
 	ASSND	fpain3
-	ASKIL	>20,7
+	ASKIL	020H,7
 
-	ASRUNI	fryshakehdx_as,>30
-	ASRUNI	fryshakehdy_as,>30
+	ASRUNI	fryshakehdx_as,030H
+	ASRUNI	fryshakehdy_as,030H
 
 	ASRUN	fryp2stretch_as
 	ASSLP	4
@@ -3633,21 +3633,21 @@ fryp2h_lp				;Hyper loop
 	ASLABR	1,4
 	ASNEW	fryshockbig_t
 	ASSLPR	1,3
-	ASDEL	>60
+	ASDEL	060H
 	ASNEW	fryshockbigb_t
 	ASSLPR	1,3
-	ASDEL	>60
+	ASDEL	060H
 	ASDSJ
 
-	ASRUNI	frysprks2_as,>70	;More sparks
+	ASRUNI	frysprks2_as,070H	;More sparks
 	ASNEW	fryshockbig_t
 	ASSLP	2
-	ASDEL	>60
+	ASDEL	060H
 
 	ASRUN	fryp2unstretch_as
 	ASSLP	16
 
-	ASRUNI	fryp2face_as,>20
+	ASRUNI	fryp2face_as,020H
 
 	ASCRE	fry_pulsep2,0
 	ASJMPNE	1,fryp2stat,fryp2_80
@@ -3676,51 +3676,51 @@ fryp2die_st	;Burned
 
 fryp2_brkfree				;Plyr 2 breaks free
 	ASENDASM
-	ASDELM	>70,>f			;Kill electricity
-	ASKIL	>70,7
-	ASKIL	>10,7
-	ASKIL	>20,7
+	ASDELM	070H,0fH			;Kill electricity
+	ASKIL	070H,7
+	ASKIL	010H,7
+	ASKIL	020H,7
 	ASRUN	fry_jmpup_as
-	ASXY	>40,0,0,-8
+	ASXY	040H,0,0,-8
 	ASRUN	fry_clampfly_as
 	ASNEW	fryclexp_t
-	ASFRA	BLUEEXP,>28,1
-	ASFRA	BLUEEXP,>29,1
-	ASFRA	BLUEEXP,>2a,1
-	ASFRA	BLUEEXP,>2b,1
+	ASFRA	BLUEEXP,028H,1
+	ASFRA	BLUEEXP,029H,1
+	ASFRA	BLUEEXP,02aH,1
+	ASFRA	BLUEEXP,02bH,1
 	ASSND	GLSEXP
 
-	ASXYV	>80,0,>30000,0
+	ASXYV	080H,0,030000H,0
 
-	ASANI	ECP2HD1A,>40
-	ASANI	ECTOR5,>41
-	ASANI	ECTOR5,>46
-	ASANI	ECWRIST3,>42
-	ASANI	ECWRIST3,>47
-	ASANI	ECFIST2,>43
-	ASANI	ECFIST2,>48
-	ASANI	ECLEG2,>44
-	ASANI	ECLEG2,>49
-	ASANI	ECLEG2A,>45
-	ASANI	ECLEG2A,>4a
+	ASANI	ECP2HD1A,040H
+	ASANI	ECTOR5,041H
+	ASANI	ECTOR5,046H
+	ASANI	ECWRIST3,042H
+	ASANI	ECWRIST3,047H
+	ASANI	ECFIST2,043H
+	ASANI	ECFIST2,048H
+	ASANI	ECLEG2,044H
+	ASANI	ECLEG2,049H
+	ASANI	ECLEG2A,045H
+	ASANI	ECLEG2A,04aH
 
 	ASSLP	10
 
-	ASANI	ECTOR6,>41
-	ASANI	ECTOR6,>46
-	ASANI	ECWRIST4,>42
-	ASANI	ECWRIST4,>47
-	ASANI	ECFIST3,>43
-	ASANI	ECFIST3,>48
-	ASZ	>40,>f,130		;Plyr hi Z
-	ASZ	>40,0,131
+	ASANI	ECTOR6,041H
+	ASANI	ECTOR6,046H
+	ASANI	ECWRIST4,042H
+	ASANI	ECWRIST4,047H
+	ASANI	ECFIST3,043H
+	ASANI	ECFIST3,048H
+	ASZ	040H,0fH,130		;Plyr hi Z
+	ASZ	040H,0,131
 
 	ASSLP	29
-	ASDELM	>28,7			;Kill explosions
+	ASDELM	028H,7			;Kill explosions
 	ASSND	NOWAY
 	ASRUN	fryp2freetxt_as
 	ASSLP	11
-	ASANI	ECP2HD1F,>40
+	ASANI	ECP2HD1F,040H
 	ASJMP	fryp1_brkfree2
 
 
@@ -3749,15 +3749,15 @@ fryp2free_st	;Escaped
 fryp2meteron_as				;Scroll in the meter
 	ASNEW	fryp2meter_t
 	ASLAB	100
-	ASXY	>80,0,-1,0
+	ASXY	080H,0,-1,0
 	ASDSJS1
 	ASEND
 
 fryp2meter_t
-	ASITEMN	280+100-186,10,SM2,200,DMAWNZ,>80
-	ASITEMN	372+100-186,13,SMARRW2,200,DMAWNZ+M_FLIPH,>80
-	ASITEMN	366+100-186,35,STRNGTHMTR,200,DMAWNZ,>80
-	ASITEMN	389+100-186,35,STRNGTHMTR,200,DMAWNZ+M_FLIPH,>80
+	ASITEMN	280+100-186,10,SM2,200,DMAWNZ,080H
+	ASITEMN	372+100-186,13,SMARRW2,200,DMAWNZ+M_FLIPH,080H
+	ASITEMN	366+100-186,35,STRNGTHMTR,200,DMAWNZ,080H
+	ASITEMN	389+100-186,35,STRNGTHMTR,200,DMAWNZ+M_FLIPH,080H
 	.word	-1000
 
 
@@ -3774,59 +3774,59 @@ fryp2look_l
 
 
 fryp2stretch_as
-	ASANI	ECP2HD2,>40
-	ASXY	>40,0,0,-5
-	ASANI	ECTOR2,>41
-	ASANI	ECTOR2,>46
-	ASANI	ECWRIST2,>42
-	ASANI	ECWRIST2,>47
+	ASANI	ECP2HD2,040H
+	ASXY	040H,0,0,-5
+	ASANI	ECTOR2,041H
+	ASANI	ECTOR2,046H
+	ASANI	ECWRIST2,042H
+	ASANI	ECWRIST2,047H
 	ASSLP	4
-	ASANI	ECP2HD3,>40
-	ASXY	>40,0,0,-5
-	ASANI	ECTOR3,>41
-	ASANI	ECTOR3,>46
+	ASANI	ECP2HD3,040H
+	ASXY	040H,0,0,-5
+	ASANI	ECTOR3,041H
+	ASANI	ECTOR3,046H
 	ASEND
 
 fryp2unstretch_as
-	ASANI	ECP2HD2,>40
-	ASXY	>40,0,0,5
-	ASANI	ECTOR2,>41
-	ASANI	ECTOR2,>46
+	ASANI	ECP2HD2,040H
+	ASXY	040H,0,0,5
+	ASANI	ECTOR2,041H
+	ASANI	ECTOR2,046H
 	ASSLP	4
-	ASANI	ECP2HD1H,>40
-	ASXY	>40,0,0,5
-	ASANI	ECTOR1,>41
-	ASANI	ECTOR1,>46
-	ASANI	ECWRIST1,>42
-	ASANI	ECWRIST1,>47
+	ASANI	ECP2HD1H,040H
+	ASXY	040H,0,0,5
+	ASANI	ECTOR1,041H
+	ASANI	ECTOR1,046H
+	ASANI	ECWRIST1,042H
+	ASANI	ECWRIST1,047H
 	ASSLP	4
-	ASXY	>40,0,0,9
-	ASANI	ECTOR4,>41		;Slouch
-	ASANI	ECTOR4,>46
+	ASXY	040H,0,0,9
+	ASANI	ECTOR4,041H		;Slouch
+	ASANI	ECTOR4,046H
 	ASSLP	4
-	ASXY	>40,0,0,-9
-	ASANI	ECTOR1,>41
-	ASANI	ECTOR1,>46
+	ASXY	040H,0,0,-9
+	ASANI	ECTOR1,041H
+	ASANI	ECTOR1,046H
 	ASEND
 
-fryp2face_as			;ID >20
+fryp2face_as			;ID 020H
 	ASJMPR	700,fp2f10	;70%
-	ASLABR	2,5		;>Blink
+	ASLABR	2,5		;0BHlink
 	ASSLPR	3,20
-	ASANI	ECP2HD1G,>40
+	ASANI	ECP2HD1G,040H
 	ASSLPR	3,20
-	ASANI	ECP2HD1H,>40
+	ASANI	ECP2HD1H,040H
 	ASDSJ
 	ASEND
 
 fp2f10	ASSND	fpain2
 	ASJMPR	600,fp2f20
-	ASFRA	fp2face1_l,>40,1
+	ASFRA	fp2face1_l,040H,1
 	ASEND
 fp2f20	ASJMPR	200,fp2f30
-	ASFRA	fp2face2_l,>40,1
+	ASFRA	fp2face2_l,040H,1
 	ASEND
-fp2f30	ASFRA	fp2face3_l,>40,1
+fp2f30	ASFRA	fp2face3_l,040H,1
 	ASEND
 
 fp2face1_l
@@ -3873,30 +3873,30 @@ fp2face3_l
 FP1X	.equ	104
 FP1Y	.equ	38
 fryplyr_t
-	ASITEMN	FP1X,FP1Y-254,ECPHD1A,101,DMAWNZ,>40
-	ASITEMN	FP1X,FP1Y-254,ECTOR1,100,DMAWNZ,>41
-	ASITEMN	FP1X,FP1Y-254,ECWRIST1,101,DMAWNZ,>42
-	ASITEMN	FP1X,FP1Y-254,ECFIST1,103,DMAWNZ,>43
-	ASITEMN	FP1X,FP1Y-254,ECLEG1,115,DMAWNZ,>44
-	ASITEMN	FP1X,FP1Y-254,ECLEG1A,104,DMAWNZ,>45
-	ASITEMN	FP1X-1,FP1Y-254,ECTOR1,100,DMAWNZ+M_FLIPH,>46
-	ASITEMN	FP1X-1,FP1Y-254,ECWRIST1,101,DMAWNZ+M_FLIPH,>47
-	ASITEMN	FP1X-1,FP1Y-254,ECFIST1,103,DMAWNZ+M_FLIPH,>48
-	ASITEMN	FP1X-1,FP1Y-254,ECLEG1,115,DMAWNZ+M_FLIPH,>49
-	ASITEMN	FP1X-1,FP1Y-254,ECLEG1A,104,DMAWNZ+M_FLIPH,>4a
-	ASITEMN	FP1X-81,FP1Y+61,CLAMP1,102,DMAWNZ,>20
-	ASITEMN	FP1X+81,FP1Y+61,CLAMP1,102,DMAWNZ+M_FLIPH,>21
+	ASITEMN	FP1X,FP1Y-254,ECPHD1A,101,DMAWNZ,040H
+	ASITEMN	FP1X,FP1Y-254,ECTOR1,100,DMAWNZ,041H
+	ASITEMN	FP1X,FP1Y-254,ECWRIST1,101,DMAWNZ,042H
+	ASITEMN	FP1X,FP1Y-254,ECFIST1,103,DMAWNZ,043H
+	ASITEMN	FP1X,FP1Y-254,ECLEG1,115,DMAWNZ,044H
+	ASITEMN	FP1X,FP1Y-254,ECLEG1A,104,DMAWNZ,045H
+	ASITEMN	FP1X-1,FP1Y-254,ECTOR1,100,DMAWNZ+M_FLIPH,046H
+	ASITEMN	FP1X-1,FP1Y-254,ECWRIST1,101,DMAWNZ+M_FLIPH,047H
+	ASITEMN	FP1X-1,FP1Y-254,ECFIST1,103,DMAWNZ+M_FLIPH,048H
+	ASITEMN	FP1X-1,FP1Y-254,ECLEG1,115,DMAWNZ+M_FLIPH,049H
+	ASITEMN	FP1X-1,FP1Y-254,ECLEG1A,104,DMAWNZ+M_FLIPH,04aH
+	ASITEMN	FP1X-81,FP1Y+61,CLAMP1,102,DMAWNZ,020H
+	ASITEMN	FP1X+81,FP1Y+61,CLAMP1,102,DMAWNZ+M_FLIPH,021H
 	.word	-1000
 
 frypdropin_as			;Player drops into chair
 	ASLAB	11
-	ASXY	>40,>f,0,6
+	ASXY	040H,0fH,0,6
 	ASDSJS1
 	ASLAB	11
-	ASXY	>40,>f,0,8
+	ASXY	040H,0fH,0,8
 	ASDSJS1
 	ASLAB	10
-	ASXY	>40,>f,0,10
+	ASXY	040H,0fH,0,10
 	ASDSJS1
 	ASRUN	fryshakescr_as
 	ASSND	gluck
@@ -3911,39 +3911,39 @@ clampopen_l
 
 
 fryshockbig_t
-	ASITEMN	FP1X,FP1Y-15,SHOCK1A,150,DMAWNZ,>60
-	ASITEMN	FP1X,FP1Y-15,SHOCK1B,150,DMAWNZ,>60
-	ASITEMN	FP1X,FP1Y-15,SHOCK1C,150,DMAWNZ,>60
-	ASITEMN	FP1X,FP1Y-15,SHOCK1D,152,DMAWNZ,>60
-	ASITEMN	FP1X-1,FP1Y-15,SHOCK1A,150,DMAWNZ+M_FLIPH,>60
-	ASITEMN	FP1X-1,FP1Y-15,SHOCK1B,150,DMAWNZ+M_FLIPH,>60
-	ASITEMN	FP1X-1,FP1Y-15,SHOCK1C,150,DMAWNZ+M_FLIPH,>60
-	ASITEMN	FP1X-1,FP1Y-15,SHOCK1D,152,DMAWNZ+M_FLIPH,>60
+	ASITEMN	FP1X,FP1Y-15,SHOCK1A,150,DMAWNZ,060H
+	ASITEMN	FP1X,FP1Y-15,SHOCK1B,150,DMAWNZ,060H
+	ASITEMN	FP1X,FP1Y-15,SHOCK1C,150,DMAWNZ,060H
+	ASITEMN	FP1X,FP1Y-15,SHOCK1D,152,DMAWNZ,060H
+	ASITEMN	FP1X-1,FP1Y-15,SHOCK1A,150,DMAWNZ+M_FLIPH,060H
+	ASITEMN	FP1X-1,FP1Y-15,SHOCK1B,150,DMAWNZ+M_FLIPH,060H
+	ASITEMN	FP1X-1,FP1Y-15,SHOCK1C,150,DMAWNZ+M_FLIPH,060H
+	ASITEMN	FP1X-1,FP1Y-15,SHOCK1D,152,DMAWNZ+M_FLIPH,060H
 	.word	-1000
 
 fryshockbigb_t
-	ASITEMN	FP1X,FP1Y-15,SHOCK2A,150,DMAWNZ,>60
-	ASITEMN	FP1X,FP1Y-15,SHOCK2B,150,DMAWNZ,>60
-	ASITEMN	FP1X,FP1Y-15,SHOCK2C,150,DMAWNZ,>60
-	ASITEMN	FP1X,FP1Y-15,SHOCK2D,152,DMAWNZ,>60
-	ASITEMN	FP1X-1,FP1Y-15,SHOCK2A,150,DMAWNZ+M_FLIPH,>60
-	ASITEMN	FP1X-1,FP1Y-15,SHOCK2B,150,DMAWNZ+M_FLIPH,>60
-	ASITEMN	FP1X-1,FP1Y-15,SHOCK2C,150,DMAWNZ+M_FLIPH,>60
-	ASITEMN	FP1X-1,FP1Y-15,SHOCK2D,152,DMAWNZ+M_FLIPH,>60
+	ASITEMN	FP1X,FP1Y-15,SHOCK2A,150,DMAWNZ,060H
+	ASITEMN	FP1X,FP1Y-15,SHOCK2B,150,DMAWNZ,060H
+	ASITEMN	FP1X,FP1Y-15,SHOCK2C,150,DMAWNZ,060H
+	ASITEMN	FP1X,FP1Y-15,SHOCK2D,152,DMAWNZ,060H
+	ASITEMN	FP1X-1,FP1Y-15,SHOCK2A,150,DMAWNZ+M_FLIPH,060H
+	ASITEMN	FP1X-1,FP1Y-15,SHOCK2B,150,DMAWNZ+M_FLIPH,060H
+	ASITEMN	FP1X-1,FP1Y-15,SHOCK2C,150,DMAWNZ+M_FLIPH,060H
+	ASITEMN	FP1X-1,FP1Y-15,SHOCK2D,152,DMAWNZ+M_FLIPH,060H
 	.word	-1000
 
 fryshocks_t
-	ASITEMN	FP1X+3,FP1Y,BLT1,110,DMAWNZ,>70
-	ASITEMN	FP1X-5,FP1Y,BLT1,110,DMAWNZ+M_FLIPH,>71
-	ASITEMN	FP1X-60,FP1Y+95,LILBLT1,110,DMAWNZ,>72
-	ASITEMN	FP1X+60,FP1Y+95,LILBLT1,110,DMAWNZ+M_FLIPH,>73
-	ASITEMN	FP1X,FP1Y+55,LILBLT1,110,DMAWNZ,>74
-	ASITEMN	FP1X,FP1Y+85,LILBLT1,110,DMAWNZ+M_FLIPH,>75
-	ASITEMN	FP1X,FP1Y+120,LILBLT1,118,DMAWNZ,>76
-	ASITEMN	FP1X,FP1Y+160,LILBLT1,118,DMAWNZ,>77
+	ASITEMN	FP1X+3,FP1Y,BLT1,110,DMAWNZ,070H
+	ASITEMN	FP1X-5,FP1Y,BLT1,110,DMAWNZ+M_FLIPH,071H
+	ASITEMN	FP1X-60,FP1Y+95,LILBLT1,110,DMAWNZ,072H
+	ASITEMN	FP1X+60,FP1Y+95,LILBLT1,110,DMAWNZ+M_FLIPH,073H
+	ASITEMN	FP1X,FP1Y+55,LILBLT1,110,DMAWNZ,074H
+	ASITEMN	FP1X,FP1Y+85,LILBLT1,110,DMAWNZ+M_FLIPH,075H
+	ASITEMN	FP1X,FP1Y+120,LILBLT1,118,DMAWNZ,076H
+	ASITEMN	FP1X,FP1Y+160,LILBLT1,118,DMAWNZ,077H
 	.word	-1000
 
-fryshocks_as				;ID >70
+fryshocks_as				;ID 070H
 	ASRUN	fryshock2_as
 	ASRUN	fryshock3_as
 	ASRUN	fryshock4_as
@@ -3954,72 +3954,72 @@ fryshocks_as				;ID >70
 	ASRUN	fryshocksnd_as
 	ASRUN	frysprks_as
 
-fs1lp	ASFRA	dbolt_l,>70,1
+fs1lp	ASFRA	dbolt_l,070H,1
 	ASWAIT
-	ASHIDE	>70
+	ASHIDE	070H
 	ASSLPR	5,50
-	ASSHOW	>70
+	ASSHOW	070H
 	ASJMP	fs1lp
 
 
 fryshock2_as
-	ASFRA	dbolt_l,>71,1
+	ASFRA	dbolt_l,071H,1
 	ASWAIT
-	ASHIDE	>71
+	ASHIDE	071H
 	ASSLPR	5,50
-	ASSHOW	>71
+	ASSHOW	071H
 	ASJMP	fryshock2_as
 
 fryshock3_as
-	ASFRA	lbolt_l,>72,1
+	ASFRA	lbolt_l,072H,1
 	ASWAIT
-	ASHIDE	>72
+	ASHIDE	072H
 	ASSLPR	5,50
-	ASSHOW	>72
+	ASSHOW	072H
 	ASJMP	fryshock3_as
 
 fryshock4_as
-	ASFRA	lbolt_l,>73,1
+	ASFRA	lbolt_l,073H,1
 	ASWAIT
-	ASHIDE	>73
+	ASHIDE	073H
 	ASSLPR	5,50
-	ASSHOW	>73
+	ASSHOW	073H
 	ASJMP	fryshock4_as
 
 fryshock5_as
-	ASFRA	sbolt_l,>74,1
+	ASFRA	sbolt_l,074H,1
 	ASWAIT
-	ASHIDE	>74
+	ASHIDE	074H
 	ASSLPR	5,50
-	ASSHOW	>74
+	ASSHOW	074H
 	ASJMP	fryshock5_as
 
 fryshock6_as
-	ASFRA	sbolt_l,>75,1
+	ASFRA	sbolt_l,075H,1
 	ASWAIT
-	ASHIDE	>75
+	ASHIDE	075H
 	ASSLPR	5,50
-	ASSHOW	>75
+	ASSHOW	075H
 	ASJMP	fryshock6_as
 
 fryshock7_as
-	ASFRA	sbolt_l,>76,1
+	ASFRA	sbolt_l,076H,1
 	ASWAIT
-	ASHIDE	>76
+	ASHIDE	076H
 	ASSLPR	5,50
-	ASSHOW	>76
+	ASSHOW	076H
 	ASJMP	fryshock7_as
 
 fryshock8_as
-	ASFRA	sbolt_l,>77,1
+	ASFRA	sbolt_l,077H,1
 	ASWAIT
-	ASHIDE	>77
+	ASHIDE	077H
 	ASSLPR	5,50
-	ASSHOW	>77
+	ASSHOW	077H
 	ASJMP	fryshock8_as
 
 
-fryshocksnd_as				;ID >70
+fryshocksnd_as				;ID 070H
 	ASSND	fshock
 	ASSLPR	20,80
 	ASJMP	fryshocksnd_as
@@ -4052,14 +4052,14 @@ sbolt_l	LW	LILBLT1,1
 	LWL0	SBOLT7,2
 
 
-frysprks_as				;ID >70
+frysprks_as				;ID 070H
 	ASLAB	500
 	ASRUNI	frysprk_as,0
 	ASSLPR	5,15
 	ASDSJ
 	ASEND
 
-frysprks2_as				;ID >70
+frysprks2_as				;ID 070H
 	ASSLP	20
 	ASLAB	6
 	ASRUNI	frysprk_as,0
@@ -4073,21 +4073,21 @@ frysprk_as				;ID 0
 	ASJMPR	500,fs20		;50% L or R
 	ASADDWO	M_FLIPH,OFLAGS		;Left
 	ASXYRNG	-1,0,-55,-15,-20,32
-	ASSVRL	->10000,->4000
+	ASSVRL	-010000H,-04000H
 	ASJMP	frysprkg_as
 
 fs20	ASXYRNG	-1,0,15,55,-20,32	;Right
-	ASSVRL	>4000,>10000
+	ASSVRL	04000H,010000H
 frysprkg_as				;Gravity
 	ASSLP	12
 	ASADLVO	OXVEL
 	ASLAB	32
-	ASADDLO	>3000,OYVEL
+	ASADDLO	03000H,OYVEL
 	ASDSJS1
 	ASXYV0
 	ASEND
 
-frysprks3_as				;ID >70
+frysprks3_as				;ID 070H
 	ASRUNI	frysprk3_as,0
 	ASSLPR	2,5
 	ASJMP	frysprks3_as
@@ -4097,11 +4097,11 @@ frysprk3_as				;ID 0
 	ASJMPR	500,fs320
 	ASADDWO	M_FLIPH,OFLAGS		;Left
 	ASXYRNG	-1,0,-55,-15,-20,32
-	ASSVRL	->e0000,->30000
+	ASSVRL	-0e0000H,-030000H
 	ASJMP	frysprkg_as
 
 fs320	ASXYRNG	-1,0,15,55,-20,32	;Right
-	ASSVRL	>30000,>e0000
+	ASSVRL	030000H,0e0000H
 	ASJMP	frysprkg_as
 
 
@@ -4131,44 +4131,44 @@ frysprk_l
 	LWL0	SPARKL20,3
 
 
-fryshakex_as			;ID >10
+fryshakex_as			;ID 010H
 	ASJMPR	500,fsx20
-	ASXY	>40,>f,-1,0
+	ASXY	040H,0fH,-1,0
 	ASSLPR	1,2
-	ASXY	>40,>f,1,0
-	ASSLPR	1,2
-	ASJMP	fryshakex_as
-
-fsx20	ASXY	>40,>f,1,0
-	ASSLPR	1,2
-	ASXY	>40,>f,-1,0
+	ASXY	040H,0fH,1,0
 	ASSLPR	1,2
 	ASJMP	fryshakex_as
 
-fryshakey_as			;ID >10
-	ASXY	>40,>f,0,-1
+fsx20	ASXY	040H,0fH,1,0
+	ASSLPR	1,2
+	ASXY	040H,0fH,-1,0
+	ASSLPR	1,2
+	ASJMP	fryshakex_as
+
+fryshakey_as			;ID 010H
+	ASXY	040H,0fH,0,-1
 	ASSLPR	1,3
-	ASXY	>40,>f,0,1
+	ASXY	040H,0fH,0,1
 	ASSLPR	1,3
 	ASJMP	fryshakey_as
 
-fryshakehdx_as			;ID >30
+fryshakehdx_as			;ID 030H
 	ASLAB	4
-	ASXY	>40,0,-1,0
+	ASXY	040H,0,-1,0
 	ASSLPR	1,3
-	ASXY	>40,0,1,0
+	ASXY	040H,0,1,0
 	ASSLPR	1,3
-	ASXY	>40,0,1,0
+	ASXY	040H,0,1,0
 	ASSLPR	1,3
-	ASXY	>40,0,-1,0
+	ASXY	040H,0,-1,0
 	ASSLPR	1,3
 	ASDSJ
 	ASEND
-fryshakehdy_as			;ID >30
+fryshakehdy_as			;ID 030H
 	ASLAB	4
-	ASXY	>40,0,0,1
+	ASXY	040H,0,0,1
 	ASSLPR	1,3
-	ASXY	>40,0,0,-1
+	ASXY	040H,0,0,-1
 	ASSLPR	1,3
 	ASDSJ
 	ASEND
@@ -4188,36 +4188,36 @@ fryshakescr2_as
 
 
 fryclexp_t
-	ASITEMN	FP1X-81,FP1Y+95,CLAMP1,102,DMAWNZ,>28
-	ASITEMN	FP1X-81+25,FP1Y+95,CLAMP1,102,DMAWNZ,>29
-	ASITEMN	FP1X+81-25,FP1Y+95,CLAMP1,102,DMAWNZ,>2a
-	ASITEMN	FP1X+81,FP1Y+95,CLAMP1,102,DMAWNZ,>2b
+	ASITEMN	FP1X-81,FP1Y+95,CLAMP1,102,DMAWNZ,028H
+	ASITEMN	FP1X-81+25,FP1Y+95,CLAMP1,102,DMAWNZ,029H
+	ASITEMN	FP1X+81-25,FP1Y+95,CLAMP1,102,DMAWNZ,02aH
+	ASITEMN	FP1X+81,FP1Y+95,CLAMP1,102,DMAWNZ,02bH
 	.word	-1000
 
 fry_clampfly_as
-	ASZ	>20,1,250
-	ASFRA	clampopen_l,>20,1
-	ASFRA	clampopen_l,>21,1
+	ASZ	020H,1,250
+	ASFRA	clampopen_l,020H,1
+	ASFRA	clampopen_l,021H,1
 	ASSLP	5
-	ASXYV	>20,0,->70000,->20000
-	ASXYV	>21,0,>70000,->20000
+	ASXYV	020H,0,-070000H,-020000H
+	ASXYV	021H,0,070000H,-020000H
 	ASSLP	90
-	ASDELM	>20,1
+	ASDELM	020H,1
 	ASEND
 
 
 fry_jmpup_as				;Jump out of chair
 	ASRUN	fryplyrgrav_as
-	ASXYVA	>40,>f,0,->84000
+	ASXYVA	040H,0fH,0,-084000H
 	ASSLP	50
-	ASXYVA	>40,>f,0,0
-	ASYA	>40,>f,62		;Stuff correct Y
-	ASYA	>40,0,62-8		;Head
+	ASXYVA	040H,0fH,0,0
+	ASYA	040H,0fH,62		;Stuff correct Y
+	ASYA	040H,0,62-8		;Head
 	ASEND
 
 fryplyrgrav_as				;Plyr gravity
 	ASLAB	49
-	ASXYV	>40,>f,0,>5800
+	ASXYV	040H,0fH,0,05800H
 	ASDSJS1
 	ASEND
 
@@ -4249,9 +4249,9 @@ frysmoke_as
 	ASLAB	200
 	ASNEW	fryexp_t
 	ASXYRNG	-1,0,0,130,30,100
-	ASSVRL	->10000,>10000
+	ASSVRL	-010000H,010000H
 	ASADLVO	OXVEL
-	ASSVRL	->40000,->10000
+	ASSVRL	-040000H,-010000H
 	ASADLVO	OYVEL
 	ASJMPR	600,fs10		;60% hi Z
 	ASADDWO	-40,OZPOS
@@ -4260,30 +4260,30 @@ fs10	ASFRA	okbm_l,-1,1
 	ASEND
 
 fryskull_as				;Drop off skull
-	ASZ	>40,0,118
-	ASXY	>40,0,0,43
-	ASFRA	skull_l,>40,1
+	ASZ	040H,0,118
+	ASXY	040H,0,0,43
+	ASFRA	skull_l,040H,1
 	ASSLP	30
 
 	ASRUN	fryskullgrav_as
-	ASXYV	>40,0,>10000,>2000
+	ASXYV	040H,0,010000H,02000H
 
 	ASSLP	29
-	ASXYV	>40,0,->1f000,->84000
+	ASXYV	040H,0,-01f000H,-084000H
 	ASSND	fskullb
 
 	ASSLP	34
-	ASXYV	>40,0,0,->84000
+	ASXYV	040H,0,0,-084000H
 	ASSND	fskullb
 
 	ASSLP	31
-	ASXYVA	>40,0,0,0
+	ASXYVA	040H,0,0,0
 	ASSND	fskullb
 	ASEND
 
 fryskullgrav_as				;Skull gravity
 	ASLAB	92
-	ASXYV	>40,0,0,>3800
+	ASXYV	040H,0,0,03800H
 	ASDSJS1
 	ASEND
 
@@ -4371,28 +4371,28 @@ frydict_as
 	ASNEW	frydict_t
 	ASTXT	frydict_st
 
-	ASFRA	frydlook_l,>40,1
+	ASFRA	frydlook_l,040H,1
 	ASSND	ahkbang
 	ASSLP	75+60
-	ASFRA	clampclose_l,>20,1
+	ASFRA	clampclose_l,020H,1
 	ASSLP	5
 	ASSND	SETDWN
 	ASSLP	15
-	ASFRA	clampclose_l,>21,1
+	ASFRA	clampclose_l,021H,1
 	ASSLP	5
 	ASSND	SETDWN
 	ASRUN	frydmeteron_as
 
 	ASSLP	80
 	ASNEW	fryshocks_t
-	ASRUNI	fryshocks_as,>70
-	ASRUNI	fryshakex_as,>10
-	ASRUNI	fryshakey_as,>10
+	ASRUNI	fryshocks_as,070H
+	ASRUNI	fryshakex_as,010H
+	ASRUNI	fryshakey_as,010H
 	ASSLP	30
 
 fryd_lp
-	ASRUNI	fryshakehdx_as,>30
-	ASRUNI	fryshakehdy_as,>30
+	ASRUNI	fryshakehdx_as,030H
+	ASRUNI	fryshakehdy_as,030H
 
 	ASRUN	frydstretch_as
 	ASSLPR	4,14
@@ -4401,8 +4401,8 @@ fryd_8
 	move	@fryp1stat,a0
 	jrz	fryd_20			;Not hyper?
 	ASENDASM
-	ASRUNI	frysprks2_as,>70	;More sparks
-	ASRUNI	frysprks2_as,>70	;More sparks!
+	ASRUNI	frysprks2_as,070H	;More sparks
+	ASRUNI	frysprks2_as,070H	;More sparks!
 	ASJMP	fryd_30
 
 fryd_20
@@ -4414,30 +4414,30 @@ fryd_30
 	ASLABR	1,4
 	ASNEW	fryshockbig_t
 	ASSLPR	1,4
-	ASDEL	>60
+	ASDEL	060H
 	ASNEW	fryshockbigb_t
 	ASSLPR	1,4
-	ASDEL	>60
+	ASDEL	060H
 	ASDSJ
 
 	ASNEW	fryshockbig_t
 	ASSLP	2
-	ASDEL	>60
+	ASDEL	060H
 fryd_40
 	ASRUN	frydunstretch_as
 	ASSLP	16
 
-	ASRUNI	frydface_as,>20
+	ASRUNI	frydface_as,020H
 
 	ASJMPR	800,fryd_50		;80% skip slouch
 	ASSND	fpain2
-	ASXY	>40,0,0,9
-	ASANI	AKTORSO4,>41		;Slouch
-	ASANI	AKTORSO4,>46
+	ASXY	040H,0,0,9
+	ASANI	AKTORSO4,041H		;Slouch
+	ASANI	AKTORSO4,046H
 	ASSLPR	8,70
-	ASXY	>40,0,0,-9
-	ASANI	AKTORSO1,>41
-	ASANI	AKTORSO1,>46
+	ASXY	040H,0,0,-9
+	ASANI	AKTORSO1,041H
+	ASANI	AKTORSO1,046H
 fryd_50
 	ASCRE	fry_pulsep1,0
 	ASLABR	10,50
@@ -4448,7 +4448,7 @@ fryd_50
 	ASDSJS1
 
 	ASSND	fpain3
-	ASKIL	>20,7
+	ASKIL	020H,7
 
 	ASJMP	fryd_lp
 
@@ -4458,7 +4458,7 @@ fryd_die				;Dict fries
 	ASRUN	frydstretch_as
 	ASSLP	5
 
-	ASRUNI	frysprks3_as,>70
+	ASRUNI	frysprks3_as,070H
 	ASRUN	frydexp_as
 	ASRUN	frydexp_as
 
@@ -4467,40 +4467,40 @@ fryd_die				;Dict fries
 	ASRUN	fryshakescr2_as
 	ASNEW	fryshockbig_t
 	ASSLPR	1,2
-	ASDEL	>60
+	ASDEL	060H
 	ASNEW	fryshockbigb_t
 	ASSLPR	1,2
-	ASDEL	>60
+	ASDEL	060H
 	ASDSJ
 
-	ASDELM	>70,>f			;Kill electricity
-	ASKIL	>70,7
-	ASKIL	>10,7
-	ASKIL	>20,7
+	ASDELM	070H,0fH			;Kill electricity
+	ASKIL	070H,7
+	ASKIL	010H,7
+	ASKIL	020H,7
 
 	ASRUN	frysmoke_as
 	ASRUN	frywisp_as
 	ASNEW	frydbone_t		;FIX!
 
 	ASSND	fburn
-	ASXY	>40,>f,0,-12
+	ASXY	040H,0fH,0,-12
 	ASRUN	fryskull_as
-	ASZ	>41,0,117
-	ASZ	>46,0,117
-	ASFRA	bonetor_l,>41,1
-	ASFRA	bonetor_l,>46,1
+	ASZ	041H,0,117
+	ASZ	046H,0,117
+	ASFRA	bonetor_l,041H,1
+	ASFRA	bonetor_l,046H,1
 
-	ASANI	BONELEG1,>44		;Make bones
-	ASANI	BONELEG1,>49
-	ASANI	BONELEG2,>45
-	ASANI	BONELEG2,>4a
-	ASDEL	>43
-	ASDEL	>48
+	ASANI	BONELEG1,044H		;Make bones
+	ASANI	BONELEG1,049H
+	ASANI	BONELEG2,045H
+	ASANI	BONELEG2,04aH
+	ASDEL	043H
+	ASDEL	048H
 	ASSVL	MTRP			;Bone pal
-	ASPAL	>44
-	ASPAL	>49
-	ASPAL	>45
-	ASPAL	>4a
+	ASPAL	044H
+	ASPAL	049H
+	ASPAL	045H
+	ASPAL	04aH
 
 	ASSLP	60*2
 	ASSND	totcarn
@@ -4509,17 +4509,17 @@ fryd_die				;Dict fries
 
 
 frydict_t
-	ASITEMN	FP1X,FP1Y,AKHED1,101,DMAWNZ,>40
-	ASITEMN	FP1X,FP1Y,AKTORSO1,100,DMAWNZ,>41
-	ASITEMN	FP1X,FP1Y,ECFIST1,103,DMAWNZ,>43
-	ASITEMN	FP1X,FP1Y,AKLEG1,115,DMAWNZ,>44
-	ASITEMN	FP1X,FP1Y,AKLEG2,104,DMAWNZ,>45
-	ASITEMN	FP1X-1,FP1Y,AKTORSO1,100,DMAWNZ+M_FLIPH,>46
-	ASITEMN	FP1X-1,FP1Y,ECFIST1,103,DMAWNZ+M_FLIPH,>48
-	ASITEMN	FP1X-1,FP1Y,AKLEG1,115,DMAWNZ+M_FLIPH,>49
-	ASITEMN	FP1X-1,FP1Y,AKLEG2,104,DMAWNZ+M_FLIPH,>4a
-	ASITEMN	FP1X-81,FP1Y+61,CLAMP1,102,DMAWNZ,>20
-	ASITEMN	FP1X+81,FP1Y+61,CLAMP1,102,DMAWNZ+M_FLIPH,>21
+	ASITEMN	FP1X,FP1Y,AKHED1,101,DMAWNZ,040H
+	ASITEMN	FP1X,FP1Y,AKTORSO1,100,DMAWNZ,041H
+	ASITEMN	FP1X,FP1Y,ECFIST1,103,DMAWNZ,043H
+	ASITEMN	FP1X,FP1Y,AKLEG1,115,DMAWNZ,044H
+	ASITEMN	FP1X,FP1Y,AKLEG2,104,DMAWNZ,045H
+	ASITEMN	FP1X-1,FP1Y,AKTORSO1,100,DMAWNZ+M_FLIPH,046H
+	ASITEMN	FP1X-1,FP1Y,ECFIST1,103,DMAWNZ+M_FLIPH,048H
+	ASITEMN	FP1X-1,FP1Y,AKLEG1,115,DMAWNZ+M_FLIPH,049H
+	ASITEMN	FP1X-1,FP1Y,AKLEG2,104,DMAWNZ+M_FLIPH,04aH
+	ASITEMN	FP1X-81,FP1Y+61,CLAMP1,102,DMAWNZ,020H
+	ASITEMN	FP1X+81,FP1Y+61,CLAMP1,102,DMAWNZ+M_FLIPH,021H
 	.word	-1000
 
 frydict_st
@@ -4542,18 +4542,18 @@ fdmo20	move	@STATUS,a0
 	ASASM
 fdmo30	ASENDASM
 	ASLAB	30
-	ASXY	>80,0,2,0
-	ASXY	>81,0,-2,0
+	ASXY	080H,0,2,0
+	ASXY	081H,0,-2,0
 	ASDSJS1
 	ASEND
 
 frydmeter1_t
-	ASITEMN	2-112,2+50,GGSWRD,90,DMAWNZ,>80
-	ASITEMN	14-112,10+50,GGWTTS,91,DMAWNZ,>80
+	ASITEMN	2-112,2+50,GGSWRD,90,DMAWNZ,080H
+	ASITEMN	14-112,10+50,GGWTTS,91,DMAWNZ,080H
 	.word	-1000
 frydmeter2_t
-	ASITEMN	2+275,2+50,GGSWRD,90,DMAWNZ,>81
-	ASITEMN	14+275,10+50,GGWTTS,91,DMAWNZ,>81
+	ASITEMN	2+275,2+50,GGSWRD,90,DMAWNZ,081H
+	ASITEMN	14+275,10+50,GGWTTS,91,DMAWNZ,081H
 	.word	-1000
 	
 frydlook_l
@@ -4583,41 +4583,41 @@ frydlook_l
 
 
 frydstretch_as
-	ASXY	>40,0,0,-5
-	ASANI	AKTORSO2,>41
-	ASANI	AKTORSO2,>46
+	ASXY	040H,0,0,-5
+	ASANI	AKTORSO2,041H
+	ASANI	AKTORSO2,046H
 	ASSLP	4
-	ASXY	>40,0,0,-5
-	ASANI	AKTORSO3,>41
-	ASANI	AKTORSO3,>46
+	ASXY	040H,0,0,-5
+	ASANI	AKTORSO3,041H
+	ASANI	AKTORSO3,046H
 	ASEND
 
 frydunstretch_as
-	ASXY	>40,0,0,5
-	ASANI	AKTORSO2,>41
-	ASANI	AKTORSO2,>46
+	ASXY	040H,0,0,5
+	ASANI	AKTORSO2,041H
+	ASANI	AKTORSO2,046H
 	ASSLP	4
-	ASXY	>40,0,0,5
-	ASANI	AKTORSO1,>41
-	ASANI	AKTORSO1,>46
+	ASXY	040H,0,0,5
+	ASANI	AKTORSO1,041H
+	ASANI	AKTORSO1,046H
 	ASSLP	4
-	ASXY	>40,0,0,9
-	ASANI	AKTORSO4,>41		;Slouch
-	ASANI	AKTORSO4,>46
+	ASXY	040H,0,0,9
+	ASANI	AKTORSO4,041H		;Slouch
+	ASANI	AKTORSO4,046H
 	ASSLP	4
-	ASXY	>40,0,0,-9
-	ASANI	AKTORSO1,>41
-	ASANI	AKTORSO1,>46
+	ASXY	040H,0,0,-9
+	ASANI	AKTORSO1,041H
+	ASANI	AKTORSO1,046H
 	ASEND
 
 
-frydface_as			;ID >20
+frydface_as			;ID 020H
 	ASJMPR	800,fdf10
-	ASLABR	2,5		;>Blink 20%
+	ASLABR	2,5		;0BHlink 20%
 	ASSLPR	3,20
-	ASANI	AKHED4,>40
+	ASANI	AKHED4,040H
 	ASSLPR	3,20
-	ASANI	AKHED8,>40
+	ASANI	AKHED8,040H
 	ASDSJ
 	ASEND
 
@@ -4625,13 +4625,13 @@ fdf10	ASSND	fpain2
 	ASJMPR	440,fdf20
 	ASJMPR	333,fdf30
 	ASJMPR	500,fdf40
-	ASFRA	fdface1_l,>40,1		;15%
+	ASFRA	fdface1_l,040H,1		;15%
 	ASEND
-fdf20	ASFRA	fdface2_l,>40,1		;35%
+fdf20	ASFRA	fdface2_l,040H,1		;35%
 	ASEND
-fdf30	ASFRA	fdface3_l,>40,1		;15%
+fdf30	ASFRA	fdface3_l,040H,1		;15%
 	ASEND
-fdf40	ASFRA	fdface4_l,>40,1		;15%
+fdf40	ASFRA	fdface4_l,040H,1		;15%
 	ASEND
 
 fdface1_l
@@ -4684,9 +4684,9 @@ frydexp_as
 	ASLAB	300
 	ASNEW	fryexp_t
 	ASXYRNG	-1,0,0,130,20,100
-	ASSVRL	->e0000,>e0000
+	ASSVRL	-0e0000H,0e0000H
 	ASADLVO	OXVEL
-	ASSVRL	->e0000,>e0000
+	ASSVRL	-0e0000H,0e0000H
 	ASADLVO	OYVEL
 	ASJMPR	500,fde10		;50% low Z
 	ASADDWO	40,OZPOS
@@ -4717,8 +4717,8 @@ frydpal_t
 	.long	GREYPAL,RDBOOM,GRNBOOM,BLUBOOM
 
 frydbone_t
-	ASITEMN	FP1X,FP1Y-254,BONEARM,101,DMAWNZ,>42
-	ASITEMN	FP1X-1,FP1Y-254,BONEARM,101,DMAWNZ+M_FLIPH,>47
+	ASITEMN	FP1X,FP1Y-254,BONEARM,101,DMAWNZ,042H
+	ASITEMN	FP1X-1,FP1Y-254,BONEARM,101,DMAWNZ+M_FLIPH,047H
 	.word	-1000
 
 
@@ -4757,13 +4757,13 @@ rc10	SLEEPK	30
 	move	a0,@SCORE_FLAG
 	clr	a0
 	move	a0,@WORLDTLX+16
-	movi	>35b,a0
+	movi	035bH,a0
 	move	a0,@WORLDTLY+16
 	jruc	DO_RACKUP
 
 
 
-	movi	statspal,a0		;>Cycle color loop
+	movi	statspal,a0		;0CHycle color loop
 	movk	31,a1
 	clr	a2
 rp45	move	a2,*a0+
@@ -4833,7 +4833,7 @@ bcd5	dsj	a3,bcd10		;Convert BCD
 	movi	',',a2
 	subk	8,a1
 	movb	a2,*a1
-bcd10	movk	>f,a2
+bcd10	movk	0fH,a2
 	and	a0,a2
 	addi	'0',a2
 	subk	8,a1
@@ -5053,7 +5053,7 @@ bfb20	move	*a1(OZPOS),a0
 	cmp	a11,a0
 	jrhi	bfb30
 	move	a3,*a1(OFLAGS)
-	movi	>909,a0
+	movi	0909H,a0
 	move	a0,*a1(OCONST)
 bfb30	move	*a1,a1,L
 	jrnz	bfb20

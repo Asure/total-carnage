@@ -1,11 +1,11 @@
-	.FILE	'TRIG.ASM'
-	.TITLE	'TOTAL CARNAGE GAME PROGRAM'
+	.FILE	"TRIG.ASM"
+	.TITLE	"TOTAL CARNAGE GAME PROGRAM"
 	.WIDTH	132
 	.OPTION	B,D,L,T
 	.MNOLIST
 
 	.INCLUDE	"DISP.EQU"		;DISPLAY PROC. EQUATES
-	.include	"\video\sys\sys.inc"
+	.include	"sys.inc"
 	.include	"mproc.equ"
 	.include	"game.equ"
 	.include	"shawn.hdr"		;My macros
@@ -53,7 +53,7 @@ X2PI	.set	411775
 	move	*a13(PROCID),a11
 	subi	ANIMPID,a11
 	srl	8,a11
-	sll	8,a11			;A11=ID offset (0->300)
+	sll	8,a11			;A11=ID offset (0-0300H)
 
 	clr	a1
 	move	a1,*a13(animsfnum)
@@ -109,7 +109,7 @@ ans100	move	*a9+,a2,L		;*Image
 	PULL	a8
 	jruc	anslp
 
-asFRA					;>FRANIM
+asFRA					;0FHRANIM
 	move	a11,a6			;Save a11
 	move	*a8+,a9,L		;Get data
 	move	*a13(PROCID),a1		;Inherit same ID+1
@@ -308,7 +308,7 @@ asLABR					;>Set label randomly
 asDSJS1					;>Sleep 1, dec and loop to label
 	SLEEPK	1
 
-asDSJ					;>Decrement and loop to label
+asDSJ					;0DecHrement and loop to label
 	move	*a13(animslp_p),a1,L
 	move	-*a1,a2
 	subk	1,a2
@@ -341,7 +341,7 @@ ans1450	move	*a13(animslobj_p),a0,L	;Get * to last obj
 	move	a4,*a0(OPAL)
 	jruc	anslp
 
-asANI					;>Do ANI on OID
+asANI					;0DHo ANI on OID
 	move	*a8+,a5,L
 	move	*a8+,a1			;OID
 	addi	CLSANIM,a1
@@ -363,7 +363,7 @@ ans1620	callr	obj_find
 	jrnz	ans1620			;More?
 	jruc	anslp
 
-asDEL					;>Delete obj
+asDEL					;0DeHlete obj
 	move	*a8+,a0
 	clr	a1
 asdel5	addi	CLSANIM,a0
@@ -371,7 +371,7 @@ asdel5	addi	CLSANIM,a0
 	calla	KILOBJN
 	jruc	anslp
 
-asDELM					;>Delete obj with mask
+asDELM					;0DeHlete obj with mask
 	move	*a8+,a0
 	move	*a8+,a1
 	jruc	asdel5
@@ -394,10 +394,10 @@ asRUNI					;>Run a new anim script with ID
 	add	a11,a1			;+offset
 	jruc	asrun5
 
-asCRE					;>Create a process
+asCRE					;0CHreate a process
 	move	*a8+,a7,L
 	move	*a8+,a9,L		;Pass A9 to process
-	movi	ANIMPID+>ff,a1
+	movi	ANIMPID+0ffH,a1
 	add	a11,a1			;+offset
 	calla	GETPRC
 	jruc	anslp
@@ -444,13 +444,13 @@ asJMPNE					;>Jump to new location if != to mem
 	move	a2,a8			;Do jmp
 	jruc	anslp
 
-asSNDD					;>Do a snd call in demo
+asSNDD					;0DHo a snd call in demo
 	movk	ADJMUSIC,a0		;Get demo music ON/OFF
 	calla	GET_ADJ
 	jrz	asSND			;Do sounds?
 	addk	32,a8
 	jruc	anslp
-asSND					;>Do a snd call
+asSND					;0DHo a snd call
 	move	*a8+,a0,L
 	calla	ONESND
 	jruc	anslp
@@ -470,7 +470,7 @@ asSHOW					;>Show an OID (X-5000)
 	movi	-5000,a4
 	jruc	ashide2
 
-asADDW					;>Add WORD to mem
+asADDW					;0AddH WORD to mem
 	move	*a8+,a0,L
 	move	*a8+,a1
 	move	*a0,a2
@@ -478,7 +478,7 @@ asADDW					;>Add WORD to mem
 	move	a2,*a0
 	jruc	anslp
 
-asADDWO					;>Add WORD to last obj+offset
+asADDWO					;0AddH WORD to last obj+offset
 	move	*a8+,a0
 	move	*a13(animslobj_p),a1,L	;Get * to last one
 	move	*a8+,a2			;Offset
@@ -488,7 +488,7 @@ asADDWO					;>Add WORD to last obj+offset
 	move	a2,*a1
 	jruc	anslp
 
-asADDLO					;>Add LONG # to last obj+offset
+asADDLO					;0AddH LONG # to last obj+offset
 	move	*a8+,a0,L
 	move	*a13(animslobj_p),a1,L	;Get * to last one
 	move	*a8+,a2			;Offset
@@ -498,7 +498,7 @@ asADDLO					;>Add LONG # to last obj+offset
 	move	a2,*a1,L
 	jruc	anslp
 
-asADLVO					;>Add LONG value to last obj+offset
+asADLVO					;0AddH LONG value to last obj+offset
 	move	*a8+,a0
 	move	*a13(animslobj_p),a1,L	;Get * to last one
 	add	a0,a1			;+Offset
@@ -531,7 +531,7 @@ asSVL					;>Set value to long
 	move	a0,*a13(animsv),L
 	jruc	anslp
 
-asBXY					;>Add # to BaseXY
+asBXY					;0AddH # to BaseXY
 	move	*a8+,a0,L
 	move	*a13(animsbx),a1,L
 	addxy	a0,a1
@@ -579,7 +579,7 @@ asEND	SLEEPK	1			;>Wait on FRANIMs before exit
 
  SUBRP	anims_franim		;A9=*FRAN list, A10=OID, A11=# Loops
 
-	move	@OBJLST,a8,L		;>Find object
+	move	@OBJLST,a8,L		;0FHind object
 anf100	move	*a8(OID),a0
 	cmp	a10,a0
 	jreq	anf300
@@ -633,11 +633,11 @@ anw10	SLEEPK	3
 	move	a0,@animscnt
 
 	movi	ANIMPID,a0	;>Kill processes
-	movi	>3ff,a1
+	movi	03ffH,a1
 	calla	KILALLN
 
-	movi	CLSANIM,a0	;>Delete objs
-	movi	>3ff,a1
+	movi	CLSANIM,a0	;0DeHlete objs
+	movi	03ffH,a1
 	jauc	KILOBJN
 
 

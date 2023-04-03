@@ -10,7 +10,7 @@
 *
 *.Last mod - 1/23/92 21:01
 **************************************************************
-	.FILE	'AUDIT.ASM'
+	.FILE	"AUDIT.ASM"
 	.TITLE	"AUDITS AND AJUSTMENTS HANDLING"
 	.WIDTH	132
 	.OPTION	B,D,L,T
@@ -19,8 +19,8 @@
 
 	.INCLUDE	"MPROC.EQU"		;MPROC EQUATES
 	.INCLUDE	"DISP.EQU"		;DISPLAY PROC. EQUATES
-	.INCLUDE	"\VIDEO\SYS\SYS.INC"	;Z UNIT SYSTEM EQUATES
-;	.INCLUDE	"\VIDEO\SYS\MACROS.HDR"	;MACROS DEFINITIONS
+	.include	"sys.inc"	;z unit system equates
+;	.include	"macros.hdr"	;macros definitions
 	.INCLUDE	"IMGTBL.GLO"
 	.INCLUDE	"GAME.EQU"
 	.INCLUDE	"LINK.EQU"		;LINK EQUATES
@@ -219,18 +219,18 @@ NO_PLAY	RETS
 CK_OCTO
 	MOVE	@SWITCH,A0,L		;CHECK FOR OCTOPUS
 	NOT	A0
-	ANDI	>24FFFF,A0		;GET STICKS 'N STARTS
+	ANDI	024FFFFH,A0		;GET STICKS 'N STARTS
 	MOVE	@OCT_FLG,A1
 	JRNZ	CK_P2			;Got part one?
 
-	CMPI	>41001,A0		;Left button, both sticks up
+	CMPI	041001H,A0		;Left button, both sticks up
 	JRNZ	NO_OCTO			;NO ONE HOME
 	MOVI	60,A1			;ONE SEC TO GET PART TWO
 CK_P2
 	DEC	A1			;WAIT EXACTLY 1 SEC.
 	MOVE	A1,@OCT_FLG		;GOT PART 1 SET FLAG
 	JRNE	NO_OCTO
-	CMPI	>2008,A0		;JOYSTICKS CORRECT?
+	CMPI	02008H,A0		;JOYSTICKS CORRECT?
 	JRNZ	NO_OCTO			;BR= NOPE!
 
 	MOVI	ACTIVE,A13
@@ -241,7 +241,7 @@ CK_P2
 ;	CALLA	ONESND
 
 NO_OCTO	RETS
-;MAW	.WORD	>F9F7,>50,>814A,0		;OH MAW
+;MAW	.WORD	0F9F7H,050H,0814AH,0		;OH MAW
 
 ********************************
 * Unstack the switches for other than player controls
@@ -331,7 +331,7 @@ FREEZE
 FREZWT
 	DSJS	A1,FREZWT
 FREEZE_LP
-	MOVE	@SWITCH+>10,A0		;GET THE COIN DOOR SWITCHES	
+	MOVE	@SWITCH+010H,A0		;GET THE COIN DOOR SWITCHES	
 	BTST	8,A0
 	JREQ	FREEZE_LP		;LOOP 'TIL BUTTON COMES UP	
 	POPST
@@ -1977,7 +1977,7 @@ FACS1
 	DSJS	A2,FACS1		;WRITE 1 LONG WORD PER ADJUST
 fs20
 	.if	YUNIT
-	move	@SWITCH+>30,a1
+	move	@SWITCH+030H,a1
 	btst	6,a1
 	jrnz	fs80
 	not	a1
@@ -2168,7 +2168,7 @@ lct8	move	*a6+,a1			;Get word
 **************************************************************************
 L_MESS_LOOP
 	addk	BYTE_SIZE,a8		;PUSH BEYOND THIS BYTE
-L_MESS	addk	>f,a8			;Round up word
+L_MESS	addk	0fH,a8			;Round up word
 	srl	4,a8
 	sll	4,a8
 
@@ -2353,7 +2353,7 @@ PROMPT_PROC
 	CMP	A0,A1
 	JRLO	PP2			;NOT ENOUGH.....PRINT 1.
 *
-*	>1 = READY FOR 2 PLAYERS.  PRESS START.
+*	01H = READY FOR 2 PLAYERS.  PRESS START.
 *
 RF2
 	MOVI	MESS_READY_2,A1
@@ -2499,7 +2499,7 @@ DUMP_FS
 *
 **************************************************************************
 DUMP_SIZE	 .equ	 10*C_LONG_SIZE		;9 LONG WORDS.
-DUMP_LAST	 .equ	 CMOS+>8000-DUMP_SIZE	;Let em use the whole page!
+DUMP_LAST	 .equ	 CMOS+08000H-DUMP_SIZE	;Let em use the whole page!
 MAX_DUMP	 .equ	 8			;DON'T HOLD MORE THAN 12/PAGE
 
 ADD_DUMP

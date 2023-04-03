@@ -9,8 +9,8 @@
 *
 *.Last mod - 1/7/92 13:23
 **************************************************************
- 	.FILE	'FIEND.ASM'
-	.TITLE	'TOTAL CARNAGE GAME PROGRAM'
+ 	.FILE	"FIEND.ASM"
+	.TITLE	"TOTAL CARNAGE GAME PROGRAM"
 	.WIDTH	132
 	.OPTION	B,D,L,T
 	.MNOLIST
@@ -18,11 +18,11 @@
 
 	.INCLUDE	"MPROC.EQU"		;MPROC EQUATES
 	.INCLUDE	"DISP.EQU"		;DISPLAY PROC. EQUATES
-	.INCLUDE	"\VIDEO\SYS\SYS.INC"	;Z UNIT SYSTEM EQUATES
+	.include	"sys.inc"	;z unit system equates
 	.INCLUDE	"IMGTBL.GLO"
 	.INCLUDE	"GAME.EQU"
 	.INCLUDE	"FINGRNT.TBL"
-	.include	"\video\sys\gsp.inc"
+	.include	"gsp.inc"
 	.include	"shawn.hdr"
 
 
@@ -798,7 +798,7 @@ fiend3
 	move	a0,*a13(ABSRB)
 	move	a0,*a13(SQ_NUM)
 	move	a0,*a13(JFLG)
-	movi	>14000,a1		;Speed
+	movi	014000H,a1		;Speed
 	calla	DO_DIFF2
 	callr	fiend_getfran		;Get 1st *franim for dir
 
@@ -813,7 +813,7 @@ fiend3
 fndlp	move	@HALT,a0		;Fiend loop
 	jrnz	gotop
 
-	move	*a13(SK_DIR),a1		;>Do turn
+	move	*a13(SK_DIR),a1		;0DHo turn
 	move	*a13(DIR),a0
 	cmp	a0,a1
 	jreq	noturn
@@ -834,7 +834,7 @@ FCOLORS	.LONG	FNDP,FNDP,FNDP,FNDP,FNDP,FNDP,FNDP,FNDP,FNDP,FNDP,FNDP,FNDP
 ;	.LONG	GRNTPUR
 
 
-noturn	move	*a13(DIS),a0		;>Facing proper direction
+noturn	move	*a13(DIS),a0		;0FacHing proper direction
 	jrz	fndcj
 	jrp	fndwlk
 
@@ -907,7 +907,7 @@ reg2	move	a0,*a13(fndsp_p),L	;Save *process
 
 	move	*a13(SQ_NUM),a0
 	jrz	fndnewmd
-	dec	a0			;>Do squat turn
+	dec	a0			;0DHo squat turn
 	move	a0,*a13(SQ_NUM)
 	move	*a13(SK_DIR),a0		;Seek +1
 	movk	7,a1
@@ -978,7 +978,7 @@ spinr	movk	1,a0			;>Rnd spin
 	move	a0,*a13(SK_DIR)
 	jruc	gotop
 
-spinrp	callr	getcloseplyr		;>Face player
+spinrp	callr	getcloseplyr		;0FaceH player
 	jrz	fndnewmd
 	callr	XYSKOBJ
 	move	a5,a1
@@ -1143,7 +1143,7 @@ gcp450	move	*a1(LEG_PTR),a0,L	;P2 bad
 	rets
 
 gcp800	clr	a0			;P1&P2 bad
-					;>A0=*Plyr legs obj
+					;0A0H=*Plyr legs obj
 	rets				;Pass Z
 
 
@@ -1157,8 +1157,8 @@ gcp800	clr	a0			;P1&P2 bad
 	WORDPD	FND_COLOR,27   	;COLOR PAL INDEX (0-7)*32 FOR THIS FIEND
 
 JZ	.set	159			;281
-JMPSND	.WORD	>F48E,>18,>813D,0		;FIEND JUMP SND
-JMPSND2	.WORD	>F58E,>18,>813E,0		;FIEND JUMP SND
+JMPSND	.WORD	0F48EH,018H,0813DH,0		;FIEND JUMP SND
+JMPSND2	.WORD	0F58EH,018H,0813EH,0		;FIEND JUMP SND
 
  SUBRP	fiend_jump
 
@@ -1174,7 +1174,7 @@ fj20
 
 	callr	getcloseplyr
 	move	*a0(OXPOS),a6
-	cmpi	>1a00,a6			;Off screen?
+	cmpi	01a00H,a6			;Off screen?
 	jrz	fj900
 	addk	10,a6
 	move	*a0(OYPOS),a7
@@ -1226,7 +1226,7 @@ j140	sra	1,a6			;>Scale down to A11
 	cmp	a11,a2
 	jrgt	j140
 
-	move	a6,a4			;>Fine scale up to A11
+	move	a6,a4			;0FHine scale up to A11
 	move	a7,a5
 	sra	4,a4			;/16
 	sra	4,a5
@@ -1426,7 +1426,7 @@ spits3	sll	4,a2			;*16
 	addi	xy3_t,a2
 	move	*a2,a5
 	add	a5,a0
-	move	*a2(>80),a5
+	move	*a2(080H),a5
 	add	a5,a1
 	sll	16,a0			;X
 	sll	16,a1			;Y
@@ -1516,7 +1516,7 @@ gady	movk	5,a0		;y velocity case
 	move	a2,a2
 	jrnn	gadex
 	movk	1,a0
-gadex	rets			;>A0=Dir of travel (1-8)
+gadex	rets			;0A0H=Dir of travel (1-8)
 				;812
 				;7 3
 				;654
@@ -1582,8 +1582,8 @@ XYSKOBJ
 	RETS
 
 ;CORRECT FOR ANGULAR VELOCITIES
-XYSQTAB	.WORD	>20-28,>21-28,>22-28,>23-28,>24-28,>25-28,>26-28,>27-28
-	.WORD	>27-28,>26-28,>25-28,>24-28,>23-28,>22-28,>21-28,>20-28
+XYSQTAB	.WORD	020H-28,021H-28,022H-28,023H-28,024H-28,025H-28,026H-28,027H-28
+	.WORD	027H-28,026H-28,025H-28,024H-28,023H-28,022H-28,021H-28,020H-28
 
 
 
@@ -1830,7 +1830,7 @@ YKIL_FT2
 	JRUC	YIN
 
 YKIL_FT	MMTM	SP,A1,A2,A3,A4,A7,A9,A10
-	MOVI	>2F2F,A9	;1313,A9		;COLOR TO FLASH
+	MOVI	02F2FH,A9	;1313,A9		;COLOR TO FLASH
 	MOVI	HITFND,A3
 	CALLR	DO_PUNISH
 	JRLT	PUSHME
@@ -1886,7 +1886,7 @@ FE0	MMFM	SP,A1,A2,A3,A4,A7,A9,A10
 	MOVE	*A1(ABSRB),A2
 	ADD	A4,A2
 	MOVE	A2,*A1(ABSRB)
-	MOVE	*A0(OPLINK),A10,L	;>A10=*Killers process
+	MOVE	*A0(OPLINK),A10,L	;0A10H=*Killers process
 	CMP	A3,A2
 	RETS				;Pass CC
 
@@ -2176,7 +2176,7 @@ PUSH_FT	;A8=FIEND IMG PNTR, A0=KILLER IMG PNTR
 
 	MMTM	SP,A1,A2,A3,A4,A7,A9,A10
 	MOVI	HITFND,A3
-	MOVI	>2F2F,A9	;1313,A9		;COLOR TO FLASH
+	MOVI	02F2FH,A9	;1313,A9		;COLOR TO FLASH
 	CALLR	DO_PUNISH
 	JRLT	PUSHME
 
@@ -2336,9 +2336,9 @@ PUSHME	;A9=Flash color
 	SLL	16,A1			;A1=X,A0=Y
 
 	ADD	A10,A0
-	CMPI	>380000,A0
+	CMPI	0380000H,A0
 	JRLT	SKP
-	CMPI	>E10000,A0
+	CMPI	0E10000H,A0
 	JRGE	SKP
 
 	MOVE	*A8(OYPOS),A0		;OKAY
@@ -2347,9 +2347,9 @@ PUSHME	;A9=Flash color
 SKP	ADDI	XAD-8,A2
 	MOVB	*A2,A2			;A1=AMOUNT TO ADD TO X OF FAT
 	ADD	A2,A1
-	CMPI	>200000,A1
+	CMPI	0200000H,A1
 	JRLT	SKP2
-	CMPI	>1380000,A1
+	CMPI	01380000H,A1
 	JRGE	SKP2
 	MOVE	*A8(OXPOS),A0
 	ADD	A0,A2

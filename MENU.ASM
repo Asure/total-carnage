@@ -11,7 +11,7 @@
 *
 *.Last mod - 3/6/92 16:35
 **************************************************************
-	.FILE	'MENU.ASM'
+	.FILE	"MENU.ASM"
 	.TITLE	"TEST MENUS"
 	.WIDTH	132
 	.OPTION	B,D,L,T
@@ -20,7 +20,7 @@
 
 	.INCLUDE	"MPROC.EQU"
 	.INCLUDE	"DISP.EQU"
-	.INCLUDE	"\VIDEO\SYS\SYS.INC"
+	.include	"sys.inc"
 	.INCLUDE	"IMGTBL.GLO"
 	.INCLUDE	"GAME.EQU"
 	.INCLUDE	"LINK.EQU"
@@ -353,7 +353,7 @@ CK_2_CRED
 	MOVI	ADJCCONT,A0
 	CALLA	GET_ADJ 	;GET CONTINUE NUMBER
 	cmpi	2,a0		;1 or 2 is what we return
-	jrhi	c2c20		;>2?
+	jrhi	c2c20		;02H?
 	move	a0,a0		;Return NZ (unless its 2/0)
 	rets
 
@@ -872,7 +872,7 @@ st50	dsjs	a0,st50
 st60	SLEEPK	10
 
 st70	movi	M_STEST,a0		;Sound test message
-	movi	>4080,a1
+	movi	04080H,a1
 	clr	a2
 	movi	ROBO_WHITE,a3
 	calla	STRNEW1
@@ -883,7 +883,7 @@ st70	movi	M_STEST,a0		;Sound test message
 	movk	8,a0
 	dsj	a0,$			;Slow it down a bit
 
-	ori	>ff00,a3		;Put out 1's
+	ori	0ff00H,a3		;Put out 1's
 	move	a3,@SOUND
 
 	movk	8,a0
@@ -895,7 +895,7 @@ st150	movb	@TALKPORT+B_SIRQ-7,a0
 	dsj	a3,st150
 
 	movi	snderror_s,a0		;>No IRQ!
-	movi	>5848,a1
+	movi	05848H,a1
 	clr	a2
 	movi	ROBO_RED,a3
 	calla	STRNEW1
@@ -903,9 +903,9 @@ st150	movb	@TALKPORT+B_SIRQ-7,a0
 	move	a13,a13
 	jrnz	st250			;!Auto-cycle?
 	calla	WDOGDIS
-st200	move	@SWITCH+>10,a0
+st200	move	@SWITCH+010H,a0
 	not	a0
-	andi	>24,a0
+	andi	024H,a0
 	jrz	st200			;No button?
 	jruc	st500
 
@@ -914,20 +914,20 @@ st250	JSRP	WAIT_BUT
 
 st400
 	movi	sndok_s,a0		;>IRQ OK
-	movi	>5880,a1
+	movi	05880H,a1
 	clr	a2
 	movi	ROBO_GREEN,a3
 	calla	STRNEW1
 
 st500
 	movi	snd_t,a8	;*Data
-	movi	>7880,a9	;Y:X
+	movi	07880H,a9	;Y:X
 
 sndtlp
 	move	a8,a0
 	move	a9,a1
 	clr	a2
-	movi	>1212,a3	;Med blue
+	movi	01212H,a3	;Med blue
 	calla	STRNEW1
 	move	a0,a8
 	addk	8,a8
@@ -945,7 +945,7 @@ sndauto	dsjs	a0,sndauto
 sndslp
 	SLEEP	120
 sndslp1	
-	addi	>1200,a9	;Next Y
+	addi	01200H,a9	;Next Y
 	movb	*a8,a0
 	jrnz	sndtlp
 	move	a13,a13		;auto cycle exit
@@ -963,13 +963,13 @@ snd_t	;String/Sound code
 	.byte	"TUNE1 -1",0
 	.byte	1
 	.byte	"NO WAY -E6",0
-	.byte	>e6
+	.byte	0e6H
 	.byte	"EXPL1 -30",0
-	.byte	>30
+	.byte	030H
 	.byte	"TUNE2 -9",0
 	.byte	9
 	.byte	"SPIDER BOUNCE -83",0
-	.byte	>83
+	.byte	083H
 	.byte	"MUSIC OFF -0",0
 	.byte	0
 	.byte	0		;End
@@ -1008,12 +1008,12 @@ GO_PATTERNS
 AMAC	$macro	mess,rout,audit,color
 	.long	:mess:,:rout:
 	.word	:audit:,:color:
-	$end
+	$endm
 
 TXTLINE	$macro	s
 	.byte	:s:,0
 	.even
-	$end
+	$endm
 
 
 AUD_LM		EQU	TIT_ULX		;SQUARE OFF AUDITS W/ HEADER.
@@ -1047,7 +1047,7 @@ COIN1_AUDS
 COIN2_AUDS
 	.word	CP2_Y+AUD_DY+5,AUD_DY		;Y start, Y spacing
 	.word	AUD_LM,AUD_RM			;LFT/RGT margin X
-	AMAC	M_SERV,0,AUDSERV,>1212
+	AMAC	M_SERV,0,AUDSERV,01212H
 	AMAC	M_PLAYS,DOPLAYS,0,ROBO_YELLOW
 	AMAC	M_HSLEFT,DOHSLEFT,0,ROBO_YELLOW
 	.long	0
@@ -1105,18 +1105,18 @@ GAME_AUDS
 	AMAC	M_START,STARTS,0,ROBO_GREEN
 	AMAC	M_CONT,CONTINS,0,ROBO_GREEN
 	AMAC	M_EXTRA,0,AUDEXTRA,ROBO_ORANGE	;EXTRA MEN EARNED
-	AMAC	M_P1MIN,DO_P1MIN,0,>1212
-	AMAC	M_P2MIN,DO_P2MIN,0,>1212
-	AMAC	M_HOURS,DO_HOURS,0,>1212
+	AMAC	M_P1MIN,DO_P1MIN,0,01212H
+	AMAC	M_P2MIN,DO_P2MIN,0,01212H
+	AMAC	M_HOURS,DO_HOURS,0,01212H
 	AMAC	M_AVGT,DO_AVGT,0,ROBO_YELLOW
 	AMAC	M_ELAPSE,DO_ELAPSE,0,ROBO_YELLOW
-	AMAC	pwwso_s,0,AUDPWWARPSO,>0808	;Med grey
-	AMAC	pwws_s,0,AUDPWWARPOK,>0808
-	AMAC	warpa_s,0,AUDWARPA,>1212	;Med blue
-	AMAC	warpt_s,0,AUDWARPT,>1212
-	AMAC	warpc_s,0,AUDWARPC,>1212
-	AMAC	ecpl_s,0,AUDECHAIRPL,>0d0d	;Pink
-	AMAC	ecsv_s,0,AUDECHAIRSV,>0d0d
+	AMAC	pwwso_s,0,AUDPWWARPSO,00808H	;Med grey
+	AMAC	pwws_s,0,AUDPWWARPOK,00808H
+	AMAC	warpa_s,0,AUDWARPA,01212H	;Med blue
+	AMAC	warpt_s,0,AUDWARPT,01212H
+	AMAC	warpc_s,0,AUDWARPC,01212H
+	AMAC	ecpl_s,0,AUDECHAIRPL,00d0dH	;Pink
+	AMAC	ecsv_s,0,AUDECHAIRSV,00d0dH
 	.long	0
 
 amst_s	TXTLINE	"ATTRACT MODE STARTS"
@@ -1130,24 +1130,24 @@ ecsv_s	TXTLINE	"SURVIVED ELECTRIC CHAIR"
 
 GAME_AUD2
 	.word	50,10,AUD_LM,AUD_RM	;Y start, Y spacing, L margin, R margin
-;	AMAC	adt_s,0,AUDDEATHTOT,>1212		;Med blue
+;	AMAC	adt_s,0,AUDDEATHTOT,01212H		;Med blue
 	AMAC	amst_s,0,AUDBEGIN,ROBO_ORANGE		;On parachute
 	AMAC	wave1_s,0,AUDTAUNT1,ROBO_ORANGE		;
 	AMAC	wave2_s,0,AUDBOSS1,ROBO_ORANGE		;
-	AMAC	wave3_s,0,AUDBOSS1SC,>1919		;Med green
+	AMAC	wave3_s,0,AUDBOSS1SC,01919H		;Med green
 	AMAC	wave4_s,0,AUDROAD1,ROBO_ORANGE		;
-	AMAC	wave5_s,0,AUDROAD1SC,>1919
+	AMAC	wave5_s,0,AUDROAD1SC,01919H
 	AMAC	wave6_s,0,AUDAIRPORT,ROBO_ORANGE	;
 	AMAC	wave7_s,0,AUDROAD2,ROBO_ORANGE		;
 	AMAC	wave8_s,0,AUDREACTOR,ROBO_ORANGE	;
 	AMAC	wave9_s,0,AUDBOSSEND,ROBO_ORANGE	;
 	AMAC	wavea_s,0,AUDRPDOME,ROBO_ORANGE		;
-	AMAC	afg_s,0,AUDFULLGAMES,>1919
-	AMAC	aakc_s,keyavg_prt,0,>1919
+	AMAC	afg_s,0,AUDFULLGAMES,01919H
+	AMAC	aakc_s,keyavg_prt,0,01919H
 	AMAC	waveb_s,0,AUDEPDOME,ROBO_ORANGE		;
-	AMAC	M_LOCKUP,0,AUDLOCK,>0f0f		;Watchdog lockup, Blue-wht
-	AMAC	M_TRAPS,0,AUDTRAP,>0f0f			;BAD TRAPS
-	AMAC	M_HANGUP,0,AUDHANG,>0f0f		;LOCKUPS VIA HANG
+	AMAC	M_LOCKUP,0,AUDLOCK,00f0fH		;Watchdog lockup, Blue-wht
+	AMAC	M_TRAPS,0,AUDTRAP,00f0fH			;BAD TRAPS
+	AMAC	M_HANGUP,0,AUDHANG,00f0fH		;LOCKUPS VIA HANG
 	.long	0
 
 adt_s	TXTLINE	"TOTAL DEATHS"
@@ -1176,7 +1176,7 @@ MISC_AUD
 	AMAC	M_P2MIN,DO_P2MIN,0,ROBO_YELLOW
 	AMAC	M_AVGT,DO_AVGT,0,ROBO_YELLOW
 	AMAC	M_ELAPSE,DO_ELAPSE,0,ROBO_YELLOW
-	AMAC	adiff_s,diff_prt,0,>1212
+	AMAC	adiff_s,diff_prt,0,01212H
 	.LONG	0
 
 adiff_s	TXTLINE	"GAME DIFFICULTY LEVEL"
@@ -1201,7 +1201,7 @@ FACCHECK
 	JSRP	TOP_BOX			;PRINT TITLE BOX.
 
 	.if	YUNIT
-	move	@SWITCH+>30,a0
+	move	@SWITCH+030H,a0
 	btst	6,a0
 	jrnz	fc40			;No DIP coinage?
 

@@ -22,8 +22,8 @@
 
 ;	.include	"mproc.equ"
 ;	.include	"disp.equ"
-;	.include	"\video\sys\sys.inc"
-;	.include	"\video\sys\gsp.inc"
+;	.include	"sys.inc"
+;	.include	"gsp.inc"
 ;	.include	"game.equ"
 ;	.include	"imgtbl.glo"
 ;	.include	"audit.equ"
@@ -118,42 +118,42 @@
 
 	.ref	LOVEIT
 
-musicsnd	.word	>f3fe,10,>8009,0	;Boss music
-landsnd		.word	>fc88,30,>8030,0	;Land from a jump
-laughsnd	.word	>f194,30,>80f2,0	;When plyr dies
-exp1snd		.word	>fc80,7,>803e,0		;Explosion
-exp2snd		.word	>fd80,10,>80d9,0	;^
-;pain1snd	.word	>f985,20,>80f6,0	;
-;pain2snd	.word	>f985,20,>80f9,0	;
-groansnd	.word	>f985,20,>8113,0	;Groan
-groanlndsnd	.word	>f185,20,>8113,0	;^ interruptable
-oofsnd		.word	>f985,20,>8114,0	;Oof
-yowl1snd	.word	>f985,30,>8115,0	;
-yowl2snd	.word	>f985,30,>8116,0	;
-roarsnd		.word	>f990,40,>8117,0	;Roar
-roarlongsnd	.word	>f990,120,>8117,0	;Roar
-houchsnd	.word	>f985,20,>8120,0	;
-hyowlsnd	.word	>f985,20,>8122,0	;
-stvpainsnd	.word	>f985,30,>8123,0	;
-bubl1snd 	.word	>f5e5,20,>8131,0	;Blood bubbling
-bubl2snd	.word	>f0e5,20,>8130,0	;^
+musicsnd	.word	0f3feH,10,08009H,0	;Boss music
+landsnd		.word	0fc88H,30,08030H,0	;Land from a jump
+laughsnd	.word	0f194H,30,080f2H,0	;When plyr dies
+exp1snd		.word	0fc80H,7,0803eH,0		;Explosion
+exp2snd		.word	0fd80H,10,080d9H,0	;^
+;pain1snd	.word	0f985H,20,080f6H,0	;
+;pain2snd	.word	0f985H,20,080f9H,0	;
+groansnd	.word	0f985H,20,08113H,0	;Groan
+groanlndsnd	.word	0f185H,20,08113H,0	;^ interruptable
+oofsnd		.word	0f985H,20,08114H,0	;Oof
+yowl1snd	.word	0f985H,30,08115H,0	;
+yowl2snd	.word	0f985H,30,08116H,0	;
+roarsnd		.word	0f990H,40,08117H,0	;Roar
+roarlongsnd	.word	0f990H,120,08117H,0	;Roar
+houchsnd	.word	0f985H,20,08120H,0	;
+hyowlsnd	.word	0f985H,20,08122H,0	;
+stvpainsnd	.word	0f985H,30,08123H,0	;
+bubl1snd 	.word	0f5e5H,20,08131H,0	;Blood bubbling
+bubl2snd	.word	0f0e5H,20,08130H,0	;^
 
-myeyesnd	.word	>f9e0,110,>8118,0	;
-myarmsnd	.word	>f9e0,120,>8119,0	;
-myheadsnd	.word	>f9e0,70,>8121,0	;
+myeyesnd	.word	0f9e0H,110,08118H,0	;
+myarmsnd	.word	0f9e0H,120,08119H,0	;
+myheadsnd	.word	0f9e0H,70,08121H,0	;
 
-msllnchsnd	.word	>f290,10,>80b6,0	;Missile launch
-mslexpsnd	.word	>f470,10,>8048,0	;Missile explosion
+msllnchsnd	.word	0f290H,10,080b6H,0	;Missile launch
+mslexpsnd	.word	0f470H,10,08048H,0	;Missile explosion
 
 * Aboss
-ahkb1		.word	>f9a0,60,>80eb,0	;Akhboob speech
-ahkb2		.word	>f9a0,60,>80ec,0	;^
-ahkb3		.word	>f9a0,60,>80ed,0	;^
-ahkbsta		.word	>f9a0,60,>80ee,0	;^ start angry
-ahkbang		.word	>f9a0,60,>80ef,0	;^ angry
-doorsldsnd	.word	>f480,2,>804c,0		;Door slides
-rcktlnchsnd	.word	>f290,10,>812c,0	;Rocket launch
-puffsnd		.word	>f280,10,>8085,0	;Attack balls puffing
+ahkb1		.word	0f9a0H,60,080ebH,0	;Akhboob speech
+ahkb2		.word	0f9a0H,60,080ecH,0	;^
+ahkb3		.word	0f9a0H,60,080edH,0	;^
+ahkbsta		.word	0f9a0H,60,080eeH,0	;^ start angry
+ahkbang		.word	0f9a0H,60,080efH,0	;^ angry
+doorsldsnd	.word	0f480H,2,0804cH,0		;Door slides
+rcktlnchsnd	.word	0f290H,10,0812cH,0	;Rocket launch
+puffsnd		.word	0f280H,10,08085H,0	;Attack balls puffing
 
 
 ********************************
@@ -747,9 +747,9 @@ THRSTNL	.word	1,1,11,-118
 
 ;Boss data struct
 
-ABDOBJ	.set	>0	;*Parts obj
-ABDXO	.set	>20	;X offset from ani pt
-ABDSHLD	.set	>30	;Shield, 0=Dead, +=OK
+ABDOBJ	.set	00H	;*Parts obj
+ABDXO	.set	020H	;X offset from ani pt
+ABDSHLD	.set	030H	;Shield, 0=Dead, +=OK
 
 
 ABXO	.equ	24	;Obj 1 offsets for center
@@ -767,7 +767,7 @@ ABWRLDTY .set	249	;Bkgnd world top Y for end of scroll
  SUBR	aboss
 
 
-	clr	a0			;>Clear out boss variables
+	clr	a0			;0CHlear out boss variables
 	movi	bossram,a1
 abossc	move	a0,*a1+
 	cmpi	bossramend,a1
@@ -851,7 +851,7 @@ abl230	movk	3,a0			;>Turn
 	subk	1,a7
 	jrne	abl250			;Go top?
 
-	calla	getcloseplyr		;>Chase plyr
+	calla	getcloseplyr		;0CHhase plyr
 	jrz	abl250			;No player?
 	callr	abossseeko_dir32
 	jruc	abl300
@@ -877,7 +877,7 @@ abl300	sub	a10,a0			;A0=Difference
 	jreq	abl340			;Ball time?
 
 	move	*a13(absko),a2
-	movk	>f,a0
+	movk	0fH,a0
 	callr	rnd
 	jrnz	abl320			;No dir change?
 	neg	a2
@@ -893,7 +893,7 @@ abl350	move	a1,a1
 	subk	2,a10			;-1
 abl360	addk	1,a10			;+1
 
-abl400	ANDK	>1f,a10			;Make 0-31
+abl400	ANDK	01fH,a10			;Make 0-31
 
 
 abl500	move	a10,a0			;>Thrust
@@ -944,53 +944,53 @@ bossrise_as
 
 	ASRUN	doorsnd_as
 	ASLAB	27			;>Slide door up
-	ASXY	>10,>f,0,-1
+	ASXY	010H,0fH,0,-1
 	ASDSJS1
-	ASHIDE	>10
+	ASHIDE	010H
 	ASLAB	33
-	ASXY	>10,>f,0,-1
+	ASXY	010H,0fH,0,-1
 	ASDSJS1
-	ASHIDE	>11
+	ASHIDE	011H
 	ASLAB	33
-	ASXY	>10,>f,0,-1
+	ASXY	010H,0fH,0,-1
 	ASDSJS1
-	ASHIDE	>12
+	ASHIDE	012H
 	ASLAB	27
-	ASXY	>10,>f,0,-1
+	ASXY	010H,0fH,0,-1
 	ASDSJS1
 
 	ASSLP	180
 
 	ASSND	rcktlnchsnd
-	ASXY	>20,3,-400,0		;>Ship rises
-	ASXYV	>20,3,0,->18000
+	ASXY	020H,3,-400,0		;>Ship rises
+	ASXYV	020H,3,0,-018000H
 	ASSLP	6
-	ASANI	LILBBSHP2,>20
-	ASANI	LILBBSHP2A,>21
+	ASANI	LILBBSHP2,020H
+	ASANI	LILBBSHP2A,021H
 	ASSLP	6
-	ASANI	LILBBSHP3,>20
-	ASANI	LILBBSHP3A,>21
+	ASANI	LILBBSHP3,020H
+	ASANI	LILBBSHP3A,021H
 	ASSLP	6
-	ASDELM	>20,1
+	ASDELM	020H,1
 
 	ASLAB	27			;>Slide door down
-	ASXY	>10,>f,0,1
+	ASXY	010H,0fH,0,1
 	ASDSJS1
-	ASSHOW	>12
+	ASSHOW	012H
 	ASLAB	33
-	ASXY	>10,>f,0,1
+	ASXY	010H,0fH,0,1
 	ASDSJS1
-	ASSHOW	>11
+	ASSHOW	011H
 	ASLAB	33
-	ASXY	>10,>f,0,1
+	ASXY	010H,0fH,0,1
 	ASDSJS1
-	ASSHOW	>10
+	ASSHOW	010H
 	ASLAB	27
-	ASXY	>10,>f,0,1
+	ASXY	010H,0fH,0,1
 	ASDSJS1
 
 	ASSLP	60*120
-	ASDELM	0,>ff
+	ASDELM	0,0ffH
 
 
 
@@ -1023,8 +1023,8 @@ abas400	SLEEPK	15
 	ASENDASM
 
 	ASLAB	60			;>Slide doors open
-	ASXY	>44,0,-1,0
-	ASXY	>45,0,1,0
+	ASXY	044H,0,-1,0
+	ASXY	045H,0,1,0
 	ASDSJS1
 
 	ASSLP	60*3
@@ -1044,22 +1044,22 @@ abas500	SLEEPK	15
 	ASENDASM
 
 	ASLAB	60			;>Slide doors closed
-	ASXY	>44,0,1,0
-	ASXY	>45,0,-1,0
+	ASXY	044H,0,1,0
+	ASXY	045H,0,-1,0
 	ASDSJS1
 
-	ASDEL	>40
+	ASDEL	040H
 	ASSLP	60*2
 
 	ASLAB	60			;>Slide doors open
-	ASXY	>44,0,-1,0
-	ASXY	>45,0,1,0
+	ASXY	044H,0,-1,0
+	ASXY	045H,0,1,0
 	ASDSJS1
 
-	ASDELM	>44,3
+	ASDELM	044H,3
 
 	ASLAB	75			;>Slide big face down
-	ASXY	>60,0,0,1
+	ASXY	060H,0,0,1
 	ASDSJS1
 
 	ASEND
@@ -1069,20 +1069,20 @@ BDX	.set	196-71
 BDY	.set	59
 
 bossrisenew_t
-	ASITEMN	600,SHPY+93,LILBBSHP1,20,DMAWNZ,>20
-	ASITEMN	600-1,SHPY+93,LILBBSHP1,20,DMAWNZ+M_FLIPH,>20
-	ASITEMN	600,SHPY+93,LILBBSHP1A,20,DMAWNZ,>21
-	ASITEMN	600-1,SHPY+93,LILBBSHP1A,20,DMAWNZ+M_FLIPH,>21
+	ASITEMN	600,SHPY+93,LILBBSHP1,20,DMAWNZ,020H
+	ASITEMN	600-1,SHPY+93,LILBBSHP1,20,DMAWNZ+M_FLIPH,020H
+	ASITEMN	600,SHPY+93,LILBBSHP1A,20,DMAWNZ,021H
+	ASITEMN	600-1,SHPY+93,LILBBSHP1A,20,DMAWNZ+M_FLIPH,021H
 	ASITEMN	BDX-25,BDY-35,PCCOVER,35,DMAWNZ,8
 	ASITEMN	BDX+166,BDY-35,PCCOVER,35,DMAWNZ+M_FLIPH,8
-	ASITEMN	BDX,BDY,STEELPC1,30,DMAWNZ,>10
-	ASITEMN	BDX+141,BDY,STEELPC1,30,DMAWNZ+M_FLIPH,>10
-	ASITEMN	BDX,BDY+27,STEELPC2,30,DMAWNZ,>11
-	ASITEMN	BDX+141,BDY+27,STEELPC2,30,DMAWNZ+M_FLIPH,>11
-	ASITEMN	BDX,BDY+60,STEELPC2,30,DMAWNZ,>12
-	ASITEMN	BDX+141,BDY+60,STEELPC2,30,DMAWNZ+M_FLIPH,>12
-	ASITEMN	BDX,BDY+118,STEELPC1,30,DMAWNZ+M_FLIPV,>13
-	ASITEMN	BDX+141,BDY+118,STEELPC1,30,DMAWNZ+M_FLIPH+M_FLIPV,>13
+	ASITEMN	BDX,BDY,STEELPC1,30,DMAWNZ,010H
+	ASITEMN	BDX+141,BDY,STEELPC1,30,DMAWNZ+M_FLIPH,010H
+	ASITEMN	BDX,BDY+27,STEELPC2,30,DMAWNZ,011H
+	ASITEMN	BDX+141,BDY+27,STEELPC2,30,DMAWNZ+M_FLIPH,011H
+	ASITEMN	BDX,BDY+60,STEELPC2,30,DMAWNZ,012H
+	ASITEMN	BDX+141,BDY+60,STEELPC2,30,DMAWNZ+M_FLIPH,012H
+	ASITEMN	BDX,BDY+118,STEELPC1,30,DMAWNZ+M_FLIPV,013H
+	ASITEMN	BDX+141,BDY+118,STEELPC1,30,DMAWNZ+M_FLIPH+M_FLIPV,013H
 	.word	-1000
 
 
@@ -1092,16 +1092,16 @@ BHDX	.set	200
 BHDY	.set	-168
 
 abwallnew_t
-	ASITEMN	BWX,BWY,DORWAY1,50,DMAWNZ,>40
-	ASITEMN	BWX+138,BWY,DORWAY1,50,DMAWNZ+M_FLIPH,>40
-	ASITEMN	BWX,BWY,BIGDOR,155,DMAWNZ,>44
-	ASITEMN	BWX+138,BWY,BIGDOR,155,DMAWNZ+M_FLIPH,>45
-	ASITEMN	BHDX,BWY-120,TOPHED,152,DMAWNZ,>60
-	ASITEMN	BHDX,BWY-120,HEDTUBES,152,DMAWNZ,>60
-	ASITEMN	BHDX,BWY-120,HEDTUBES,152,DMAWNZ+M_FLIPH,>60
-	ASITEMN	BHDX,BWY-120,CHEEK,152,DMAWNZ,>60
-	ASITEMN	BHDX,BWY-120,CHIN,152,DMAWNZ,>60
-	ASITEMN	BHDX,BWY-120,EAR,152,DMAWNZ,>60
+	ASITEMN	BWX,BWY,DORWAY1,50,DMAWNZ,040H
+	ASITEMN	BWX+138,BWY,DORWAY1,50,DMAWNZ+M_FLIPH,040H
+	ASITEMN	BWX,BWY,BIGDOR,155,DMAWNZ,044H
+	ASITEMN	BWX+138,BWY,BIGDOR,155,DMAWNZ+M_FLIPH,045H
+	ASITEMN	BHDX,BWY-120,TOPHED,152,DMAWNZ,060H
+	ASITEMN	BHDX,BWY-120,HEDTUBES,152,DMAWNZ,060H
+	ASITEMN	BHDX,BWY-120,HEDTUBES,152,DMAWNZ+M_FLIPH,060H
+	ASITEMN	BHDX,BWY-120,CHEEK,152,DMAWNZ,060H
+	ASITEMN	BHDX,BWY-120,CHIN,152,DMAWNZ,060H
+	ASITEMN	BHDX,BWY-120,EAR,152,DMAWNZ,060H
 	.word	-1000
 
 
@@ -1207,7 +1207,7 @@ BRPART	equ	(brpart-aboss_t)/80*64
 
 	movi	PLYRPRCS,a8
 
-psolp	movi	>8140,a1
+psolp	movi	08140H,a1
 	move	*a8,a0,L
 	jrz	pso50
 	move	*a0(LEG_PRC),a0,L
@@ -1231,7 +1231,7 @@ pso100	SLOOP	90,psolp
 	addk	5,a8	   		;A8=X target line to trigger scroll
 	clr	a9			;A9=0 (not checking for y target)
 	movi	pathb2,a10		;Scroll table
-	movi	>8000,a0
+	movi	08000H,a0
 	move	a0,@HZSPD,L
 	CREATE	TARGPID,TARGET
 ;	clr	a9			;A9=0 for up, 1 for rgt
@@ -1259,7 +1259,7 @@ asslp1	SLEEPK	30
 	addk	5,a8	   		;A8=X target line to trigger scroll
 	clr	a9			;A9=0 (not checking for y target)
 	movi	pathb3,a10
-	movi	>2000,a0
+	movi	02000H,a0
 	move	a0,@HZSPD,L
 	CREATE	TARGPID,TARGET
 
@@ -1294,7 +1294,7 @@ asslp4	SLEEPK	30
 	addk	5,a8	   		;A8=X target line to trigger scroll
 	clr	a9			;A9=0 (not checking for y target)
 	movi	pathb4,a10
-	movi	>4000,a0
+	movi	04000H,a0
 	move	a0,@HZSPD,L
 	CREATE	TARGPID,TARGET
 
@@ -1357,14 +1357,14 @@ abglp	move	*a8(OIMG),a1,L
 
 	btst	B_FLIPH,a4
 	jrz	abg5			;No flip fix?
-	addi	>10000,a6
+	addi	010000H,a6
 	neg	a1
 
-abg5	cmpi	CLSNEUT,a0		;>Adjust shadow for height
+abg5	cmpi	CLSNEUT,a0		;0AdHjust shadow for height
 	jrne	abg10
 	btst	B_FLIPH,a4
 	jrz	abg8			;No flip fix?
-	addi	>10000,a6		;One more
+	addi	010000H,a6		;One more
 abg8
 ;	move	@bossz,a0,L
 ;	sub	a0,a7
@@ -1464,7 +1464,7 @@ aabalp
 	CREATE	BOSSPID,ab_akhb_rndspch
 	move	a2,*a0(PTIME)
 aaba50	JSRP	FRANIMQ
-	movi	>7f,a0
+	movi	07fH,a0
 	callr	rnd
 	addk	10,a0
 	calla	PRCSLP
@@ -1677,7 +1677,7 @@ abmslo_t
 
 
 	movi	40,a11
-aab100	move	a9,a8			;>Extend ball and arms
+aab100	move	a9,a8			;0EHxtend ball and arms
 	movk	3,a3
 aab120	addk	32,a8
 	move	*a8,a1			;ABDXO
@@ -1713,7 +1713,7 @@ aab200	cmpi	67,a3
 	movi	67,a3
 	jruc	aab400
 
-aab300	movk	>1f,a0
+aab300	movk	01fH,a0
 	callr	rnd
 	jrnz	aab420			;!Dir change?
 aab400	neg	a2			;Neg XVel
@@ -1918,7 +1918,7 @@ ballblow_l
 	move	*a8(OYVEL),a7,L
 	jrgt	abf30			;Pos YVel?
 	clr	a7
-abf30	addi	>10000,a7
+abf30	addi	010000H,a7
 	sll	17,a11			;*2
 	move	*a9(OFLAGS),a10
 	btst	B_FLIPH,a10
@@ -1984,7 +1984,7 @@ ssf350	move	a1,a1
 ssf360	addk	1,a10			;+1
 
 
-ssf400	ANDK	>1f,a10			;Make 0-31
+ssf400	ANDK	01fH,a10			;Make 0-31
 
 ssf500	move	a10,a0
 	sll	4,a0			;*16
@@ -2007,7 +2007,7 @@ ssf500	move	a10,a0
 	move	a0,*a8(OYVEL),L
 
 ssf700
-	movk	>f,a1
+	movk	0fH,a1
 	and	a11,a1
 	jrnz	ssf800			;Skip screen check?
 	calla	SCRTST
@@ -2078,11 +2078,11 @@ abh100	move	*a11(OXVEL),a1,L
 	callr	rnd
 	jrnz	abhx			;No damage?
 
-	movi	>21210000,a9
+	movi	021210000H,a9
 	CREATE0	FLASHME
 
 	move	*a8(OPLINK),a9,L	;A9=*Obj data struct
-	move	*a10(>80),a2		;A2=Weapon damage
+	move	*a10(080H),a2		;A2=Weapon damage
 	jrnn	abh140			;!Bomb?
 	movk	1,a0
 	callr	rnd
@@ -2108,7 +2108,7 @@ abh300	move	*a9(ABDSHLD),a3		;A3=Shield strength
 abh400	move	a3,*a9(ABDSHLD)
 
 
-abh700	move	*a10(>80),a1		;Get score
+abh700	move	*a10(080H),a1		;Get score
 	abs	a1
 	callr	boss_scorehit
 
@@ -2149,14 +2149,14 @@ abxlp
 ;	and	a6,a0
 	btst	0,a6
 	jrnz	abx150
-	movi	aballlexp_t,a9		;>Explosion
+	movi	aballlexp_t,a9		;0EHxplosion
 	btst	B_FLIPH,a4
 	jrz	abx100			;Left ball?
 	movi	aballrexp_t,a9
 abx100	CREATE	BOSSPID,mk_objfranim
 abx150
 ;	addi	AY+40,a11
-;	movi	shldrl_t,a9		;>Alternate LR shoulder
+;	movi	shldrl_t,a9		;0AHlternate LR shoulder
 ;	btst	0,a6
 ;	jrz	abx200
 ;	movi	shldrr_t,a9
@@ -2168,7 +2168,7 @@ abx150
 	calla	ONESND
 	movk	8,a0
 	callr	boss_addrndxy		;Shake!
-	movi	>8000,a1
+	movi	08000H,a1
 	clr	a2
 	btst	B_FLIPH,a4
 	jrz	abx400			;LBall?
@@ -2186,10 +2186,10 @@ abx400	callr	boss_addxy		;Push
 
 aballlexp_t
 	.long	XBOOM2
-	.word	190,->800,>200,->800,>800
+	.word	190,-0800H,0200H,-0800H,0800H
 aballrexp_t
 	.long	XBOOM2
-	.word	190,->200,>800,->800,>800
+	.word	190,-0200H,0800H,-0800H,0800H
 
 aballwrk_l
 	LWL	BBALLWRECK,NEWPALET|1,BBSHPAL
@@ -2221,11 +2221,11 @@ aafxlp
 ;	movk	3,a0
 ;	and	a6,a0
 ;	jrnz	aafx150
-	movi	afdmexp_t,a9		;>Explosion
+	movi	afdmexp_t,a9		;0EHxplosion
 	CREATE	BOSSPID,mk_objfranim
 aafx150
 ;	addi	AY+40,a11
-;	movi	shldrl_t,a9		;>Alternate LR shoulder
+;	movi	shldrl_t,a9		;0AHlternate LR shoulder
 ;	btst	0,a6
 ;	jrz	aafx200
 ;	movi	shldrr_t,a9
@@ -2247,7 +2247,7 @@ aafx150
 	JSRP	FRANIMQ
 
 
-	movi	bossd_t+AKPART+64,a9	;>Delete all objs except for 1-3
+	movi	bossd_t+AKPART+64,a9	;0DeHlete all objs except for 1-3
 	jruc	aafx530
 aafx500	calla	DELOBJ
 	clr	a0
@@ -2272,7 +2272,7 @@ aafx530	move	*a9,a0,L
 
 afdmexp_t
 	.long	XBOOM2
-	.word	190,->800,>800,->800,>500
+	.word	190,-0800H,0800H,-0800H,0500H
 
 afdmej_l
 	LWL0	EJECTSEAT,1

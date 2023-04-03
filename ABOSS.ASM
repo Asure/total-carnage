@@ -11,15 +11,15 @@
 *
 *.Last mod - 1/24/92 22:49
 **************************************************************
-	.TITLE	'Akhboobs flying death machine,face & pleasure domes'
+	.TITLE	"Akhboobs flying death machine,face & pleasure domes"
 	.WIDTH	132
 	.OPTION	B,D,L,T
 	.MNOLIST
 
 	.include	"mproc.equ"
 	.include	"disp.equ"
-	.include	"\video\sys\sys.inc"
-	.include	"\video\sys\gsp.inc"
+	.include	"sys.inc"
+	.include	"gsp.inc"
 	.include	"game.equ"
 	.include	"imgtbl.glo"
 	.include	"audit.equ"
@@ -75,74 +75,74 @@
 
 	.ref	LOVEIT
 
-yousuck		.word	>f9a0,10,>80c5,0	;You suck at this game!
-musicsnd	.word	>f3fe,10,>800e,0	;Boss music
-;landsnd	.word	>fc88,30,>8030,0	;Land from a jump
-;laughsnd	.word	>f194,30,>80f2,0	;When plyr dies
-exp1snd		.word	>fc80,7,>803e,0		;Explosion
-exp2snd		.word	>fd80,10,>80d9,0	;^
-;pain1snd	.word	>f985,20,>80f6,0	;
-;pain2snd	.word	>f985,20,>80f9,0	;
-;groansnd	.word	>f985,20,>8113,0	;Groan
-;groanlndsnd	.word	>f185,20,>8113,0	;^ interruptable
-;oofsnd		.word	>f985,20,>8114,0	;Oof
-;yowl1snd	.word	>f985,30,>8115,0	;
-;yowl2snd	.word	>f985,30,>8116,0	;
-;roarsnd	.word	>f990,40,>8117,0	;Roar
-;roarlongsnd	.word	>f990,120,>8117,0	;Roar
-;houchsnd	.word	>f985,20,>8120,0	;
-;hyowlsnd	.word	>f985,20,>8122,0	;
-;stvpainsnd	.word	>f985,30,>8123,0	;
-bubl1snd 	.word	>f5e5,20,>8130,0	;Blood bubbling
-;bubl2snd	.word	>f0e5,20,>8131,0	;^
-;bubl3snd	.word	>f2e5,20,>8086,0	;^
+yousuck		.word	0f9a0H,10,080c5H,0	;You suck at this game!
+musicsnd	.word	0f3feH,10,0800eH,0	;Boss music
+;landsnd	.word	0fc88H,30,08030H,0	;Land from a jump
+;laughsnd	.word	0f194H,30,080f2H,0	;When plyr dies
+exp1snd		.word	0fc80H,7,0803eH,0		;Explosion
+exp2snd		.word	0fd80H,10,080d9H,0	;^
+;pain1snd	.word	0f985H,20,080f6H,0	;
+;pain2snd	.word	0f985H,20,080f9H,0	;
+;groansnd	.word	0f985H,20,08113H,0	;Groan
+;groanlndsnd	.word	0f185H,20,08113H,0	;^ interruptable
+;oofsnd		.word	0f985H,20,08114H,0	;Oof
+;yowl1snd	.word	0f985H,30,08115H,0	;
+;yowl2snd	.word	0f985H,30,08116H,0	;
+;roarsnd	.word	0f990H,40,08117H,0	;Roar
+;roarlongsnd	.word	0f990H,120,08117H,0	;Roar
+;houchsnd	.word	0f985H,20,08120H,0	;
+;hyowlsnd	.word	0f985H,20,08122H,0	;
+;stvpainsnd	.word	0f985H,30,08123H,0	;
+bubl1snd 	.word	0f5e5H,20,08130H,0	;Blood bubbling
+;bubl2snd	.word	0f0e5H,20,08131H,0	;^
+;bubl3snd	.word	0f2e5H,20,08086H,0	;^
 
-;myeyesnd	.word	>f9e0,110,>8118,0	;
-;myarmsnd	.word	>f9e0,120,>8119,0	;
-;myheadsnd	.word	>f9e0,70,>8121,0	;
+;myeyesnd	.word	0f9e0H,110,08118H,0	;
+;myarmsnd	.word	0f9e0H,120,08119H,0	;
+;myheadsnd	.word	0f9e0H,70,08121H,0	;
 
-msllnchsnd	.word	>f290,10,>80b6,0	;Missile launch
-mslexpsnd	.word	>f470,10,>8048,0	;Missile explosion
-whawhasnd	.word	>fbee,90,>8088,0	;Whawha
-racktunesnd	.word	>f3fe,10,>800d,0 	;Rackup tune
+msllnchsnd	.word	0f290H,10,080b6H,0	;Missile launch
+mslexpsnd	.word	0f470H,10,08048H,0	;Missile explosion
+whawhasnd	.word	0fbeeH,90,08088H,0	;Whawha
+racktunesnd	.word	0f3feH,10,0800dH,0 	;Rackup tune
 
 * Aboss
-ahkb1		.word	>f9a0,60,>80eb,0	;Akhboob speech
-ahkb2		.word	>f9a0,60,>80ec,0	;^
-ahkb3		.word	>f9a0,60,>80ed,0	;^
-ahkbsta		.word	>f9a0,60,>80ee,0	;^ start angry
-ahkbang		.word	>f9a0,60,>80ef,0	;^ angry
-doorsldsnd	.word	>f480,2,>804c,0		;Door slides
-rcktlnchsnd	.word	>f290,10,>812c,0	;Rocket launch
-;puffsnd	.word	>f280,10,>8085,0	;Attack balls puffing
-tungsnd		.word	>f290,10,>80b6,0	;Tongue launch
-pain1snd	.word	>f1f1,40,>8141,0	;Ow
-pain2snd	.word	>f1f1,60,>814c,0	;Laugh
-pain3snd	.word	>f1f1,60,>8150,0	;Hahaha
-pain4snd	.word	>f1f1,80,>8156,0	;See if I care
-germ1snd	.word	>f9f7,120,>8142,0
-germ2snd	.word	>f9f7,60,>8143,0
-germ3snd	.word	>f9f7,80,>8144,0
-germ4snd	.word	>f9f7,60,>8145,0
-germ5snd	.word	>f9f7,60,>8146,0
-germ6snd	.word	>f9f7,60,>8147,0
-yougoodsnd	.word	>f9f7,60,>8148,0	;Your really good
-excusesnd	.word	>f9f0,10,>814f,0	;Excuse me
-painbpsnd	.word	>f9f7,80,>8154,0	;Pain before pleasure
-laffsnd		.word	>f9f7,60,>814c,0	;Laugh
-peacesnd	.word	>f9f7,90,>8155,0	;Peaceful citizen
-amnotsnd	.word	>f9f7,60,>8149,0	;Not
+ahkb1		.word	0f9a0H,60,080ebH,0	;Akhboob speech
+ahkb2		.word	0f9a0H,60,080ecH,0	;^
+ahkb3		.word	0f9a0H,60,080edH,0	;^
+ahkbsta		.word	0f9a0H,60,080eeH,0	;^ start angry
+ahkbang		.word	0f9a0H,60,080efH,0	;^ angry
+doorsldsnd	.word	0f480H,2,0804cH,0		;Door slides
+rcktlnchsnd	.word	0f290H,10,0812cH,0	;Rocket launch
+;puffsnd	.word	0f280H,10,08085H,0	;Attack balls puffing
+tungsnd		.word	0f290H,10,080b6H,0	;Tongue launch
+pain1snd	.word	0f1f1H,40,08141H,0	;Ow
+pain2snd	.word	0f1f1H,60,0814cH,0	;Laugh
+pain3snd	.word	0f1f1H,60,08150H,0	;Hahaha
+pain4snd	.word	0f1f1H,80,08156H,0	;See if I care
+germ1snd	.word	0f9f7H,120,08142H,0
+germ2snd	.word	0f9f7H,60,08143H,0
+germ3snd	.word	0f9f7H,80,08144H,0
+germ4snd	.word	0f9f7H,60,08145H,0
+germ5snd	.word	0f9f7H,60,08146H,0
+germ6snd	.word	0f9f7H,60,08147H,0
+yougoodsnd	.word	0f9f7H,60,08148H,0	;Your really good
+excusesnd	.word	0f9f0H,10,0814fH,0	;Excuse me
+painbpsnd	.word	0f9f7H,80,08154H,0	;Pain before pleasure
+laffsnd		.word	0f9f7H,60,0814cH,0	;Laugh
+peacesnd	.word	0f9f7H,90,08155H,0	;Peaceful citizen
+amnotsnd	.word	0f9f7H,60,08149H,0	;Not
 
 * Pleasure dome
-pdtunesnd	.word	>f3fe,10,>800b,0	;Pleasure tune
-pdwelcomesnd	.word	>f9a0,60,>813f,0	;Welcome
-TOTCARN		.word	>f9f0,120,>80cf,0	;"TOTAL CARNAGE"
-WOO1		.word	>f97e,>24,>80cb,0	;WHHOOO
-WOO2		.word	>f97e,>24,>80cc,0	;"YEAH"
-gosnd		.word	>f17e,20,>8140		;Go
-		.word	>f17e,20,>8140
-		.word	>f17e,20,>8140,0
-pddoorsnd	.word	>f0c0,10,>811a,0	;Big door
+pdtunesnd	.word	0f3feH,10,0800bH,0	;Pleasure tune
+pdwelcomesnd	.word	0f9a0H,60,0813fH,0	;Welcome
+TOTCARN		.word	0f9f0H,120,080cfH,0	;"TOTAL CARNAGE"
+WOO1		.word	0f97eH,024H,080cbH,0	;WHHOOO
+WOO2		.word	0f97eH,024H,080ccH,0	;"YEAH"
+gosnd		.word	0f17eH,20,08140H		;Go
+		.word	0f17eH,20,08140H
+		.word	0f17eH,20,08140H,0
+pddoorsnd	.word	0f0c0H,10,0811aH,0	;Big door
 
 
 
@@ -169,14 +169,14 @@ EASY		.equ	0	;Makes easy for DEBUG
 SUBABANI	.equ	1	;Akhboob ani process
 SUBFEYEANI	.equ	2	;Face eye ani process
 SUBABMORT	.equ	3	;Akhboob mortar
-SUBABGRNT	.equ	>20	;Akhboob grunt
-SUBBOSSHALT	.equ	>80	;Freezes action on halt
+SUBABGRNT	.equ	020H	;Akhboob grunt
+SUBBOSSHALT	.equ	080H	;Freezes action on halt
 
 ;Boss data struct
 
-ABDOBJ	.set	>0	;*Parts obj
-ABDXO	.set	>20	;X offset from ani pt
-ABDSHLD	.set	>30	;Shield, 0=Dead, +=OK
+ABDOBJ	.set	00H	;*Parts obj
+ABDXO	.set	020H	;X offset from ani pt
+ABDSHLD	.set	030H	;Shield, 0=Dead, +=OK
 
 
 ABXO	.equ	24	;1st obj offsets for center
@@ -210,7 +210,7 @@ ABWRLDTY .set	100	;Bkgnd world top Y for end of scroll
 	movi	musicsnd,a0
 	calla	ONESND
 
-	clr	a0			;>Clear out boss variables
+	clr	a0			;0CHlear out boss variables
 	movi	bossd_t,a1
 abossc	move	a0,*a1+
 	cmpi	abramend,a1
@@ -227,7 +227,7 @@ abossc	move	a0,*a1+
 	addk	5,a8	   		;A8=X target line to trigger scroll
 	clr	a9			;A9=0 (no check for y target)
 	movi	path1_t,a10		;Scroll table
-	movi	>10000,a0
+	movi	010000H,a0
 	move	a0,@HZSPD,L
 	CREATE	TARGPID,TARGET
 
@@ -321,7 +321,7 @@ abl230	movk	3,a0			;>Turn
 	subk	1,a7
 	jrne	abl250			;Go top?
 
-	calla	getcloseplyr		;>Chase plyr
+	calla	getcloseplyr		;0CHhase plyr
 	jrz	abl250			;No player?
 	callr	abossseeko_dir32
 	jruc	abl300
@@ -347,7 +347,7 @@ abl300	sub	a10,a0			;A0=Difference
 	jreq	abl340			;Ball time?
 
 	move	*a13(absko),a2
-	movk	>f,a0
+	movk	0fH,a0
 	callr	rnd
 	jrnz	abl320			;No dir change?
 	neg	a2
@@ -363,7 +363,7 @@ abl350	move	a1,a1
 	subk	2,a10			;-1
 abl360	addk	1,a10			;+1
 
-abl400	ANDK	>1f,a10			;Make 0-31
+abl400	ANDK	01fH,a10			;Make 0-31
 
 
 abl500	move	a10,a0			;>Thrust
@@ -424,7 +424,7 @@ aboss_test
 	movi	BOSSPID|SUBABANI,a0	;Kill akhboob ani
 	calla	KIL1C
 
-	movi	bossd_t,a9		;>Delete all objs
+	movi	bossd_t,a9		;0DeHlete all objs
 	jruc	abl830
 abl800	calla	DELOBJ
 	clr	a0
@@ -504,7 +504,7 @@ abl1200	move	a4,a4
 abl1300	PUSHP	a0
 
 	movi	BOSSPID,a0		;Kill boss procs
-	movi	>ff,a1
+	movi	0ffH,a1
 	calla	KILALLN
 
 	movk	1,a0
@@ -577,7 +577,7 @@ abl2000	SLEEPK	10
 	CREATE0	ZONE_TXT2
 	SLEEP	60*5
 
-	movi	->1004,a0		;Hide screen
+	movi	-01004H,a0		;Hide screen
 	move	a0,@DPYSTRT
 
 	movi	PDX+8,a0		;>Turn on underground
@@ -610,7 +610,7 @@ abl2450
 	add	a0,a2			;A2=Total keys
 	move	a2,@keytotal
 	movi	220,a1			;Default # keys
-	move	@SWITCH+>30,a7
+	move	@SWITCH+030H,a7
 	btst	7,a7
 	jrnz	abl2500
 	movi	200,a1			;Easier # keys
@@ -622,14 +622,14 @@ abl2500	cmp	a1,a2			;# Keys required
 abl2600	PUSHP	a11
 
 	move	@P1DATA+PSCORE,a0,L
-	cmpi	>450000,a0
+	cmpi	0450000H,a0
 	jrge	abl2610			;Most of game?
 	move	@P2DATA+PSCORE,a0,L
-	cmpi	>450000,a0
+	cmpi	0450000H,a0
 	jrlt	abl2640			;!Most of game?
 
 abl2610
-	movi	AUDKEYTOT,a0		;>Add in keys
+	movi	AUDKEYTOT,a0		;0AddH in keys
 	move	a2,a1
 	calla	AUD
 
@@ -642,7 +642,7 @@ abl2610
 abl2640	movi	pdtunesnd,a0
 	calla	ONESND
 
-	move	a11,a11			;>Fade up with guys running in
+	move	a11,a11			;0FadeH up with guys running in
 	jrz	abl2650			;Not enough keys?
 	calla	INIT_SCORE
 abl2650	movi	fade_t,a0
@@ -670,11 +670,11 @@ abl2670	SLEEP	40
 
 abl2700	SLEEP	60*2
 
-	movi	485*>10000/>18333,a8
+	movi	485*010000H/018333H,a8
 	move	a11,a11
 	jrnz	abl2800			;Enough keys to get in?
-	movi	230*>10000/>18333,a8
-abl2800	movi	->18333,a9
+	movi	230*010000H/018333H,a8
+abl2800	movi	-018333H,a9
 	CREATE	TARGPID,scroll_y
 
 ;	SLEEP	37
@@ -699,7 +699,7 @@ abllp3	SLEEPK	1			;>Wait till right before doors
 	calla	aud_addnumplyrs
 abl3000
 
-	move	@BAKLST,a0,L		;>Delete entry doors
+	move	@BAKLST,a0,L		;0DeHlete entry doors
 abl3100	move	*a0(OZPOS),a1
 	cmpi	64,a1
 	jrne	abl3150
@@ -738,7 +738,7 @@ abl3500	move	a11,a11
 	addk	5,a8
 	clr	a9
 	movi	pathpd_t,a10
-	movi	>10000,a0
+	movi	010000H,a0
 	move	a0,@HZSPD,L
 	CREATE	TARGPID,TARGET
 	CREATE	COLPID,COLLISIONS
@@ -801,7 +801,7 @@ abl4500	SLEEP	60*8
 	movi	pddoorsnd,a0
 	calla	ONESND
 
-	move	@OBJLST,a0,L		;>Big doors scroll up
+	move	@OBJLST,a0,L		;0BHig doors scroll up
 abl5100	move	*a0(OZPOS),a1
 	cmpi	159,a1
 	jrne	abl5150
@@ -830,7 +830,7 @@ abl5150	move	*a0,a0,L
 	clr	a0
 	move	a0,@GAMERASE
 	move	a0,@IRQSKYE		;Black
-	movi	->1004,a0		;Start display at bottom of screen
+	movi	-01004H,a0		;Start display at bottom of screen
 	move	a0,@DPYSTRT
 	movi	thronebkgnd_t,a0
 	move	a0,@BAKMODS,L
@@ -847,7 +847,7 @@ abl5150	move	*a0,a0,L
 	jrz	abl6500			;No PAL?
 	sext	a0
 	move	a0,a4
-	move	@BAKLST,a0,L		;>Delete girls
+	move	@BAKLST,a0,L		;0DeHlete girls
 abl6000	move	*a0(OPAL),a1
 	cmp	a4,a1
 	jrne	abl6050
@@ -938,7 +938,7 @@ basepd_t
 	.word	0
 
 thronebkgnd_t
-	LWW	THRONEBMOD,>944,>7D3
+	LWW	THRONEBMOD,0944H,07D3H
 	.long	-1
 
 fade2_t	.long	0,0
@@ -953,7 +953,7 @@ fade2_t	.long	0,0
 	movi	PLYRPRCS,a1
 	move	a0,*a1+,L		;These must be cleared!
 	move	a0,*a1+,L
-	movi	>efff,a1		;Keep only the coin process
+	movi	0efffH,a1		;Keep only the coin process
 	calla	KILALLN
 	clr	a0
 	clr	a1
@@ -995,49 +995,49 @@ abas50	SLEEPK	5
 
 	ASRUN	doorsnd_as
 	ASLAB	27			;>Slide door up
-	ASXY	>10,>f,0,-1
+	ASXY	010H,0fH,0,-1
 	ASDSJS1
-	ASHIDE	>10
+	ASHIDE	010H
 	ASLAB	33
-	ASXY	>10,>f,0,-1
+	ASXY	010H,0fH,0,-1
 	ASDSJS1
-	ASHIDE	>11
+	ASHIDE	011H
 	ASLAB	33
-	ASXY	>10,>f,0,-1
+	ASXY	010H,0fH,0,-1
 	ASDSJS1
-	ASHIDE	>12
+	ASHIDE	012H
 	ASLAB	27
-	ASXY	>10,>f,0,-1
+	ASXY	010H,0fH,0,-1
 	ASDSJS1
 
 	ASSLP	180
 
 	ASSND	rcktlnchsnd
-	ASXY	>20,3,-400,0		;>Ship rises
-	ASXYV	>20,3,0,->18000
+	ASXY	020H,3,-400,0		;>Ship rises
+	ASXYV	020H,3,0,-018000H
 	ASSLP	6
-	ASANI	LILBBSHP2,>20
-	ASANI	LILBBSHP2A,>21
+	ASANI	LILBBSHP2,020H
+	ASANI	LILBBSHP2A,021H
 	ASSLP	6
-	ASANI	LILBBSHP3,>20
-	ASANI	LILBBSHP3A,>21
+	ASANI	LILBBSHP3,020H
+	ASANI	LILBBSHP3A,021H
 	ASSLP	6
-	ASDELM	>20,1
+	ASDELM	020H,1
 
 	ASLAB	27			;>Slide door down
-	ASXY	>10,>f,0,1
+	ASXY	010H,0fH,0,1
 	ASDSJS1
-	ASSHOW	>12
+	ASSHOW	012H
 	ASLAB	33
-	ASXY	>10,>f,0,1
+	ASXY	010H,0fH,0,1
 	ASDSJS1
-	ASSHOW	>11
+	ASSHOW	011H
 	ASLAB	33
-	ASXY	>10,>f,0,1
+	ASXY	010H,0fH,0,1
 	ASDSJS1
-	ASSHOW	>10
+	ASSHOW	010H
 	ASLAB	27
-	ASXY	>10,>f,0,1
+	ASXY	010H,0fH,0,1
 	ASDSJS1
 
 	ASASM
@@ -1046,7 +1046,7 @@ abas50	SLEEPK	5
 	ASENDASM
 
 	ASSLP	60*40
-	ASDELM	0,>ff
+	ASDELM	0,0ffH
 
 
 
@@ -1079,8 +1079,8 @@ abas400	SLEEPK	15
 	ASENDASM
 
 	ASLAB	70			;>Slide doors open
-	ASXY	>44,0,-1,0
-	ASXY	>45,0,1,0
+	ASXY	044H,0,-1,0
+	ASXY	045H,0,1,0
 	ASDSJS1
 
 	ASSLP	60*2
@@ -1101,18 +1101,18 @@ abas500	SLEEPK	15
 	ASENDASM
 
 	ASLAB	69			;>Slide doors closed
-	ASXY	>44,0,1,0
-	ASXY	>45,0,-1,0
+	ASXY	044H,0,1,0
+	ASXY	045H,0,-1,0
 	ASDSJS1
 
 	ASSLP	60*2
 
 	ASLAB	69			;>Slide doors open
-	ASXY	>44,0,-1,0
-	ASXY	>45,0,1,0
+	ASXY	044H,0,-1,0
+	ASXY	045H,0,1,0
 	ASDSJS1
 
-	ASDELM	>44,1
+	ASDELM	044H,1
 
 	ASEND
 
@@ -1121,20 +1121,20 @@ BDX	.set	196-70
 BDY	.set	59-310
 
 bossrisenew_t
-	ASITEMN	600,SHPY+93,LILBBSHP1,15,DMAWNZ,>20
-	ASITEMN	600-1,SHPY+93,LILBBSHP1,15,DMAWNZ+M_FLIPH,>20
-	ASITEMN	600,SHPY+93,LILBBSHP1A,15,DMAWNZ,>21
-	ASITEMN	600-1,SHPY+93,LILBBSHP1A,15,DMAWNZ+M_FLIPH,>21
+	ASITEMN	600,SHPY+93,LILBBSHP1,15,DMAWNZ,020H
+	ASITEMN	600-1,SHPY+93,LILBBSHP1,15,DMAWNZ+M_FLIPH,020H
+	ASITEMN	600,SHPY+93,LILBBSHP1A,15,DMAWNZ,021H
+	ASITEMN	600-1,SHPY+93,LILBBSHP1A,15,DMAWNZ+M_FLIPH,021H
 	ASITEMN	BDX-25,BDY-35,PCCOVER,25,DMAWNZ,8
 	ASITEMN	BDX+166,BDY-35,PCCOVER,25,DMAWNZ+M_FLIPH,8
-	ASITEMN	BDX,BDY,STEELPC1,20,DMAWNZ,>10
-	ASITEMN	BDX+141,BDY,STEELPC1,20,DMAWNZ+M_FLIPH,>10
-	ASITEMN	BDX,BDY+27,STEELPC2,20,DMAWNZ,>11
-	ASITEMN	BDX+141,BDY+27,STEELPC2,20,DMAWNZ+M_FLIPH,>11
-	ASITEMN	BDX,BDY+60,STEELPC2,20,DMAWNZ,>12
-	ASITEMN	BDX+141,BDY+60,STEELPC2,20,DMAWNZ+M_FLIPH,>12
-	ASITEMN	BDX,BDY+118,STEELPC1,20,DMAWNZ+M_FLIPV,>13
-	ASITEMN	BDX+141,BDY+118,STEELPC1,20,DMAWNZ+M_FLIPH+M_FLIPV,>13
+	ASITEMN	BDX,BDY,STEELPC1,20,DMAWNZ,010H
+	ASITEMN	BDX+141,BDY,STEELPC1,20,DMAWNZ+M_FLIPH,010H
+	ASITEMN	BDX,BDY+27,STEELPC2,20,DMAWNZ,011H
+	ASITEMN	BDX+141,BDY+27,STEELPC2,20,DMAWNZ+M_FLIPH,011H
+	ASITEMN	BDX,BDY+60,STEELPC2,20,DMAWNZ,012H
+	ASITEMN	BDX+141,BDY+60,STEELPC2,20,DMAWNZ+M_FLIPH,012H
+	ASITEMN	BDX,BDY+118,STEELPC1,20,DMAWNZ+M_FLIPV,013H
+	ASITEMN	BDX+141,BDY+118,STEELPC1,20,DMAWNZ+M_FLIPH+M_FLIPV,013H
 	.word	-1000
 
 
@@ -1144,10 +1144,10 @@ BWY	.set	-90
 ;BHDY	.set	-236
 
 abwallnew_t
-;	ASITEMN	BWX,BWY,DORWAY1,50,DMAWNZ,>40
-;	ASITEMN	BWX+137,BWY,DORWAY1,50,DMAWNZ+M_FLIPH,>40
-	ASITEMN	BWX,BWY,BIGDOR,130,DMAWNZ,>44
-	ASITEMN	BWX+137,BWY,BIGDOR,130,DMAWNZ+M_FLIPH,>45
+;	ASITEMN	BWX,BWY,DORWAY1,50,DMAWNZ,040H
+;	ASITEMN	BWX+137,BWY,DORWAY1,50,DMAWNZ+M_FLIPH,040H
+	ASITEMN	BWX,BWY,BIGDOR,130,DMAWNZ,044H
+	ASITEMN	BWX+137,BWY,BIGDOR,130,DMAWNZ+M_FLIPH,045H
 	.word	-1000
 
 
@@ -1174,7 +1174,7 @@ doorsnd_as
 
  SUBRP	aboss_init
 
-	move	@WORLDTLX+16,a2		;>Add in WORLDXY
+	move	@WORLDTLX+16,a2		;0AddH in WORLDXY
 	add	a2,a0
 	sll	16,a0
 	move	@WORLDTLY+16,a2
@@ -1323,13 +1323,13 @@ abbmlp	move	*a10,a0
 	jrle	abbm80			;In range?
 	movi	250,a0			;Set max
 abbm80
-	movi	>c0c,a3			;Green
+	movi	0c0cH,a3			;Green
 	cmpi	155,a0
 	jrge	abbm120
-	movi	>3b3b,a3		;Yellow
+	movi	03b3bH,a3		;Yellow
 	cmpi	70,a0
 	jrge	abbm120
-	movi	>f0f,a3			;Red
+	movi	0f0fH,a3			;Red
 abbm120
 	movk	32,a2			;Off bottom
 	move	a0,a0
@@ -1368,7 +1368,7 @@ abbm400	move	@WORLDTLY+16,a1
  SUBRP	plyr_shoeson
 
 	movi	PLYRPRCS,a8
-	movi	>8140,a9
+	movi	08140H,a9
 
 psolp	move	*a8,a0,L
 	jrz	pso50
@@ -1393,7 +1393,7 @@ pso100	SLOOP	90,psolp
 	addk	5,a8	   		;A8=X target line to trigger scroll
 	clr	a9			;A9=0 (not checking for y target)
 	movi	pathb2,a10		;Scroll table
-	movi	>8000,a0
+	movi	08000H,a0
 	move	a0,@HZSPD,L
 	CREATE	TARGPID,TARGET
 ;	clr	a9			;A9=0 for up, 1 for rgt
@@ -1417,9 +1417,9 @@ asslp1	SLEEPK	30
 	addk	5,a8	   		;A8=X target line to trigger scroll
 	clr	a9			;A9=0 (not checking for y target)
 	movi	pathb3,a10
-	movi	>2000,a0
+	movi	02000H,a0
 	.if	EASY
-	movi	>4000*16,a0		;DEBUG
+	movi	04000H*16,a0		;DEBUG
 	.endif
 	move	a0,@HZSPD,L
 	CREATE	TARGPID,TARGET
@@ -1462,7 +1462,7 @@ asslp4	SLEEPK	30
 	addk	5,a8	   		;A8=X target line to trigger scroll
 	clr	a9			;A9=0 (not checking for y target)
 	movi	pathb4,a10
-	movi	>4000,a0
+	movi	04000H,a0
 	move	a0,@HZSPD,L
 	CREATE	TARGPID,TARGET
 
@@ -1481,20 +1481,20 @@ pathb3	.word	1,532*8,0
 pathb4	.word	1,100*4,0
 
 
-BXO	.set	>578
-BYO	.set	>95
+BXO	.set	0578H
+BYO	.set	095H
 
-base1	.word	>bab-BXO,>47b-BYO,>c3c-BXO,>4ed-BYO	;Pit
-base2	.word	>b20-BXO,>420-BYO,>b50-BXO,>52a		;Lower side wall
-	.word	>c9b-BXO,>420-BYO,>cd0-BXO,>1000
-	.word	>b20-BXO,20,>b46-BXO,>430-BYO		;Top side wall
-	.word	>ca6-BXO,20,>cd0-BXO,>430-BYO
+base1	.word	0babH-BXO,047bH-BYO,0c3cH-BXO,04edH-BYO	;Pit
+base2	.word	0b20H-BXO,0420H-BYO,0b50H-BXO,052aH		;Lower side wall
+	.word	0c9bH-BXO,0420H-BYO,0cd0H-BXO,01000H
+	.word	0b20H-BXO,20,0b46H-BXO,0430H-BYO		;Top side wall
+	.word	0ca6H-BXO,20,0cd0H-BXO,0430H-BYO
 	.word	0
-base3	.word	>b2b-BXO,10,>b44-BXO,>3000
-	.word	>ca8-BXO,10,>cc7-BXO,>3000
-	.word	>b2b-BXO,10,>b86-BXO,>17c-BYO		;Tube up left
-	.word	>c64-BXO,10,>cd6-BXO,>17c-BYO		;Tube up rght
-	.word	>b2b-BXO,10,>d16-BXO,>140-BYO		;Back wall
+base3	.word	0b2bH-BXO,10,0b44H-BXO,03000H
+	.word	0ca8H-BXO,10,0cc7H-BXO,03000H
+	.word	0b2bH-BXO,10,0b86H-BXO,017cH-BYO		;Tube up left
+	.word	0c64H-BXO,10,0cd6H-BXO,017cH-BYO		;Tube up rght
+	.word	0b2bH-BXO,10,0d16H-BXO,0140H-BYO		;Back wall
 	.word	0
 
 baseb2	.WORD	0B2BH-BXO,10,0B5BH-12-BXO,3000H		;SIDE WALL
@@ -1540,14 +1540,14 @@ abglp	move	*a8(OIMG),a1,L
 
 	btst	B_FLIPH,a4
 	jrz	abg5			;No flip fix?
-	addi	>10000,a6
+	addi	010000H,a6
 	neg	a1
 
-abg5	cmpi	CLSDEAD,a0		;>Adjust shadow for height
+abg5	cmpi	CLSDEAD,a0		;0AdHjust shadow for height
 	jrne	abg10
 	btst	B_FLIPH,a4
 	jrz	abg8			;No flip fix?
-	addi	>10000,a6		;One more
+	addi	010000H,a6		;One more
 abg8
 ;	move	@bossz,a0,L
 ;	sub	a0,a7
@@ -1647,7 +1647,7 @@ aabalp
 	CREATE	BOSSPID,ab_akhb_rndspch
 	move	a2,*a0(PTIME)
 aaba50	JSRP	FRANIMQ
-	movi	>7f,a0
+	movi	07fH,a0
 	callr	rnd
 	addk	10,a0
 	calla	PRCSLP
@@ -1868,7 +1868,7 @@ abmslo_t
 
 
 	movi	40,a11
-aab100	move	a9,a8			;>Extend ball and arms
+aab100	move	a9,a8			;0EHxtend ball and arms
 	movk	3,a3
 aab120	addk	32,a8
 	move	*a8,a1			;ABDXO
@@ -1902,7 +1902,7 @@ aab200	cmpi	67,a3
 	movi	67,a3
 	jruc	aab400
 
-aab300	movk	>1f,a0
+aab300	movk	01fH,a0
 	callr	rnd
 	jrnz	aab420			;!Dir change?
 aab400	neg	a2			;Neg XVel
@@ -2128,7 +2128,7 @@ awts40	move	@WORLDTLY+16,a1
 	move	*a8(OYVEL),a7,L
 	jrgt	abf30			;Pos YVel?
 	clr	a7
-abf30	addi	>10000,a7
+abf30	addi	010000H,a7
 	sll	17,a11			;*2
 	move	*a9(OFLAGS),a10
 	btst	B_FLIPH,a10
@@ -2185,7 +2185,7 @@ ssf350	move	a1,a1
 ssf360	addk	1,a10			;+1
 
 
-ssf400	ANDK	>1f,a10			;Make 0-31
+ssf400	ANDK	01fH,a10			;Make 0-31
 
 ssf500	move	a10,a0
 	sll	4,a0			;*16
@@ -2208,7 +2208,7 @@ ssf500	move	a10,a0
 	move	a0,*a8(OYVEL),L
 
 ssf700
-	movk	>f,a1
+	movk	0fH,a1
 	and	a11,a1
 	jrnz	ssf800			;Skip screen check?
 	calla	SCRTST
@@ -2272,7 +2272,7 @@ mslnofuel_l
 	addi	buldat2_t,a10		;A10=*Data_t
 	move	*a11(OYVEL),a2,L
 	jrgt	abh100			;Bad vel?
-	subi	>2000,a2
+	subi	02000H,a2
 	move	*a10,a9			;>Push face up
 	clr	a1
 	sra	a9,a2
@@ -2287,14 +2287,14 @@ abh100
 	jrnz	abh110
 	callr	snd_rndakhboob		;Do a speech call
 
-abh110	movi	>2d2d0000,a9
+abh110	movi	02d2d0000H,a9
 	subk	3,a6
 	jrne	abh120			;!Skull?
-	movi	>35350000,a9
+	movi	035350000H,a9
 abh120	CREATE0	FLASHME
 
 	move	*a8(OPLINK),a9,L	;A9=*Obj data struct
-	move	*a10(>80),a2		;A2=Weapon damage
+	move	*a10(080H),a2		;A2=Weapon damage
 	jrnn	abh150			;!Bomb?
 	movk	1,a0
 	callr	rnd
@@ -2306,7 +2306,7 @@ abh150
 	jrgt	abh170			;OK?
 
 	CREATE	BOSSPID,ab_facexpld
-	movi	>5000,a1
+	movi	05000H,a1
 	callr	boss_scorebonusword
 	clr	a3
 abh170	move	a3,@abossshld
@@ -2338,11 +2338,11 @@ abh350	move	*a11(OXVEL),a1,L
 	callr	rnd
 	jrnz	abhx			;No damage?
 
-	movi	>21210000,a9
+	movi	021210000H,a9
 	CREATE0	FLASHME
 
 	move	*a8(OPLINK),a9,L	;A9=*Obj data struct
-	move	*a10(>80),a2		;A2=Weapon damage
+	move	*a10(080H),a2		;A2=Weapon damage
 	jrnn	abh400			;!Bomb?
 	movk	1,a0
 	callr	rnd
@@ -2353,7 +2353,7 @@ abh400
 	sub	a2,a3
 	jrgt	abh450			;OK?
 	CREATE	BOSSPID,ab_afdmxpld
-	movi	>4000,a1
+	movi	04000H,a1
 	callr	boss_scorebonusword
 	clr	a3
 abh450	move	a3,@abossshld
@@ -2368,7 +2368,7 @@ abh500	move	*a9(ABDSHLD),a3		;A3=Shield strength
 	move	@bloflg,a0
 	jrnz	abh700			;Blow or lockout in progress?
 	CREATE	BOSSPID,ab_ballxpld
-	movi	>4000,a1
+	movi	04000H,a1
 	callr	boss_scorebonusword
 abh550	move	a3,*a9(ABDSHLD)
 
@@ -2378,7 +2378,7 @@ abh550	move	a3,*a9(ABDSHLD)
 	sll	4+1,a1			;*2 (skip fractions)
 	move	a1,@bossmeterv
 
-abh700	move	*a10(>80),a1		;Get score
+abh700	move	*a10(080H),a1		;Get score
 	abs	a1
 	calla	boss_scorehit
 
@@ -2457,7 +2457,7 @@ abxlp
 	addk	20,a11			;+YO
 	btst	0,a6
 	jrnz	abx150
-	movi	aballlexp_t,a9		;>Explosion
+	movi	aballlexp_t,a9		;0EHxplosion
 	btst	B_FLIPH,a4
 	jrz	abx100			;Left ball?
 	movi	aballrexp_t,a9
@@ -2469,7 +2469,7 @@ abx150
 	calla	ONESND
 	movk	8,a0
 	callr	boss_addrndxy		;Shake!
-	movi	>8000,a1
+	movi	08000H,a1
 	clr	a2
 	btst	B_FLIPH,a4
 	jrz	abx400			;LBall?
@@ -2488,11 +2488,11 @@ abx400	callr	boss_addxy		;Push
 aballlexp_t
 	LW	xpld_l,3
 	.long	GRNPAL,BLUBOOM,ORNGPAL
-	.word	190,->800,>200,->800,>800
+	.word	190,-0800H,0200H,-0800H,0800H
 aballrexp_t
 	LW	xpld_l,3
 	.long	GRNPAL,BLUBOOM,ORNGPAL
-	.word	190,->200,>800,->800,>800
+	.word	190,-0200H,0800H,-0800H,0800H
 
 xpld_l	LW	XPLD1,4
 	LW	XPLD2,4
@@ -2536,7 +2536,7 @@ aafxlp
 	addk	25,a10			;+XO
 	move	*a8(OYPOS),a11
 	addi	38,a11			;+YO
-	movi	afdmexp_t,a9		;>Explosion
+	movi	afdmexp_t,a9		;0EHxplosion
 	btst	1,a6
 	jrnz	aafx150
 	movi	afdmexp2_t,a9
@@ -2559,7 +2559,7 @@ aafx200	movi	exp1snd,a0
 	move	*a8(OFLAGS),a4
 	calla	ANI
 
-	movi	bossd_t+AKPART+64,a9	;>Delete all objs except for 1-2
+	movi	bossd_t+AKPART+64,a9	;0DeHlete all objs except for 1-2
 	jruc	aafx530
 aafx500	calla	DELOBJ
 	clr	a0
@@ -2585,11 +2585,11 @@ aafx530	move	*a9,a0,L
 afdmexp_t
 	LW	xpld_l,4
 	.long	RDBOOM,YELLPAL,WHTPAL,ORNGPAL
-	.word	190,->300,>300,->280,>280
+	.word	190,-0300H,0300H,-0280H,0280H
 afdmexp2_t
 	LW	xpld_l,4
 	.long	RDBOOM,YELLPAL,WHTPAL,ORNGPAL
-	.word	190,->c00,>c00,->a00,>c00
+	.word	190,-0c00H,0c00H,-0a00H,0c00H
 
 
 
@@ -2620,14 +2620,14 @@ afxlp
 	addi	64,a11			;+YO
 	btst	0,a6
 	jrnz	afx150
-	movi	faceexp_t,a9		;>Explosion
+	movi	faceexp_t,a9		;0EHxplosion
 	CREATE	BOSSPID,mk_objrpalfran
 afx150
 	movi	exp1snd,a0
 	calla	ONESND
 	movi	exp2snd,a0
 	calla	ONESND
-	movk	>1f,a0			;>Move up rnd
+	movk	01fH,a0			;>Move up rnd
 	callr	rnd
 	clr	a1
 	sll	12,a0
@@ -2644,7 +2644,7 @@ afx180	callr	boss_addxy
 	dsj	a6,afxlp
 
 
-	movi	bossd_t,a9		;>Ani to new face
+	movi	bossd_t,a9		;0AHni to new face
 	move	@bodystat,a1
 	subk	2,a1
 	jrge	afx400			;!Akhboob face?
@@ -2705,7 +2705,7 @@ afx650	move	a3,@abossshld		;New shield (Hitler/Skull)
 afx1000	movk	1,a0
 	move	a0,@ICONS_DN
 
-	CREATE	BOSSPID,ab_bubblesnd	;>Bloody mess
+	CREATE	BOSSPID,ab_bubblesnd	;0BHloody mess
 	PUSHP	a0
 	CREATE	BOSSPID,ab_facebleed
 
@@ -2746,14 +2746,14 @@ afx2050
 
 	CREATE	BOSSPID|SUBABMORT,ab_lnch_akhboobs
 	CREATE	BOSSPID|SUBABMORT,ab_lnch_rndspch
-	movi	>140,a10
+	movi	0140H,a10
 	CREATE0 SETDET  		;Rings on
 
 	move	@WORLDTLX+16,a8		;>Start scroll down
 	addk	5,a8	   		;A8=X target line to trigger scroll
 	clr	a9			;A9=0 (not checking for y target)
 	movi	pathdn_t,a10		;Scroll table
-	movi	>8000,a0
+	movi	08000H,a0
 	move	a0,@HZSPD,L
 	CREATE	TARGPID,TARGET
 
@@ -2764,7 +2764,7 @@ afxx	DIE
 faceexp_t
 	LW	xpld_l,7
 	.long	RDBOOM,YELLPAL,WHTPAL,ORNGPAL,GRNPAL,BLUBOOM,GREYPAL
-	.word	190,->a00,>a00,->200,>c00
+	.word	190,-0a00H,0a00H,-0200H,0c00H
 
 
 abhitler_t
@@ -2820,17 +2820,17 @@ IMGNULL	.word	1,1,1000,0
 
 germansnd_t
 	.word	60
-	LW	germ1snd,>68
-	LW	germ2snd,>3c
-	LW	germ3snd,>3c
-	LW	germ4snd,>3c
-	LW	germ5snd,>3c
-	LW	germ6snd,>30
-	LW	germ2snd,>3c
-	LW	germ1snd,>68
-	LW	germ6snd,>30
-	LW	germ5snd,>3c
-	LW	germ3snd,>50
+	LW	germ1snd,068H
+	LW	germ2snd,03cH
+	LW	germ3snd,03cH
+	LW	germ4snd,03cH
+	LW	germ5snd,03cH
+	LW	germ6snd,030H
+	LW	germ2snd,03cH
+	LW	germ1snd,068H
+	LW	germ6snd,030H
+	LW	germ5snd,03cH
+	LW	germ3snd,050H
 	LW	germ4snd,-1
 
 pathdn_t
@@ -2860,11 +2860,11 @@ abbslp
 afblp
 ;	btst	0,a6
 ;	jrnz	afb150
-;	movi	>7f,a0
+;	movi	07fH,a0
 ;	callr	rnd
-;	subi	>3f,a0
+;	subi	03fH,a0
 ;	move	a0,a10			;X
-;	movi	>3f,a0
+;	movi	03fH,a0
 ;	callr	rnd
 ;	move	a0,a11			;Y
 ;	movi	bld_l,a9
@@ -2894,7 +2894,7 @@ afb170	move	a6,a9
 
 bloodc_t
 	.long	bldclt_l
-	.word	250,->c0,>c0,->c0,>c0
+	.word	250,-0c0H,0c0H,-0c0H,0c0H
 
 bldclt_l	;Oval blood spurt
 	LW	bldclt1,5
@@ -3177,7 +3177,7 @@ afealp
 	CREATE	BOSSPID,afeafr
 	move	*a2,a9,L
 	JSRP	FRANIMQ
-	movk	>1f,a0
+	movk	01fH,a0
 	callr	rnd
 	addk	5,a0
 	calla	PRCSLP
@@ -3367,10 +3367,10 @@ akhspch_t
 
 bloop_t	.long	blp1snd,blp2snd,blp3snd,blp4snd
 
-blp1snd		.word	>f575,20,>8134,0	;Bloop snd
-blp2snd		.word	>f575,20,>8136,0	;
-blp3snd		.word	>f575,20,>8138,0	;
-blp4snd		.word	>f575,20,>813a,0	;
+blp1snd		.word	0f575H,20,08134H,0	;Bloop snd
+blp2snd		.word	0f575H,20,08136H,0	;
+blp3snd		.word	0f575H,20,08138H,0	;
+blp4snd		.word	0f575H,20,0813aH,0	;
 
 
 ********************************
@@ -3404,7 +3404,7 @@ bhlp	SLEEPK	8
 	move	@HALT,a0
 	jrz	bhlp			;No halt?
 	movi	BOSSPID,a0
-	movk	>1f,a1
+	movk	01fH,a1
 	movk	8,a2
 	calla	KOP_ALL
 	jruc	bhlp
@@ -3416,7 +3416,7 @@ bhlp	SLEEPK	8
 * A8=*Boss 1st obj
 * Trashes A0-A3,A6-A7
 *Rets:
-* >A0=Dir 0-31
+* 0A0H=Dir 0-31
 
  SUBRP	abossseektop_dir32
 
@@ -3432,7 +3432,7 @@ bhlp	SLEEPK	8
 * A8=*Boss 1st obj
 * Trashes A0-A3,A6-A7
 *Rets:
-* >A0=Dir 0-31
+* 0A0H=Dir 0-31
 
  SUBRP	abossseeko_dir32
 
@@ -3577,7 +3577,7 @@ bsbw10	move	*a2(TBIGSTF),a0
 * Quickly produce a random # in range 0-X
 * A0=X
 * Preserves Regs 2-13
-* >A0 = RANDOM # (0 to A0)
+* 0A0H = RANDOM # (0 to A0)
 
  SUBRP	rndrng0
 
@@ -3784,7 +3784,7 @@ sslp	calla	PRCSLP
 	CREATE0	scrolltxt
 pstlp	movb	*a8,a0
 	jrnn	pst100
-	move	@SWITCH+>30,a1
+	move	@SWITCH+030H,a1
 	btst	0,a0
 	jrz	pst50			;Normal?
 	not	a1			;Flip the test
@@ -3797,7 +3797,7 @@ pst70	addk	8,a8
 	jruc	pst300
 pst80	addk	8,a8
 pst100	clr	a0
-	movi	>3f3f,a6		;Color
+	movi	03f3fH,a6		;Color
 	movi	[256,200],a9		;Y:X
 	movk	[0,1],a10		;Char Y:X spacing
 	movi	RD15FONT,a11		;*Font
@@ -3829,7 +3829,7 @@ st40	move	*a0(OID),a1
 	move	a3,a0
 	jruc	st80
 
-st60	movi	->8000,a1
+st60	movi	-08000H,a1
 	move	a1,*a0(OYVEL),L
 st70	move	*a0,a0,L
 st80	jrnz	st40		;Continue?
@@ -3841,7 +3841,7 @@ st80	jrnz	st40		;Continue?
 
 ;TX	$macro	t
 ;	.byte	:t:,0
-;	$end
+;	$endm
 
 ********************************
 * Text - destroyed akhboobs capabilities and entered pdomes
@@ -3932,8 +3932,8 @@ nopdometxt_s
 	.byte	"Akhboob to escape!",0
 	.byte	" ",0
 	.byte	"Being the DUFUS you are, you",0
-	.byte	>80,"also failed to collect the 220",0
-	.byte	>81,"also failed to collect the 200",0
+	.byte	080H,"also failed to collect the 220",0
+	.byte	081H,"also failed to collect the 200",0
 	.byte	"keys required to join other",0
 	.byte	"game heroes in the Midway",0
 	.byte	"Pleasure Domes.",0
@@ -3969,8 +3969,8 @@ nopdometxt2_s
 	.byte	"this game is to join the",0
 	.byte	"heroes from Smash T.V. in",0
 	.byte	"the Midway Pleasure Domes.",0
-	.byte	>80,"You must collect 220 keys",0
-	.byte	>81,"You must collect 200 keys",0
+	.byte	080H,"You must collect 220 keys",0
+	.byte	081H,"You must collect 200 keys",0
 	.byte	"to gain entrance.",0
 	.byte	"You failed to do this.",0
 	.byte	" ",0

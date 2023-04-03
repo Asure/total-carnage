@@ -12,7 +12,7 @@
 *
 *.Last mod - 1/8/92 20:22
 **************************************************************
-	.FILE	'MPROC.ASM'
+	.FILE	"MPROC.ASM"
 	.TITLE	"GSP MULTI-PROCESSING SYSTEM"
 	.WIDTH	132
 	.OPTION	B,D,L,T
@@ -21,9 +21,9 @@
 
 * FILES REQUIRED FOR ASSEMBLY
 
-	.INCLUDE	\VIDEO\SYS\GSP.INC	;GSP ASSEMBLER EQUATES
-	.INCLUDE	\VIDEO\SYS\SYS.INC	;ZUNIT SYSTEM EQUATES
-	.INCLUDE	\VIDEO\SYS\MACROS.HDR	;MACROS
+	.include	gsp.inc	;gsp assembler equates
+	.include	sys.inc	;zunit system equates
+	.include	macros.hdr	;macros
 	.INCLUDE	MPROC.EQU
 	.INCLUDE	DISP.EQU
 	.include	"shawn.hdr"		;My macros
@@ -79,7 +79,7 @@ PRCWTSRT
 *TOS IS WAKEUP ADDR ,A0 = SLEEP TIME
 
 PRCSLP
-	move	*SP+,A7,L		;CALLING PC->A7
+	move	*SP+,A7,L		;CALLING PC-0A7H
 
 	.if	DEBUG
 ;	.ref	WSPEED
@@ -123,7 +123,7 @@ PRCD1A
 *PROCESS IS READY FOR DISPATCH
 
 PRCD2	move	A13,A1
-	addi	>40,A1
+	addi	040H,A1
 	mmfm	A1,A7,A8,A9,A10,A11,A12	;wake, regs, stack ptr
 	jump	A7			;fire off proc
 
@@ -264,7 +264,7 @@ NONELFT
 XFERPROC
 	PUSH	a2,a12
 XFERPRC0
-	cmpi	>ffc00000,a7		;ffe for 256K
+	cmpi	0ffc00000H,a7		;ffe for 256K
 	jrlo	procwakeerr		;Error?
 
 	move	a0,a2

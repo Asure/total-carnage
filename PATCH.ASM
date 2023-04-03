@@ -1,4 +1,4 @@
-	.INCLUDE	"\VIDEO\sys\gsp.inc"
+	.include	"gsp.inc"
 	
 	.globl	TVPATCH,TVPATCHX
 	.globl	TVBP,TVBPX

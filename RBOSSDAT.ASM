@@ -24,42 +24,42 @@
 
 	.ref	LOVEIT
 
-musicsnd	.word	>f3fe,10,>8009,0	;Boss music
-landsnd		.word	>fc88,30,>8030,0	;Land from a jump
-laughsnd	.word	>f194,30,>80f2,0	;When plyr dies
-exp1snd		.word	>fc80,7,>803e,0		;Explosion
-exp2snd		.word	>fd80,10,>80d9,0	;^
-;pain1snd	.word	>f985,20,>80f6,0	;
-;pain2snd	.word	>f985,20,>80f9,0	;
-groansnd	.word	>f985,20,>8113,0	;Groan
-groanlndsnd	.word	>f185,20,>8113,0	;^ interruptable
-oofsnd		.word	>f985,20,>8114,0	;Oof
-yowl1snd	.word	>f985,30,>8115,0	;
-yowl2snd	.word	>f985,30,>8116,0	;
-roarsnd		.word	>f990,40,>8117,0	;Roar
-roarlongsnd	.word	>f990,120,>8117,0	;Roar
-houchsnd	.word	>f985,20,>8120,0	;
-hyowlsnd	.word	>f985,20,>8122,0	;
-stvpainsnd	.word	>f985,30,>8123,0	;
-bubl1snd 	.word	>f5e5,20,>8131,0	;Blood bubbling
-bubl2snd	.word	>f0e5,20,>8130,0	;^
+musicsnd	.word	0f3feH,10,08009H,0	;Boss music
+landsnd		.word	0fc88H,30,08030H,0	;Land from a jump
+laughsnd	.word	0f194H,30,080f2H,0	;When plyr dies
+exp1snd		.word	0fc80H,7,0803eH,0		;Explosion
+exp2snd		.word	0fd80H,10,080d9H,0	;^
+;pain1snd	.word	0f985H,20,080f6H,0	;
+;pain2snd	.word	0f985H,20,080f9H,0	;
+groansnd	.word	0f985H,20,08113H,0	;Groan
+groanlndsnd	.word	0f185H,20,08113H,0	;^ interruptable
+oofsnd		.word	0f985H,20,08114H,0	;Oof
+yowl1snd	.word	0f985H,30,08115H,0	;
+yowl2snd	.word	0f985H,30,08116H,0	;
+roarsnd		.word	0f990H,40,08117H,0	;Roar
+roarlongsnd	.word	0f990H,120,08117H,0	;Roar
+houchsnd	.word	0f985H,20,08120H,0	;
+hyowlsnd	.word	0f985H,20,08122H,0	;
+stvpainsnd	.word	0f985H,30,08123H,0	;
+bubl1snd 	.word	0f5e5H,20,08131H,0	;Blood bubbling
+bubl2snd	.word	0f0e5H,20,08130H,0	;^
 
-myeyesnd	.word	>f9e0,110,>8118,0	;
-myarmsnd	.word	>f9e0,120,>8119,0	;
-myheadsnd	.word	>f9e0,70,>8121,0	;
+myeyesnd	.word	0f9e0H,110,08118H,0	;
+myarmsnd	.word	0f9e0H,120,08119H,0	;
+myheadsnd	.word	0f9e0H,70,08121H,0	;
 
-msllnchsnd	.word	>f290,10,>80b6,0	;Missile launch
-mslexpsnd	.word	>f470,10,>8048,0	;Missile explosion
+msllnchsnd	.word	0f290H,10,080b6H,0	;Missile launch
+mslexpsnd	.word	0f470H,10,08048H,0	;Missile explosion
 
 * Aboss
-ahkb1		.word	>f9a0,60,>80eb,0	;Akhboob speech
-ahkb2		.word	>f9a0,60,>80ec,0	;^
-ahkb3		.word	>f9a0,60,>80ed,0	;^
-ahkbsta		.word	>f9a0,60,>80ee,0	;^ start angry
-ahkbang		.word	>f9a0,60,>80ef,0	;^ angry
-doorsldsnd	.word	>f480,2,>804c,0		;Door slides
-rcktlnchsnd	.word	>f290,10,>812c,0	;Rocket launch
-puffsnd		.word	>f280,10,>8085,0	;Attack balls puffing
+ahkb1		.word	0f9a0H,60,080ebH,0	;Akhboob speech
+ahkb2		.word	0f9a0H,60,080ecH,0	;^
+ahkb3		.word	0f9a0H,60,080edH,0	;^
+ahkbsta		.word	0f9a0H,60,080eeH,0	;^ start angry
+ahkbang		.word	0f9a0H,60,080efH,0	;^ angry
+doorsldsnd	.word	0f480H,2,0804cH,0		;Door slides
+rcktlnchsnd	.word	0f290H,10,0812cH,0	;Rocket launch
+puffsnd		.word	0f280H,10,08085H,0	;Attack balls puffing
 
 
 ********************************

@@ -9,7 +9,7 @@
 *
 *.Last mod - 1/22/92 13:42
 **************************************************************
-	.FILE	'ADJUST.ASM'
+	.FILE	"ADJUST.ASM"
 	.TITLE	"GAME ADJUSTMENTS"
 	.WIDTH	132
 	.OPTION	B,D,L,T
@@ -17,8 +17,8 @@
 
 	.INCLUDE	"MPROC.EQU"		;MPROC EQUATES
 	.INCLUDE	"DISP.EQU"		;DISPLAY PROC. EQUATES
-	.INCLUDE	"\VIDEO\SYS\SYS.INC"	;Z UNIT SYSTEM EQUATES
-;	.INCLUDE	"\VIDEO\SYS\MACROS.HDR"	;MACROS DEFINITIONS
+	.include	"sys.inc"	;z unit system equates
+;	.include	"macros.hdr"	;macros definitions
 	.INCLUDE	"IMGTBL.GLO"
 	.INCLUDE	"GAME.EQU"
 	.INCLUDE	"LINK.EQU"		;LINKY EQUATES
@@ -409,9 +409,9 @@ BINX:
 	RETS
 
 ADJ_CASH
-	.WORD	>F7A5-10H,8,>8080,0		;CASH REGISTER SOUND
+	.WORD	0F7A5H-10H,8,08080H,0		;CASH REGISTER SOUND
 ADJ_LBEEP
-ADJ_BEEP	.WORD	>F3F7-10H,>20,>80AA,0		;BEEP TONE
+ADJ_BEEP	.WORD	0F3F7H-10H,020H,080AAH,0		;BEEP TONE
 
 **************************************************************************
 *									 *
@@ -730,7 +730,7 @@ SMALL_LEFT_RIGHT
 **************************************************************************
 COIN_SET
 	.if	YUNIT
-	move	@SWITCH+>30,a0
+	move	@SWITCH+030H,a0
 	btst	6,a0
 	jrnz	cs100			;No DIP coinage?
 
@@ -798,7 +798,7 @@ NEXT_HEADER
 NO_HEADERS
 	MOVI	M_SLOTVAL,A8
 	MOVI	MESS_CTS,A10		;SET Y FOR COIN SLOT LINE.
-	movi	>1212,a11		;Med blue
+	movi	01212H,a11		;Med blue
 	JSRP	PRINT_SMALL_LINE	;HEADER FOR COIN SLOT VALUE
 
 	CALLA	GET_CSPT		;A6 POINTS AT THE CSELECT BLOCK

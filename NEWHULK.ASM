@@ -9,8 +9,8 @@
 *
 *.Last mod - 1/7/92 13:24
 **************************************************************
-	.FILE	'NEWHULK.ASM'
-	.TITLE	'TOTAL CARNAGE GAME PROGRAM'
+	.FILE	"NEWHULK.ASM"
+	.TITLE	"TOTAL CARNAGE GAME PROGRAM"
 	.WIDTH	132
 	.OPTION	B,D,L,T
 	.MNOLIST
@@ -18,9 +18,9 @@
 
 	.INCLUDE	"MPROC.EQU"		;MPROC EQUATES
 	.INCLUDE	"DISP.EQU"		;DISPLAY PROC. EQUATES
-	.INCLUDE	"\VIDEO\SYS\SYS.INC"	;Z UNIT SYSTEM EQUATES
-	.include	"\video\sys\gsp.inc"
-	.INCLUDE	"\VIDEO\SYS\MACROS.HDR"	;MACROS DEFINITIONS
+	.include	"sys.inc"	;z unit system equates
+	.include	"gsp.inc"
+	.include	"macros.hdr"	;macros definitions
 	.INCLUDE	"IMGTBL.GLO"
 	.INCLUDE	"GAME.EQU"
 	.INCLUDE	"FINGRNT.TBL"
@@ -487,7 +487,7 @@ SENDH_TOP:
 ;SEND FIRST GROUP OF HOSTAGES DOWN AT PLAYER
 ;	MOVK	2,A8
 SEND1
-	SLEEP	>35
+	SLEEP	035H
 	MOVE	@WORLDTLY,A0,L
 	SUBI	[50,0],A0
 	MOVE	@WORLDTLX,A9,L
@@ -1823,7 +1823,7 @@ WIT
 	CMPI	3,A2
 	JRLT	WIT2
 ;OH OH! BOTH ARE DEAD
-;	MOVI	>111,A0
+;	MOVI	0111H,A0
 ;	MOVE	A0,@EHALT
 	RETS
 
@@ -2025,7 +2025,7 @@ PART2A
 	movi	youwillsnd,a0
 	calla	ONESND
 	DIE
-youwillsnd	.word	>f9f7,32,>8153,0	;YOU WILL FRY
+youwillsnd	.word	0f9f7H,32,08153H,0	;YOU WILL FRY
 
 ABOS	CREATE0	DO_WINNER
 	MOVI	LORDPID,A0
@@ -2132,7 +2132,7 @@ SHSTG
 	MOVK	5,A8
 	CREATE0	LHLPS
 XSEND1
-	SLEEPK	>1f
+	SLEEPK	01fH
 	MOVE	@WORLDTLY,A0,L
 	SUBI	[34H,0],A0
 	MOVE	@WORLDTLX,A9,L
@@ -2366,10 +2366,10 @@ GETXY:
 	clr	A0		;set Direction
 	divu	A4,A5		;A5 = A5/A4 = ABS(ZDELTA)/ABS(XDELTA) = TAN(THETA)	
 	jrv	GotD0		;Overflow indicates XDELTA=0
-	cmpi	>269FB,A5	;Tan(22.5deg) = 2.414 as 16.16
+	cmpi	0269FBH,A5	;Tan(22.5deg) = 2.414 as 16.16
 	jrgt	GotD0
 	inc	A0
-	cmpi	>69FB,A5	;Tan(67.5deg) = .414 as 16.16
+	cmpi	069FBH,A5	;Tan(67.5deg) = .414 as 16.16
 	jrgt	GotD0
 	inc	A0
 
@@ -3173,7 +3173,7 @@ KIL_FLM
 	CALLA	DELOBJ
 WLK	RETS
 
-PUNCHSND .WORD	>F5E5,20,>812B,0
+PUNCHSND .WORD	0F5E5H,20,0812BH,0
 
 DOPNCH:
 ;A9=PLAYER 1 OR 2

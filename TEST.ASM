@@ -9,7 +9,7 @@
 *
 *.Last mod - 1/20/92 20:36
 **************************************************************
-	.FILE	'TEST.ASM'
+	.FILE	"TEST.ASM"
 	.TITLE	"TEST PROGRAM"
 	.WIDTH	132
 	.OPTION	B,D,L,T
@@ -18,8 +18,8 @@
 	
 	.INCLUDE	"MPROC.EQU"		;MPROC EQUATES
 	.INCLUDE	"DISP.EQU"		;DISPLAY PROC. EQUATES
-	.INCLUDE	"\VIDEO\SYS\SYS.INC"	;Z UNIT SYSTEM EQUATES
-	.INCLUDE	"\VIDEO\SYS\MACROS.HDR"	;MACROS DEFINITIONS
+	.include	"sys.inc"	;z unit system equates
+	.include	"macros.hdr"	;macros definitions
 	.INCLUDE	"IMGTBL.GLO"
 	.INCLUDE	"GAME.EQU"
 	.INCLUDE	"LINK.EQU"		;LINKY EQUATES
@@ -668,11 +668,11 @@ WAIT_POINT
 ;	 JRNZ	 WT_ADV 	       ;NOT PRESSED.
 ;	 RETP
 ;
-;COINSND	.WORD	>F3DF,>10,>8085,0		;"COIN" SOUND
-BEEP_1	 .WORD	>F3DF,>10,>80A2,0		;LOW BEEP
-;BEEP_2   .WORD	>F3DF,>10,>80A3,0		
-;BEEP_3   .WORD	>F3DF,>10,>80A4,0		
-;BEEP_4   .WORD	>F3DF,>10,>80A5,0		;HIGH BEEP
+;COINSND	.WORD	0F3DFH,010H,08085H,0		;"COIN" SOUND
+BEEP_1	 .WORD	0F3DFH,010H,080A2H,0		;LOW BEEP
+;BEEP_2   .WORD	0F3DFH,010H,080A3H,0		
+;BEEP_3   .WORD	0F3DFH,010H,080A4H,0		
+;BEEP_4   .WORD	0F3DFH,010H,080A5H,0		;HIGH BEEP
 ;
 ;;**************************************************************************
 ;*									  *
@@ -882,7 +882,7 @@ MENU_LOOP
 	btst	4,a5
 	jrz	ml50			;Test switch on?
 
-	movb	@SWITCH+>31,a0
+	movb	@SWITCH+031H,a0
 	jrn	DIAG_EX			;Test DIP switch off?
 
 ml50	MOVI	MENU_TYPO,A5

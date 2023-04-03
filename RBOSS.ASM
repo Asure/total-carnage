@@ -11,15 +11,15 @@
 *
 *.Last mod - 1/13/92 19:04
 **************************************************************
-	.TITLE	'Orcus'
+	.TITLE	"Orcus"
 	.WIDTH	132
 	.OPTION	B,D,L,T
 	.MNOLIST
 
 	.include	"mproc.equ"
 	.include	"disp.equ"
-	.include	"\video\sys\sys.inc"
-	.include	"\video\sys\gsp.inc"
+	.include	"sys.inc"
+	.include	"gsp.inc"
 	.include	"game.equ"
 	.include	"imgtbl.glo"
 	.include	"audit.equ"
@@ -58,36 +58,36 @@
 
 	.ref	LOVEIT
 
-musicsnd	.word	>f3fe,10,>8009,0	;Boss music
-gscottsnd	.word	>f9f7,16,>814b,0	;Great scott
-landsnd		.word	>fc88,30,>8030,0	;Land from a jump
-laughsnd	.word	>f194,30,>80f2,0	;When plyr dies
-exp1snd		.word	>fc80,7,>803e,0		;Explosion
-exp2snd		.word	>fd80,10,>80d9,0	;^
-;pain1snd	.word	>f985,20,>80f6,0	;
-;pain2snd	.word	>f985,20,>80f9,0	;
-groansnd	.word	>f985,20,>8113,0	;Groan
-groanlndsnd	.word	>f185,20,>8113,0	;^ interruptable
-oofsnd		.word	>f985,20,>8114,0	;Oof
-yowl1snd	.word	>f985,30,>8115,0	;
-yowl2snd	.word	>f985,30,>8116,0	;
-roarsnd		.word	>f990,40,>8117,0	;Roar
-roarlongsnd	.word	>f990,120,>8117,0	;Roar
-houchsnd	.word	>f985,20,>8120,0	;
-hyowlsnd	.word	>f985,20,>8122,0	;
-stvpainsnd	.word	>f985,30,>8123,0	;
-bubl1snd 	.word	>f5e5,20,>8131,0	;Blood bubbling
-bubl2snd	.word	>f0e5,20,>8130,0	;^
+musicsnd	.word	0f3feH,10,08009H,0	;Boss music
+gscottsnd	.word	0f9f7H,16,0814bH,0	;Great scott
+landsnd		.word	0fc88H,30,08030H,0	;Land from a jump
+laughsnd	.word	0f194H,30,080f2H,0	;When plyr dies
+exp1snd		.word	0fc80H,7,0803eH,0		;Explosion
+exp2snd		.word	0fd80H,10,080d9H,0	;^
+;pain1snd	.word	0f985H,20,080f6H,0	;
+;pain2snd	.word	0f985H,20,080f9H,0	;
+groansnd	.word	0f985H,20,08113H,0	;Groan
+groanlndsnd	.word	0f185H,20,08113H,0	;^ interruptable
+oofsnd		.word	0f985H,20,08114H,0	;Oof
+yowl1snd	.word	0f985H,30,08115H,0	;
+yowl2snd	.word	0f985H,30,08116H,0	;
+roarsnd		.word	0f990H,40,08117H,0	;Roar
+roarlongsnd	.word	0f990H,120,08117H,0	;Roar
+houchsnd	.word	0f985H,20,08120H,0	;
+hyowlsnd	.word	0f985H,20,08122H,0	;
+stvpainsnd	.word	0f985H,30,08123H,0	;
+bubl1snd 	.word	0f5e5H,20,08131H,0	;Blood bubbling
+bubl2snd	.word	0f0e5H,20,08130H,0	;^
 
-myeyesnd	.word	>f9e0,110,>8118,0	;
-myarmsnd	.word	>f9e0,120,>8119,0	;
-myheadsnd	.word	>f9e0,70,>8121,0	;
+myeyesnd	.word	0f9e0H,110,08118H,0	;
+myarmsnd	.word	0f9e0H,120,08119H,0	;
+myheadsnd	.word	0f9e0H,70,08121H,0	;
 
-msllnchsnd	.word	>f290,10,>80b9,0	;Missile launch
-;msllnchsnd	.word	>f290,10,>80b6,0	;Missile launch
-mslexpsnd	.word	>f470,10,>8048,0	;Missile explosion
-tungsnd		.word	>f290,10,>80b6,0	;Tongue launch
-youwillsnd	.word	>f9f7,32,>8153,0	;
+msllnchsnd	.word	0f290H,10,080b9H,0	;Missile launch
+;msllnchsnd	.word	0f290H,10,080b6H,0	;Missile launch
+mslexpsnd	.word	0f470H,10,08048H,0	;Missile explosion
+tungsnd		.word	0f290H,10,080b6H,0	;Tongue launch
+youwillsnd	.word	0f9f7H,32,08153H,0	;
 
 
 ;Process subtypes
@@ -98,9 +98,9 @@ SUBTHRST	.equ	3	;Thrust
 SUBNOSEF	.equ	4	;Nose flamers
 SUBANI		.equ	5	;Eye/mouth animation
 SUBWEAPON	.equ	9	;Missile/tongue launcher
-SUBBOSSHALT	.equ	>80	;Halts boss processes
+SUBBOSSHALT	.equ	080H	;Halts boss processes
 
-ZACC	.equ	>1000	;z accel constant
+ZACC	.equ	01000H	;z accel constant
 
 ;Ram allocation for orcus
 	.bss	bossram,0
@@ -119,11 +119,11 @@ ZACC	.equ	>1000	;z accel constant
 
 				;*Must stay in order!!!
 ;ARMSTAT	.equ	0
-GUNDIR	.equ	>10
-GUNMODE	.equ	>20
-GUNSWP	.equ	>30
-GUNNUM	.equ	>40
-GUNBLOW	.equ	>50
+GUNDIR	.equ	010H
+GUNMODE	.equ	020H
+GUNSWP	.equ	030H
+GUNNUM	.equ	040H
+GUNBLOW	.equ	050H
 
 	.bss	larmdata,0	;
 	.bss	larmstat,16	;LArm status:-=Gone, 0=OK, 1=On fire
@@ -157,11 +157,11 @@ BOSSJMPHI	.set	-16	;Offset from bossd_t
 
 ;Boss data struct
 
-BOOBJ	.set	>0	;*Parts obj
-BODAMR	.set	>20	;Damage resistance (0-?)
-BOAFRM	.set	>28	;Current animation frame
-BODAM	.set	>30	;Damage
-*>040=IMAGE 1 ETC.
+BOOBJ	.set	00H	;*Parts obj
+BODAMR	.set	020H	;Damage resistance (0-?)
+BOAFRM	.set	028H	;Current animation frame
+BODAM	.set	030H	;Damage
+*0040H=IMAGE 1 ETC.
 
 AX	.equ	43	;Ani point offsets
 AY	.equ	-84
@@ -181,7 +181,7 @@ AY	.equ	-84
 	calla	ONESNDOVR
 
 	SLEEPK	30
-	clr	a0			;>Clear out boss variables
+	clr	a0			;0CHlear out boss variables
 	movi	bossram,a1
 bossclr	move	a0,*a1+
 	cmpi	bossramend,a1
@@ -239,7 +239,7 @@ bosslp
 	move	@PCNT,a0
 	sll	32-6,a0
 	jrnz	bl15
-	movi	>8140,a1
+	movi	08140H,a1
 	move	@PLYRPRCS,a0,L
 	jrz	bl10
 	move	*a0(LEG_PRC),a0,L
@@ -252,12 +252,12 @@ bl10	move	@PLYRPRCS+32,a0,L
 bl15	move	@bossmode,a0
 	jrnz	b50
 
-	move	@bmtimer,a0		;>Boss main loop
+	move	@bmtimer,a0		;0BHoss main loop
 	subk	1,a0
 	move	a0,@bmtimer
 	jrge	b50			;Same mode?
 
-	movk	>f,a0			;>New Mode
+	movk	0fH,a0			;>New Mode
 	callr	rnd
 	sll	3,a0			;*8
 	addi	bossmode_t,a0
@@ -282,10 +282,10 @@ b50	move	@bodystat,a0
 
 
 
-b100	move	@iani_p,a0,L		;>Big eyes
+b100	move	@iani_p,a0,L		;0BHig eyes
 	jrnz	b200			;Animating?
 
-	movi	eyequad_t,a9		;>Follow player
+	movi	eyequad_t,a9		;0FHollow player
 	clr	a0			;X offset
 	movi	80,a1			;Y offset
 	callr	bossseekp_ani32
@@ -315,7 +315,7 @@ b260	move	a8,a6
 	calla	ONESND
 
 b300
-	movi	hdquad_t,a9		;>Follow player
+	movi	hdquad_t,a9		;0FHollow player
 	clr	a0			;X offset
 	movi	80,a1			;Y offset
 	callr	bossseekp_ani32
@@ -335,7 +335,7 @@ b400	move	@mani_p,a0,L		;>Mouth and tongue
 
 
 
-b450	movi	99,a0			;>1% New gun mode
+b450	movi	99,a0			;01H% New gun mode
 	callr	rndrng0
 	move	a0,a0
 	jrnz	b500
@@ -399,7 +399,7 @@ b630	move	*a0(OYPOS),a1		;Get plyr XY
 	callr	bossjump_zacc		;Jump!
 	jruc	b1000
 
-b650	cmpi	6,a0			;>Big jump
+b650	cmpi	6,a0			;0BHig jump
 	jrne	b670
 	movi	roarsnd,a0
 	calla	ONESND
@@ -435,7 +435,7 @@ b670	subk	5,a0
 	move	*a0(OXPOS),a0
 	add	a6,a0			;Add in offset
 	add	a7,a1
-	sub	a4,a0			;>Check bounds
+	sub	a4,a0			;0CHheck bounds
 	sub	a5,a1
 	cmpi	25,a0			;XMin
 	jrge	b680
@@ -644,7 +644,7 @@ bhlp	SLEEPK	8
 	move	@HALT,a0
 	jrz	bhlp			;No halt?
 	movi	BOSSPID,a0
-	movk	>1f,a1
+	movk	01fH,a1
 	movk	8,a2
 	calla	KOP_ALL
 	jruc	bhlp
@@ -739,11 +739,11 @@ oh100	move	*a11(OXVEL),a1,L
 	callr	rnd
 	jrnz	ohx			;No damage?
 
-	movi	>1f1f0000,a9
+	movi	01f1f0000H,a9
 	CREATE0	FLASHME
 
 	move	*a8(OPLINK),a9,L	;A9=*Obj data struct
-	move	*a10(>80),a2		;A2=Weapon damage
+	move	*a10(080H),a2		;A2=Weapon damage
 	jrnn	oh140			;!Bomb?
 	movk	1,a0
 	callr	rnd
@@ -759,7 +759,7 @@ oh150	callr	damage_react
 	callr	boss_chknblowpart	;Check for special destruction
 
 
-	move	@bloflg,a0		;>Damage correct part for stupid plyrs
+	move	@bloflg,a0		;0DaHmage correct part for stupid plyrs
 	jrnz	oh400			;Blow or lockout in progress?
 
 	movk	7,a0			;13%
@@ -773,27 +773,27 @@ oh150	callr	damage_react
 	subk	3,a0
 	jrlo	oh400			;!Stump?
 
-	movi	9*>40,a1		;Part 10
+	movi	9*040H,a1		;Part 10
 	move	@larmstat,a0
 	jrnn	oh300
 
-	movi	10*>40,a1		;Part 11
+	movi	10*040H,a1		;Part 11
 	move	@rarmstat,a0
 	jrnn	oh300
 
-	movi	4*>40,a1		;Part 5
+	movi	4*040H,a1		;Part 5
 	move	@leyestat,a0
 	jrz	oh300			;LEye OK?
 
-	movi	5*>40,a1		;Part 6
+	movi	5*040H,a1		;Part 6
 	move	@reyestat,a0
 	jrz	oh300			;REye OK?
 
-	movi	8*>40,a1		;Part 9
+	movi	8*040H,a1		;Part 9
 	move	@hdstat,a0
 	jrz	oh300			;Head OK?
 
-	movi	6*>40,a1		;Part 7
+	movi	6*040H,a1		;Part 7
 	move	@shldrstat,a0
 	jrnz	oh400			;Top blown?
 
@@ -822,7 +822,7 @@ oh400	move	a4,a2
 	movi	47,a3
 oh500	callr	damage_set
 
-	move	*a10(>80),a1		;Get score
+	move	*a10(080H),a1		;Get score
 	abs	a1
 	callr	boss_scorehit
 
@@ -953,7 +953,7 @@ baxy5	move	*a4+,a0,L
 
 	cmpi	2,a2
 	jrhs	damage_react2		;Always pain?
-	movk	>f,a0			;6%
+	movk	0fH,a0			;6%
 	callr	rnd
 	jrnz	drxx
 
@@ -984,7 +984,7 @@ dr2	movi	hddam_t,a1
 
 dr5	move	@bodystat,a0
 	jrnz	drx			;Body blown?
-	movi	iani_p,a2		;>Big eyes pain
+	movi	iani_p,a2		;0BHig eyes pain
 	move	*a2,a0,L
 	jrz	dr50			;Eye inactive?
 	calla	KILL
@@ -1009,7 +1009,7 @@ painsnd_t
 * A9=*Boss data struct for part
 * A11=*Bullet obj
 * Trashes A0-A2
-* >A3=Damage
+* 0A3H=Damage
 
  SUBRP	boss_chknblowpart
 
@@ -1119,7 +1119,7 @@ clr_bloflg
 * A8=*Arm object
 * A9=*Boss data struct for part
 * A11=*Bullet obj
-* >A3=New damage value
+* 0A3H=New damage value
 
 lftarmblo
 	PUSH	a7,a9,a10,a11
@@ -1150,7 +1150,7 @@ lrab100	move	*a10(GUNBLOW),a0
 	jrz	lrab200			;Can't blow?
 ;	clr	a0
 ;	move	a0,*a10(GUNBLOW)	;Clr it
-	movi	>1500,a1
+	movi	01500H,a1
 	callr	boss_scorebonusword
 	movi	-1,a1
 	move	a1,@bloflg
@@ -1205,7 +1205,7 @@ abn100	movk	5,a10
 	move	a0,*a11(GUNBLOW)	;We can blow
 
 abn110	SLEEPK	3
-	movk	>1f,a0
+	movk	01fH,a0
 	callr	rnd
 	jrnz	abn120
 	movk	5,a10
@@ -1287,7 +1287,7 @@ abn550	SLEEPK	1
 	movi	myarmsnd,a0
 	calla	ONESNDOVR
 
-	movi	60*5,a6			;>Blow off stumps
+	movi	60*5,a6			;0BHlow off stumps
 abn600	move	a11,a5
 	movi	armripl_t,a9
 	clr	a0
@@ -1354,27 +1354,27 @@ abn720	callr	boss_getanipt
 
 gunlexp_t
 	.long	FIREEXP
-	.word	187,->800,->100,->400,>400
+	.word	187,-0800H,-0100H,-0400H,0400H
 gunrexp_t
 	.long	FIREEXP
-	.word	187,>100,>800,->400,>400
+	.word	187,0100H,0800H,-0400H,0400H
 gunlexp2_t
 	.long	XBOOM2
-	.word	187,->800,0,->800,>800
+	.word	187,-0800H,0,-0800H,0800H
 gunrexp2_t
 	.long	XBOOM2
-	.word	187,0,>800,->800,>800
+	.word	187,0,0800H,-0800H,0800H
 
 blooddn_t
 	.long	bldclt_l
-	.word	181,->110,>110,>30,>180
+	.word	181,-0110H,0110H,030H,0180H
 
 armripl_t
 	.long	armripl_l
-	.word	181,->a00,->200,->300,>300
+	.word	181,-0a00H,-0200H,-0300H,0300H
 armripr_t
 	.long	armripr_l
-	.word	181,>200,>a00,->300,>300
+	.word	181,0200H,0a00H,-0300H,0300H
 armripr_l
 	LWW	ARMRIP,FLIPBITS+1,M_FLIPH
 armripl_l
@@ -1389,10 +1389,10 @@ armripl_l
 
 bloodl_t
 	.long	bldclt_l
-	.word	161,->200,->80,->100,>100
+	.word	161,-0200H,-080H,-0100H,0100H
 bloodr_t
 	.long	bldclt_l
-	.word	161,>80,>200,->100,>100
+	.word	161,080H,0200H,-0100H,0100H
 
 bldclt_l	;Oval blood spurt
 	LW	bldclt1,4
@@ -1467,8 +1467,8 @@ lflm_l	.long	LFLM1,LFLM2,LFLM3,LFLM4,LFLM5,LFLM6,0
 * Get center of gun
 * A0=XY table offset
 * A11=*Arm data struct
-* >A2=Y
-* >A3=X
+* 0A2H=Y
+* 0A3H=X
 
  SUBRP	arm_getcenter
 
@@ -1504,8 +1504,8 @@ gunxy_t
 * Get ani point of boss plus X offset
 * A0=X offset to right
 * A1=Side: 0=Left, !0=Right
-* >A10=X
-* >A11=Y
+* 0A10H=X
+* 0A11H=Y
 
  SUBRP	boss_getanipt
 
@@ -1556,7 +1556,7 @@ gb240	move	a11,a5
 	calla	ONESND
 gb260	move	a5,a11
 
-	movk	>f,a0
+	movk	0fH,a0
 	and	a6,a0
 	jrnz	gb300			;Skip piece?
 	CREATE	BOSSPID,gun_piece
@@ -1575,16 +1575,16 @@ gb300	move	a6,a9
 
  SUBRP	gun_piece
 
-	movi	>30000,a0
+	movi	030000H,a0
 	callr	rndrng0
-	addi	>100000,a0
+	addi	0100000H,a0
 	move	a0,a6			;XV
 
 	move	*a11(GUNNUM),a10
 	jrnz	gp20			;#1?
 	neg	a6
 
-gp20	movi	>140000,a0
+gp20	movi	0140000H,a0
 	calla	RNDRNGS
 	move	a0,a7			;YV
 
@@ -1653,22 +1653,22 @@ gunoff_t	;XY offsets
 	.word	-90,74, -51,100
 
 gunfly_l
-	LWW	GUNRIP1,>4002,0
-	LWW	GUNRIP2,>4002,0
-	LWW	GUNRIP3,>4002,0
-	LWW	GUNRIP4,>4002,0
-	LWW	GUNRIP5,>4002,0
-	LWW	GUNRIP4,>4002,M_FLIPV
-	LWW	GUNRIP3,>4002,M_FLIPV
-	LWW	GUNRIP2,>4002,M_FLIPV
-	LWW	GUNRIP1,>4002,M_FLIPV
-	LWW	GUNRIP2,>4002,M_FLIPV+M_FLIPH
-	LWW	GUNRIP3,>4002,M_FLIPV+M_FLIPH
-	LWW	GUNRIP4,>4002,M_FLIPV+M_FLIPH
-	LWW	GUNRIP5,>4002,M_FLIPV+M_FLIPH
-	LWW	GUNRIP4,>4002,M_FLIPH
-	LWW	GUNRIP3,>4002,M_FLIPH
-	LWW	GUNRIP2,>4002,M_FLIPH
+	LWW	GUNRIP1,04002H,0
+	LWW	GUNRIP2,04002H,0
+	LWW	GUNRIP3,04002H,0
+	LWW	GUNRIP4,04002H,0
+	LWW	GUNRIP5,04002H,0
+	LWW	GUNRIP4,04002H,M_FLIPV
+	LWW	GUNRIP3,04002H,M_FLIPV
+	LWW	GUNRIP2,04002H,M_FLIPV
+	LWW	GUNRIP1,04002H,M_FLIPV
+	LWW	GUNRIP2,04002H,M_FLIPV+M_FLIPH
+	LWW	GUNRIP3,04002H,M_FLIPV+M_FLIPH
+	LWW	GUNRIP4,04002H,M_FLIPV+M_FLIPH
+	LWW	GUNRIP5,04002H,M_FLIPV+M_FLIPH
+	LWW	GUNRIP4,04002H,M_FLIPH
+	LWW	GUNRIP3,04002H,M_FLIPH
+	LWW	GUNRIP2,04002H,M_FLIPH
 gunflyend
 	.long	0
 
@@ -1697,7 +1697,7 @@ eyeb30	movi	60*7,a2
 ;	movi	60*8,a2
 	callr	set_bloflg
 	CREATE	BOSSPID,eye_blow
-	movi	>1500,a1
+	movi	01500H,a1
 	callr	boss_scorebonusword
 eyebx	rets
 
@@ -1715,7 +1715,7 @@ eyebx	rets
 	movi	60*7,a2		;Set effect lockout flag
 ;	movi	60*8,a2		;Set effect lockout flag
 	callr	set_bloflg
-	movi	>1500,a1
+	movi	01500H,a1
 	callr	boss_scorebonusword
 	movk	1,a0
 	move	a0,@hdstat		;Set blown flag
@@ -1744,7 +1744,7 @@ hsb30	CREATE	BOSSPID,head_blow
 ;	movi	60*15,a2
 	movi	60*12,a2
 	callr	set_bloflg
-	movi	>1500,a1
+	movi	01500H,a1
 	callr	boss_scorebonusword
 	movi	100,a0
 	move	a0,@shldrstat		;Set blown and hits required for biggy
@@ -1767,7 +1767,7 @@ ssb50	CREATE	BOSSPID,shldr_blow
 	movi	60*4,a2
 ;	movi	60*5,a2
 	callr	set_bloflg
-	movi	>2500,a1			;2500 pts!
+	movi	02500H,a1			;2500 pts!
 	callr	boss_scorebonusword
 	movk	1,a0
 	move	a0,@bodystat			;Blown!
@@ -1803,11 +1803,11 @@ ssb50	CREATE	BOSSPID,shldr_blow
 	CREATE	BOSSPID,eye_bleed
 
 	movi	70-15,a6
-eb100	movi	>ff,a0
+eb100	movi	0ffH,a0
 	callr	rnd
-	subi	>7f,a0
+	subi	07fH,a0
 	move	a0,a10			;X
-	movi	>7f,a0
+	movi	07fH,a0
 	callr	rnd
 	move	a0,a11			;Y
 	movi	eye_l,a9
@@ -1918,7 +1918,7 @@ hb200	move	a6,a9
 	movk	8,a0
 	callr	boss_addrndxy		;Shake!
 	clr	a1
-	movi	>8000,a2
+	movi	08000H,a2
 	callr	boss_addxy
 	dsj	a6,hb100
 
@@ -1942,11 +1942,11 @@ hb300	callr	head_blowbld
 
  SUBRP	head_blowbld
 
-	movi	>ff,a0
+	movi	0ffH,a0
 	callr	rnd
-	subi	>7f,a0
+	subi	07fH,a0
 	move	a0,a10			;X
-	movi	>7f,a0
+	movi	07fH,a0
 	callr	rnd
 	move	a0,a11			;Y
 	movi	bld_l,a9
@@ -1956,7 +1956,7 @@ hb300	callr	head_blowbld
 
 
 head_t	.long	head_l
-	.word	190,->300,>300,->500,->100
+	.word	190,-0300H,0300H,-0500H,-0100H
 head_l
 	LW	FLYHD1,2
 	LW	FLYHD2,2
@@ -2026,10 +2026,10 @@ sb100
 	movk	3,a0
 	and	a6,a0
 	jrnz	sb150
-	movi	shldrexp_t,a9		;>Explosion
+	movi	shldrexp_t,a9		;0EHxplosion
 	CREATE	BOSSPID,mk_objfranim
 sb150	addi	AY+40,a11
-	movi	shldrl_t,a9		;>Alternate LR shoulder
+	movi	shldrl_t,a9		;0AHlternate LR shoulder
 	btst	0,a6
 	jrz	sb200
 	movi	shldrr_t,a9
@@ -2037,11 +2037,11 @@ sb200	CREATE	BOSSPID,mk_objfranim
 	movk	7,a0
 	and	a6,a0
 	jrnz	sb300
-	movi	>ff,a0
+	movi	0ffH,a0
 	callr	rnd
-	subi	>7f,a0
+	subi	07fH,a0
 	move	a0,a10			;X
-	movi	>7f,a0
+	movi	07fH,a0
 	callr	rnd
 	move	a0,a11			;Y
 	movi	bld_l,a9
@@ -2058,7 +2058,7 @@ sb300	move	a6,a9
 	movk	8,a0
 	callr	boss_addrndxy		;Shake!
 	clr	a1
-	movi	>c000,a2
+	movi	0c000H,a2
 	callr	boss_addxy
 	dsj	a6,sb100
 
@@ -2073,11 +2073,11 @@ sb300	move	a6,a9
 
 
 	movi	60*4/10,a6
-sb600	movi	>ff,a0
+sb600	movi	0ffH,a0
 	callr	rnd
-	subi	>7f,a0
+	subi	07fH,a0
 	move	a0,a10			;X
-	movi	>7f,a0
+	movi	07fH,a0
 	callr	rnd
 	move	a0,a11			;Y
 	movi	bld_l,a9
@@ -2095,13 +2095,13 @@ sb600	movi	>ff,a0
 
 shldrexp_t
 	.long	XBOOM2
-	.word	190,->800,>800,->800,0
+	.word	190,-0800H,0800H,-0800H,0
 shldrl_t
 	.long	shldrl_l
-	.word	190,->800,->200,->400,0
+	.word	190,-0800H,-0200H,-0400H,0
 shldrr_t
 	.long	shldrr_l
-	.word	190,>200,>800,->400,0
+	.word	190,0200H,0800H,-0400H,0
 
 shldrr_l
 	LWW	SHLDR,FLIPBITS+1,M_FLIPH
@@ -2138,7 +2138,7 @@ bb200	cmpi	60*8,a6
 	move	*a8(OXPOS),a10
 	addi	AX+2,a10		;+Ani pt X offset
 	move	*a8(OYPOS),a11
-	movi	bodyexp1_t,a9		;>Explosion
+	movi	bodyexp1_t,a9		;0EHxplosion
 	CREATE	BOSSPID,mk_objfranim
 	movi	exp1snd,a0
 	calla	ONESND
@@ -2153,7 +2153,7 @@ bb220	move	a6,a0
 	move	a0,a0
 	jrnz	bb250			;Skip?
 bb230	callr	body_blowone
-bb250	movi	>3f,a0
+bb250	movi	03fH,a0
 	callr	rnd
 	jrnz	bb260			;Skip pain snd?
 	movi	stvpainsnd,a0
@@ -2204,11 +2204,11 @@ bb450	move	*a3+,a2,L
 
 bb500	btst	0,a6
 	jrnz	bb550
-	movi	>7f,a0
+	movi	07fH,a0
 	callr	rnd
-	subi	>3f,a0
+	subi	03fH,a0
 	move	a0,a10			;X
-	movi	>3f,a0
+	movi	03fH,a0
 	callr	rnd
 	move	a0,a11			;Y
 	movi	bld_l,a9
@@ -2252,9 +2252,9 @@ bb570	move	a6,a9
 
 	clr	a0
 	move	a0,@WRLD
-	movi	>3e3e,a6		;Cycle color
+	movi	03e3eH,a6		;Cycle color
 	movi	bombs_s,a8
- 	movi	[100,>bc],a9		;YX
+ 	movi	[100,0bcH],a9		;YX
 	movk	2,a10			;y,x spacing between charcters
 	movi	RD15FONT,a11
 	JSRP	STRCNRMO
@@ -2266,15 +2266,15 @@ bb570	move	a6,a9
 	sub	a0,a8
 	calla	HEXTOASC
 	clr	a0
-	movi	>3e3e,a6		;Cycle color
-	movi	[100,>140],a9		;YX
+	movi	03e3eH,a6		;Cycle color
+	movi	[100,0140H],a9		;YX
 	JSRP	STRLNRMO
 	
 	SLEEP	60*4
 	movk	16,a0
 	move	a0,@WAVE		;Normal
 	movi	BOSSPID,a0
-	movi	>ff,a1
+	movi	0ffH,a1
 	calla	KILALLN
 	calla	TRY_RCK
 	DIE
@@ -2282,7 +2282,7 @@ bb570	move	a6,a9
 
 bloodc_t
 	.long	bldclt_l
-	.word	250,->b0,>b0,->b0,>b0
+	.word	250,-0b0H,0b0H,-0b0H,0b0H
 
 bombs_s	.byte "BOMBS USED ON ORCUS:",0
 	.even
@@ -2307,14 +2307,14 @@ bbslp	movi	bubl1snd,a0
 	movk	1,a0
 	callr	rnd
 	jrnz	bbo160			;Skip?
-	movi	bodyexp1_t,a9		;>Explosion
+	movi	bodyexp1_t,a9		;0EHxplosion
 	movk	1,a0
 	callr	rnd
 	jrnz	bbo150
 	movi	bodyexp2_t,a9
 bbo150	CREATE	BOSSPID,mk_objfranim
 
-bbo160	addi	AY,a11			;>Alternate LR shoulder
+bbo160	addi	AY,a11			;0AHlternate LR shoulder
 	movi	bshldrl_t,a9
 	movk	1,a0
 	callr	rnd
@@ -2322,14 +2322,14 @@ bbo160	addi	AY,a11			;>Alternate LR shoulder
 	movi	bshldrr_t,a9
 bbo200	CREATE	BOSSPID,mk_objfranim
 
-	movi	beyel_t,a9		;>Alt LR eye
+	movi	beyel_t,a9		;0AHlt LR eye
 	movk	1,a0
 	callr	rnd
 	jrnz	bbo250
 	movi	beyer_t,a9
 bbo250	CREATE	BOSSPID,mk_objfranim
 
-	movi	bmthl_t,a9		;>Alt LR mouth
+	movi	bmthl_t,a9		;0AHlt LR mouth
 	movk	1,a0
 	callr	rnd
 	jrnz	bbo300
@@ -2346,10 +2346,10 @@ bbo300	CREATE	BOSSPID,mk_objfranim
 
 bodyexp1_t
 	.long	XBOOM2
-	.word	191,->800,>800,->800,>800
+	.word	191,-0800H,0800H,-0800H,0800H
 bodyexp2_t
 	.long	explb_l
-	.word	191,->800,>800,->800,>800
+	.word	191,-0800H,0800H,-0800H,0800H
 
 explb_l
 	LWLW	EXPL1,NEWPALET+DELTAY+3,BLUBOOM,50
@@ -2366,10 +2366,10 @@ explb_l
 
 bshldrl_t
 	.long	bshldrl_l
-	.word	190,->500,->40,->600,->40
+	.word	190,-0500H,-040H,-0600H,-040H
 bshldrr_t
 	.long	bshldrr_l
-	.word	190,>40,>500,->600,->40
+	.word	190,040H,0500H,-0600H,-040H
 bshldrr_l
 	LWW	TOPRIP,FLIPBITS+1,M_FLIPH
 bshldrl_l
@@ -2384,9 +2384,9 @@ bshldrl_l
 
 
 beyel_t	.long	beyel_l
-	.word	190,->800,->40,->300,>300
+	.word	190,-0800H,-040H,-0300H,0300H
 beyer_t	.long	beyer_l
-	.word	190,>40,>800,->300,>300
+	.word	190,040H,0800H,-0300H,0300H
 
 beyer_l	LWW	OEYES1C,FLIPBITS+1,M_FLIPH
 beyel_l	LW	OEYES1C,15
@@ -2400,9 +2400,9 @@ beyel_l	LW	OEYES1C,15
 
 
 bmthl_t	.long	bmthl_l
-	.word	190,->800,->40,->80,>600
+	.word	190,-0800H,-040H,-080H,0600H
 bmthr_t	.long	bmthr_l
-	.word	190,>40,>800,->80,>600
+	.word	190,040H,0800H,-080H,0600H
 
 bmthr_l	LWW	OMTH4B,FLIPBITS+1,M_FLIPH
 bmthl_l	LW	OMTH4B,15
@@ -2424,7 +2424,7 @@ bmthl_l	LW	OMTH4B,15
 	LONGPD	mzvel	,4	;
 
 MZ	.set	158
-MZA	.set	>1800
+MZA	.set	01800H
 
 GRUNTMODE	equ	1
 
@@ -2438,7 +2438,7 @@ GRUNTMODE	equ	1
 	movi	88,a0
 makb50	calla	RNDRNGS
 	move	a0,a10			;X
-	movi	>2f,a0
+	movi	02fH,a0
 	callr	rndrng0
 	addi	65,a0
 	move	a0,a11			;Y
@@ -2457,17 +2457,17 @@ akhbjmp_l
 
  SUBR	MORTAR_GRNT	;A8=*Src Obj
 
-	movi	>7f,a0
+	movi	07fH,a0
 	callr	rnd
-	subi	>3f,a0
+	subi	03fH,a0
 	move	a0,a10			;X
-	movi	>28,a0
+	movi	028H,a0
 	callr	rnd
 	addi	60,a0
 	move	a0,a11			;Y
 	movi	grnt_l,a9
-	movi	>4c,a0
-	movi	>28,a1
+	movi	04cH,a0
+	movi	028H,a1
 	jruc	ms5
 
 grnt_l	.long	0			;82
@@ -2592,7 +2592,7 @@ ms60	sra	1,a6			;>Scale down to A11
 	cmp	a11,a2
 	jrgt	ms60
 
-	move	a6,a4			;>Fine scale up to A11
+	move	a6,a4			;0FHine scale up to A11
 	move	a7,a5
 	sra	4,a4			;/16
 	sra	4,a5
@@ -2644,7 +2644,7 @@ ms250	mmfm	a12,a0,a1,a4,a6,a7
 
 ms300	move	*a8(OFLAGS),a4		;No collisions
 	move	*a9+,a10		;Get #ticks for frame
-	cmpi	>100,a10
+	cmpi	0100H,a10
 	jrlo	ms330
 	move	*a9+,a2			;Get the new flip flags
 	andni	(M_FLIPV+M_FLIPH),a4	;Clear the current flip status
@@ -2854,7 +2854,7 @@ okbmg_l	LWL	OKBM1,NEWPALET+4,GREYPAL
 	jrls	dx20
 	movi	47,a3
 dx20	callr	damage_set
-	movi	>1f1f0000,a9
+	movi	01f1f0000H,a9
 	CREATE0	FLASHME
 
 dxx	PULL	a2,a3,a4,a8,a9
@@ -3186,7 +3186,7 @@ mif300	sub	a10,a0			;A0=Difference
 	cmpi	2,a0
 	jrle	mif340			;In seeker view?
 	move	*a13(mslsko),a2
-	movk	>f,a0
+	movk	0fH,a0
 	callr	rnd
 	jrnz	mif320			;No dir change?
 	neg	a2
@@ -3203,7 +3203,7 @@ mif350	move	a1,a1
 mif360	addk	1,a10			;+1
 
 
-mif400	ANDK	>1f,a10			;Make 0-31
+mif400	ANDK	01fH,a10			;Make 0-31
 
 	move	a10,a0			;>New image
 	sll	4,a0			;*16
@@ -3235,7 +3235,7 @@ mif500	move	a10,a0
 	add	a7,a0			;+Vel
 	move	a0,*a8(OYVEL),L
 
-mif700	movk	>f,a1
+mif700	movk	0fH,a1
 	and	a11,a1
 	jrnz	mif800			;Skip screen check?
 	move	@WAVE,a1
@@ -3386,7 +3386,7 @@ rf350	move	a1,a1
 rf360	addk	1,a10			;+1
 
 
-rf400	ANDK	>1f,a10			;Make 0-31
+rf400	ANDK	01fH,a10			;Make 0-31
 
 	move	a10,a0			;>New image
 	sll	4,a0			;*16
@@ -3419,7 +3419,7 @@ rf500	move	a10,a0
 	move	a0,*a8(OYVEL),L
 
 rf700
-	movk	>f,a1
+	movk	0fH,a1
 	and	a11,a1
 	jrnz	rf800			;Skip screen check?
 	calla	SCRTST
@@ -3723,7 +3723,7 @@ df200	SLEEPK	1
 	move	a0,*a8(OZPOS)
 
 df220
-	movi	>1f,a0
+	movi	01fH,a0
 	callr	rnd
 	jrnz	df250
 	movk	2,a0			;>New mode
@@ -3773,7 +3773,7 @@ df350	move	a1,a1
 	subk	2,a10			;-1
 df360	addk	1,a10			;+1
 
-df400	ANDK	>1f,a10			;Make 0-31
+df400	ANDK	01fH,a10			;Make 0-31
 
 df500	movk	3,a0
 	and	a11,a0
@@ -3872,7 +3872,7 @@ dronemslo_t
 * A0=*Dest obj
 * A8=*Src obj
 * Trashes A0-A3,A6-A7
-* >A0=Dir 0-31
+* 0A0H=Dir 0-31
 
  SUBR	seekob_dir32
 
@@ -3935,7 +3935,7 @@ sod100	movk	16,a2			;Oct 4-5
 sod160	addk	8,a2			;Oct 6-7
 	SWAP	a0,a1
 
-sod200	cmp	a1,a0			;>Cmp slope
+sod200	cmp	a1,a0			;0CHmp slope
 	jrhs	sod300
 
 	move	a0,a3
@@ -3956,9 +3956,9 @@ sod320	subk	1,a2			;Next 1/4 oct
 sod350	cmp	a0,a1
 	jrhi	sod320
 
-sod400	movk	>1f,a0
+sod400	movk	01fH,a0
 	and	a2,a0
-	rets				;>A0=Dir 0-31
+	rets				;0A0H=Dir 0-31
 
 
 
@@ -4025,24 +4025,24 @@ nf200	SLEEPK	20
 	sra	16,a0
 	sra	16,a1
 	abs	a0
-	cmpi	>62,a1		;check y coords
+	cmpi	062H,a1		;check y coords
 	jrls	npc40
-	cmpi	>82,a1
+	cmpi	082H,a1
 	jrhs	npc40
-	cmpi	>14,a0
+	cmpi	014H,a0
 	jrls	npc40
-	cmpi	>40,a0
+	cmpi	040H,a0
 	jrhs	npc40
 npc20	setc			;In box!
 	rets
 
-npc40	cmpi	>78,a1		;check further out box
+npc40	cmpi	078H,a1		;check further out box
 	jrls	npc70
-	cmpi	>98,a1
+	cmpi	098H,a1
 	jrhs	npc70
-	cmpi	>34,a0
+	cmpi	034H,a0
 	jrls	npc70
-	cmpi	>60,a0
+	cmpi	060H,a0
 	jrlo	npc20
 npc70	clrc			;Not in box
 	rets
@@ -4059,7 +4059,7 @@ npc70	clrc			;Not in box
 	subk	8,a0
 	sll	16,a0
 	move	*a8(OYPOS),a1
-	addi	>29,a1
+	addi	029H,a1
 	sll	16,a1
 	movk	4,a9
 	jauc	DOIT
@@ -4075,7 +4075,7 @@ npc70	clrc			;Not in box
 	addk	8,a0
 	sll	16,a0
 	move	*a8(OYPOS),a1
-	addi	>29,a1
+	addi	029H,a1
 	sll	16,a1
 	movk	5,a9
 	jauc	DOIT
@@ -4110,7 +4110,7 @@ gun10	JSRP	gun_seek
 	SLEEPK	4		;Wait for muzzle flash to finish
 	move	*a11,a0		;Get status
 	jrgt	gun		;On fire?
-	movk	>f,a0
+	movk	0fH,a0
 	callr	rnd
 	jrnz	gun20		;Skip sleep?
 	SLEEP	60
@@ -4301,19 +4301,19 @@ gunsk_t	.byte	ARML,-ARMR1
 
 bullet_t	;Bullet table (XOFF,YOFF,XV,YV)
 
-	.word	-35,148,>200,>400	;LGun dir 6
-	.word	-73,155,0,>400		;LGun dir 1
-	.word	-102,143,->200,>400	;LGun dir 2
-	.word	-118,129,->300,>300	;LGun dir 3
-	.word	-130,105,->400,>200	;LGun dir 4
-	.word	-137,74,->400,0		;LGun dir 5
+	.word	-35,148,0200H,0400H	;LGun dir 6
+	.word	-73,155,0,0400H		;LGun dir 1
+	.word	-102,143,-0200H,0400H	;LGun dir 2
+	.word	-118,129,-0300H,0300H	;LGun dir 3
+	.word	-130,105,-0400H,0200H	;LGun dir 4
+	.word	-137,74,-0400H,0		;LGun dir 5
 
-	.word	34,148,->200,>400	;RGun dir 6
-	.word	72,155,0,>400		;RGun dir 1
-	.word	101,143,>200,>400	;RGun dir 2
-	.word	117,129,>300,>300	;RGun dir 3
-	.word	129,105,>400,>200	;RGun dir 4
-	.word	136,74,>400,0		;RGun dir 5
+	.word	34,148,-0200H,0400H	;RGun dir 6
+	.word	72,155,0,0400H		;RGun dir 1
+	.word	101,143,0200H,0400H	;RGun dir 2
+	.word	117,129,0300H,0300H	;RGun dir 3
+	.word	129,105,0400H,0200H	;RGun dir 4
+	.word	136,74,0400H,0		;RGun dir 5
 
 
 gunrecoil_t
@@ -4462,10 +4462,10 @@ bglp	move	*a8(OIMG),a1,L
 
 	btst	B_FLIPH,a4		;Flip kludge ?
 	jrz	bg5			;no...
-	addi	>20000,a6		;adjust flip kludge
+	addi	020000H,a6		;adjust flip kludge
 	cmpi	-CLSENMY|TYPFACE|SUBHD,a0
 	jrne	bg5			;Little head?
-	subi	>10000,a6
+	subi	010000H,a6
 
 bg5	cmpi	CLSDEAD,a0		;Adjust shadow offset
 	jrne	bg10
@@ -4590,7 +4590,7 @@ bsl50	move	*a8+,a2,L
 
 	move	a2,a11		;save flag
 	move	@RAND,a0
-	movk	>f,a14
+	movk	0fH,a14
 	and	a14,a0
 	sll	4,a0		;*16
 	move	a0,a9
@@ -4616,7 +4616,7 @@ bsl50	move	*a8+,a2,L
 
 	move	a2,a11			;Save flag
 	move	@RAND,a0
-	movk	>f,a14
+	movk	0fH,a14
 	and	a14,a0
 	sll	5,a0			;*32
 	add	a1,a0
@@ -4752,7 +4752,7 @@ getpok	move	*a0(LEG_PTR),a0,L
 * A0/A1=XY offset
 * A8=*Boss data struct
 * Trashes A0-A7
-* >A0=*Plyr legs obj or 0 (Pass Z)
+* 0A0H=*Plyr legs obj or 0 (Pass Z)
 
  SUBRP	boss_getcloseplyr
 
@@ -4815,7 +4815,7 @@ gcp800	clr	a0			;P1&P2 bad
 
  SUBRP	cycle_eye
 
-	movi	>3b0001,a8	;A8=[color # to start at,# to cycle]
+	movi	03b0001H,a8	;A8=[color # to start at,# to cycle]
 	movi	ORCP1,a9	;A9=pal name to cycle
 	movi	eyecol_t,a10	;A10=table to cycle it with
 	movk	3,a11		;A11=rate of cycle in ticks
@@ -4850,7 +4850,7 @@ eyecol_t
 * Quickly produce a random # in range 0-X
 * A0=X
 * Preserves Regs 2-13
-* >A0 = RANDOM # (0 to A0)
+* 0A0H = RANDOM # (0 to A0)
 
  SUBRP	rndrng0
 

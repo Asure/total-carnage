@@ -1,0 +1,5 @@
+*.obj
+*.lst
+*.out
+*.map
+*.pyc

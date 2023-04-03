@@ -10,7 +10,7 @@
 *  COPYRIGHT (C) 1990 WILLIAMS ELECTRONICS GAMES, INC.                   *
 *                                                                        *
 **************************************************************************
-         .FILE	'FBFX.ASM'
+         .FILE	"FBFX.ASM"
          .WIDTH	132
          .OPTION	B,D,L,T
          .MNOLIST
@@ -62,7 +62,7 @@ FXLEGAL2
 *                                                                        *
 **************************************************************************
 KOM_PROMPT
-         SLEEP   >30
+         SLEEP   030H
          MOVI    PBOX0_INIT,A0
          MOVI    TAPACT0_INIT,A2
          MOVI    ARR0_INIT,A3
@@ -108,32 +108,32 @@ KOMP7    CALLA   INITOBJ
 PBOX0_INIT
          .LONG   JUSTABOX,HELPBX_P
          .WORD   0,DMAWNZ|M_NOSCROLL,OID_PROMPT
-         .WORD   >35,>B0,0
+         .WORD   035H,0B0H,0
 
 TAPACT0_INIT
          .LONG   TAFP,boonpal
          .WORD   0,DMAWNZ|M_NOSCROLL,OID_PROMPT
-         .WORD   >3E,>B7,1
+         .WORD   03EH,0B7H,1
 
 ARR0_INIT
          .LONG   HBOX_ARROW,HELPBX_P
          .WORD   0,DMAWNZ|M_NOSCROLL,OID_PROMPT
-         .WORD   >25,>BA,1
+         .WORD   025H,0BAH,1
 
 PBOX1_INIT
          .LONG   JUSTABOX,HELPBX_P
          .WORD   0,DMAWNZ|M_NOSCROLL,OID_PROMPT
-         .WORD   >E5,>B0,0
+         .WORD   0E5H,0B0H,0
 
 TAPACT1_INIT
          .LONG   TAFP,boonpal
          .WORD   0,DMAWNZ|M_NOSCROLL,OID_PROMPT
-         .WORD   >ED,>B7,1
+         .WORD   0EDH,0B7H,1
 
 ARR1_INIT
          .LONG   HBOX_ARROW,HELPBX_P
          .WORD   0,DMAWNZ|M_NOSCROLL|M_FLIPH,OID_PROMPT
-         .WORD   >158,>BA,1
+         .WORD   0158H,0BAH,1
 
 **************************************************************************
 *                                                                        *
@@ -143,7 +143,7 @@ ARR1_INIT
 *                                                                        *
 **************************************************************************
 HALFTIME
-         MOVI    >05,A0
+         MOVI    005H,A0
          CALLA   FX_SHADOW_PRINT      ; "HALFTIME"
          MOVK    4,A11
          CREATE  PID_FX,RGBSTUFF      ; FLASH THE LETTERS
@@ -155,43 +155,43 @@ HALFTIME
          CREATE  PID_FX,BACKGROUND    ; START A BACKGROUND UPDATER
          CREATE  PID_FX,HT_CROWD      ; BACKGROUND CROWD
 
-         ADDI    >150,A9
-         ADDI    >50,A10
+         ADDI    0150H,A9
+         ADDI    050H,A10
 
          PUSH    A9
          MOVK    7,A11
 HTIME3   CREATE  PID_FX,ONE_CHEER
-         SUBI    >30,A9
+         SUBI    030H,A9
          DSJS    A11,HTIME3
          PULL    A9
-         ADDI    >90,A10              ; 2ND ROW
+         ADDI    090H,A10              ; 2ND ROW
 
          MOVK    7,A11
 HTIME4   CREATE  PID_FX,ONE_CHEER
-         SUBI    >30,A9
+         SUBI    030H,A9
          DSJS    A11,HTIME4
 
          CREATE  PID_FX,WINMAKER
-         SLEEP   >40
+         SLEEP   040H
          MOVK    8,A3
          CALLA   SEND_CODE_A3         ; GET DOWN SENOR FORDEN !!
-         SLEEP   >280
+         SLEEP   0280H
 
          MOVI    MA_HT_CHEER3,A11
          MOVI    INSOBJ3,A10
          CREATE  PID_FX,MULTIANI
-         SLEEP   >08
+         SLEEP   008H
 
          MOVI    MA_HT_CHEER4,A11
          MOVI    INSOBJ3,A10
          CREATE  PID_FX,MULTIANI
-         SLEEP   >08
+         SLEEP   008H
 
          MOVI    MA_HT_LOF2,A11
          MOVI    INSOBJ3,A10
          CREATE  PID_FX,MULTIANI
-         BSOUND  >23
-         SLEEP   >90
+         BSOUND  023H
+         SLEEP   090H
          JRUC    FX_EXIT
 
 
@@ -208,7 +208,7 @@ WINM1    MOVE    *A8,A11,L
          MOVE    @OBJLST3,A3,L
          CLR     A0
          MOVE    A0,@OBJLST3,L
-         MOVI    ->28000,A2
+         MOVI    -028000H,A2
          MOVE    A3,A4
 
 WINM2    MOVE    A2,*A4(OXVEL),L
@@ -221,7 +221,7 @@ WINM2    MOVE    A2,*A4(OXVEL),L
          MOVE    @OBJLST2,A0,L
          MOVE    A0,*A5(OLINK),L      ; ADD TO TOP OF LIST #1
          MOVE    A3,@OBJLST2,L
-         SLEEP   >45
+         SLEEP   045H
          ADDI    32,A8
          CMPI    HT_END,A8
          JRNE    WINM1
@@ -232,20 +232,20 @@ WINM2    MOVE    A2,*A4(OXVEL),L
          MOVK    5,A10
          CREATE  PID_FX,WINDOW_ANI    ; LET SOMEONE ELSE DO THE ANIMATING
          MOVE    A0,A11
-         MOVI    ->28000,A2
+         MOVI    -028000H,A2
          MOVE    A2,*A8(OXVEL),L
          MOVE    A8,A0
          CALLA   INSOBJ2
          DIE
 
 AWESOME_PROC
-         SLEEP   >13D
-         BSOUND  >42                  ; SPEECH: AWESOME !!!
+         SLEEP   013DH
+         BSOUND  042H                  ; SPEECH: AWESOME !!!
          DIE
 
 HT_CROWD
-         BSOUND  >23                  ; START WITH ROAR
-         SLEEP   >50
+         BSOUND  023H                  ; START WITH ROAR
+         SLEEP   050H
          JAUC    CROWDM
 
 HT_WINDOWS
@@ -260,14 +260,14 @@ HT_END
 HTFAN_INIT
          .LONG   FANWIN1A,FAN1PAL
          .WORD   0,DMAWNZ|M_NOSCROLL,OID_FX
-         .WORD   >1E0,>51,0
+         .WORD   01E0H,051H,0
 
 
 HTWINDOW_KILLER
          SLEEP   10
          MOVE    *A11(P_PREY),A8,L    ; RIGHT SIDE IMAGE
          MOVE    *A8(OXPOS),A2,W
-         CMPI    ->60,A2              ; ON SCREEN ?
+         CMPI    -060H,A2              ; ON SCREEN ?
          JRGT    HTWINDOW_KILLER      ; NO ---> WAIT
 
          MOVE    *A11(P_PREY),A0,L    ; RIGHT SIDE
@@ -291,15 +291,15 @@ HTKILL3  CALLA   DELOBJP2
 ;         MOVE    A0,@SCRNTL3,L
 ;         MOVE    A0,@SCRNLR3,L
 
-;         SLEEP   >2A
+;         SLEEP   02AH
 ;         MOVI    MA_HT_CHEER2,A11
 ;         MOVI    INSOBJ3,A10
 ;         CREATE  PID_FX,MULTIANI
 ;         MOVE    A0,A9
 ;         SLEEP   1
 ;         MOVE    *A9(P_PREY),A8,L     ; A8 = BACKDROP OBJ
-;         MOVI    >00030003,A11
-;         MOVI    >00250025,A10        ; A10 = INITIAL CLIPPING
+;         MOVI    000030003H,A11
+;         MOVI    000250025H,A10        ; A10 = INITIAL CLIPPING
 ;         JSRP    GROW_WINDOW
 ;         DIE
 
@@ -331,22 +331,22 @@ ONEC3    MOVE    A5,A0
          MOVE    A10,*A8(OZPOS),W
          MOVE    A8,A0
          CALLA   INSOBJ
-         SLEEP   >3A
+         SLEEP   03AH
 
          MOVI    A_SIDE,A9
-         MOVI    >00060002,A0
+         MOVI    000060002H,A0
          JSRP    A0FRAMES             ; BEAT #1
-         SLEEP   >04
-         MOVI    >00050002,A0
+         SLEEP   004H
+         MOVI    000050002H,A0
          JSRP    A0FRAMES             ; BEAT #2
-         SLEEP   >12
+         SLEEP   012H
 
-         MOVI    >00050002,A0
+         MOVI    000050002H,A0
          JSRP    A0FRAMES             ; BEAT #3
-         SLEEP   >04
-         MOVI    >00050002,A0
+         SLEEP   004H
+         MOVI    000050002H,A0
          JSRP    A0FRAMES             ; BEAT #4
-         SLEEP   >12
+         SLEEP   012H
 
          MOVI    A_KICK,A9
          MOVK    4,A0
@@ -374,7 +374,7 @@ ONEC3    MOVE    A5,A0
          MOVK    6,A0
          JSRP    FRAMEW               ; JUMP ANIMATION
          MOVI    A_JUMP,A9
-         MOVI    >00020006,A0
+         MOVI    000020006H,A0
          JSRP    A0FRAMES
 
          MOVI    A_SIDE,A9
@@ -387,12 +387,12 @@ ONEC3    MOVE    A5,A0
          MOVI    A_KICK,A9
          MOVK    4,A0
          JSRP    FRAMEW
-         SLEEP   >20
+         SLEEP   020H
 
          MOVI    A_JUMP,A9
          MOVK    6,A0
          JSRP    FRAMEW               ; JUMP ANIMATION
-         MOVI    >00020006,A0
+         MOVI    000020006H,A0
          JSRP    A0FRAMES
 
          DIE
@@ -433,9 +433,9 @@ FX_PAIN
 
 PAIN1    MOVK    2,A0
          MOVE    A0,@PAINCNT,W
-         SLEEP   >38                  ; LET THE "IMPACT" SOUND PLAY
-         BSOUND  >45                  ; PAIN SCREAMING
-         SLEEP   >60
+         SLEEP   038H                  ; LET THE "IMPACT" SOUND PLAY
+         BSOUND  045H                  ; PAIN SCREAMING
+         SLEEP   060H
 
          MOVI    FAN1_INIT,A14
          MOVI    A_FAN1,A9
@@ -443,22 +443,22 @@ PAIN1    MOVK    2,A0
          MOVK    5,A10
          CREATE  PID_FX,WINDOW_ANI    ; LET SOMEONE ELSE DO THE ANIMATING
 
-         MOVI    >E0,A2
-         MOVI    >10,A3
+         MOVI    0E0H,A2
+         MOVI    010H,A3
          MOVE    @BALLCAR,A0,L
          MOVE    *A0(OZPOS),A0,W
          CMPI    FIELD_MIDZ,A0
          JRLO    PAIN2
-         MOVI    >99,A3
+         MOVI    099H,A3
 PAIN2    MOVE    A2,*A8(OXPOS),W
          MOVE    A3,*A8(OYPOS),W      ; FIND A GOOD SPOT FOR WINDOW
          MOVE    A8,A0
          CALLA   INSOBJ2
-         BSOUND  >53                  ; CROWD ROAR
-         SLEEP   >40
+         BSOUND  053H                  ; CROWD ROAR
+         SLEEP   040H
 
          CREATE  PID_FX,AWESOME
-         SLEEP   >80
+         SLEEP   080H
          JRUC    FX_EXIT
 
 **************************************************************************
@@ -482,13 +482,13 @@ AWE2     MOVI    INSOBJ3,A10
          CALLR   HIDELIST3
          SLEEP   1                    ; TIME FOR IT TO INITIALIZE
          MOVE    *A9(P_PREY),A8,L     ; A8 = BACKDROP OBJ
-         MOVI    >00020002,A11
-         MOVI    >00250025,A10        ; A10 = INITIAL CLIPPING
+         MOVI    000020002H,A11
+         MOVI    000250025H,A10        ; A10 = INITIAL CLIPPING
          JSRP    GROW_WINDOW
-         SLEEP   >0B
-         BSOUND  >42                  ; SPEECH: AWESOME !!!
-         SLEEP   >80
-         MOVI    >00020002,A11
+         SLEEP   00BH
+         BSOUND  042H                  ; SPEECH: AWESOME !!!
+         SLEEP   080H
+         MOVI    000020002H,A11
          JSRP    SHRINK_WIN
          DIE
 
@@ -505,7 +505,7 @@ FX_SUDDEN
 
          CALLA   GAME_OVER_SCREEN
 
-         MOVI    >0B,A0
+         MOVI    00BH,A0
          CALLA   FX_SHADOW_PRINT      ; "THE SCORE IS TIED"
 
          MOVI    SUDDEN_IMAGES,A7
@@ -519,26 +519,26 @@ FX_SUDDEN
          MOVI    DELET_INIT,A14
          CALLR   TDOWN1               ; "DEATH"
 
-         MOVI    >0A,A0
+         MOVI    00AH,A0
          CALLA   FX_SHADOW_PRINT      ; "OVERTIME"
 
          MOVK    3,A11
          CREATE  PID_FX,RGBSTUFF      ; FLASH: "THE SCORE IS TIED"
 
-         MOVI    >0A,A3
+         MOVI    00AH,A3
          CALLA   FVTUNE               ; TUNE
-         SLEEP   >130
+         SLEEP   0130H
          JRUC    FX_EXIT
 
 SUDLET_INIT
          .LONG   HUGE_T,letblu
          .WORD   0,DMAWNZ|M_NOSCROLL,OID_FX
-         .WORD   >7C,>62,0
+         .WORD   07CH,062H,0
 
 DELET_INIT
          .LONG   HUGE_T,letblu
          .WORD   0,DMAWNZ|M_NOSCROLL,OID_FX
-         .WORD   >88,>85,0
+         .WORD   088H,085H,0
 
 SUDDEN_IMAGES
          .LONG   HUGE_N
@@ -573,12 +573,12 @@ WHAD2    MOVI    INSOBJ3,A10
          CALLR   HIDELIST3
          SLEEP   1                    ; TIME FOR IT TO INITIALIZE
          MOVE    *A9(P_PREY),A8,L     ; A8 = BACKDROP OBJ
-         MOVI    >00020002,A11
-         MOVI    >00250025,A10        ; A10 = INITIAL CLIPPING
+         MOVI    000020002H,A11
+         MOVI    000250025H,A10        ; A10 = INITIAL CLIPPING
          JSRP    GROW_WINDOW
          SLEEP   8         
-         BSOUND  >48                  ; SPEECH: "WHAT A PLAY !!!"
-         SLEEP   >80
+         BSOUND  048H                  ; SPEECH: "WHAT A PLAY !!!"
+         SLEEP   080H
          JRUC    SHRINK_THEN_DIE
 
 **************************************************************************
@@ -611,11 +611,11 @@ POSTINT3 MOVE    A0,A9                ; A9 = ANI PROC
          CALLR   HIDELIST3
          SLEEP   1                    ; TIME FOR IT TO INITIALIZE
          MOVE    *A9(P_PREY),A8,L     ; A8 = BACKDROP OBJ
-         MOVI    >00020002,A11
-         MOVI    >00250025,A10        ; A10 = INITIAL CLIPPING
+         MOVI    000020002H,A11
+         MOVI    000250025H,A10        ; A10 = INITIAL CLIPPING
          JSRP    GROW_WINDOW
-         BSOUND  >23                  ; CROWD ROAR !!!!
-         SLEEP   >B0
+         BSOUND  023H                  ; CROWD ROAR !!!!
+         SLEEP   0B0H
          JRUC    SHRINK_THEN_DIE
 
 **************************************************************************
@@ -627,32 +627,32 @@ POSTINT3 MOVE    A0,A9                ; A9 = ANI PROC
 **************************************************************************
 SHOW_TURNOVER
          MOVE    @T0TEAM,A0,W
-         MOVI    >36,A5
-         MOVI    >55,A6
+         MOVI    036H,A5
+         MOVI    055H,A6
          MOVI    INSOBJ2,A10          ; ROUTINE TO CALL
          CALLR   DO_A_LOGO
          MOVE    @T1TEAM,A0,W
-         MOVI    >DA,A5
-         MOVI    >55,A6
+         MOVI    0DAH,A5
+         MOVI    055H,A6
          MOVI    INSOBJ2,A10          ; ROUTINE TO CALL
          CALLR   DO_A_LOGO
 
-         MOVI    >2F,A0
+         MOVI    02FH,A0
          MOVE    @INTERF,A1,W         ; INTERCEPTION OF SORTS ??
          CMPI    1,A1
          JRNE    SHOT2                ; NOPE....
-         MOVI    >11,A0               ; YES ---> "INTERCEPTION TURNOVER"
+         MOVI    011H,A0               ; YES ---> "INTERCEPTION TURNOVER"
 SHOT2    CALLA   FX_SHADOW_PRINT      ; "TURNOVER"
 
-         MOVI    >2D,A0
+         MOVI    02DH,A0
          MOVE    @OFFENSE,A1,W
          JREQ    SHOT3
-         MOVI    >2E,A0
+         MOVI    02EH,A0
 SHOT3    CALLA   FX_SHADOW_PRINT
          MOVK    4,A11
          CREATE  PID_FX,RGBSTUFF      ; FLASH THE LETTERS
-         BSOUND  >0F
-         SLEEP   >70
+         BSOUND  00FH
+         SLEEP   070H
          DIE
 
 **************************************************************************
@@ -661,7 +661,7 @@ SHOT3    CALLA   FX_SHADOW_PRINT
 *                                                                        *
 **************************************************************************
 FX_BLEW4TH
-         SLEEP   >30
+         SLEEP   030H
          MOVI    MAD_CHOICES0,A1
          MOVE    @OFFENSE,A2,W
          JRNE    BLEW40
@@ -680,16 +680,16 @@ BLEW41   MOVI    INSOBJ3,A10
          CALLR   HIDELIST3
          SLEEP   1                    ; TIME FOR IT TO INITIALIZE
          MOVE    *A9(P_PREY),A8,L     ; A8 = BACKDROP OBJ
-         MOVI    >00020002,A11
-         MOVI    >00250025,A10        ; A10 = INITIAL CLIPPING
+         MOVI    000020002H,A11
+         MOVI    000250025H,A10        ; A10 = INITIAL CLIPPING
          JSRP    GROW_WINDOW
-         BSOUND  >24                  ; BOO !!!
-;        SLEEP   >30
+         BSOUND  024H                  ; BOO !!!
+;        SLEEP   030H
          CREATE  PID_FX,SHOW_TURNOVER
-         SLEEP   >A0
+         SLEEP   0A0H
 
 SHRINK_THEN_DIE
-         MOVI    >00020002,A11
+         MOVI    000020002H,A11
          JSRP    SHRINK_WIN
          JRUC    FX_EXIT
 
@@ -763,31 +763,31 @@ FX_EPY
          CALLA   UNCLIP
          CLR     A3
          CALLA   SEND_CODE_A3
-         BSOUND  >3C                  ; ITS GOOD / TUNE / CROWD
+         BSOUND  03CH                  ; ITS GOOD / TUNE / CROWD
          CREATE  PID_FX,ITGOOD
          CREATE  PID_FX,GP_FLASH      ; PROC: FLASH THE GOAL POSTS
 
-         MOVI    >14000,A1
+         MOVI    014000H,A1
          MOVE    @OFFENSE,A0,W
          JRNE    EPY2
          NEG     A1
 EPY2     MOVE    A1,@SCROLLX,L        ; REVEAL A BIT MORE OF THE GOAL POSTS
-         MOVI    ->10000,A1
+         MOVI    -010000H,A1
          MOVE    A1,@SCROLLY,L        ; A TAD UPWARDS
-         SLEEP   >30
+         SLEEP   030H
          CLR     A0
          MOVE    A0,@SCROLLX,L
          MOVE    A0,@SCROLLY,L
-         SLEEP   >60
+         SLEEP   060H
 
-         MOVI    LGOAL_IN_X+>A0,A1         ; LEFT SIDE
+         MOVI    LGOAL_IN_X+0A0H,A1         ; LEFT SIDE
          MOVE    @OFFENSE,A0,W
          JREQ    EPY3
-         MOVI    RGOAL_IN_X-SCRRGT->80,A1  ; RIGHT SIDE
-EPY3     MOVI    >1B0,A3
+         MOVI    RGOAL_IN_X-SCRRGT-080H,A1  ; RIGHT SIDE
+EPY3     MOVI    01B0H,A3
          MOVK    3,A4
          JSRP    AUTOSCR              ; SHOW SOME CROWD
-         SLEEP   >100
+         SLEEP   0100H
          JRUC    FX_EXIT              ; SHOULDN'T GET HERE
 
 **************************************************************************
@@ -886,34 +886,34 @@ FG4      MOVE    A1,A6
 
          MOVI    L_SCOREBOX,A14
          CALLA   INITOBJ
-         MOVI    >22,A0
+         MOVI    022H,A0
          MOVE    A0,*A8(OXPOS),W
          MOVE    A8,A0
          CALLA   INSOBJ3              ; ON LIST #3
          MOVE    A8,A9
          MOVI    R_SCOREBOX,A14
          CALLA   INITOBJ
-         MOVI    >134,A0
+         MOVI    0134H,A0
          MOVE    A0,*A8(OXPOS),W
          MOVE    A8,A0
          CALLA   INSOBJ3              ; ON LIST #3
 
          MOVE    @T0SCORE,A1,W        
-         MOVI    >29,A11              ; X COORDINATE FOR DIGIT
-         MOVI    >6C,A3
+         MOVI    029H,A11              ; X COORDINATE FOR DIGIT
+         MOVI    06CH,A3
          CALLR   TWO_BIG_DIG          ; TEAM 0 SCORE
          CALLR   A9A10_OBJLST3
          MOVE    @T1SCORE,A1,W        
-         MOVI    >13B,A11             ; FALL THROUGH TO "MAKE_2_DIGITS"
-         MOVI    >6C,A3
+         MOVI    013BH,A11             ; FALL THROUGH TO "MAKE_2_DIGITS"
+         MOVI    06CH,A3
          CALLR   TWO_BIG_DIG          ; TEAM 0 SCORE
          CALLR   A9A10_OBJLST3
 
          MOVI    letblu,A10
-         MOVI    >04060200,A11
+         MOVI    004060200H,A11
          CREATE  PID_FX,CYCLERF
          MOVI    letblu,A10
-         MOVI    >0A060200,A11
+         MOVI    00A060200H,A11
          CREATE  PID_FX,CYCLERF
 *
 * CLIP UNMASKING EFFECT
@@ -943,11 +943,11 @@ FG8      MOVI    INSOBJ3,A10
          MOVE    A0,A9                ; A9 = ANI PROC
          SLEEP   1                    ; TIME FOR IT TO INITIALIZE
          MOVE    *A9(P_PREY),A8,L     ; A8 = BACKDROP OBJ
-         MOVI    >00020002,A11
-         MOVI    >00250025,A10        ; A10 = INITIAL CLIPPING
+         MOVI    000020002H,A11
+         MOVI    000250025H,A10        ; A10 = INITIAL CLIPPING
          JSRP    GROW_WINDOW
-         SLEEP   >C0                  ; TIME TO SEE FULL ANIMATION
-         MOVI    >00020002,A11
+         SLEEP   0C0H                  ; TIME TO SEE FULL ANIMATION
+         MOVI    000020002H,A11
          JSRP    SHRINK_WIN
          MOVE    A9,A0
          CALLA   KILL                 ; KILL "MULTIANI" PROC
@@ -956,7 +956,7 @@ FG8      MOVI    INSOBJ3,A10
 IGLET_INIT
          .LONG   HUGE_I,letblu
          .WORD   0,DMAWNZ|M_NOSCROLL,OID_FX
-         .WORD   >62,>72,0
+         .WORD   062H,072H,0
 
 IG_IMAGES
          .LONG   HUGE_D
@@ -981,11 +981,11 @@ FX_BIGHIT
          MOVE    *A0(OZPOS),A0,W      ; A0 = BALL CARRIER Z
          SUBI    TOP_SIDELINE,A0
          ABS     A0                   ; A0 = DISTANCE FROM SIDELINE
-         CMPI    >70,A0
+         CMPI    070H,A0
          JRLE    PAN_TO_CROWD         ; CLOSE TO TOP ---> PAN UP !!
 
-         SLEEP   >30
-         BSOUND  >53                  ; FAST ROAR
+         SLEEP   030H
+         BSOUND  053H                  ; FAST ROAR
 
          MOVI    FAN1_INIT,A14
          MOVI    A_FAN1,A9
@@ -993,30 +993,30 @@ FX_BIGHIT
          MOVK    5,A10
          CREATE  PID_FX,WINDOW_ANI    ; LET SOMEONE ELSE DO THE ANIMATING
 
-         MOVI    >EC,A1
-         MOVI    >12,A2
+         MOVI    0ECH,A1
+         MOVI    012H,A2
          MOVE    @BALLCAR,A0,L
          MOVE    *A0(ODMAY),A0,W
-         CMPI    >300,A0
+         CMPI    0300H,A0
          JRGT    FXBIG2
-         MOVI    >94,A2
+         MOVI    094H,A2
 FXBIG2   MOVE    A1,*A8(OXPOS),W
          MOVE    A2,*A8(OYPOS),W      ; POSITION WINDOW
          MOVE    A8,A0
          CALLA   INSOBJ2
-         SLEEP   >40                  ; TIME FOR CROWD SOUND
+         SLEEP   040H                  ; TIME FOR CROWD SOUND
 
          MOVI    MA_AWESOME_UL,A11    ; UPPER LEFT CORNER "AWESOME"
          MOVI    INSOBJ3,A10
          CREATE  PID_FX,MULTIANI      ; DO THE WINDOW !!
          MOVE    A0,A11
 
-         SLEEP   >20
-         BSOUND  >42                  ; SPEECH: AWESOME !!!
-         SLEEP   >60
+         SLEEP   020H
+         BSOUND  042H                  ; SPEECH: AWESOME !!!
+         SLEEP   060H
 
          MOVE    *A11(P_PREY),A8,L
-         MOVI    >00020002,A11
+         MOVI    000020002H,A11
          JRUC    SHRINK_THEN_DIE
 
 FAN1_INIT
@@ -1029,8 +1029,8 @@ FAN1_INIT
 *
 PAN_TO_CROWD
          CREATE  PID_FX,SHOWC_SCROLL
-         SLEEP   >30
-         BSOUND  >53             ; FAST CROWD
+         SLEEP   030H
+         BSOUND  053H             ; FAST CROWD
 
          MOVI    CHAN1PRI,A11
          JSRP    WAITPRI         ; WAIT FOR CROWD TO FINISH
@@ -1048,7 +1048,7 @@ PAN_TO_CROWD
 *
 SHOWC_SCROLL
          MOVE    @BALLCAR,A8,L        ; A8 = BALL CARRIER
-         MOVI    ->18000,A0
+         MOVI    -018000H,A0
          MOVE    A0,@SCROLLY,L
          CLR     A0
          MOVE    A0,@SCROLLX,L        ; PAN UP
@@ -1060,9 +1060,9 @@ CRCH2    SLEEP   1
          MOVE    *A8(OZPOS),A1,W      ; A2 = DUDE Z
          SUB     A1,A2
          ABS     A2              ; A2 = DISTANCE FROM BOTTOM OF SCREEN
-         CMPI    >18,A2
+         CMPI    018H,A2
          JRLT    CRCH3           ; TOO CLOSE TO EDGE ---> STOP SCROLL
-         CMPI    >1D0,A0
+         CMPI    01D0H,A0
          JRGT    CRCH2
 CRCH3    CLR     A0
          MOVE    A0,@SCROLLX,L
@@ -1076,12 +1076,12 @@ CRCH3    CLR     A0
 **************************************************************************
 FX_FUMBLE
          CALLA   KILLFX
-         BSOUND  >37                  ; SPEECH: "FUMBLE !!"
-         MOVI    >28,A0
+         BSOUND  037H                  ; SPEECH: "FUMBLE !!"
+         MOVI    028H,A0
          CALLA   FX_SHADOW_PRINT
          MOVK    4,A11
          CREATE  PID_FX,RGBSTUFF      ; FLASH THE LETTERS
-         SLEEP   >D0
+         SLEEP   0D0H
          JRUC    FX_EXIT
 
 **************************************************************************
@@ -1091,14 +1091,14 @@ FX_FUMBLE
 **************************************************************************
 FX_TOUCHB
          CALLA   KILLFX
-         MOVI    >25,A0
+         MOVI    025H,A0
          CALLA   FX_SHADOW_PRINT
          MOVK    4,A11
          CREATE  PID_FX,RGBSTUFF      ; FLASH THE LETTERS
-         SLEEP   >30
-         MOVI    >00310039,A0
+         SLEEP   030H
+         MOVI    000310039H,A0
          CALLA   SNDCROWD             ; SPEECH: TOUCHBACK
-         SLEEP   >70
+         SLEEP   070H
          JRUC    FX_EXIT
 
 **************************************************************************
@@ -1107,7 +1107,7 @@ FX_TOUCHB
 *                                                                        *
 **************************************************************************
 FX_OOB
-         BSOUND  >55
+         BSOUND  055H
          CALLA   KILLFX
          CLR     A0
          MOVE    A0,@SCROLLX,L
@@ -1116,12 +1116,12 @@ FX_OOB
          CMPI    4,A10
          JREQ    OOB_TURNOVER         ; 4TH DOWN ---> SHOW "TURNOVER"
 
-         MOVI    >26,A0
+         MOVI    026H,A0
          CALLA   FX_SHADOW_PRINT
          MOVK    4,A11
          CREATE  PID_FX,RGBSTUFF      ; FLASH THE LETTERS
-         SLEEP   >90
-;        BSOUND  >39                  ; BULL SHIT, BULL SHIT
+         SLEEP   090H
+;        BSOUND  039H                  ; BULL SHIT, BULL SHIT
          JRUC    FX_EXIT
 
 OOB_TURNOVER
@@ -1129,7 +1129,7 @@ OOB_TURNOVER
          CALLA   FX_SHADOW_PRINT      ; OUT OF BOUNDS (HI ON SCREEN)
          MOVK    3,A11
          CREATE  PID_FX,RGBSTUFF      ; FLASH THE LETTERS
-         SLEEP   >20
+         SLEEP   020H
          CREATE  PID_FX,FX_BLEW4TH    ; NOW SHOW THE "TURNOVER"
          DIE
 
@@ -1139,7 +1139,7 @@ OOB_TURNOVER
 *                                                                        *
 **************************************************************************
 FX_SAFETY
-         BSOUND  >36                  ; SOUND FX
+         BSOUND  036H                  ; SOUND FX
          CALLA   KILLFX
 
          CLR     A9
@@ -1150,39 +1150,39 @@ FX_SAFETY
 
          MOVI    L_SCOREBOX,A14
          CALLA   INITOBJ
-         MOVI    >3C,A0
+         MOVI    03CH,A0
          MOVE    A0,*A8(OXPOS),W
          MOVE    A8,A0
          CALLA   INSOBJ3              ; ON LIST #3
          MOVE    A8,A9
          MOVI    R_SCOREBOX,A14
          CALLA   INITOBJ
-         MOVI    >11E,A0
+         MOVI    011EH,A0
          MOVE    A0,*A8(OXPOS),W
          MOVE    A8,A0
          CALLA   INSOBJ3              ; ON LIST #3
 
          MOVE    @T0SCORE,A1,W        
-         MOVI    >41,A11              ; X COORDINATE FOR DIGIT
-         MOVI    >6C,A3
+         MOVI    041H,A11              ; X COORDINATE FOR DIGIT
+         MOVI    06CH,A3
          CALLR   TWO_BIG_DIG          ; TEAM 0 SCORE
          MOVI    OID_FX2,A4
          MOVE    A4,*A9(OID),W
          MOVE    A4,*A10(OID),W       ; DONT CONFUSE WITH OID_FX
          CALLR   A9A10_OBJLST3
          MOVE    @T1SCORE,A1,W        
-         MOVI    >124,A11             ; FALL THROUGH TO "MAKE_2_DIGITS"
-         MOVI    >6C,A3
+         MOVI    0124H,A11             ; FALL THROUGH TO "MAKE_2_DIGITS"
+         MOVI    06CH,A3
          CALLR   TWO_BIG_DIG          ; TEAM 0 SCORE
          MOVI    OID_FX2,A4
          MOVE    A4,*A9(OID),W
          MOVE    A4,*A10(OID),W       ; DONT CONFUSE WITH OID_FX
          CALLR   A9A10_OBJLST3
 
-         SLEEP   >80
-         MOVI    >0D,A3
+         SLEEP   080H
+         MOVI    00DH,A3
          CALLA   FVTUNE
-         SLEEP   >F0
+         SLEEP   0F0H
          JRUC    FX_EXIT
 
 SAFETY_IMAGES
@@ -1196,7 +1196,7 @@ SAFETY_IMAGES
 SAFLET_INIT
          .LONG   HUGE_T,letblu
          .WORD   0,DMAWNZ|M_NOSCROLL,OID_FX2
-         .WORD   >7C,>72,0
+         .WORD   07CH,072H,0
 
 **************************************************************************
 *                                                                        *
@@ -1246,28 +1246,28 @@ COM2     JAUC    BOONSND         ; MAKE THE CALL / RETURN
 * ANNOUNCER TABLE O COMMENTS
 *
 SSRCOMT
-         .WORD   >50     ; 1 - HE NAILED HIM
-         .WORD   >50     ; 2 - HE NAILED HIM
-         .WORD   >43     ; 3 - WHAT A HIT
-         .WORD   >3E     ; 4 - OUCH, THAT HURT
-         .WORD   >40     ; 5 - THAT WAS INTENSE
-         .WORD   >41     ; 6 - DEVASTATING
-         .WORD   >43     ; 7 - WHAT A HIT
-         .WORD   >52     ; 8 - I LOVE IT
-         .WORD   >3E     ; 9 - OUCH, THAT HURT
+         .WORD   050H     ; 1 - HE NAILED HIM
+         .WORD   050H     ; 2 - HE NAILED HIM
+         .WORD   043H     ; 3 - WHAT A HIT
+         .WORD   03EH     ; 4 - OUCH, THAT HURT
+         .WORD   040H     ; 5 - THAT WAS INTENSE
+         .WORD   041H     ; 6 - DEVASTATING
+         .WORD   043H     ; 7 - WHAT A HIT
+         .WORD   052H     ; 8 - I LOVE IT
+         .WORD   03EH     ; 9 - OUCH, THAT HURT
 
 *
 * PLAYER TABLE O COMMENTS
 *
-PLCOMT   .WORD   >2F     ; 1 - I'M GONNA KICK YER ASS
-         .WORD   >31     ; 2 - YOU SON OF A BITCH
-         .WORD   >32     ; 3 - YER DEAD BUDDY
-         .WORD   >33     ; 4 - YOU SUCK
-         .WORD   >46     ; 5 - YOU MOTHER ******
-         .WORD   >47     ; 6 - HOW'D THAT FEEL PUNK ?
-         .WORD   >4A     ; 7 - YOU MINE SUCKA
-         .WORD   >46     ; 8 - YOU MOTHER ******
-         .WORD   >46     ; 9 - YOU MOTHER ******
+PLCOMT   .WORD   02FH     ; 1 - I'M GONNA KICK YER ASS
+         .WORD   031H     ; 2 - YOU SON OF A BITCH
+         .WORD   032H     ; 3 - YER DEAD BUDDY
+         .WORD   033H     ; 4 - YOU SUCK
+         .WORD   046H     ; 5 - YOU MOTHER ******
+         .WORD   047H     ; 6 - HOW'D THAT FEEL PUNK ?
+         .WORD   04AH     ; 7 - YOU MINE SUCKA
+         .WORD   046H     ; 8 - YOU MOTHER ******
+         .WORD   046H     ; 9 - YOU MOTHER ******
 
 **************************************************************************
 *                                                                        *
@@ -1276,30 +1276,30 @@ PLCOMT   .WORD   >2F     ; 1 - I'M GONNA KICK YER ASS
 **************************************************************************
 KICKPREP
          MOVE    @T0TEAM,A0,W
-         MOVI    >30,A5
-         MOVI    >50,A6
+         MOVI    030H,A5
+         MOVI    050H,A6
          MOVI    INSOBJ3,A10            ; ROUTINE TO CALL
          CALLR   DO_A_LOGO
          MOVE    @T1TEAM,A0,W
-         MOVI    >E0,A5
-         MOVI    >50,A6
+         MOVI    0E0H,A5
+         MOVI    050H,A6
          MOVI    INSOBJ3,A10            ; ROUTINE TO CALL
          CALLR   DO_A_LOGO
 
-         MOVI    >1F,A0
+         MOVI    01FH,A0
          MOVE    @OFFENSE,A1,W
          JREQ    KIKP2
-         MOVI    >1E,A0
+         MOVI    01EH,A0
 KIKP2    CALLA   FX_SHADOW_PRINT
          MOVK    4,A11
          CREATE  PID_FX,RGBSTUFF                ; FLASH THE LETTERS
 
          MOVE    @SUDDEATH,A0,W
          JREQ    KIKP3                ; SUDDEN DEATH ---> TENSE TOON !
-         MOVI    >D2,A3
+         MOVI    0D2H,A3
          CALLA   SEND_CODE_A3
 
-KIKP3    SLEEP   >80
+KIKP3    SLEEP   080H
          JRUC    FX_EXIT
 
 DO_A_LOGO
@@ -1335,7 +1335,7 @@ FX_GOVER
          MOVE    A1,@GSTATE,W         ; NO MORE NEED FOR THIS TRECHERY !!
 
          CREATE  PID_FX,GOVER_CRED    ; SOMEONE TO SHOW CREDITS
-         MOVI    >C,A0
+         MOVI    0CH,A0
          CALLA   FX_SHADOW_PRINT
          MOVK    4,A11
          CREATE  PID_FX,RGBSTUFF      ; FLASH THE LETTERS
@@ -1359,9 +1359,9 @@ GOVER2   MOVI    T0LOGO_INIT,A14
          MOVE    A0,*A8(OPAL),W       ; TEAMS PALETTE
          CALLA   ANI
 
-         MOVI    >88,A0
+         MOVI    088H,A0
          MOVE    A0,*A8(OXPOS),W
-         MOVI    >60,A0
+         MOVI    060H,A0
          MOVE    A0,*A8(OYPOS),W      ; POSITION LOGO AT "CENTER SCREEN"
          MOVE    A8,A0
          CALLA   INSOBJ2
@@ -1377,14 +1377,14 @@ GOVER2   MOVI    T0LOGO_INIT,A14
 *
 GOVER5   CLR     A3
          CALLA   SEND_CODE_A3
-         MOVI    >C2,A3
+         MOVI    0C2H,A3
          CALLA   SEND_CODE_A3         ; GAME OVER INTRO
-         SLEEP   >40*14
-         MOVI    >C6,A3
+         SLEEP   040H*14
+         MOVI    0C6H,A3
          CALLA   SEND_CODE_A3         ; GAME OVER TUNE
-         SLEEP   >40*30
-         BSOUND  >15                  ; START FADING MUSIC AWAY
-         SLEEP   >40*15
+         SLEEP   040H*30
+         BSOUND  015H                  ; START FADING MUSIC AWAY
+         SLEEP   040H*15
 
          MOVI    OBJLST,A2
          CALLA   DELOLIST             ; EMPTY THE LIST
@@ -1402,7 +1402,7 @@ WINS_IMAGES
 WINSLET_INIT
          .LONG   HUGE_T,letblu
          .WORD   0,DMAWNZ|M_NOSCROLL,OID_FX
-         .WORD   >90,>82,0
+         .WORD   090H,082H,0
 
 ***************************************
 
@@ -1421,7 +1421,7 @@ GOCRED5  CALLA   GET_CREDITS
 
          MOVE    A5,A4
 GOCRED7  MOVE    *A4(OYPOS),A0,W
-         ADDI    >58,A0
+         ADDI    058H,A0
          MOVE    A0,*A4(OYPOS),W      ; SPECIAL CASE: LOWER THAN NORMAL
          MOVE    *A4(OLINK),A4,L
          JRNE    GOCRED7
@@ -1440,12 +1440,12 @@ GOCRED8  SLEEP   3
 T0LOGO_INIT
          .LONG   LA,0
          .WORD   0,DMAWNZ|M_NOSCROLL,OID_FX
-         .WORD   >40,1,0
+         .WORD   040H,1,0
 
 T1LOGO_INIT
          .LONG   LA,0
          .WORD   0,DMAWNZ|M_NOSCROLL,OID_FX
-         .WORD   >D3,1,0
+         .WORD   0D3H,1,0
 
 GAME_OVER_SCREEN
          MOVK    3,A0
@@ -1457,7 +1457,7 @@ GAME_OVER_SCREEN
          CALLR   TWO_BIG_DIG          ; TEAM 0 SCORE
          CALLR   A9A10_OBJLST2
          MOVE    @T1SCORE,A1,W        
-         MOVI    >151,A11
+         MOVI    0151H,A11
          MOVK    6,A3
          CALLR   TWO_BIG_DIG          ; TEAM 0 SCORE
          CALLR   A9A10_OBJLST2
@@ -1527,15 +1527,15 @@ EOQ_MSG
          CLR     A0
          MOVE    A0,@WORLDTLX,L
          MOVE    A0,@WORLDTLY,L
-         MOVI    >10000,A0
+         MOVI    010000H,A0
          MOVE    A0,@SCROLLX,L             ; LIL SCROLL ACTION
          CREATE  PID_FX,CBACK
 
-         MOVI    >1C,A0                    ; END OF 1ST
+         MOVI    01CH,A0                    ; END OF 1ST
          MOVE    @QUARTER,A1,W         
          CMPI    4,A1
          JRNE    EOQQ2
-         MOVI    >0D,A0                    ; END OF 3RD
+         MOVI    00DH,A0                    ; END OF 3RD
 EOQQ2    MOVI    FXLET_INIT,A14
          CALLA   PRINT_OBJ                 ; TEXT = A4 --> A7
          MOVE    @OBJLST2,A0,L
@@ -1550,9 +1550,9 @@ EOQQ2    MOVI    FXLET_INIT,A14
 
          MOVI    BIG_BLACK_INIT,A14
          CALLA   INITOBJ
-         MOVI    >F0,A0
+         MOVI    0F0H,A0
          MOVE    A0,*A8(OSIZEX),W
-         MOVI    >38,A0
+         MOVI    038H,A0
          MOVE    A0,*A8(OSIZEY),W
          MOVI    BPAL_BLK,A0
          MOVE    A0,*A8(OCONST),W          ; BLACK
@@ -1562,12 +1562,12 @@ EOQQ2    MOVI    FXLET_INIT,A14
 * TEAM LOGOS
 *
          MOVE    @T0TEAM,A0,W
-         MOVI    >48,A5
+         MOVI    048H,A5
          MOVK    3,A6
          MOVI    INSOBJ,A10          ; ROUTINE TO CALL
          CALLR   DO_A_LOGO
          MOVE    @T1TEAM,A0,W
-         MOVI    >CE,A5
+         MOVI    0CEH,A5
          MOVK    3,A6
          MOVI    INSOBJ,A10          ; ROUTINE TO CALL
          CALLR   DO_A_LOGO
@@ -1577,12 +1577,12 @@ EOQQ2    MOVI    FXLET_INIT,A14
 * TEAM SCORES
 *
          MOVE    @T0SCORE,A1,W
-         MOVI    >0F,A11              ; X COORDINATE FOR DIGIT
+         MOVI    00FH,A11              ; X COORDINATE FOR DIGIT
          MOVK    6,A3
          CALLR   TWO_BIG_DIG          ; TEAM 0 SCORE
          CALLR   A9A10_OBJLST2
          MOVE    @T1SCORE,A1,W        
-         MOVI    >14C,A11             ; FALL THROUGH TO "MAKE_2_DIGITS"
+         MOVI    014CH,A11             ; FALL THROUGH TO "MAKE_2_DIGITS"
          MOVK    6,A3
          CALLR   TWO_BIG_DIG          ; TEAM 0 SCORE
          CALLR   A9A10_OBJLST2
@@ -1600,12 +1600,12 @@ EOQQ3    MOVE    A2,A6
          MOVI    INSOBJ2A8,A11        ; A11 = INSERT ROUTINE
          CALLA   PTIMERS
 
-         MOVI    >0C,A3
+         MOVI    00CH,A3
          CALLA   SEND_CODE_A3
          CREATE  PID_FX,EOQ_LOF
          SLEEP   8
-         BSOUND  >23                  ; BIG CROWD ROAR
-         SLEEP   >E0-8
+         BSOUND  023H                  ; BIG CROWD ROAR
+         SLEEP   0E0H-8
 
          MOVI    RGB_BLACK,A0
 	MOVE	A0,@IRQSKYE,W        ; BACKGROUND COLOR
@@ -1617,9 +1617,9 @@ EOQ_LOF
          MOVK    8,A0
          MOVE    A0,*A13(P_ANIRATE),W
 
-         MOVI    >C0,A0
+         MOVI    0C0H,A0
          MOVE    A0,*A13(PLGOX),W
-         MOVI    >91,A0
+         MOVI    091H,A0
          MOVE    A0,*A13(PLGOZ),W
          CLR     A0
          MOVE    A0,*A13(P_FACE),W    ; ASSURE NO FLIPPED IMAGE
@@ -1630,13 +1630,13 @@ LOF_1
          .LONG   mltarm1,mltarm2,0,ANI_LOOP
          .LONG   mrtarm1,mrtarm2,0,ANI_LOOP
          .LONG   mwere1,0,ANI_END
-         .LONG   >FFFFFFFF
+         .LONG   0FFFFFFFFH
 
 
 QNUM_INIT
          .LONG   num0,frame
          .WORD   0,DMAWNZ|M_NOSCROLL,OID_FX
-         .WORD   >BC,>60,1
+         .WORD   0BCH,060H,1
 
 BIG_BLACK_INIT
          .LONG   num0,boonpal
@@ -1683,8 +1683,8 @@ BACK8    SLEEP   5                    ; USED TO BE 10
 
 MASSIVE_CROWD
          .LONG   EOQCRBMOD
-         .WORD   0,>30
-	.LONG	>FFFFFFFF
+         .WORD   0,030H
+	.LONG	0FFFFFFFFH
 
 **************************************************************************
 *                                                                        *
@@ -1695,7 +1695,7 @@ MASSIVE_CROWD
 **************************************************************************
 FX_INTER
          CALLA   KILLFX
-         MOVI    >23,A0
+         MOVI    023H,A0
          CALLR   FX_SHADOW_PRINT
 
 ;        MOVI    INTLET_INIT,A14
@@ -1703,8 +1703,8 @@ FX_INTER
          MOVK    4,A11
          CREATE  PID_FX,RGBSTUFF      ; FLASH THE LETTERS
          MOVE    A0,A11
-         BSOUND  >35                  ; SPEECH: INTERCEPTION
-         SLEEP   >C0
+         BSOUND  035H                  ; SPEECH: INTERCEPTION
+         SLEEP   0C0H
 
          MOVE    @ACTIVE,A0,L
 FXINT1   CMP     A0,A11               ; MAKE SURE RGBSTUFF IS STILL ALIVE
@@ -1743,7 +1743,7 @@ PLRES2   MOVE    A6,*A13(P_GCOUNT),W
          MOVE    A0,*A13(P_GCOUNT),W  ; CANCELL OTHER FX
          CALLA   KILLFX
          PUSH    A11
-         MOVI    >1B,A0
+         MOVI    01BH,A0
          CALLA   FX_SHADOW_PRINT
          MOVK    4,A11
          CREATE  PID_FX,RGBSTUFF      ; FLASH THE LETTERS
@@ -1763,12 +1763,12 @@ PLRES3   MOVI    MA_FIRST0_DOWN,A11
          CREATE  PID_FX,MULTIANI      ; DO THE WINDOW !!
 
 PLRES4   MOVE    A0,A11               ; SAVE PROC
-         SLEEP   >28
-         BSOUND  >3A                  ; SPEECH: "FIRST DOWN"
+         SLEEP   028H
+         BSOUND  03AH                  ; SPEECH: "FIRST DOWN"
 
-         SLEEP   >90->28
+         SLEEP   090H-028H
          MOVE    *A11(P_PREY),A8,L
-         MOVI    >00020002,A11
+         MOVI    000020002H,A11
          JSRP    SHRINK_WIN
          JRUC    FX_EXIT
 
@@ -1791,12 +1791,12 @@ NO1ST    MOVE    *A13(P_ANIRATE),A0,W ; A0 = DOWN # (IT WAS)
 NO1ST1   SUB     A0,A1                ; A1 = DISTANCE
 NO1ST3   MOVE    A1,A1
          JRN     YARDS_LOST           ; NEGATIVE = YARDS LOST
-         MOVI    >2B,A0
+         MOVI    02BH,A0
          MOVK    9,A11                ; USE THIS RGBSTUFF
          JRUC    YARDALL              ; YARD GAIN
 
 YARDS_LOST
-         MOVI    >2A,A0               ; YARD LOSS
+         MOVI    02AH,A0               ; YARD LOSS
          ABS     A1
          MOVK    8,A11                ; USE THIS RGBSTUFF
 YARDALL  MOVK    PIX_PER_YARD,A2
@@ -1831,10 +1831,10 @@ YLOST3   MOVI    00020002H,A6
 
          CREATE  PID_FX,RGBSTUFF      ; FLASH THE LETTERS (A11 IS DEFINED)
          MOVE    A0,A10               ; REMEMBER THIS PROC
-         SLEEP   >24
+         SLEEP   024H
          MOVE    A10,A0
          CALLA   KILL                 ; STOP "RGBSTUFF" PROC
-         SLEEP   >A0
+         SLEEP   0A0H
          JRUC    PLAYRES_EXIT
 
 NOYARDS
@@ -1842,7 +1842,7 @@ NOYARDS
          CMPI    PR_INCOMPLETE,A0
          JREQ    INCOM_PLAYRES        ; INCOMPLETE PASS
 
-         MOVI    >2C,A0               ; YARD LOSS
+         MOVI    02CH,A0               ; YARD LOSS
          MOVI    FXLET_INIT,A14
          CALLA   PRINT_OBJ            ; TEXT = A4 --> A7
          MOVE    A4,A5
@@ -1851,7 +1851,7 @@ NOYARDS
          MOVE    @OBJLST2,A0,L
          MOVE    A0,*A7(OLINK),L      ; LAST CHAR ----> OBJLST2
          MOVE    A5,@OBJLST2,L        ; OBJLST2 ---> 1ST CHAR
-         SLEEP   >60
+         SLEEP   060H
          JRUC    PLAYRES_EXIT
 *
 * INCOMPLETE PASS
@@ -1865,7 +1865,7 @@ INCOM_PLAYRES
          CREATE  PID_FX,FX_CAUGHTOOB  ; BALL CAUGHT OUT OF BOUNDS
          JRUC    INCOM3
 INCOM2   CREATE  PID_FX,FX_INCOM
-INCOM3   SLEEP   >80
+INCOM3   SLEEP   080H
 *
 * PLAY RESULT EFFECT EXIT
 *
@@ -1886,7 +1886,7 @@ PRESEX2
 ;        JREQ    FX_EXIT              ; NOPE...
 ;        JSRP    WAITFX               ; YES --> LET HIM GO
 
-         SLEEP   >F0                  ; YES ---> LET HIM END THE EFFECT
+         SLEEP   0F0H                  ; YES ---> LET HIM END THE EFFECT
          JRUC    FX_EXIT              ; UNLESS HE'S A PIG
 
 PRNT_1DIG
@@ -1942,11 +1942,11 @@ WHADDA4  MOVI    MA_WHADDAL,A11
          CALLR   HIDELIST3
          SLEEP   1                    ; TIME FOR IT TO INITIALIZE
          MOVE    *A9(P_PREY),A8,L     ; A8 = BACKDROP OBJ
-         MOVI    >00020002,A11
-         MOVI    >00250025,A10        ; A10 = INITIAL CLIPPING
+         MOVI    000020002H,A11
+         MOVI    000250025H,A10        ; A10 = INITIAL CLIPPING
          JSRP    GROW_WINDOW
-         BSOUND  >48                  ; SPEECH: "WHAT A PLAY !!!"
-         SLEEP   >80
+         BSOUND  048H                  ; SPEECH: "WHAT A PLAY !!!"
+         SLEEP   080H
          JRUC    SHRINK_THEN_DIE
 
 ******************************************************************
@@ -1992,44 +1992,44 @@ GINT1    MOVE    A2,A6
          MOVE    A0,@SCRNTL,L
          MOVE    A0,@SCRNLR,L         ; START WITH NOTHING SHOWING
 
-         MOVI    TOP_SIDELINE->D0,A0
+         MOVI    TOP_SIDELINE-0D0H,A0
          MOVE    A0,@WORLDTLY+16,W    ; CENTER SCREEN
-         MOVI    LGOAL_OUT_X->A0,A0
+         MOVI    LGOAL_OUT_X-0A0H,A0
          MOVE    A0,@WORLDTLX+16,W
          SLEEP   1                    ; GIVE BACKGROUND A CHANCE
 
          MOVK    1,A3
          CALLA   SEND_CODE_A3         ; START THE MAIN TUNE
-         MOVI    >30000,A0
+         MOVI    030000H,A0
          MOVE    A0,@SCROLLX,L        ; PAN ACROSS THE FIELD
-         SLEEP   >24
+         SLEEP   024H
          CREATE  PID_FX,WINDOW_SHOWOFF
-         MOVI    >59,A3
+         MOVI    059H,A3
          CALLA   SEND_CODE_A3         ; "WANNA KICK SOME BUTT ?"
-         SLEEP   >40
-         BSOUND  >23                  ; ROAR !!!
+         SLEEP   040H
+         BSOUND  023H                  ; ROAR !!!
 
-         SLEEP   >70
-         BSOUND  >1F                  ; I CANT HEAR U
-         SLEEP   >80
+         SLEEP   070H
+         BSOUND  01FH                  ; I CANT HEAR U
+         SLEEP   080H
 
          MOVK    2,A0
          CALLA   GETBLIMP             ; GET LOGOPAGE
-         MOVI    >28000,A4
+         MOVI    028000H,A4
          MOVE    A5,A7
 GINT2    MOVE    *A7(OXPOS),A3,W
-         SUBI    >170,A3
+         SUBI    0170H,A3
          MOVE    A3,*A7(OXPOS),W      ; START OFFSCREEN
          MOVE    A4,*A7(OXVEL),L
          MOVE    *A7(OLINK),A7,L
          JRNE    GINT2
          CALLA   A5A6OL1
 
-         SLEEP   >40
-         MOVI    >5A,A3
+         SLEEP   040H
+         MOVI    05AH,A3
          CALLA   SEND_CODE_A3         ; "ITS HIGH IMPACT"
 
-         SLEEP   >53
+         SLEEP   053H
          MOVK    1,A0
          MOVE    A0,@NO_VEL,W
          CLR     A1
@@ -2041,18 +2041,18 @@ GINT8    MOVE    A1,*A0(OXVEL),L
 
          MOVI    FADE_NOLOGO,A0
          CALLA   FADEOUT
-         SLEEP   >8
+         SLEEP   08H
          CLR     A0         
          MOVE    A0,@SCROLLX,L
-         SLEEP   >10
+         SLEEP   010H
          CREATE  PID_FX,STARS1
          MOVE    A0,A11
-         SLEEP   >20
+         SLEEP   020H
          MOVE    A11,A0
          CALLA   KILL                 ; KILL LINE SPAWNER
          MOVI    PID_FX2,A0
          CALLA   DALLPRC              ; AND ANY REMAINING LINES
-         SLEEP   >30
+         SLEEP   030H
          MOVI    PID_FX,A0
          CALLA   DALLPRC
          MOVI    PID_FX2,A0
@@ -2061,7 +2061,7 @@ GINT8    MOVE    A1,*A0(OXVEL),L
          CALLA   DELOLIST             ; NO MORE NEED FOR BACKGROUND
          MOVI    FADE_NOBUY,A0
          CALLA   FADEOUT
-         SLEEP   >10
+         SLEEP   010H
          MOVI    OID_FX,A0
          CALLA   DALLOBJ
 *
@@ -2085,7 +2085,7 @@ GINT20   MOVK    4,A0
          DIE
 
 LOGORAND .WORD   0,1,2,3,4,5,6,7,8,9,10,11,12,13,14
-         .WORD   >FFFF
+         .WORD   0FFFFH
 
 LOGO_FLY
          MOVE    A11,A0
@@ -2105,17 +2105,17 @@ LOGO_COOR
          .WORD   LOGO1_X,LOGO1_Y+35*3
          .WORD   LOGO1_X,LOGO1_Y+35*4
 
-         .WORD   LOGO1_X+>80,LOGO1_Y
-         .WORD   LOGO1_X+>80,LOGO1_Y+35
-         .WORD   LOGO1_X+>80,LOGO1_Y+35*2
-         .WORD   LOGO1_X+>80,LOGO1_Y+35*3
-         .WORD   LOGO1_X+>80,LOGO1_Y+35*4
+         .WORD   LOGO1_X+080H,LOGO1_Y
+         .WORD   LOGO1_X+080H,LOGO1_Y+35
+         .WORD   LOGO1_X+080H,LOGO1_Y+35*2
+         .WORD   LOGO1_X+080H,LOGO1_Y+35*3
+         .WORD   LOGO1_X+080H,LOGO1_Y+35*4
 
-         .WORD   LOGO1_X+>100,LOGO1_Y
-         .WORD   LOGO1_X+>100,LOGO1_Y+35
-         .WORD   LOGO1_X+>100,LOGO1_Y+35*2
-         .WORD   LOGO1_X+>100,LOGO1_Y+35*3
-         .WORD   LOGO1_X+>100,LOGO1_Y+35*4
+         .WORD   LOGO1_X+0100H,LOGO1_Y
+         .WORD   LOGO1_X+0100H,LOGO1_Y+35
+         .WORD   LOGO1_X+0100H,LOGO1_Y+35*2
+         .WORD   LOGO1_X+0100H,LOGO1_Y+35*3
+         .WORD   LOGO1_X+0100H,LOGO1_Y+35*4
 
 FADE_NOLOGO
          .LONG   WILLYPAL,logopal,MENUPAL1,boonpal,0
@@ -2158,7 +2158,7 @@ WINS1    MOVE    *A8,A11,L
          MOVE    @OBJLST2,A3,L
          CLR     A0
          MOVE    A0,@OBJLST2,L
-         MOVI    >28000,A2
+         MOVI    028000H,A2
          MOVE    A3,A4
 WINS2    
 ;        MOVE    *A4(OID),A0,W
@@ -2175,7 +2175,7 @@ WINS3    MOVE    A4,A5
          MOVE    @OBJLST,A0,L
          MOVE    A0,*A5(OLINK),L      ; ADD TO TOP OF LIST #1
          MOVE    A3,@OBJLST,L
-         SLEEP   >40
+         SLEEP   040H
 
          ADDI    32,A8
          CMPI    INTRO_END,A8
@@ -2236,9 +2236,9 @@ MIDDLE_OPEN
 MOPEN1   SLEEP   1
          CLR     A3
          MOVE    @SCRNTL,A0,L
-         SUBI    >00020003,A0
+         SUBI    000020003H,A0
          MOVE    @SCRNLR,A1,L
-         ADDI    >00020003,A1
+         ADDI    000020003H,A1
 
          CMPXY   A3,A0
          JRYGE   MOPEN3
@@ -2273,16 +2273,16 @@ MOPEN6   MOVE    A0,@SCRNTL,L
 ;         .WORD   0,0,0
 
 STAR_COORDS
-         .WORD   >70,78H
+         .WORD   070H,78H
          .LONG   STW_PAL
-         .WORD   >A0,78H
+         .WORD   0A0H,78H
          .LONG   STR_PAL
-         .WORD   >B3,78H
+         .WORD   0B3H,78H
          .LONG   STW_PAL
-         .WORD   >BC,78H
+         .WORD   0BCH,78H
          .LONG   STB_PAL
 
-;        .WORD   >C3,78H
+;        .WORD   0C3H,78H
          .WORD   0
 
 
@@ -2387,13 +2387,13 @@ FX_INCOM
          MOVI    INSOBJ3,A10
          CREATE  PID_FX,MULTIANI
          MOVE    A0,A11               ; SAVE PROC
-         BSOUND  >54                  ; INCOMPLETE
+         BSOUND  054H                  ; INCOMPLETE
 
-         MOVI    >27,A0
+         MOVI    027H,A0
          CALLA   FX_SHADOW_PRINT      ; PRINT: "INCOMPLETE PASS"
-         SLEEP   >60
+         SLEEP   060H
          MOVE    *A11(P_PREY),A8,L
-         MOVI    >00020002,A11
+         MOVI    000020002H,A11
          JSRP    SHRINK_WIN
          JRUC    FX_EXIT
 
@@ -2403,15 +2403,15 @@ FX_INCOM
 *                                                                        *
 **************************************************************************
 FX_CAUGHTOOB
-         MOVI    >31,A0
+         MOVI    031H,A0
          CALLA   FX_SHADOW_PRINT
-         MOVI    >26,A0
+         MOVI    026H,A0
          CALLA   FX_SHADOW_PRINT
          MOVK    4,A11
          CREATE  PID_FX,RGBSTUFF      ; FLASH THE LETTERS
 
-         BSOUND  >55                  ; SPEECH: OUT OF BOUNDS
-         SLEEP   >70
+         BSOUND  055H                  ; SPEECH: OUT OF BOUNDS
+         SLEEP   070H
          JRUC    FX_EXIT
 
 **************************************************************************
@@ -2425,10 +2425,10 @@ FX_NOGOOD
          MOVI    INSOBJ3,A10
          CREATE  PID_FX,MULTIANI
          MOVE    A0,A11               ; SAVE PROC
-         BSOUND  >44                  ; NO GOOD !!
-         SLEEP   >D0
+         BSOUND  044H                  ; NO GOOD !!
+         SLEEP   0D0H
          MOVE    *A11(P_PREY),A8,L
-         MOVI    >00020002,A11
+         MOVI    000020002H,A11
          JSRP    SHRINK_WIN
          JRUC    FX_EXIT
 
@@ -2460,8 +2460,8 @@ FGN3     MOVI    INSOBJ3,A10
          CREATE  PID_FX,MULTIANI
          PULL    A10                  ; REF "NO GOOD" ON DORK SIDE
 
-         BSOUND  >44                  ; NO GOOD !!
-         SLEEP   >30
+         BSOUND  044H                  ; NO GOOD !!
+         SLEEP   030H
 
          MOVI    MA_NGCHEER1,A11
          MOVE    A10,A10
@@ -2470,16 +2470,16 @@ FGN3     MOVI    INSOBJ3,A10
 FGN4     MOVI    INSOBJ3,A10
          CREATE  PID_FX,MULTIANI      ; CHEER ON "COOL" SIDE
 
-         SLEEP   >06
-         BSOUND  >23                  ; ROAR !!
+         SLEEP   006H
+         BSOUND  023H                  ; ROAR !!
 
 FGNTO    CREATE  PID_FX,SHOW_TURNOVER
-         SLEEP   >B0
+         SLEEP   0B0H
 
-         MOVI    SCRNST+>32,A0
+         MOVI    SCRNST+032H,A0
          MOVE    A0,@SCRNTL3,L
          MOVE    A0,@SCRNTL2,L
-         MOVI    SCRNEND->32,A0
+         MOVI    SCRNEND-032H,A0
          MOVE    A0,@SCRNLR3,L
          MOVE    A0,@SCRNLR2,L
          MOVK    1,A10
@@ -2492,7 +2492,7 @@ FGNTO    CREATE  PID_FX,SHOW_TURNOVER
          CALLA   DELOLIST
          CALLA   UNCLIP
          CALLA   KILLFX          ; STOP PROCS
-         SLEEP   >20             ; PAUSE FOR SMOOTHNESS
+         SLEEP   020H             ; PAUSE FOR SMOOTHNESS
 
          JRUC    FX_EXIT
 
@@ -2505,9 +2505,9 @@ FGN_BOO
 FGN6     MOVI    INSOBJ3,A10
          CREATE  PID_FX,MULTIANI
          PULL    A10                  ; REF "NO GOOD" ON DORK SIDE
-         BSOUND  >44                  ; NO GOOD !!
-         SLEEP   >30
-         BSOUND  >24                  ; SPEECH: BOO !!
+         BSOUND  044H                  ; NO GOOD !!
+         SLEEP   030H
+         BSOUND  024H                  ; SPEECH: BOO !!
 
          MOVI    MA_FGPU0,A11
          MOVE    A10,A10
@@ -2524,7 +2524,7 @@ FGN7     MOVI    INSOBJ3,A10
 *                                                                        *
 **************************************************************************
 TDFX2
-         BSOUND  >27                  ; SOUND: WHISTLE / TOUCHDOWN !!
+         BSOUND  027H                  ; SOUND: WHISTLE / TOUCHDOWN !!
          MOVI    MA_REFTD,A11
          MOVI    INSOBJ2,A10
          CREATE  PID_FX,MULTIANI
@@ -2551,21 +2551,21 @@ T2DOWN1  MOVI    TDLET_INIT,A14
 T2DOWN2  MOVE    A8,A9
          MOVE    *A8(OXPOS),*A8(OCOLLIDE),W
          CREATE  PID_FX,TD_SLIDE      ; MAKE SOMEONE TO SLIDE IT IN
-         SLEEP   >6
+         SLEEP   06H
          DSJ     A11,T2DOWN1
 
-         SLEEP   >20
+         SLEEP   020H
          CALLR   TD_SCORE_BOXES
          CALLR   TD_SCORES
          MOVI    letblu,A10
-         MOVI    >04060200,A11
+         MOVI    004060200H,A11
          CREATE  PID_FX,CYCLERF
          MOVI    letblu,A10
-         MOVI    >0A060200,A11
+         MOVI    00A060200H,A11
          CREATE  PID_FX,CYCLERF
          CALLR   PLAY_TD_TUNE
 
-         SLEEP   >70
+         SLEEP   070H
          JRUC    FX_EXIT
 
 TD_SLIDE
@@ -2576,7 +2576,7 @@ TD_SLIDE
          MOVE    A8,A0
          CALLA   INSOBJ3
 
-         MOVI    ->A0000,A0
+         MOVI    -0A0000H,A0
          MOVE    A0,*A8(OXVEL),L
 TDSL2    SLEEP   1
          MOVE    *A8(OXPOS),A0,W
@@ -2595,7 +2595,7 @@ TDSL2    SLEEP   1
 TDFX1
          CREATE  PID_FX,TD_SCROLLER
          CALLA   UNCLIP
-         BSOUND  >27                  ; SOUND: WHISTLE / TOUCHDOWN !!
+         BSOUND  027H                  ; SOUND: WHISTLE / TOUCHDOWN !!
          MOVI    MA_REFTD,A11
          MOVI    INSOBJ2,A10
          CREATE  PID_FX,MULTIANI
@@ -2603,7 +2603,7 @@ TDFX1
          MOVE    @RAND,A0,L
          JRN     FX_TD2               ; BE A BIT RANDOM !!!
 
-         SLEEP   >30
+         SLEEP   030H
          CALLR   TD_LETTERS
 *
 * CLIP UNMASKING EFFECT
@@ -2619,19 +2619,19 @@ TDOWN3   SUBK    12,A10
          JRLT    TDOWN3
          CALLA   UNCLIP
 
-         SLEEP   >20
+         SLEEP   020H
          CALLR   PLAY_TD_TUNE
 
          MOVI    MA_TDCHEER,A11
          MOVI    INSOBJ3,A10
          CREATE  PID_FX,MULTIANI      ; CHEERLEADER WINDOW
-         SLEEP   >F0
+         SLEEP   0F0H
 
          MOVI    OID_FX,A0
          CALLA   DALLOBJ              ; KILL ONLY WINDOW OBJECTS
          MOVI    PID_FX,A0
          CALLA   DALLPRC              ; AND THE FUCKING PROC YOU DORK !!!
-         SLEEP   >C0
+         SLEEP   0C0H
          JRUC    FX_EXIT
 
 **************************************************************************
@@ -2656,22 +2656,22 @@ TDFX22   SUBK    12,A10
          JRLT    TDFX22
          CALLA   UNCLIP
 
-         SLEEP   >20
+         SLEEP   020H
          CALLR   PLAY_TD_TUNE
-         SLEEP   >C0
+         SLEEP   0C0H
 
          MOVI    OID_FX,A0
          CALLA   DALLOBJ              ; KILL ONLY WINDOW OBJECTS
-         SLEEP   >E0
+         SLEEP   0E0H
          JRUC    FX_EXIT
 
 *
 * "TOUCHDOWN" SCROLL TO CROWD
 *
 TD_SCROLLER
-         SLEEP   >40*2
+         SLEEP   040H*2
          MOVI    FIFTY_YARD-(SCRRGT/2),A1
-         MOVI    >1B8,A3                   ; WE WANNA END UP HERE
+         MOVI    01B8H,A3                   ; WE WANNA END UP HERE
          MOVK    4,A4                      ; AND TRAVEL THIS FAST
          JSRP    AUTOSCR                   ; LET THE AUTO SCROLLER HANDLE IT
          DIE
@@ -2711,10 +2711,10 @@ TDOWN2   MOVE    A8,A9
          DSJ     A3,TDOWN1
 
          MOVI    letblu,A10
-         MOVI    >04060200,A11
+         MOVI    004060200H,A11
          CREATE  PID_FX,CYCLERF
          MOVI    letblu,A10
-         MOVI    >0A060200,A11
+         MOVI    00A060200H,A11
          CREATE  PID_FX,CYCLERF
          RETS
 
@@ -2723,16 +2723,16 @@ TDOWN2   MOVE    A8,A9
 *
 TD_SCORES
          MOVE    @T0SCORE,A1,W        
-         MOVI    >13,A11              ; X COORDINATE FOR DIGIT
-         MOVI    >6C,A3
+         MOVI    013H,A11              ; X COORDINATE FOR DIGIT
+         MOVI    06CH,A3
          CALLR   TWO_BIG_DIG          ; TEAM 0 SCORE
          MOVI    OID_FX2,A4
          MOVE    A4,*A9(OID),W
          MOVE    A4,*A10(OID),W       ; DONT CONFUSE WITH OID_FX
          CALLR   A9A10_OBJLST3
          MOVE    @T1SCORE,A1,W        
-         MOVI    >147,A11             ; FALL THROUGH TO "MAKE_2_DIGITS"
-         MOVI    >6C,A3
+         MOVI    0147H,A11             ; FALL THROUGH TO "MAKE_2_DIGITS"
+         MOVI    06CH,A3
          CALLR   TWO_BIG_DIG          ; TEAM 0 SCORE
          MOVI    OID_FX2,A4
          MOVE    A4,*A9(OID),W
@@ -2767,23 +2767,23 @@ TD_IMAGES
 TDLET_INIT
          .LONG   HUGE_T,letblu
          .WORD   0,DMAWNZ|M_NOSCROLL,OID_FX2
-         .WORD   >4C,>72,0
+         .WORD   04CH,072H,0
 
 L_SCOREBOX
          .LONG   MENUSCORE,MENUPAL1
          .WORD   0,DMAWNZ|M_NOSCROLL,OID_FX2
-         .WORD   >0C,>68,0
+         .WORD   00CH,068H,0
 
 R_SCOREBOX
          .LONG   MENUSCORE,MENUPAL1
          .WORD   0,DMAWNZ|M_NOSCROLL,OID_FX2
-         .WORD   >140,>68,0
+         .WORD   0140H,068H,0
 
 
 PLAY_TD_TUNE
-         MOVI    >60,A3
+         MOVI    060H,A3
          CALLA   SEND_CODE_A3
-         MOVI    >20,A3
+         MOVI    020H,A3
          CALLA   SEND_CODE_A3         ; FULL VOLUME
          MOVI    9,A3
          JAUC    SEND_CODE_A3
@@ -2805,14 +2805,14 @@ PJSH00   PULLP   A2                        ; TAKE FROM LIST
 * ADD OBJECTS TO "OBJLST3"
 *
 PJSH0    MOVE    A11,A8
-         MOVI    >0025002C,A1              ; A1 = INITIAL CLIPPING
+         MOVI    00025002CH,A1              ; A1 = INITIAL CLIPPING
          CALLR   WINDOW_CLIP               ; CLIP BEFORE PUTTING ON LIST
 
          MOVE    @OBJLST3,A0,L
          MOVE    A0,*A9(OLINK),L           ; END OF LIST ---> OBJLST3
          MOVE    A11,@OBJLST3,L            ; OBJLST3 ---> TOP OF LIST
 
-         MOVI    >0025002C,A10             ; A10 = INITIAL CLIPPING
+         MOVI    00025002CH,A10             ; A10 = INITIAL CLIPPING
          MOVE    A14,A14
          JREQ    PJSH2                     ; NO MOVEMENT --> RETP
 
@@ -3022,7 +3022,7 @@ PULL_OUT_A8
 PULL2    MOVE    A10,A1
          CALLR   WINDOW_CLIP
          SLEEP   1
-         MOVI    >00000004,A0
+         MOVI    000000004H,A0
          SUBXY   A0,A10
          MOVE    A10,A1
          MOVE    A10,A2
@@ -3036,7 +3036,7 @@ SQUEEZE_IN_A8
 SQU2     MOVE    A10,A1
          CALLR   WINDOW_CLIP
          SLEEP   1
-         MOVI    >00000004,A0
+         MOVI    000000004H,A0
          ADDXY   A0,A10
          MOVE    A10,A1
          MOVE    A10,A2
@@ -3107,7 +3107,7 @@ TEAM_INIT
 *                                                                        *
 **************************************************************************
 EXTRAP
-         MOVI    >1D,A0
+         MOVI    01DH,A0
          CALLA   FX_SHADOW_PRINT
          MOVK    5,A11
          CREATE  PID_FX,RGBSTUFF           ; FLASH THE LETTERS
@@ -3140,7 +3140,7 @@ O321     MOVE    A0,A1
 *         A10 = which "INSERT OBJECT" routine to call                    *
 *                                                                        *
 **************************************************************************
-MASTER_END       .SET    >FFFFFFFF
+MASTER_END       .SET    0FFFFFFFFH
 ANI_LOOP         .SET    1
 ANI_END          .SET    2
 ANI_JUMP         .SET    3
@@ -3316,15 +3316,15 @@ MULTI_DUMB
 *                                                                        *
 **************************************************************************
 MA_AWESOME_UL
-         .WORD   >0A,>60,>10
+         .WORD   00AH,060H,010H
          .LONG   ANI_JUMP,winsize1,AWESOME_FRAMES
 
 MA_AWESOMEL
-         .WORD   >0A,>60,>99
+         .WORD   00AH,060H,099H
          .LONG   ANI_JUMP,winsize1,AWESOME_FRAMES
 
 MA_AWESOMEH
-         .WORD   >0A,>120,>10
+         .WORD   00AH,0120H,010H
          .LONG   winsize1
 AWESOME_FRAMES
          .LONG   bighead1
@@ -3337,10 +3337,10 @@ AWESOME_FRAMES
          .LONG   TDANN_DUMB,TDANN_DUMB,TDANN_DUMB,TDANN_DUMB,bighead3
          .LONG   bighead3,bighead3,bighead3,bighead4
          .LONG   0,ANI_END
-         .LONG   >FFFFFFFF
+         .LONG   0FFFFFFFFH
 
 MA_TDANN
-         .WORD   >08,>50,>A0
+         .WORD   008H,050H,0A0H
          .LONG   winsize1
          .LONG   bigbod1
          .LONG   bigbod1
@@ -3354,7 +3354,7 @@ MA_TDANN
          .LONG   bighead3,bighead1,bighead1,bighead5,bighead5,bighead6
          .LONG   bighead6,bighead6,bighead6,bighead6,bighead6,bighead4
          .LONG   0,ANI_END
-         .LONG   >FFFFFFFF
+         .LONG   0FFFFFFFFH
 
 TDANN_DUMB
 	.word	0,0,0,0         ; SIZE, ANI POINTS
@@ -3363,10 +3363,10 @@ TDANN_DUMB
 
 
 MA_WHADDAH
-         .WORD   >07,>110,>08
+         .WORD   007H,0110H,008H
          .LONG   ANI_JUMP,winsize1,WHADDA_FRAMES
 MA_WHADDAL
-         .WORD   >07,>58,>90
+         .WORD   007H,058H,090H
          .LONG   winsize1
 WHADDA_FRAMES
          .LONG   whatbod1
@@ -3388,7 +3388,7 @@ WHADDA_FRAMES
          .LONG   WHA_DUMB
          .LONG   WHA_DUMB,WHA_DUMB,whathed3,whathed2,whathed1
          .LONG   whathed2,whathed3,0,ANI_END
-         .long   >FFFFFFFF         
+         .long   0FFFFFFFFH         
 
 WHA_DUMB
 	.word	0,0,0,0         ; SIZE, ANI POINTS
@@ -3398,41 +3398,41 @@ WHA_DUMB
 ****************************************
 
 MA_FGPU0
-         .WORD   >0A,>70,>99
+         .WORD   00AH,070H,099H
          .LONG   ANI_JUMP,HALFBLUR,PU_FRAMES
 
 MA_FGPU1
 MA_PU1
-         .WORD   >0A,>120,>99
+         .WORD   00AH,0120H,099H
          .LONG   ANI_JUMP,HALFBLUR,PU_FRAMES
 MA_PU0
-         .WORD   >0A,>70,>99
+         .WORD   00AH,070H,099H
          .LONG   HALFBLUR
 PU_FRAMES
          .LONG   stkhand1,stkhand2,stkhand3,0,ANI_LOOP
          .LONG   stnkarm1,stnkarm2,stnkarm3,0,ANI_LOOP
          .LONG   stnkhed1,stnkhed2,stnkhed3,0,ANI_LOOP
          .LONG   stnksut1,stnksut2,stnksut3,0,ANI_LOOP
-         .LONG   >FFFFFFFF
+         .LONG   0FFFFFFFFH
 
 MA_MAD1
-         .WORD   >8,>110,>99
+         .WORD   08H,0110H,099H
          .LONG   ANI_JUMP,HALFBLUR,MAD_FRAMES
 
 MA_MAD0
-         .WORD   >8,>70,>99
+         .WORD   08H,070H,099H
          .LONG   HALFBLUR
 MAD_FRAMES
          .LONG   COCHMAD1,COCHMAD2,COCHMAD3,0,ANI_LOOP
-         .LONG   >FFFFFFFF
+         .LONG   0FFFFFFFFH
 
 
 MA_FIRST1_DOWN
-         .WORD   8,>120,>10
+         .WORD   8,0120H,010H
          .LONG   ANI_JUMP,HALFBLUR,FD_FRAMES
 
 MA_FIRST0_DOWN
-         .WORD   8,>50,>10
+         .WORD   8,050H,010H
          .LONG   HALFBLUR
 FD_FRAMES
          .LONG   REF_1DOWN1A
@@ -3449,28 +3449,28 @@ FD_FRAMES
          .LONG   REF_1DOWN1B
          .LONG   REF_1DOWN1B
          .LONG   REF_1DOWN1B,REF_1DOWN2B,REF_1DOWN3B,0,ANI_END
-         .LONG   >FFFFFFFF
+         .LONG   0FFFFFFFFH
 
 MA_FGN0
-         .WORD   >07,>70,>99
+         .WORD   007H,070H,099H
          .LONG   ANI_JUMP,HALFBLUR,NOGOOD_FRAMES
 
 MA_FGN1
-         .WORD   >07,>120,>99
+         .WORD   007H,0120H,099H
          .LONG   ANI_JUMP,HALFBLUR,NOGOOD_FRAMES
 
 MA_INCOMPLETE
-         .WORD   >07,>70,>99
+         .WORD   007H,070H,099H
          .LONG   ANI_JUMP,HALFBLUR,NOGOOD_FRAMES
 
 MA_NOGOOD
-         .WORD   8,>80,>10
+         .WORD   8,080H,010H
          .LONG   HALFBLUR
 NOGOOD_FRAMES
          .LONG   REF_NGOOD1,REF_NGOOD2A,REF_NGOOD3A,0,ANI_LOOP
          .LONG   NG_DUMB,REF_NGOOD2B,REF_NGOOD3B,0,ANI_LOOP
          .LONG   NG_DUMB,REF_NGOOD2C,REF_NGOOD3C,0,ANI_LOOP
-         .LONG   >FFFFFFFF
+         .LONG   0FFFFFFFFH
 
 NG_DUMB
 	.word	0,0,0,0         ; SIZE, ANI POINTS
@@ -3478,7 +3478,7 @@ NG_DUMB
 	.long	REFNG_PA        ; PALETTE
 
 MA_REFTD
-         .WORD   8,>120,>0D
+         .WORD   8,0120H,00DH
          .LONG   HALFBLUR
 TD_FRAMES
          .LONG   REF_TD1A
@@ -3493,40 +3493,40 @@ TD_FRAMES
          .LONG   REF_TD1C
          .LONG   REF_TD1C
          .LONG   REF_TD1C,REF_TD2C,REF_TD3C,0,ANI_END
-         .LONG   >FFFFFFFF
+         .LONG   0FFFFFFFFH
 
 
 MA_NGCHEER0
-         .WORD   >07,>70,>99
+         .WORD   007H,070H,099H
          .LONG   ANI_JUMP,HALFBLUR,CHEER_FRAMES
 
 MA_NGCHEER1
-         .WORD   >07,>120,>99
+         .WORD   007H,0120H,099H
          .LONG   ANI_JUMP,HALFBLUR,CHEER_FRAMES
 
 
 MA_TDCHEER
-         .WORD   8,>50,>A0
+         .WORD   8,050H,0A0H
          .LONG   HALFBLUR
 CHEER_FRAMES
          .LONG   CHEER1A,CHEER2A,CHEER3A,0,ANI_LOOP
          .LONG   CHEER1B,CHEER2B,CHEER3B,0,ANI_LOOP
          .LONG   CHEER1C,CHEER2C,CHEER3C,0,ANI_LOOP
-         .LONG   >FFFFFFFF
+         .LONG   0FFFFFFFFH
 
 *****************************************
 
 MA_FUCKINA2
-         .WORD   8,>120,>9D
+         .WORD   8,0120H,09DH
          .LONG   ANI_JUMP,HALFBLUR,FUCKINA_FRAMES
 MA_FUCKINA1
-         .WORD   8,>60,>9D
+         .WORD   8,060H,09DH
          .LONG   HALFBLUR
 FUCKINA_FRAMES
          .LONG   high51A,high52A,high53,0,ANI_LOOP
          .LONG   high51B,high52B,FUK_DUMB,0,ANI_LOOP
          .LONG   high51C,high52C,FUK_DUMB,0,ANI_LOOP
-         .LONG   >FFFFFFFF
+         .LONG   0FFFFFFFFH
 
 FUK_DUMB
 	.word	0,0,0,0         ; SIZE, ANI POINTS
@@ -3536,11 +3536,11 @@ FUK_DUMB
 *****************************************
 
 MA_MOON1
-         .WORD   8,>110,>99
+         .WORD   8,0110H,099H
          .LONG   ANI_JUMP,HALFBLUR,MOON_FRAMES
 
 MA_MOON0
-         .WORD   >0A,>70,>99
+         .WORD   00AH,070H,099H
          .LONG   HALFBLUR
 MOON_FRAMES
          .LONG   moon1
@@ -3551,40 +3551,40 @@ MOON_FRAMES
          .LONG   moon2,moon3
          .LONG   moon2,moon3
          .LONG   0,ANI_END
-         .LONG   >FFFFFFFF
+         .LONG   0FFFFFFFFH
 
 MA_COACH_YEA2
-         .WORD   8,>120,>9D
+         .WORD   8,0120H,09DH
          .LONG   ANI_JUMP,HALFBLUR,COACHY_FRAMES
 
 MA_COACH_YEA1
-         .WORD   8,>60,>9D
+         .WORD   8,060H,09DH
          .LONG   HALFBLUR
 COACHY_FRAMES
          .LONG   yeasuit1,yeasuit2,yeasuit3,0,ANI_LOOP
          .LONG   yeahead1,yeahead2,yeahead3,0,ANI_LOOP
          .LONG   yelthnd1,yelthnd2,yelthnd3,0,ANI_LOOP
          .LONG   yerthnd1,yerthnd2,yerthnd3,0,ANI_LOOP
-         .LONG   >FFFFFFFF
+         .LONG   0FFFFFFFFH
 
 MA_SHAKE1
-         .WORD   >06,>110,>99
+         .WORD   006H,0110H,099H
          .LONG   ANI_JUMP,HALFBLUR,SHAKE_FRAMES
 
 MA_SHAKE0
-         .WORD   >06,>70,>99
+         .WORD   006H,070H,099H
          .LONG   HALFBLUR
 SHAKE_FRAMES
          .LONG   EJBSHAKE1,EJBSHAKE2,EJBSHAKE3,0,ANI_LOOP
          .LONG   PJSHAKE1,PJSHAKE2,PJSHAKE3,0,ANI_LOOP
-         .LONG   >FFFFFFFF
+         .LONG   0FFFFFFFFH
 
 MA_BAGMAN1
-         .WORD   >09,>110,>99
+         .WORD   009H,0110H,099H
          .LONG   ANI_JUMP,HALFBLUR,BAG_FRAMES
 
 MA_BAGMAN0
-         .WORD   >09,>70,>99
+         .WORD   009H,070H,099H
          .LONG   HALFBLUR
 BAG_FRAMES
          .LONG   COCHBAG1
@@ -3595,7 +3595,7 @@ BAG_FRAMES
          .LONG   BAG_DUMB
          .LONG   BAG_DUMB
          .LONG   BAG_DUMB,COCHBAG2B,COCHBAG3B,0,ANI_END
-         .LONG   >FFFFFFFF
+         .LONG   0FFFFFFFFH
 
 BAG_DUMB
 	.word	0,0,0,0         ; SIZE, ANI POINTS
@@ -3732,13 +3732,13 @@ TANIAP3  MOVI    TANIA_INIT,A14
 * ANIMATE 'EM
 *
 TANIAP4  MOVI    A_SIDE,A9
-         MOVI    >00140008,A10
+         MOVI    000140008H,A10
          JSRP    CHEERANI
          MOVI    A_KICK,A9
-         MOVI    >001A0005,A10
+         MOVI    0001A0005H,A10
          JSRP    CHEERANI
          MOVI    A_JUMP,A9
-         MOVI    >000A0006,A10
+         MOVI    0000A0006H,A10
          JSRP    CHEERANI
          JRUC    TANIAP4
          
@@ -3767,7 +3767,7 @@ TANIA_PALETTES
 
 TD_TANIA
          MOVI    A_JUMP,A9
-         MOVI    >02000006,A10
+         MOVI    002000006H,A10
          JSRP    CHEERANI
          JRUC    TD_TANIA
 
@@ -3880,23 +3880,23 @@ HIDELIST3
 *                                                                        *
 **************************************************************************
 MA_INTCHEER
-         .WORD   >07,->40,>89
+         .WORD   007H,-040H,089H
          .LONG   ANI_JUMP,HALFBLUR,CHEER_FRAMES
 
 MA_INTREFTD
-         .WORD   >07,->40,>89
+         .WORD   007H,-040H,089H
          .LONG   ANI_JUMP,HALFBLUR,TD_FRAMES
 
 MA_INTYEA
-         .WORD   >07,->40,>89
+         .WORD   007H,-040H,089H
          .LONG   ANI_JUMP,HALFBLUR,COACHY_FRAMES
 
 MA_INTFD
-         .WORD   >07,->40,>89
+         .WORD   007H,-040H,089H
          .LONG   ANI_JUMP,HALFBLUR,FD_FRAMES
 
 MA_CANT_HEAR
-         .WORD   >0D,->40,>89
+         .WORD   00DH,-040H,089H
          .LONG   winsize1
          .LONG   bigbod1
          .LONG   bigbod1
@@ -3907,33 +3907,33 @@ MA_CANT_HEAR
          .LONG   bighead3
          .LONG   TDANN_DUMB,bighead3,bighead3,bighead6,bighead6,TDANN_DUMB
          .LONG   0,ANI_END
-         .LONG   >FFFFFFFF
+         .LONG   0FFFFFFFFH
 
 
 MA_LOFEOQ
-         .WORD   >07,>50,>80
+         .WORD   007H,050H,080H
          .LONG   ANI_JUMP,HALFBLUR,LOF_FRAMES
 
 MA_LOFNUM1
-         .WORD   >08,>1E0,>51
+         .WORD   008H,01E0H,051H
          .LONG   HALFBLUR
 LOF_FRAMES
          .LONG   markfan1,markfan2,0,ANI_LOOP
          .LONG   mltarm1,mltarm2,0,ANI_LOOP
          .LONG   mrtarm1,mrtarm2,0,ANI_LOOP
          .LONG   mwere1,0,ANI_END
-         .LONG   >FFFFFFFF
+         .LONG   0FFFFFFFFH
 
 MA_HT_CHEER1
-         .WORD   >08,>1E0,>51
+         .WORD   008H,01E0H,051H
          .LONG   ANI_JUMP,HALFBLUR,CHEER_FRAMES
 
 MA_HTYEA
-         .WORD   >07,>1E0,>51
+         .WORD   007H,01E0H,051H
          .LONG   ANI_JUMP,HALFBLUR,COACHY_FRAMES
 
 MA_HTAWESOME
-         .WORD   >0A,>1E0,>51
+         .WORD   00AH,01E0H,051H
          .LONG   winsize1
          .LONG   bighead1
          .LONG   bighead1
@@ -3949,11 +3949,11 @@ MA_HTAWESOME
          .LONG   TDANN_DUMB,TDANN_DUMB,TDANN_DUMB,TDANN_DUMB,bighead3
          .LONG   bighead3,bighead3,bighead3,bighead4
          .LONG   0,ANI_END
-         .LONG   >FFFFFFFF
+         .LONG   0FFFFFFFFH
 
 
 MA_HT_CHEER2
-         .WORD   >05,>1E0,>51
+         .WORD   005H,01E0H,051H
          .LONG   HALFBLUR
          .LONG   NCHEER1A
          .LONG   NCHEER1A
@@ -4023,25 +4023,25 @@ MA_HT_CHEER2
          .LONG   NCHEER3C
          .LONG   NCHEER2C,NCHEER1C
          .LONG   0,ANI_END
-         .LONG   >FFFFFFFF
+         .LONG   0FFFFFFFFH
 
 MA_HT_CHEER3
-         .WORD   >0A,>40,>51
+         .WORD   00AH,040H,051H
          .LONG   HALFBLUR
          .LONG   NCHEER1A,NCHEER2A,NCHEER3A,0,ANI_LOOP
          .LONG   NCHEER1B,NCHEER2B,NCHEER3B,0,ANI_LOOP
          .LONG   NCHEER1C,NCHEER2C,NCHEER3C,0,ANI_LOOP
-         .LONG   >FFFFFFFF
+         .LONG   0FFFFFFFFH
          
 MA_HT_CHEER4
-         .WORD   >0A,>145,>51
+         .WORD   00AH,0145H,051H
          .LONG   HALFBLUR
          .LONG   CHEER1A,CHEER2A,CHEER3A,0,ANI_LOOP
          .LONG   CHEER1B,CHEER2B,CHEER3B,0,ANI_LOOP
          .LONG   CHEER1C,CHEER2C,CHEER3C,0,ANI_LOOP
-         .LONG   >FFFFFFFF
+         .LONG   0FFFFFFFFH
 
 MA_HT_LOF2
-         .WORD   >08,>C0,>51
+         .WORD   008H,0C0H,051H
          .LONG   ANI_JUMP,HALFBLUR,LOF_FRAMES
 

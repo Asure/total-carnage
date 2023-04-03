@@ -11,7 +11,7 @@
 *.Last mod - 1/7/92 13:50
 ****************************************************************
 
-	.FILE	'ATTRACT.ASM'
+	.FILE	"ATTRACT.ASM"
 	.TITLE	"ATTRACT MODE"
 	.WIDTH	132
 	.OPTION	B,D,L,T
@@ -19,8 +19,8 @@
 
 	.INCLUDE	"MPROC.EQU"		;MPROC EQUATES
 	.INCLUDE	"DISP.EQU"		;DISPLAY PROC. EQUATES
-	.INCLUDE	"\VIDEO\SYS\SYS.INC"	;Z UNIT SYSTEM EQUATES
-	.INCLUDE	"\VIDEO\SYS\GSP.INC"
+	.include	"sys.inc"	;z unit system equates
+	.include	"gsp.inc"
 	.INCLUDE	"MAC2.ASM"		;MACRO 2 DEFINITIONS
 	.INCLUDE	"IMGTBL.GLO"
 	.INCLUDE	"BGNDTBL.GLO"		;BACKGROUND EQUATES
@@ -35,13 +35,13 @@
 	.REF	PLYRONE,PLYRTWO,MUSICOFF
 	.ref	WRPSND
 
-;yousuck	.word	>f9a0,10,>80c5,0		;You suck at this game!
-;logosnd	.word	>f420,1,>804f,0			;Logo spins
-logosnd	.word	>f420,1,>8047,0			;Logo spins
-;exp1snd	.word	>fc80,10,>803e,0		;Explosion
-exp1snd	.word	>fc80,10,>803f,0		;Explosion
-;ttlgun	.word	>fca0,4,>8030,0			;Title guy shoots gun
-ttlgun	.word	>fca0,4,>8031,0			;Title guy shoots gun
+;yousuck	.word	0f9a0H,10,080c5H,0		;You suck at this game!
+;logosnd	.word	0f420H,1,0804fH,0			;Logo spins
+logosnd	.word	0f420H,1,08047H,0			;Logo spins
+;exp1snd	.word	0fc80H,10,0803eH,0		;Explosion
+exp1snd	.word	0fc80H,10,0803fH,0		;Explosion
+;ttlgun	.word	0fca0H,4,08030H,0			;Title guy shoots gun
+ttlgun	.word	0fca0H,4,08031H,0			;Title guy shoots gun
 
 ; SYMBOLS DEFINED IN THIS FILE
 
@@ -562,7 +562,7 @@ AWAV2MOV:
 	.WORD	PFLEFT|PFUP|PDOWN,35H
 	.WORD	0FFFFH
 
-;DISSND	.WORD	>F3EE,>18,>80B0,0		;KEY MELODY TYPE SND
+;DISSND	.WORD	0F3EEH,018H,080B0H,0		;KEY MELODY TYPE SND
 ;
 ;	.REF	CYCSPECT
 ;SNK_PRVW
@@ -661,7 +661,7 @@ AWAV2MOV:
 ;LINE10	.BYTE "THE CARNAGE!  GOOD LUCK!",0
 ;LINE11	.BYTE "YOU'LL NEED IT!",0
 ;	.EVEN
-TOTCARN2 .WORD	>F9F0,120,>80F0,0		;"TOTAL CARNAGE"
+TOTCARN2 .WORD	0F9F0H,120,080F0H,0		;"TOTAL CARNAGE"
 
 ********************************
 * Title page
@@ -771,25 +771,25 @@ NONO2
 
 
 	ASNEW	titlenew_t
-	ASHIDE	>54
+	ASHIDE	054H
 
 	ASLAB	67
-	ASXY	>10,0,-6,0
-	ASXY	>40,>1f,6,0
+	ASXY	010H,0,-6,0
+	ASXY	040H,01fH,6,0
 	ASDSJS1
 
 	ASDELM	8,1
 	ASRUN	ttlshoot_as
 	ASLAB	136
-	ASXY	>40,>1f,3,0
+	ASXY	040H,01fH,3,0
 	ASDSJS1
 
 	ASSLP	60*7
 
 	ASLAB	43
-	ASXY	>10,0,0,6
-	ASXY	>40,>f,0,8
-	ASXY	>50,>f,0,7
+	ASXY	010H,0,0,6
+	ASXY	040H,0fH,0,8
+	ASXY	050H,0fH,0,7
 	ASDSJS1
 
 	ASEND
@@ -803,30 +803,30 @@ TY	.set	0+1
 TGY	.set	50	;93
 
 titlenew_t
-	ASITEMN	418,6+1,TITPC1,50,DMAWNZ,>10
-	ASITEMN	630,6+1,TITPC2,50,DMAWNZ,>10
-	ASITEMN	TX,TY,BLOCKSIZE,30,DMAWNZ,>40
-	ASITEMN	TX+200,TY,BLOCKSIZE,30,DMAWNZ,>40
-	ASITEMN	TX+400,TY,BLOCKSIZE,30,DMAWNZ,>40
-	ASITEMN	TX+600,TY,BLOCKSIZE,30,DMAWNZ,>40
-	ASITEMN	TX,TY+255,BLOCKSIZE,30,DMAWNZ+M_FLIPV,>40
-	ASITEMN	TX+200,TY+255,BLOCKSIZE,30,DMAWNZ+M_FLIPV,>40
-	ASITEMN	TX+400,TY+255,BLOCKSIZE,30,DMAWNZ+M_FLIPV,>40
-	ASITEMN	TX+600,TY+255,BLOCKSIZE,30,DMAWNZ+M_FLIPV,>40
-	ASITEMN	TX+54,TY+238,COPYR,100,DMAWNZ,>40
-	ASITEMN	TX+68,TY+TGY,TTLHED1,70,DMAWNZ,>50
-	ASITEMN	TX+68,TY+TGY,TTLPC1,70,DMAWNZ,>50
-	ASITEMN	TX+68,TY+TGY,TTLPC2,70,DMAWNZ,>50
-	ASITEMN	TX+68,TY+TGY,TTLPC3,40,DMAWNZ,>50
-	ASITEMN	TX+68,TY+TGY,TTLPC4,40,DMAWNZ,>50
-	ASITEMN	TX+68,TY+TGY,TTLPC5,40,DMAWNZ,>50
-	ASITEMN	TX+68,TY+TGY,TTLPC6,40,DMAWNZ,>50
-	ASITEMN	TX+68,TY+TGY,TTLPC7,40,DMAWNZ,>50
-	ASITEMN	TX+67,TY+TGY,TTLPC8,40,DMAWNZ,>50
-	ASITEMN	TX+66,TY+TGY,TTLPC9,40,DMAWNZ,>50
-	ASITEMN	TX+67,TY+TGY,TTLPC10,40,DMAWNZ,>50
-	ASITEMN	TX+68+330,TY+TGY+105,TTLBLAST,44,DMAWNZ,>54
-	ASITEMN	TX+68+330,TY+TGY+104,TTLBLAST,44,DMAWNZ+M_FLIPV,>54
+	ASITEMN	418,6+1,TITPC1,50,DMAWNZ,010H
+	ASITEMN	630,6+1,TITPC2,50,DMAWNZ,010H
+	ASITEMN	TX,TY,BLOCKSIZE,30,DMAWNZ,040H
+	ASITEMN	TX+200,TY,BLOCKSIZE,30,DMAWNZ,040H
+	ASITEMN	TX+400,TY,BLOCKSIZE,30,DMAWNZ,040H
+	ASITEMN	TX+600,TY,BLOCKSIZE,30,DMAWNZ,040H
+	ASITEMN	TX,TY+255,BLOCKSIZE,30,DMAWNZ+M_FLIPV,040H
+	ASITEMN	TX+200,TY+255,BLOCKSIZE,30,DMAWNZ+M_FLIPV,040H
+	ASITEMN	TX+400,TY+255,BLOCKSIZE,30,DMAWNZ+M_FLIPV,040H
+	ASITEMN	TX+600,TY+255,BLOCKSIZE,30,DMAWNZ+M_FLIPV,040H
+	ASITEMN	TX+54,TY+238,COPYR,100,DMAWNZ,040H
+	ASITEMN	TX+68,TY+TGY,TTLHED1,70,DMAWNZ,050H
+	ASITEMN	TX+68,TY+TGY,TTLPC1,70,DMAWNZ,050H
+	ASITEMN	TX+68,TY+TGY,TTLPC2,70,DMAWNZ,050H
+	ASITEMN	TX+68,TY+TGY,TTLPC3,40,DMAWNZ,050H
+	ASITEMN	TX+68,TY+TGY,TTLPC4,40,DMAWNZ,050H
+	ASITEMN	TX+68,TY+TGY,TTLPC5,40,DMAWNZ,050H
+	ASITEMN	TX+68,TY+TGY,TTLPC6,40,DMAWNZ,050H
+	ASITEMN	TX+68,TY+TGY,TTLPC7,40,DMAWNZ,050H
+	ASITEMN	TX+67,TY+TGY,TTLPC8,40,DMAWNZ,050H
+	ASITEMN	TX+66,TY+TGY,TTLPC9,40,DMAWNZ,050H
+	ASITEMN	TX+67,TY+TGY,TTLPC10,40,DMAWNZ,050H
+	ASITEMN	TX+68+330,TY+TGY+105,TTLBLAST,44,DMAWNZ,054H
+	ASITEMN	TX+68+330,TY+TGY+104,TTLBLAST,44,DMAWNZ+M_FLIPV,054H
 	.word	-1000
 
 tpresents_st
@@ -838,17 +838,17 @@ ttlshoot_as
 ;	ASLAB	5
 
 ;	ASLAB	8			;>Pop up
-;	ASXY	>50,>f,1,-5
+;	ASXY	050H,0fH,1,-5
 ;	ASDSJS1
-;	ASXY	>50,>f,1,-3
+;	ASXY	050H,0fH,1,-3
 ;	ASSLP1
 
-	ASLAB	12*4			;>Fire
-	ASXY	>50,>f,-2,0
+	ASLAB	12*4			;0FHire
+	ASXY	050H,0fH,-2,0
 	ASSVL	FLASH
-	ASPAL	>50
-	ASPAL	>54
-	ASSHOW	>54
+	ASPAL	050H
+	ASPAL	054H
+	ASSHOW	054H
 	ASSLP1
 
 
@@ -870,26 +870,26 @@ NONO3
 
 
 
-	ASXY	>50,>f,-2,0
+	ASXY	050H,0fH,-2,0
 	ASSVL	BLASTP
-	ASPAL	>54
+	ASPAL	054H
 	ASSLP1
-	ASXY	>50,>f,2,0
+	ASXY	050H,0fH,2,0
 	ASSVL	FLASH
-	ASPAL	>54
+	ASPAL	054H
 	ASSLP1
-	ASXY	>50,>f,2,0
-	ASHIDE	>54
+	ASXY	050H,0fH,2,0
+	ASHIDE	054H
 	ASSVL	TTLCOLR
-	ASPAL	>50
+	ASPAL	050H
 	ASDSJS1
 
-;	ASLAB	8			;>Duck
-;	ASXY	>50,>f,-1,5
+;	ASLAB	8			;0DHuck
+;	ASXY	050H,0fH,-1,5
 ;	ASDSJS1
-;	ASXY	>50,>f,-1,2
+;	ASXY	050H,0fH,-1,2
 ;	ASSLP1
-;	ASXY	>50,>f,0,1
+;	ASXY	050H,0fH,0,1
 ;	ASSLP1
 
 ;	ASSLPR	60,90
@@ -900,13 +900,13 @@ NONO3
 
  SUBRP	logo_setflpv
 
-	move	@OBJLST,a2,L		;>Flip logo lines
-	movi	>8000,a3
+	move	@OBJLST,a2,L		;0FHlip logo lines
+	movi	08000H,a3
 lsfvlp	movb	*a2(OID),a0
 	subk	1,a0
 	jreq	lsfv50			;Txt?
 	move	a3,*a2(OYVEL),L
-	subi	>555,a3
+	subi	0555H,a3
 lsfv50	move	*a2,a2,L
 	jrnz	lsfvlp
 	rets
@@ -930,7 +930,7 @@ lsfv50	move	*a2,a2,L
 NONO4
 
 
-	move	@OBJLST,a2,L		;>Flip logo lines
+	move	@OBJLST,a2,L		;0FHlip logo lines
 lnyvlp	movb	*a2(OID),a0
 	subk	1,a0
 	jreq	lnyv50			;Txt?
@@ -944,7 +944,7 @@ lnyv50	move	*a2,a2,L
 
  SUBRP	logo_setxv
 
-	move	@OBJLST,a2,L		;>Flip logo lines
+	move	@OBJLST,a2,L		;0FHlip logo lines
 lsxvlp	movk	7,a0
 	sll	16,a0
 	move	*a2(OID),a1
@@ -1536,7 +1536,7 @@ SET_1ST
 ;A11=P1 OR P2DATA AREA
 	MMTM	SP,A0,A1
 	CALLA	ZERO_STATS
-	MOVI	>100000,A1		;FIRST FREE MAN AT 100000
+	MOVI	0100000H,A1		;FIRST FREE MAN AT 100000
 	CALLA	BCDADD
 	MOVE	A0,*A11(PNEXTREP),L
 	MMFM	SP,A0,A1
@@ -1560,7 +1560,7 @@ hst5	move	a0,-*a12
 	clr	a0
 	move	a0,@GAMERASE
 	move	a0,@IRQSKYE		;Black
-	movi	->1004,a0		;Start display at bottom of screen
+	movi	-01004H,a0		;Start display at bottom of screen
 	move	a0,@DPYSTRT
 	calla	CLR_SCRN
 
@@ -1604,7 +1604,7 @@ hst30	move	a1,*a2+,L
 	jruc	hst120
 
 hst90	move	@SWITCH,a0
-	movk	>11,a1
+	movk	011H,a1
 	and	a1,a0
 	jrz	hst100
 	callr	vidhwfx_flyin
@@ -1719,7 +1719,7 @@ ps50	CREATE	CYCPID,palnewcol
 
  SUBRP	palnewcol	;A9=*palram, A10=*New color
 
-	movi	120,a8			;>Fade old down
+	movi	120,a8			;0FadeH old down
 	move	*a9,a11			;Get old
 pp50	move	a11,*a9
 	move	a9,a0
@@ -1730,7 +1730,7 @@ pp50	move	a11,*a9
 	cmpi	16,a8
 	jrgt	pp50
 
-pp100	move	a10,a1			;>Fade new up
+pp100	move	a10,a1			;0FadeH new up
 	move	a9,a0
 	CALLA	palnewc_set
 	SLEEPK	1
@@ -1777,15 +1777,15 @@ hsc40	move	*a0+,*a4+		;Shift colors down
  SUBRP	paldump
 
 	movi	palram,a0		;*Color
-	movi	>101,a1			;Palette 1, Color 1
+	movi	0101H,a1			;Palette 1, Color 1
 	movi	60,a2			;# Colors
 	calla	PALSET
 	movi	palram+60*16,a0
-	movi	>201,a1			;Palette 2, Color 1
+	movi	0201H,a1			;Palette 2, Color 1
 	movi	60,a2
 	calla	PALSET
 	movi	palram+120*16,a0
-	movi	>301,a1			;Palette 3, Color 1
+	movi	0301H,a1			;Palette 3, Color 1
 	movi	45,a2
 	calla	PALSET
 	SLEEPK	1
@@ -1802,9 +1802,9 @@ hsc40	move	*a0+,*a4+		;Shift colors down
 	PUSH	a3,a4,a5,a6,a7,a8,a9,a10,a11
 
 
-	movi	>7c00,a4	;A4=Mask for 5 bits of red
-	movi	>03e0,a6	;A6=Mask for 5 bits of green
-	movk	>1f,a8		;A8=Mask for 5 bits of blue
+	movi	07c00H,a4	;A4=Mask for 5 bits of red
+	movi	003e0H,a6	;A6=Mask for 5 bits of green
+	movk	01fH,a8		;A8=Mask for 5 bits of blue
 	move	a4,a9
 	move	a6,a10
 	move	a8,a11
@@ -1857,7 +1857,7 @@ FXNUML	.equ	254
 
 	move	@HEBLNK,a10
 
-	movi	FXNUML/2,a0		;>Clr effect list and init lines
+	movi	FXNUML/2,a0		;0CHlr effect list and init lines
 	movi	vhfxmem,a3
 	movi	vhfxlnv,a4
 	move	@HSBLNK,a1
@@ -1877,10 +1877,10 @@ vffi100	move	a1,*a3+			;Set X
 ;	movk	1,b4			;B4=Spawn delay
 ;	move	b4,b3			;B3=Spawn cntdn
 
-	movi	>10f,a11
+	movi	010fH,a11
 
 vffi200	move	@COINS,a0
-	ori	>34,a0
+	ori	034H,a0
 	not	a0
 	jrnz	vffix
 
@@ -1917,7 +1917,7 @@ vffi400	move	*a8,a0			;Get X
 	add	a1,a0			;New pos
 	jrge	vffi500
 	clr	a0
-;	cmpi	>1f,a11			;No bounce at end
+;	cmpi	01fH,a11			;No bounce at end
 ;	jrls	vffi500
 	sra	1,a1
 	neg	a1
@@ -1960,7 +1960,7 @@ vffix	move	a10,@HEBLNK
 	subk	2,a9			;A9=Highest HEBLNK allowed
 	move	@HEBLNK,a10
 
-	movi	FXNUML,a0		;>Clr effect list and init lines
+	movi	FXNUML,a0		;0CHlr effect list and init lines
 	movi	vhfxmem,a3
 	movi	vhfxlnv,a4
 	clr	a1
@@ -1974,10 +1974,10 @@ vffo100	move	a1,*a3+			;Set X
 ;	movk	1,b4			;B4=Spawn delay
 ;	move	b4,b3			;B3=Spawn cntdn
 
-	movi	>4f,a11
+	movi	04fH,a11
 
 vffo200	move	@COINS,a0
-	ori	>34,a0
+	ori	034H,a0
 	not	a0
 	jrnz	vffox
 
@@ -2015,7 +2015,7 @@ vffo400	move	*a8,a0			;Get X
 	add	a1,a0			;New pos
 	jrge	vffo500
 	clr	a0
-;	cmpi	>1f,a11			;No bounce at end
+;	cmpi	01fH,a11			;No bounce at end
 ;	jrls	vffo500
 	sra	1,a1
 	neg	a1
@@ -2063,23 +2063,23 @@ vffox
  SUBRP	vidhwfx_zoomin
 
 
-	movi	FXNUML,a0		;>Clr effect list and init lines
+	movi	FXNUML,a0		;0CHlr effect list and init lines
 	movi	vhfxmem,a3
 	movi	vhfxlnv,a4
 	move	@DPYSTRT,a1
 vfzi100	move	a1,*a3+			;Set Addr
 	move	a1,*a4+			;^
-	subk	>10,a1
+	subk	010H,a1
 	dsj	a0,vfzi100
 
-	movi	>10000,b2		;B2=#Lines per addr
+	movi	010000H,b2		;B2=#Lines per addr
 ;	movk	1,b4			;B4=Spawn delay
 ;	move	b4,b3			;B3=Spawn cntdn
 
-	movi	>10f,a11
+	movi	010fH,a11
 
 vfzi200	move	@COINS,a0
-	ori	>34,a0
+	ori	034H,a0
 	not	a0
 	jrnz	vfzix
 
@@ -2120,12 +2120,12 @@ vfzi430	sll	4,a3			;*16
 	add	b2,b0
 	dsj	a2,vfzi400
 
-	addi	>200,b2			;Inc line skip
+	addi	0200H,b2			;Inc line skip
 ;	jrgt	vfzi550
-;	movi	>100,b2
-;	subi	>200,b2			;Decrease line skip
+;	movi	0100H,b2
+;	subi	0200H,b2			;Decrease line skip
 ;	jrgt	vfzi550
-;	movi	>100,b2
+;	movi	0100H,b2
 vfzi550
 ;	cmpi	FXNUML,b2
 ;	jrhs	vfzi700
@@ -2155,7 +2155,7 @@ vfzix	move	a10,@HEBLNK
 
 	move	@DPYCTL,a10
 
-	movi	FXNUML,a0		;>Clr effect list and init lines
+	movi	FXNUML,a0		;0CHlr effect list and init lines
 	movi	vhfxmem,a3
 	movi	vhfxln,a4
 	clr	a1
@@ -2169,10 +2169,10 @@ vhf100	move	a1,*a3+
 	movi	45,b4			;B4=Spawn delay
 	move	b4,b3			;B3=Spawn cntdn
 
-	movi	>12f,a11
+	movi	012fH,a11
 
 vhf200	move	@COINS,a0
-	ori	>34,a0
+	ori	034H,a0
 	not	a0
 	jrnz	vhfx
 
@@ -2198,7 +2198,7 @@ vhf260	move	*a7,a0			;Wait on vcnt
 	move	a2,*a6			;Stuff value
 	dsj	a5,vhf230
 
-	movi	FXNUML,a0		;>Clr effect list
+	movi	FXNUML,a0		;0CHlr effect list
 	movi	vhfxmem,a3
 	clr	a1
 vhf300	move	a1,*a3+
@@ -2225,7 +2225,7 @@ vhf410	move	*a3+,a0
 vhf450	cmp	a5,a0
 	jrlt	vhf500
 	move	a5,a0
-vhf470	cmpi	>2f,a11			;No bounce at end
+vhf470	cmpi	02fH,a11			;No bounce at end
 	jrls	vhf500
 	neg	a1
 vhf500	addk	4,a1			;Add vel
@@ -2271,7 +2271,7 @@ vhfx	move	a10,@DPYCTL
 
 	move	@DPYCTL,a10
 
-	movi	FXNUML,a0		;>Clr effect list
+	movi	FXNUML,a0		;0CHlr effect list
 	movi	vhfxmem,a3
 	move	a3,a9			;A9=*Next line to show
 	clr	a1
@@ -2281,7 +2281,7 @@ vhfb100	move	a1,*a3+
 	movk	18,a11
 
 vhfb200	move	@COINS,a0
-	ori	>34,a0
+	ori	034H,a0
 	not	a0
 	jrnz	vhfbx
 
@@ -2338,7 +2338,7 @@ vhfbx	move	a10,@DPYCTL
 	move	a1,@FPALRAM+PALRSIZ,L
 
 	movi	hscolorsc_t+30*16,a0	;*Red
-	movi	>101,a1			;Palette 1, Color 1
+	movi	0101H,a1			;Palette 1, Color 1
 	movk	15,a2			;# Colors
 	calla	PALSET
 
@@ -2418,7 +2418,7 @@ hiscoreinit_t
  SUBRP	intgrid_prt
 
 	movi	INITMAT,a4
-	movi	>2525,a6
+	movi	02525H,a6
 	movi	[44,149],a9		;Scrn y/x
 	movk	[0,1],a10		;Spacing
 	movi	RD15FONT,a11
@@ -2472,22 +2472,22 @@ SECLOOP
 	ADDK	8,A0
 	SLL	24,A1			; STRIP OUT THE CRUD leaving
 	SRL	24,A1			;16 bits, right justified			
-	CMPI	>FF,A1			;ff signifies no more commands
+	CMPI	0FFH,A1			;ff signifies no more commands
 	JREQ	SECCHX			; WE ARE DONE
 	MOVE	A1,A2			
 	SLL	8,A1			;align with register in chip
-	ANDI	>0F00,A1
+	ANDI	00F00H,A1
 	MOVE	A1,*A3,W
-	CMPI	>0600,A1		;is this a seed cycle?
+	CMPI	00600H,A1		;is this a seed cycle?
 	JREQ	SESEED
-	CMPI	>0400,A1		;is this a READ cycle?
+	CMPI	00400H,A1		;is this a READ cycle?
 	JRNE	SECLOOP			;NO READ CYCLE
 
 	MOVE	*A3,A4,W		;CHECK OUT READ DATA
 	SLL	16,A4			;mask off all but 
 	SRL	24,A4			;8 bits
-	ANDI	>0F0,a2			;isolate read value
-	ORI	>0A,A2			;or in number of TC Chip
+	ANDI	00F0H,a2			;isolate read value
+	ORI	00AH,A2			;or in number of TC Chip
 	CMP	A4,A2
 	JREQ	SECLOOP
 SECERR					;BOGUS SHIT = ERROR
@@ -2506,7 +2506,7 @@ SESEED
 	SRL	24,A1			;16 bits, right justified			
 	MOVE	A1,A2			
 	SLL	8,A1			;align with register in chip
-	ANDI	>0F00,A1
+	ANDI	00F00H,A1
 	MOVE	A1,*A3,W
 	JRUC	SECLOOP
 
@@ -2519,105 +2519,105 @@ SESEED
 
 SECBTAB	
 ;current register value is at end of comment column
-	.BYTE	>F 		;CLEAR THE SUCKER  	0
-	.BYTE	>F 		;CLEAR THE SUCKER  	0
-	.BYTE	>F 		;CLEAR THE SUCKER  	0
+	.BYTE	0FH 		;CLEAR THE SUCKER  	0
+	.BYTE	0FH 		;CLEAR THE SUCKER  	0
+	.BYTE	0FH 		;CLEAR THE SUCKER  	0
 
-	.BYTE	>8		;CLOCK IT
-	.BYTE	>44		;READ A 4	   	14
+	.BYTE	08H		;CLOCK IT
+	.BYTE	044H		;READ A 4	   	14
 
-	.BYTE	>6		;LOAD SEED
-	.BYTE	>3		;LOAD A 3	   	13
+	.BYTE	06H		;LOAD SEED
+	.BYTE	03H		;LOAD A 3	   	13
 
-	.BYTE	>8		;CLOCK IT	   	1E
-	.BYTE	>8		;CLOCK IT	   	05
-	.BYTE	>8		;CLOCK IT	   	03
-	.BYTE	>8		;CLOCK IT	   	06
-	.BYTE	>64		;READ AN 6
+	.BYTE	08H		;CLOCK IT	   	1E
+	.BYTE	08H		;CLOCK IT	   	05
+	.BYTE	08H		;CLOCK IT	   	03
+	.BYTE	08H		;CLOCK IT	   	06
+	.BYTE	064H		;READ AN 6
 
-	.BYTE	>C		;CLOCK IT	   	11
-	.BYTE	>C		;CLOCK IT	   	1D
-	.BYTE	>D4		;READ AN D
+	.BYTE	0CH		;CLOCK IT	   	11
+	.BYTE	0CH		;CLOCK IT	   	1D
+	.BYTE	0D4H		;READ AN D
 
-	.BYTE	>5		;NOP		   	1D
-	.BYTE	>7		;NOP		   	1D
-	.BYTE	>5		;NOP		   	1D
-	.BYTE	>7		;NOP		   	1D
-	.BYTE	>7		;NOP		   	1D
-	.BYTE	>7		;NOP		   	1D
-	.BYTE	>D4		;READ AN D
+	.BYTE	05H		;NOP		   	1D
+	.BYTE	07H		;NOP		   	1D
+	.BYTE	05H		;NOP		   	1D
+	.BYTE	07H		;NOP		   	1D
+	.BYTE	07H		;NOP		   	1D
+	.BYTE	07H		;NOP		   	1D
+	.BYTE	0D4H		;READ AN D
 	
-	.BYTE	>C		;CLOCK IT	   	17
-	.BYTE	>8		;CLOCK IT	   	18
-	.BYTE	>6		;LOAD SEED
-	.BYTE	>6		;LOAD A 6	   	16
-	.BYTE	>5		;NOP		   	16
-	.BYTE	>64		;READ A 6
-	.BYTE	>C		;CLOCK IT	   	09
-	.BYTE	>8		;CLOCK IT	   	09
-	.BYTE	>C		;CLOCK IT	   	09
-	.BYTE	>8		;CLOCK IT	   	09
-	.BYTE	>94		;READ A 9	      	
-	.BYTE	>9		;RRX IT		   	04
-	.BYTE	>44		;READ A 4
-	.BYTE	>9		;RRX IT		   	12
-	.BYTE	>24		;READ A 2
-	.BYTE	>9		;RRX IT		   	09
-	.BYTE	>94		;READ A 9
-	.BYTE	>9		;RRX IT		   	04
+	.BYTE	0CH		;CLOCK IT	   	17
+	.BYTE	08H		;CLOCK IT	   	18
+	.BYTE	06H		;LOAD SEED
+	.BYTE	06H		;LOAD A 6	   	16
+	.BYTE	05H		;NOP		   	16
+	.BYTE	064H		;READ A 6
+	.BYTE	0CH		;CLOCK IT	   	09
+	.BYTE	08H		;CLOCK IT	   	09
+	.BYTE	0CH		;CLOCK IT	   	09
+	.BYTE	08H		;CLOCK IT	   	09
+	.BYTE	094H		;READ A 9	      	
+	.BYTE	09H		;RRX IT		   	04
+	.BYTE	044H		;READ A 4
+	.BYTE	09H		;RRX IT		   	12
+	.BYTE	024H		;READ A 2
+	.BYTE	09H		;RRX IT		   	09
+	.BYTE	094H		;READ A 9
+	.BYTE	09H		;RRX IT		   	04
 
-	.BYTE	>D		;ROR IT			02
-	.BYTE	>D		;ROR IT			01
-	.BYTE	>14		;READ A 1
+	.BYTE	0DH		;ROR IT			02
+	.BYTE	0DH		;ROR IT			01
+	.BYTE	014H		;READ A 1
 	
-	.BYTE	>9		;RRX IT			00
-	.BYTE	>9		;RRX IT			10
-	.BYTE	>9		;RRX IT			08
-	.BYTE	>84		;READ A 8
+	.BYTE	09H		;RRX IT			00
+	.BYTE	09H		;RRX IT			10
+	.BYTE	09H		;RRX IT			08
+	.BYTE	084H		;READ A 8
 
-	.BYTE	>9		;RRX IT			14
-	.BYTE	>9		;RRX IT			0A
-	.BYTE	>A4		;READ A A
+	.BYTE	09H		;RRX IT			14
+	.BYTE	09H		;RRX IT			0A
+	.BYTE	0A4H		;READ A A
 
-	.BYTE	>9		;RRX IT			15
-	.BYTE	>9		;RRX IT			1A
-	.BYTE	>9		;RRX IT			0D
-	.BYTE	>AD		;READ A D
-	.BYTE	>9		;RRX IT			06
-	.BYTE	>A6		;READ A 6
-	.BYTE	>9		;RRX IT			13
-	.BYTE	>A3		;READ A 3
-	.BYTE	>9		;RRX IT			19
-	.BYTE	>A9		;READ A 9
-	.BYTE	>9		;RRX IT			1C
-	.BYTE	>AC		;READ A C
-	.BYTE	>9		;RRX IT			0E
-	.BYTE	>7		;NOP			0E
-	.BYTE	>7		;NOP			0E
-	.BYTE	>7		;NOP			0E
-	.BYTE	>7		;NOP			0E
-	.BYTE	>7		;NOP			0E
-	.BYTE	>7		;NOP			0E
-	.BYTE	>7		;NOP			0E
-	.BYTE	>7		;NOP			0E
-	.BYTE	>7		;NOP			0E
-	.BYTE	>7		;NOP			0E
-	.BYTE	>7		;NOP			0E
-	.BYTE	>7		;NOP			0E
-	.BYTE	>AE		;READ A E
-	.BYTE	>9		;RRX IT			17
-	.BYTE	>A7		;READ A 7
-	.BYTE	>9		;RRX IT			1b
-	.BYTE	>AB		;READ A B
-	.BYTE	>8		;CLOCK IT		12
-	.BYTE	>A2		;READ A 2
-	.BYTE	>8		;CLOCK IT		0F
-	.BYTE	>AF		;READ A F
-	.BYTE	>8		;CLOCK IT		0C
-	.BYTE	>AC		;READ A C
+	.BYTE	09H		;RRX IT			15
+	.BYTE	09H		;RRX IT			1A
+	.BYTE	09H		;RRX IT			0D
+	.BYTE	0ADH		;READ A D
+	.BYTE	09H		;RRX IT			06
+	.BYTE	0A6H		;READ A 6
+	.BYTE	09H		;RRX IT			13
+	.BYTE	0A3H		;READ A 3
+	.BYTE	09H		;RRX IT			19
+	.BYTE	0A9H		;READ A 9
+	.BYTE	09H		;RRX IT			1C
+	.BYTE	0ACH		;READ A C
+	.BYTE	09H		;RRX IT			0E
+	.BYTE	07H		;NOP			0E
+	.BYTE	07H		;NOP			0E
+	.BYTE	07H		;NOP			0E
+	.BYTE	07H		;NOP			0E
+	.BYTE	07H		;NOP			0E
+	.BYTE	07H		;NOP			0E
+	.BYTE	07H		;NOP			0E
+	.BYTE	07H		;NOP			0E
+	.BYTE	07H		;NOP			0E
+	.BYTE	07H		;NOP			0E
+	.BYTE	07H		;NOP			0E
+	.BYTE	07H		;NOP			0E
+	.BYTE	0AEH		;READ A E
+	.BYTE	09H		;RRX IT			17
+	.BYTE	0A7H		;READ A 7
+	.BYTE	09H		;RRX IT			1b
+	.BYTE	0ABH		;READ A B
+	.BYTE	08H		;CLOCK IT		12
+	.BYTE	0A2H		;READ A 2
+	.BYTE	08H		;CLOCK IT		0F
+	.BYTE	0AFH		;READ A F
+	.BYTE	08H		;CLOCK IT		0C
+	.BYTE	0ACH		;READ A C
 
-	.BYTE	>FF		;ITS ALL OVER
-	.BYTE	>FF		;ITS ALL OVER (extra for safety with seed)
+	.BYTE	0FFH		;ITS ALL OVER
+	.BYTE	0FFH		;ITS ALL OVER (extra for safety with seed)
 	.EVEN
 
 

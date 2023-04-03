@@ -14,16 +14,16 @@
 *
 *.Last mod - 1/7/92 13:45
 **************************************************************************
-	.FILE	'NDSP1.ASM'
+	.FILE	"NDSP1.ASM"
 	.TITLE	"GSP DISPLAY PROCESSOR VER. 3.3"
 	.WIDTH	132
 	.OPTION	B,D,L,T
 	.MNOLIST
 
 
-	.INCLUDE	\VIDEO\SYS\GSP.INC
-	.INCLUDE	\VIDEO\SYS\SYS.INC
-	.INCLUDE	\VIDEO\SYS\MACROS.HDR
+	.include	gsp.inc
+	.include	sys.inc
+	.include	macros.hdr
 	.INCLUDE	MPROC.EQU
 	.INCLUDE	DISP.EQU
 	.include	"shawn.hdr"		;Macros
@@ -98,10 +98,10 @@ DMAINT
 	mmtm	b12,b6,b7,b8,b9		;Stuff DMA regs
 	move	b10,-*b12
 	move	b11,-*b12
-	addi	>a0,b12			;DMAREGS (End of DMA)
+	addi	0a0H,b12			;DMAREGS (End of DMA)
 	subk	1,b13
 	jrle	dmaint1			;Queue empty?
-	subi	>140,b14		;Setup Q pull
+	subi	0140H,b14		;Setup Q pull
 	mmfm	b14,b6,b7,b8,b9,b10	;Get data
 	move	b10,b11
 	srl	16,b10
@@ -155,14 +155,14 @@ DMANUQ3	MOVE	@BOTQ1FLG,B14
 	MOVE	B14,@BOTQ1CNT
 	MOVI	BOTQ1+(QSIZE),B14
 
-DMANUQL	SUBI	>A0,B14
+DMANUQL	SUBI	0A0H,B14
 	MMFM	B14,B6,B7,B8,B9,B10	;LOAD HER UP
 	MOVE	B10,B11
 	SRL	16,B10
 	RETS
 
 DMANUQX	MOVE	@INTENB,B14		;DISABLE DMA INTERRUPT
-	ANDI	>FFFD,B14
+	ANDI	0FFFDH,B14
 	MOVE	B14,@INTENB
 	RETS
 
@@ -341,7 +341,7 @@ disp30
 *B4=WORLD TOP LEFT [Y,X]
 
 DCLIP
-	MOVI	(HSINT-20)*>10000,B1	;GET HALF SCREEN LINE #(Y ADJUSTED) ;27
+	MOVI	(HSINT-20)*010000H,B1	;GET HALF SCREEN LINE #(Y ADJUSTED) ;27
 	CLR	B3		;TOP Q COUNT
 	CLR	B2		;BOTTOM Q COUNT
 	movi	OFLAGS,b5	;B5=PARAMETER LOCATION
@@ -485,14 +485,14 @@ dispx1	MOVE	B2,@BOTQ1CNT
 	rets
 
 *NULL DMA DATA
-NULLDMA	.long	>8000,IROM,0,>00010001,0
+NULLDMA	.long	08000H,IROM,0,000010001H,0
 
 
 ********************************
 * Velocity add loop
 
 valp	move	a0,a1
-	addk	>20,a1			;+OXVEL offset
+	addk	020H,a1			;+OXVEL offset
 
 	mmfm	a1,a9,a10,a11,a12	;A12=XV, A11=YV, A10=X, A9=Y
 
@@ -644,7 +644,7 @@ so20	move	*a1,a1,L
 	.align
 
 YZSORT	movk	1,a1			;Lowest Z
-	sll	31,a1			;Make >80000000
+	sll	31,a1			;Make 080000000H
 	move	a1,a5			;Lowest Y
 	movi	OBJLST,a0
 	jruc	yzlp
@@ -1554,7 +1554,7 @@ STFOBJ
 
 BKGSAGOF
 	PUSH	a5,a6
-	move	*a1(ISAG->20),a3,L	;GET TOP LEFT SAG (-20 -> no ani off)
+	move	*a1(ISAG-020H),a3,L	;GET TOP LEFT SAG (-20 -> no ani off)
 	jruc	gso10
 
 GSAGOF
@@ -1607,7 +1607,7 @@ gsagx	PULL	a5,a6
 ANI
 	PUSH	a0,a2,a3,a4,a5,a6,a7
 
-	cmpi	>FFC00000,a1
+	cmpi	0FFC00000H,a1
 	jrlo	anierr
 
 	move	a1,a3
@@ -1634,10 +1634,10 @@ ani1	move	*a8(OSIZE),a2,L
 	sub	a7,a5
 
 	move	a8,a6			;Get push address of oflags,osag,osize
-	addi	OFLAGS+>60,a6
+	addi	OFLAGS+060H,a6
 	mmtm	a6,a2,a3,a4		;Save new data
 
-	subi	>50,a6
+	subi	050H,a6
 	move	*a6,a7,L		;New OXVAL
 	add	a0,a7
 	move	a7,*a6+,L
