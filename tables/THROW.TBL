@@ -1,0 +1,42 @@
+	.DATA
+THROW1:
+	.word   12,11,5,5
+	.long   030926e0H
+THROW2:
+	.word   24,22,12,11
+	.long   030c7ba0H
+THROW3:
+	.word   32,31,16,15
+	.long   030CA660H
+THROW5:
+	.word   72,66,35,34
+	.long   030F28c0H
+THROW6:
+	.word   84,81,43,41
+	.long   030FBD40H
+THROW7:
+	.word   88,88,47,44
+	.long   031091E0H
+THROW4:
+	.word   60,56,30,29
+	.long   030cC560H
+THROW8:
+	.word   88,87,43,44
+	.long   031183e0H
+THROW9:
+	.word   88,85,43,40
+	.long   03127320H
+THROW10:
+	.word   88,84,45,39
+	.long   03135ce0H
+THROW11:
+	.word   88,84,44,42
+	.long   031443e0H
+THROW12:
+	.word   88,79,41,32
+	.long   03152ae0H
+THROW13:
+	.word   76,65,37,25
+	.long   03160420H
+	.TEXT
+

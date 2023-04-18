@@ -1,48 +1,48 @@
 	.DATA
 JTBOD:
 	.word   240,34,105,-6
-	.long   021f2fe0H,BLUJET
+	.long   0219a060H,BLUJET
 JTBOD2:
 	.word   240,34,105,-6
-	.long   02202ee0H,GRNJET
+	.long   0219a060H,GRNJET
 JTSMWNG:
 	.word   44,19,106,-40
-	.long   02212de0H,BLUJET
+	.long   021a9f60H,BLUJET
 JTBGWNG:
 	.word   100,42,57,-40
-	.long   02214800H,BLUJET
+	.long   021ab980H,BLUJET
 JTWHL:
 	.word   16,13,-65,-35
-	.long   0221cb40H,BLUJET
+	.long   021b3cc0H,BLUJET
 JTWNGTP:
 	.word   84,25,114,19
-	.long   0221d1c0H,BLUJET
+	.long   021b4340H,BLUJET
 JTSHD1:
 	.word   240,20,98,-42
-	.long   02221360H,BLUJET
+	.long   021b84e0H,BLUJET
 JTSHD2:
 	.word   100,41,50,-62
-	.long   0222a960H,BLUJET
+	.long   021c1ae0H,BLUJET
 JTSHD3:
 	.word   40,18,100,-63
-	.long   02232980H,BLUJET
+	.long   021c9b00H,BLUJET
 JETWRECK:
 	.word   240,34,105,-6
-	.long   02234000H
+	.long   021cb180H
 JTSMWNG2:
 	.word   44,19,106,-40
-	.long   02243f00H
+	.long   021db080H
 JTBGWNG2:
 	.word   100,42,55,-40
-	.long   02245920H
+	.long   021Dcaa0H
 JTWNGTP2:
 	.word   84,25,114,19
-	.long   0224dc60H
+	.long   021e6800H
 JTSHAD2A:
 	.word   96,41,49,-61
-	.long   02251e00H
+	.long   021e4de0H
 JTSHAD3A:
 	.word   40,18,102,-63
-	.long   02259900H
+	.long   021e8f80H
 	.TEXT
 
