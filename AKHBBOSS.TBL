@@ -1,498 +1,498 @@
 	.DATA
 BBTURRET1:
 	.word   28,39,13,-98
-	.long   034a5d20H,BBSHPAL
+	.long   033d39a0H,BBSHPAL
 BBTURRET2:
 	.word   32,35,17,-98
-	.long   034a7f40H,BBSHPAL
+	.long   033d5bc0H,BBSHPAL
 BBTURRET3:
 	.word   40,28,26,-98
-	.long   034aa240H,BBSHPAL
+	.long   033d7ec0H,BBSHPAL
 BBTURRET4:
 	.word   44,19,30,-98
-	.long   034ac540H,BBSHPAL
+	.long   033da1c0H,BBSHPAL
 BBTURRET5:
 	.word   52,15,35,-98
-	.long   034adf60H,BBSHPAL
+	.long   033dbbe0H,BBSHPAL
 LASER1:
 	.word   8,13,2,7
-	.long   034af7c0H,GRNFCP
+	.long   033dd440H,GRNFCP
 LASER2:
 	.word   12,12,4,6
-	.long   034afb00H,GRNFCP
+	.long   033dd780H,GRNFCP
 LASER3:
 	.word   12,11,5,6
-	.long   034aff80H,GRNFCP
+	.long   033ddc00H,GRNFCP
 LASER4:
 	.word   16,8,6,4
-	.long   034b03a0H,GRNFCP
+	.long   033de020H,GRNFCP
 LASER5:
 	.word   16,4,8,2
-	.long   034b07a0H,GRNFCP
+	.long   033de420H,GRNFCP
 LBLAST1:
 	.word   16,13,7,7
-	.long   034b09a0H,GRNFCP
+	.long   033de620H,GRNFCP
 LBLAST2:
 	.word   8,7,3,4
-	.long   034b1020H,GRNFCP
+	.long   033deca0H,GRNFCP
 LSPLAT1:
 	.word   16,19,7,11
-	.long   034b11e0H,GRNFCP
+	.long   033dee60H,GRNFCP
 LSPLAT2:
 	.word   16,18,7,11
-	.long   034b1b60H,GRNFCP
+	.long   033df7e0H,GRNFCP
 LILBBSHP1:
 	.word   36,39,36,22
-	.long   034b2460H,BBSHPAL
+	.long   033e00e0H,BBSHPAL
 LILBBSHP2:
 	.word   44,49,44,27
-	.long   034b5040H,BBSHPAL
+	.long   033e2cc0H,BBSHPAL
 LILBBSHP3:
 	.word   60,65,59,37
-	.long   034b93a0H,BBSHPAL
+	.long   033e7020H,BBSHPAL
 BBSHP1:
 	.word   52,18,24,-19
-	.long   034c0d80H,BBSHPAL
+	.long   033eea00H,BBSHPAL
 BBSHP2:
 	.word   36,49,18,-37
-	.long   034c2ac0H,BBSHPAL
+	.long   033f0740H,BBSHPAL
 BBSHP3:
 	.word   36,15,18,-86
-	.long   034c61e0H,BBSHPAL
+	.long   033f3e60H,BBSHPAL
 BBSHP4:
 	.word   20,63,35,-36
-	.long   034c72c0H,BBSHPAL
+	.long   033f4f40H,BBSHPAL
 BBSHP5:
 	.word   24,49,59,-46
-	.long   034c9a20H,BBSHPAL
+	.long   033f76a0H,BBSHPAL
 AKB1ARMUP1:
 	.word   24,27,11,-38
-	.long   034cbee0H,BBSHPAL
+	.long   033f9b60H,BBSHPAL
 AKB1ARMUP2:
 	.word   24,28,12,-38
-	.long   034cd320H,BBSHPAL
+	.long   033fafa0H,BBSHPAL
 AKB1ARMUP3:
 	.word   24,28,12,-38
-	.long   034ce820H,BBSHPAL
+	.long   033fc4a0H,BBSHPAL
 AKB1ARMUP4:
 	.word   24,29,12,-37
-	.long   034cfd20H,BBSHPAL
+	.long   033fd9a0H,BBSHPAL
 AKB1ARMUP5:
 	.word   24,30,12,-36
-	.long   034d12e0H,BBSHPAL
+	.long   033fef60H,BBSHPAL
 AKB1ARMUP6:
 	.word   28,30,16,-36
-	.long   034d2960H,BBSHPAL
+	.long   034005e0H,BBSHPAL
 AKB2ARMUP1:
 	.word   28,22,12,-38
-	.long   034d43a0H,BBSHPAL
+	.long   03402020H,BBSHPAL
 AKB2ARMUP2:
 	.word   28,20,12,-38
-	.long   034d56e0H,BBSHPAL
+	.long   03403360H,BBSHPAL
 AKB2ARMUP3:
 	.word   28,21,12,-37
-	.long   034d6860H,BBSHPAL
+	.long   034044e0H,BBSHPAL
 AKB2ARMUP4:
 	.word   28,22,12,-36
-	.long   034d7ac0H,BBSHPAL
+	.long   03405740H,BBSHPAL
 AKB2ARMUP5:
 	.word   36,22,16,-36
-	.long   034d8e00H,BBSHPAL
+	.long   03406a80H,BBSHPAL
 AKBREACH:
 	.word   28,27,16,-38
-	.long   034da6c0H,BBSHPAL
+	.long   03408340H,BBSHPAL
 AKBHEDTURN:
 	.word   24,27,11,-38
-	.long   034dbe60H,BBSHPAL
+	.long   03409ae0H,BBSHPAL
 AKBYAK:
 	.word   24,29,11,-36
-	.long   034dd2a0H,BBSHPAL
+	.long   0340af20H,BBSHPAL
 AKBLEAN1:
 	.word   28,26,15,-39
-	.long   034de860H,BBSHPAL
+	.long   0340c4e0H,BBSHPAL
 AKBLEAN2:
 	.word   28,26,15,-39
-	.long   034dff20H,BBSHPAL
+	.long   0340dba0H,BBSHPAL
 AKBLEAN3:
 	.word   28,24,15,-39
-	.long   034e15e0H,BBSHPAL
+	.long   0340f260H,BBSHPAL
 AKBLEAN4:
 	.word   28,24,15,-39
-	.long   034e2ae0H,BBSHPAL
+	.long   03410760H,BBSHPAL
 BBALL1:
 	.word   52,47,77,-46
-	.long   034e3fe0H,BBSHPAL
+	.long   03411c60H,BBSHPAL
 BBALL2:
 	.word   52,47,77,-46
-	.long   034e8c40H,BBSHPAL
+	.long   034168c0H,BBSHPAL
 BBALL3:
 	.word   52,47,77,-46
-	.long   034ed8a0H,BBSHPAL
+	.long   0341b520H,BBSHPAL
 BBARM:
 	.word   24,12,25,-66
-	.long   034f2500H,BBSHPAL
+	.long   03420180H,BBSHPAL
 BBARM2:
 	.word   24,12,2,-66
-	.long   034f2e00H,BBSHPAL
+	.long   03420a80H,BBSHPAL
 EJECTSEAT:
 	.word   44,59,20,-28
-	.long   034f3700H,BBSHPAL
+	.long   03421380H,BBSHPAL
 BBALLWRECK:
 	.word   32,54,57,-49
-	.long   034f8820H,BBSHPAL
+	.long   034264a0H,BBSHPAL
 BLLOPEN1:
 	.word   44,19,75,-67
-	.long   034fbe20H,GRNFCP
+	.long   03429aa0H,GRNFCP
 BLLOPEN2:
 	.word   44,24,76,-62
-	.long   034fd840H,GRNFCP
+	.long   0342b4c0H,GRNFCP
 BLLFACE1:
 	.word   52,47,77,-46
-	.long   034ff940H,GRNFCP
+	.long   0342d5c0H,GRNFCP
 BLLFACE3:
 	.word   52,47,77,-46
-	.long   035045a0H,GRNFCP
+	.long   03432220H,GRNFCP
 BLLFACE4:
 	.word   52,47,77,-46
-	.long   03509200H,GRNFCP
+	.long   03436e80H,GRNFCP
 BLLBLOW1:
 	.word   52,47,77,-46
-	.long   0350de60H,GRNFCP
+	.long   0343bae0H,GRNFCP
 BLLBLOW2:
 	.word   52,47,77,-46
-	.long   03512ac0H,GRNFCP
+	.long   03440740H,GRNFCP
 BLLBLOW3:
 	.word   52,47,77,-46
-	.long   03517720H,GRNFCP
+	.long   034453a0H,GRNFCP
 BLLBLOW4:
 	.word   56,48,79,-46
-	.long   0351c380H,GRNFCP
+	.long   0344a000H,GRNFCP
 LILBBSHP1A:
 	.word   8,18,7,-17
-	.long   03521780H,BBSHPAL
+	.long   0344f400H,BBSHPAL
 LILBBSHP2A:
 	.word   8,21,8,-22
-	.long   03521c00H,BBSHPAL
+	.long   0344f880H,BBSHPAL
 LILBBSHP3A:
 	.word   12,30,11,-28
-	.long   03522140H,BBSHPAL
+	.long   0344fdc0H,BBSHPAL
 BIGSHAD:
 	.word   72,81,71,-45
-	.long   03522c80H,GRNFCP
+	.long   03450900H,GRNFCP
 bmeter:
 	.word   72,8,0,0
-	.long   0352e2c0H,GRNFCP
+	.long   0345bf40H,GRNFCP
 STEELPC1:
 	.word   72,27,0,0
-	.long   0352f4c0H,GRNDP
+	.long   0345d140H,GRNDP
 STEELPC2:
 	.word   72,33,0,0
-	.long   03533180H,GRNDP
+	.long   03460e00H,GRNDP
 PCCOVER:
 	.word   96,35,0,0
-	.long   03537bc0H,UFLP
+	.long   03465840H,UFLP
 BIGDOR:
 	.word   72,63,0,0
-	.long   0353e4c0H,ENDBSSP
+	.long   0346c140H,ENDBSSP
 BGBWL1:
 	.word   44,77,0,0
-	.long   03547280H,ENDBSSP
+	.long   03474f00H,ENDBSSP
 BGBWL2:
 	.word   20,92,0,0
-	.long   0354dc60H,ENDBSSP
+	.long   0347b8e0H,ENDBSSP
 BGBWL3:
 	.word   16,41,0,0
-	.long   035515e0H,ENDBSSP
+	.long   0347f260H,ENDBSSP
 BGBWL4:
 	.word   80,57,0,0
-	.long   03552a60H,ENDBSSP
+	.long   034806e0H,ENDBSSP
 BGBWL5:
 	.word   72,48,0,0
-	.long   0355b8e0H,ENDBSSP
+	.long   03489560H,ENDBSSP
 BGBWL6:
 	.word   72,51,0,0
-	.long   035624e0H,ENDBSSP
+	.long   03490160H,ENDBSSP
 BGBWL7:
 	.word   12,81,0,0
-	.long   035697a0H,ENDBSSP
+	.long   03497420H,ENDBSSP
 PANEL1:
 	.word   44,31,0,0
-	.long   0356b600H,ENDBSSP
+	.long   03499280H,ENDBSSP
 PANEL2:
 	.word   44,31,0,0
-	.long   0356e0a0H,ENDBSSP
+	.long   0349bd20H,ENDBSSP
 PANEL3:
 	.word   44,31,0,0
-	.long   03570b40H,ENDBSSP
+	.long   0349e7c0H,ENDBSSP
 BGSD1:
 	.word   28,68,0,0
-	.long   035735e0H,ENDBSSP
+	.long   034a1260H,ENDBSSP
 BGSD2:
 	.word   28,79,0,0
-	.long   03577160H,ENDBSSP
+	.long   034a4de0H,ENDBSSP
 BGSD3:
 	.word   28,56,0,0
-	.long   0357b680H,ENDBSSP
+	.long   034a9300H,ENDBSSP
 BGSD4:
 	.word   36,62,0,0
-	.long   0357e780H,ENDBSSP
+	.long   034ac400H,ENDBSSP
 BGSD5:
 	.word   32,44,0,0
-	.long   03582d40H,ENDBSSP
+	.long   034b09c0H,ENDBSSP
 BGENRTR1:
 	.word   48,91,0,0
-	.long   03585940H,ENDBSSP
+	.long   034b35c0H,ENDBSSP
 BGENRTR1A:
 	.word   16,7,0,0
-	.long   0358e1c0H,ENDBSSP
+	.long   034bbe40H,ENDBSSP
 BSFLR1:
 	.word   24,63,0,0
-	.long   0358e540H,GRNCYCLE
+	.long   034bc1c0H,GRNCYCLE
 BSFLR2A:
 	.word   40,39,0,0
-	.long   03591480H,GRNCYCLE
+	.long   034bf100H,GRNCYCLE
 BSFLR2B:
 	.word   72,29,0,0
-	.long   03594540H,GRNCYCLE
+	.long   034c21c0H,GRNCYCLE
 BSFLR2C:
 	.word   68,37,0,0
-	.long   03598680H,GRNCYCLE
+	.long   034c6300H,GRNCYCLE
 BSFLR3A:
 	.word   40,39,0,0
-	.long   0359d520H,GRNCYCLE
+	.long   034cb1a0H,GRNCYCLE
 BSFLR3B:
 	.word   48,46,0,0
-	.long   035a05e0H,GRNCYCLE
+	.long   034ce260H,GRNCYCLE
 BSFLR3C:
 	.word   64,40,0,0
-	.long   035a4ae0H,GRNCYCLE
+	.long   034d2760H,GRNCYCLE
 BSFLR4:
 	.word   52,47,0,0
-	.long   035a9ae0H,GRNCYCLE
+	.long   034d7760H,GRNCYCLE
 BSFLR5:
 	.word   24,149,0,0
-	.long   035ae740H,GRNCYCLE
+	.long   034dc3c0H,GRNCYCLE
 BOSSFLR:
 	.word   60,64,0,0
-	.long   035b5700H,GRNCYCLE
+	.long   034e3380H,GRNCYCLE
 BOSSFLR2:
 	.word   12,60,0,0
-	.long   035bcf00H,ENDBSSP
+	.long   034eab80H,ENDBSSP
 TURBL1:
 	.word   32,45,14,0
-	.long   035be580H,ENDBSSP
+	.long   034ec200H,ENDBSSP
 TURBL2:
 	.word   20,23,8,23
-	.long   035c1280H,ENDBSSP
+	.long   034eef00H,ENDBSSP
 TURGN6:
 	.word   4,22,2,-33
-	.long   035c20e0H,ENDBSSP
+	.long   034efd60H,ENDBSSP
 TURGN7:
 	.word   12,19,17,-33
-	.long   035c23a0H,ENDBSSP
+	.long   034f0020H,ENDBSSP
 TURGN8:
 	.word   20,17,25,-28
-	.long   035c2ac0H,ENDBSSP
+	.long   034f0740H,ENDBSSP
 TURGN8A:
 	.word   20,10,29,-24
-	.long   035c3560H,ENDBSSP
+	.long   034f11e0H,ENDBSSP
 TURGN9:
 	.word   20,4,31,-19
-	.long   035c3ba0H,ENDBSSP
+	.long   034f1820H,ENDBSSP
 TURGN10:
 	.word   16,11,27,-7
-	.long   035c3e20H,ENDBSSP
+	.long   034f1aa0H,ENDBSSP
 TURGN11:
 	.word   16,14,21,2
-	.long   035c43a0H,ENDBSSP
+	.long   034f2020H,ENDBSSP
 DCIMTH5A:
 	.word   24,36,22,-63
-	.long   035c4aa0H,BGFACEP
+	.long   034f2720H,BGFACEP
 TOPHED:
 	.word   56,39,55,-7
-	.long   035c65a0H,BGFACEP
+	.long   034f4220H,BGFACEP
 CHIN:
 	.word   40,16,38,-125
-	.long   035ca9e0H,BGFACEP
+	.long   034f8660H,BGFACEP
 CHEEK:
 	.word   28,62,57,-63
-	.long   035cbde0H,BGFACEP
+	.long   034f9a60H,BGFACEP
 EAR:
 	.word   24,17,55,-46
-	.long   035cf420H,BGFACEP
+	.long   034fd0a0H,BGFACEP
 HEDTUBES:
 	.word   16,26,68,-23
-	.long   035d00e0H,BGFACEP
+	.long   034fdd60H,BGFACEP
 DCI1:
 	.word   32,18,31,-45
-	.long   035d0de0H,BGFACEP
+	.long   034fea60H,BGFACEP
 DCI1A:
 	.word   32,18,31,-45
-	.long   035d1fe0H,BGFACEP
+	.long   034ffc60H,BGFACEP
 DCI1B:
 	.word   32,18,31,-45
-	.long   035d31e0H,BGFACEP
+	.long   03500e60H,BGFACEP
 DCI1C:
 	.word   32,18,31,-45
-	.long   035d43e0H,BGFACEP
+	.long   03502060H,BGFACEP
 DCICLOSED:
 	.word   32,18,31,-45
-	.long   035d55e0H,BGFACEP
+	.long   03503260H,BGFACEP
 DCICLOSED2:
 	.word   32,18,31,-45
-	.long   035d67e0H,BGFACEP
+	.long   03504460H,BGFACEP
 DCIMTH1:
 	.word   32,62,31,-63
-	.long   035d79e0H,BGFACEP
+	.long   03505660H,BGFACEP
 DCIMTH2:
 	.word   32,62,31,-63
-	.long   035db7e0H,BGFACEP
+	.long   03509460H,BGFACEP
 DCIMTH3:
 	.word   32,62,31,-63
-	.long   035df5e0H,BGFACEP
+	.long   0350d260H,BGFACEP
 DCIMTH4:
 	.word   32,62,31,-63
-	.long   035e33e0H,BGFACEP
+	.long   03511060H,BGFACEP
 DCIMTH5:
 	.word   32,62,31,-63
-	.long   035e71e0H,BGFACEP
+	.long   03514e60H,BGFACEP
 DCI1D:
 	.word   32,18,31,-45
-	.long   035eafe0H,BGFACEP
+	.long   03518c60H,BGFACEP
 DCI1E:
 	.word   32,18,31,-45
-	.long   035ec1e0H,BGFACEP
+	.long   03519e60H,BGFACEP
 DCI1F:
 	.word   32,18,31,-45
-	.long   035ed3e0H,BGFACEP
+	.long   0351b060H,BGFACEP
 HTLRTPHED:
 	.word   112,39,55,-7
-	.long   035ee5e0H,HTLRP
+	.long   0351c260H,HTLRP
 HTLRMTH1:
 	.word   32,62,31,-63
-	.long   035f6e60H,HTLRP
+	.long   03524ae0H,HTLRP
 HTLRMTH2:
 	.word   32,62,31,-63
-	.long   035fac60H,HTLRP
+	.long   035288e0H,HTLRP
 HTLRMTH3:
 	.word   32,62,31,-63
-	.long   035fea60H,HTLRP
+	.long   0352c6e0H,HTLRP
 HTLRMTH4:
 	.word   32,62,31,-63
-	.long   03602860H,HTLRP
+	.long   035304e0H,HTLRP
 HTLRMTH5:
 	.word   32,62,31,-63
-	.long   03606660H,HTLRP
+	.long   035342e0H,HTLRP
 HTLRMTH5A:
 	.word   24,36,22,-63
-	.long   0360a460H,HTLRP
+	.long   035380e0H,HTLRP
 HTLRI1:
 	.word   32,17,31,-46
-	.long   0360bf60H,HTLRP
+	.long   03539be0H,HTLRP
 HTLRI1A:
 	.word   32,17,31,-46
-	.long   0360d060H,HTLRP
+	.long   0353ace0H,HTLRP
 HTLRI1B:
 	.word   32,17,31,-46
-	.long   0360e160H,HTLRP
+	.long   0353bde0H,HTLRP
 HTLRI1C:
 	.word   32,17,31,-46
-	.long   0360f260H,HTLRP
+	.long   0353cee0H,HTLRP
 HTLRI1D:
 	.word   32,17,31,-46
-	.long   03610360H,HTLRP
+	.long   0353dfe0H,HTLRP
 HTLRI1E:
 	.word   32,17,31,-46
-	.long   03611460H,HTLRP
+	.long   0353f0e0H,HTLRP
 HTLRI1F:
 	.word   32,17,31,-46
-	.long   03612560H,HTLRP
+	.long   035401e0H,HTLRP
 HTLRICLOSED:
 	.word   32,17,31,-46
-	.long   03613660H,HTLRP
+	.long   035412e0H,HTLRP
 HTLRICLOSED2:
 	.word   32,17,31,-46
-	.long   03614760H,HTLRP
+	.long   035423e0H,HTLRP
 SKULLTP:
 	.word   36,42,34,-12
-	.long   03615860H,RDSKULLP
+	.long   035434e0H,RDSKULLP
 SKULLCHEEK:
 	.word   28,56,57,-69
-	.long   036187a0H,RDSKULLP
+	.long   03546420H,RDSKULLP
 SKULLCHIN:
 	.word   40,16,38,-125
-	.long   0361b8a0H,RDSKULLP
+	.long   03549520H,RDSKULLP
 SKULLMTH1:
 	.word   32,56,31,-69
-	.long   0361cca0H,RDSKULLP
+	.long   0354a920H,RDSKULLP
 SKULLMTH2:
 	.word   32,56,31,-69
-	.long   036204a0H,RDSKULLP
+	.long   0354e120H,RDSKULLP
 SKULLMTH3:
 	.word   32,56,31,-69
-	.long   03623ca0H,RDSKULLP
+	.long   03551920H,RDSKULLP
 SKULLMTH4:
 	.word   24,31,21,-69
-	.long   036274a0H,RDSKULLP
+	.long   03555120H,RDSKULLP
 SKULLRECK:
 	.word   60,100,57,-42
-	.long   03628be0H,RDSKULLP
+	.long   03556860H,RDSKULLP
 SKULLI1:
 	.word   40,15,37,-54
-	.long   03634760H,RDSKULLP
+	.long   035623e0H,RDSKULLP
 SKULLI2:
 	.word   40,15,37,-54
-	.long   03635a20H,RDSKULLP
+	.long   035636a0H,RDSKULLP
 SKULLI3:
 	.word   40,15,37,-54
-	.long   03636ce0H,RDSKULLP
+	.long   03564960H,RDSKULLP
 SKPIPES:
 	.word   24,36,23,-6
-	.long   03637fa0H,RDSKULLP
+	.long   03565c20H,RDSKULLP
 fount1:
 	.word   48,65,0,0
-	.long   03639aa0H,water_p
+	.long   03567720H,water_p
 fount2:
 	.word   48,65,0,0
-	.long   0363fc20H,water_p
+	.long   0356d8a0H,water_p
 fount3:
 	.word   48,65,0,0
-	.long   03645da0H,water_p
+	.long   03573a20H,water_p
 fount4:
 	.word   48,65,0,0
-	.long   0364bf20H,water_p
+	.long   03579ba0H,water_p
 nside1:
 	.word   40,21,0,0
-	.long   036520a0H,water_p
+	.long   0357fd20H,water_p
 nside2:
 	.word   40,21,0,0
-	.long   03653ae0H,water_p
+	.long   03581760H,water_p
 nside3:
 	.word   40,21,0,0
-	.long   03655520H,water_p
+	.long   035831a0H,water_p
 nside4:
 	.word   40,21,0,0
-	.long   03656f60H,water_p
+	.long   03584be0H,water_p
 wside1:
 	.word   16,59,0,0
-	.long   036589a0H,water_p
+	.long   03586620H,water_p
 wside2:
 	.word   16,59,0,0
-	.long   0365a720H,water_p
+	.long   035883a0H,water_p
 wside3:
 	.word   16,59,0,0
-	.long   0365c4a0H,water_p
+	.long   0358a120H,water_p
 wside4:
 	.word   16,59,0,0
-	.long   0365e220H,water_p
+	.long   0358bea0H,water_p
 WATR1:
 	.word   68,39,0,0
-	.long   0365ffa0H,sign_p
+	.long   0358dc20H,sign_p
 WATR2:
 	.word   68,39,0,0
-	.long   03665280H,sign_p
+	.long   03592f00H,sign_p
 WATR3:
 	.word   68,39,0,0
-	.long   0366a560H,sign_p
+	.long   035981e0H,sign_p
 	.TEXT
 

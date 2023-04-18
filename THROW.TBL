@@ -1,42 +1,42 @@
 	.DATA
 THROW1:
 	.word   12,11,5,5
-	.long   03178860H
+	.long   03169e80H
 THROW2:
 	.word   24,22,12,11
-	.long   03178c80H
+	.long   0316a2a0H
 THROW3:
 	.word   32,31,16,15
-	.long   03179d00H
+	.long   0316b320H
 THROW5:
 	.word   72,66,35,34
-	.long   0317bc00H
+	.long   0316d220H
 THROW6:
 	.word   84,81,43,41
-	.long   03185080H
+	.long   031766a0H
 THROW7:
 	.word   88,88,47,44
-	.long   03192520H
+	.long   03183b40H
 THROW4:
 	.word   60,56,30,29
-	.long   031a1720H
+	.long   03192d40H
 THROW8:
 	.word   88,87,43,44
-	.long   031a8020H
+	.long   03199640H
 THROW9:
 	.word   88,85,43,40
-	.long   031b6f60H
+	.long   031a8580H
 THROW10:
 	.word   88,84,45,39
-	.long   031c5920H
+	.long   031b6f40H
 THROW11:
 	.word   88,84,44,42
-	.long   031d4020H
+	.long   031c5640H
 THROW12:
 	.word   88,79,41,32
-	.long   031e2720H
+	.long   031d3d40H
 THROW13:
 	.word   76,65,37,25
-	.long   031f0060H
+	.long   031e1680H
 	.TEXT
 

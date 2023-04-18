@@ -1,57 +1,57 @@
 	.DATA
 BLOCKSIZE:
 	.word   200,128,0,0
-	.long   026c17c0H,BLUP
+	.long   026522a0H,BLUP
 TITPC1:
 	.word   208,97,0,0
-	.long   026f37c0H,TITPCP
+	.long   026842a0H,TITPCP
 TITPC2:
 	.word   156,97,0,0
-	.long   0271ae40H,TITPCP
+	.long   026ab920H,TITPCP
 MIDWAY:
 	.word   200,49,0,0
-	.long   02738720H,MIDWAYP
+	.long   026c9200H,MIDWAYP
 COPYR:
 	.word   296,8,0,0
-	.long   0274b960H,BLASTP
+	.long   026dc440H,BLASTP
 TTLBLAST:
 	.word   136,33,-3,33
-	.long   02750360H,BLASTP
+	.long   026e0e40H,BLASTP
 TTLBLASTF:
 	.word   136,33,-3,33
-	.long   02758fa0H,FLASH
+	.long   0266e0e40H,FLASH
 TTLHED1:
 	.word   56,73,24,-7
-	.long   02761be0H,TTLCOLR
+	.long   026E9A80H,TTLCOLR
 TTLPC1:
 	.word   24,25,45,-55
-	.long   02769ba0H,TTLCOLR
+	.long   026f1a40H,TTLCOLR
 TTLPC2:
 	.word   72,33,-32,-47
-	.long   0276ae60H,TTLCOLR
+	.long   026f2d00H,TTLCOLR
 TTLPC3:
 	.word   176,90,62,-80
-	.long   0276f8a0H,TTLCOLR
+	.long   026f7740H,TTLCOLR
 TTLPC4:
 	.word   172,35,35,-170
-	.long   0278e7a0H,TTLCOLR
+	.long   02716640H,TTLCOLR
 TTLPC5:
 	.word   48,88,-113,-87
-	.long   0279a3c0H,TTLCOLR
+	.long   02722260H,TTLCOLR
 TTLPC6:
 	.word   56,100,-158,-79
-	.long   027a27c0H,TTLCOLR
+	.long   0272A606H,TTLCOLR
 TTLPC7:
 	.word   44,26,-148,-179
-	.long   027ad6c0H,TTLCOLR
+	.long   02735560H,TTLCOLR
 TTLPC8:
 	.word   16,90,-215,-94
-	.long   027afa80H,TTLCOLR
+	.long   02737920H,TTLCOLR
 TTLPC9:
 	.word   108,39,-231,-89
-	.long   027b2780H,TTLCOLR
+	.long   0273A620H,TTLCOLR
 TTLPC10:
 	.word   36,54,-230,-134
-	.long   027bab20H,TTLCOLR
+	.long   027429C0H,TTLCOLR
 	.TEXT
 

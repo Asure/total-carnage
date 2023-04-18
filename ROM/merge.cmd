@@ -1,0 +1,2 @@
+c:\bin\far\srec_cat -o ROM.bin -binary u105fc.0 -binary -unsplit 2 0 u89fc.1 -binary -unsplit 2 1
+c:\bin\far\srec_cat -o ROM_ORIG.bin -binary tcu105.bin -binary -unsplit 2 0 tcu89.bin -binary -unsplit 2 1

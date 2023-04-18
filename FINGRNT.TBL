@@ -1003,42 +1003,42 @@ AHMED10f:
 	.long   02ae5cc0H
 AHMEDBLST1:
 	.word   12,10,21,-56
-	.long   030ed520H,RDBOOM
+	.long   030deb40H,RDBOOM
 BLST3B:
 	.word   28,19,50,-76
-	.long   030ed8e0H,RDBOOM
+	.long   030def00H,RDBOOM
 BLST4A:
 	.word   44,33,83,-93
-	.long   030ee980H,RDBOOM
+	.long   030dffa0H,RDBOOM
 AHMEDBLST2:
 	.word   20,20,32,-57
-	.long   030f16e0H
+	.long   030e2d00H
 BLST3C:
 	.word   28,21,37,-57
-	.long   030f2360H
+	.long   030e3980H
 BLST4C:
 	.word   28,22,39,-57
-	.long   030f35c0H
+	.long   030e4be0H
 BLST5C:
 	.word   28,23,40,-57
-	.long   030f4900H
+	.long   030e5f20H
 BLST6C:
 	.word   32,25,43,-57
-	.long   030f5d20H
+	.long   030e7340H
 BLST4B:
 	.word   36,23,62,-75
-	.long   030f7620H
+	.long   030e8c40H
 BLST5B:
 	.word   44,22,69,-74
-	.long   030f9000H
+	.long   030ea620H
 BLST6B:
 	.word   40,19,70,-80
-	.long   030fae40H
+	.long   030ec460H
 BLST5A:
 	.word   44,32,83,-94
-	.long   030fc600H
+	.long   030edc20H
 BLST6A:
 	.word   36,29,80,-98
-	.long   030ff200H
+	.long   030f0820H
 	.TEXT
 

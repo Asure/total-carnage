@@ -127,189 +127,189 @@ OARM6:
 	.long   020d0c20H,ORCP1
 OARM1PT:
 	.word   56,127,92,-28
-	.long   020ddfe0H,ORCP1
+	.long   02085060H,ORCP1
 OARM2PT:
 	.word   72,116,103,-28
-	.long   020ebe20H,ORCP1
+	.long   02092ea0H,ORCP1
 OARM3PT:
 	.word   88,102,118,-28
-	.long   020fc320H,ORCP1
+	.long   020a33a0H,ORCP1
 OARM4PT:
 	.word   96,80,129,-30
-	.long   0210dba0H,ORCP1
+	.long   020b4c20H,ORCP1
 OARM5PT:
 	.word   104,64,134,-32
-	.long   0211cba0H,ORCP1
+	.long   020c3c20H,ORCP1
 OARM6PT:
 	.word   56,121,85,-30
-	.long   02129ba0H,ORCP1
+	.long   020d0c20H,ORCP1
 OEYES1:
 	.word   40,28,40,-68
-	.long   02136f60H,ORCP1
+	.long   020ddfe0H,ORCP1
 OEYES1A:
 	.word   40,29,40,-68
-	.long   02139260H,ORCP1
+	.long   020e02e0H,ORCP1
 OEYES1B:
 	.word   40,29,40,-68
-	.long   0213b6a0H,ORCP1
+	.long   020e2720H,ORCP1
 OEYES2:
 	.word   40,29,40,-68
-	.long   0213dae0H,ORCP1
+	.long   020e4b60H,ORCP1
 OEYES3:
 	.word   40,28,40,-68
-	.long   0213ff20H,ORCP1
+	.long   020e6fa0H,ORCP1
 OEYES3A:
 	.word   40,28,40,-68
-	.long   02142220H,ORCP1
+	.long   020e92a0H,ORCP1
 OEYES4:
 	.word   40,28,40,-68
-	.long   02144520H,ORCP1
+	.long   020eb5a0H,ORCP1
 OEYES4A:
 	.word   40,28,40,-68
-	.long   02146820H,ORCP1
+	.long   020ed8a0H,ORCP1
 OMTH1:
 	.word   44,56,42,-84
-	.long   02148b20H,ORCP1
+	.long   020efba0H,ORCP1
 OMTH2:
 	.word   44,56,42,-84
-	.long   0214d820H,ORCP1
+	.long   020f48a0H,ORCP1
 OMTH3:
 	.word   44,57,42,-84
-	.long   02152520H,ORCP1
+	.long   020f95a0H,ORCP1
 OMTH4:
 	.word   44,61,42,-84
-	.long   02157380H,ORCP1
+	.long   020fe400H,ORCP1
 OMTH1A:
 	.word   44,56,42,-84
-	.long   0215c760H,ORCP1
+	.long   021037e0H,ORCP1
 OMTH2A:
 	.word   44,56,42,-84
-	.long   02161460H,ORCP1
+	.long   021084e0H,ORCP1
 OMTH3A:
 	.word   44,57,42,-84
-	.long   02166160H,ORCP1
+	.long   0210d1e0H,ORCP1
 OMTH4A:
 	.word   44,61,42,-84
-	.long   0216afc0H,ORCP1
+	.long   02112040H,ORCP1
 OMTH1B:
 	.word   44,56,42,-84
-	.long   021703a0H,ORCP1
+	.long   02117420H,ORCP1
 OMTH2B:
 	.word   44,56,42,-84
-	.long   021750a0H,ORCP1
+	.long   0211c120H,ORCP1
 OMTH3B:
 	.word   44,57,42,-84
-	.long   02179da0H,ORCP1
+	.long   02120e20H,ORCP1
 OMTH4B:
 	.word   44,61,42,-84
-	.long   0217ec00H,ORCP1
+	.long   02125c80H,ORCP1
 OEYES1C:
 	.word   40,28,40,-68
-	.long   02183fe0H,ORCP1
+	.long   0212b060H,ORCP1
 ORCFLM1:
 	.word   20,17,46,-126
-	.long   021862e0H,BLUBOOM
+	.long   0212d360H,BLUBOOM
 ORCFLM2:
 	.word   20,24,47,-124
-	.long   02186d80H,BLUBOOM
+	.long   0212de00H,BLUBOOM
 NUSHAD:
 	.word   56,97,51,-54
-	.long   02187c80H,ORCP1
+	.long   0212ed00H,ORCP1
 GUNRIP1:
 	.word   44,92,22,40
-	.long   02192640H,ORCP1
+	.long   021396c0H,ORCP1
 GUNRIP2:
 	.word   60,82,29,32
-	.long   0219a4c0H,ORCP1
+	.long   02141540H,ORCP1
 GUNRIP3:
 	.word   72,69,38,29
-	.long   021a3e80H,ORCP1
+	.long   0214af00H,ORCP1
 GUNRIP4:
 	.word   84,51,48,20
-	.long   021ad9c0H,ORCP1
+	.long   02154a40H,ORCP1
 GUNRIP5:
 	.word   88,37,48,15
-	.long   021b5fa0H,ORCP1
+	.long   0215d020H,ORCP1
 GUNRIP6:
 	.word   56,90,33,37
-	.long   021bc560H,ORCP1
+	.long   021635e0H,ORCP1
 FLYHD1:
 	.word   36,43,17,-8
-	.long   021c62e0H,ORCP1
+	.long   0216d360H,ORCP1
 FLYHD2:
 	.word   32,44,15,-7
-	.long   021c9340H,ORCP1
+	.long   021703c0H,ORCP1
 FLYHD3:
 	.word   28,46,14,-6
-	.long   021cbf40H,ORCP1
+	.long   02172fc0H,ORCP1
 FLYHD4:
 	.word   32,48,17,-5
-	.long   021ce780H,ORCP1
+	.long   02175800H,ORCP1
 FLYHD5:
 	.word   36,46,19,0
-	.long   021d1780H,ORCP1
+	.long   02178800H,ORCP1
 FLYHD6:
 	.word   36,44,20,0
-	.long   021d4b40H,ORCP1
+	.long   0217bbc0H,ORCP1
 OFLESH1:
 	.word   20,17,9,7
-	.long   021d7cc0H,RIPAL
+	.long   0217ed40H,RIPAL
 OFLESH2:
 	.word   24,15,11,7
-	.long   021d8760H,RIPAL
+	.long   0217f7e0H,RIPAL
 OFLESH3:
 	.word   24,14,11,6
-	.long   021d92a0H,RIPAL
+	.long   02180320H,RIPAL
 OFLESH4:
 	.word   24,13,10,6
-	.long   021d9d20H,RIPAL
+	.long   02180da0H,RIPAL
 OFLESH5:
 	.word   20,17,9,7
-	.long   021da6e0H,RIPAL
+	.long   02181760H,RIPAL
 OFLESH6:
 	.word   16,22,8,10
-	.long   021db180H,RIPAL
+	.long   02182200H,RIPAL
 OFLESH7:
 	.word   16,23,6,11
-	.long   021dbc80H,RIPAL
+	.long   02182d00H,RIPAL
 OFLESH8:
 	.word   16,21,8,10
-	.long   021dc800H,RIPAL
+	.long   02183880H,RIPAL
 OFLESH9:
 	.word   20,18,10,9
-	.long   021dd280H,RIPAL
+	.long   02184300H,RIPAL
 OFLESH10:
 	.word   24,14,11,6
-	.long   021dddc0H,RIPAL
+	.long   02184e40H,RIPAL
 OFLESH11:
 	.word   24,14,10,7
-	.long   021de840H,RIPAL
+	.long   021858c0H,RIPAL
 OFLESH12:
 	.word   20,20,9,10
-	.long   021df2c0H,RIPAL
+	.long   02186340H,RIPAL
 OFLESH13:
 	.word   16,24,7,11
-	.long   021dff40H,RIPAL
+	.long   02186fc0H,RIPAL
 OFLESH1A:
 	.word   24,17,12,8
-	.long   021e0b40H,RIPAL
+	.long   02187bc0H,RIPAL
 OFLESH1B:
 	.word   28,19,14,9
-	.long   021e1800H,RIPAL
+	.long   02188880H,RIPAL
 OFLESH1C:
 	.word   36,27,16,12
-	.long   021e28a0H,RIPAL
+	.long   02189920H,RIPAL
 OFLESH1D:
 	.word   36,37,16,17
-	.long   021e4700H,RIPAL
+	.long   0218b780H,RIPAL
 OFLESH1E:
 	.word   36,46,18,23
-	.long   021e70a0H,RIPAL
+	.long   0218e120H,RIPAL
 OFLESH1F:
 	.word   36,52,19,26
-	.long   021ea460H,RIPAL
+	.long   021914e0H,RIPAL
 ORCHINT:
 	.word   72,36,0,0
-	.long   021edee0H
+	.long   02194f60H
 	.TEXT
 
