@@ -1,0 +1,57 @@
+	.DATA
+WTIMER0:
+	.word   8,7,0,0
+	.long   02716960H,WARPP
+SHLD1:
+	.word   36,33,17,16
+	.long   02716b20H,WARPP
+SHLD2:
+	.word   36,33,18,16
+	.long   02719040H,WARPP
+WTIMER2:
+	.word   8,7,0,0
+	.long   0271b560H
+WTIMER3:
+	.word   8,7,0,0
+	.long   0271b560H
+WTIMER4:
+	.word   8,7,0,0
+	.long   0271b720H
+WTIMER5:
+	.word   8,7,0,0
+	.long   0271b560H
+WTIMER6:
+	.word   8,7,0,0
+	.long   0271b8e0H
+WTIMER7:
+	.word   8,7,0,0
+	.long   0271baa0H
+WTIMER8:
+	.word   8,7,0,0
+	.long   0271bc60H
+WTIMER9:
+	.word   8,7,0,0
+	.long   0271b8e0H
+SPIN2:
+	.word   32,28,0,0
+	.long   0271be20H
+SPIN3:
+	.word   32,28,0,0
+	.long   0271da20H
+SPIN4:
+	.word   32,28,0,0
+	.long   0271f620H
+SPIN5:
+	.word   32,28,0,0
+	.long   02721220H
+SPIN6:
+	.word   32,28,0,0
+	.long   02722e20H
+SPIN7:
+	.word   32,28,0,0
+	.long   02724a20H
+SPIN8:
+	.word   32,28,0,0
+	.long   02726620H
+	.TEXT
+

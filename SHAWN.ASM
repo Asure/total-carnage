@@ -39,7 +39,7 @@ crashsnd	.word	0fcf5H,68,08038H,0	;Car crash explosion
 
 	.ref	WAVE,PCNT,TINGSND
 	.ref	ANI,FRANIM,FRANIMQ,BEGINOBJ,BEGINOBJ2,PLYRPRCS,CK_GOOB
-	.ref	XBOOM2,BOOM3,STATUS,EXP3,SKIPR_DN
+	.ref	XBOOM2,BOOM3,STATUS2,EXP3,SKIPR_DN
 	.ref	GET_WVADDR,RANDPER,SLOW_DWN,RANGRAND
 	.ref	FIEND,getcloseplyr,FLASHME,DO_PUNISH
 	.ref	SKIPR_CNT,EXPCNT
@@ -657,7 +657,7 @@ MZ	.set	158
  SUBRP	mortar_atpnoa		;^
 
 	move	@PLYRPRCS,a2,L
-	move	@STATUS,a3
+	move	@STATUS2,a3
 	jrz	ms900			;Demo?
 	btst	0,a11
 	jrz	ma20
@@ -1878,7 +1878,7 @@ bsn400	move	*a9+,a1,L		;Get *Img
 	move	a0,*a13(keepwhp),L	;keep for killing later
 
 bsn490	movi	180,a11
-	move	@STATUS,a0
+	move	@STATUS2,a0
 	subk	3,a0
 	jreq	bsn500
 	movi	220,a11			;Easier for 1 player!
@@ -1903,7 +1903,7 @@ bsn500	SLEEPK	1
 	addk	9,a1
 	move	a1,*a9(OYPOS)
 
-bsn530	move	@STATUS,a0
+bsn530	move	@STATUS2,a0
 	jrz	bsn540
 	calla	SCRTST
 	jrz	bsn550
@@ -2397,7 +2397,7 @@ bnc200	move	*a8(OFLAGS),a4
 
 	SLEEPK	6
 
-	move	@STATUS,a0
+	move	@STATUS2,a0
 	jrz	bnc400
 	calla	SCRTST
 	jrz	bnc100

@@ -1,78 +1,51 @@
 	.DATA
 JEEP:
-	.word   79,114
-	.long   054d2a0H
-	.word   40,-7,06000H
-	.long   JEEPP
+	.word   80,114,40,-7
+	.long   027d05e0H,JEEPP
 JEEPDRVRS:
-	.word   51,17
-	.long   055a5c0H
-	.word   25,-53,06000H
-	.long   JEEPP
+	.word   52,17,25,-53
+	.long   027e22e0H,JEEPP
 JSHAD:
-	.word   21,90
-	.long   055ba20H
-	.word   -37,-30,06000H
-	.long   JEEPP
+	.word   24,90,-37,-30
+	.long   027e3e80H,JEEPP
 JEEP2:
-	.word   79,101
-	.long   055e670H
-	.word   40,-20,06000H
-	.long   JEEPP
+	.word   80,101,40,-20
+	.long   027e8200H,JEEPP
 JSHAD2:
-	.word   21,90
-	.long   056a180H
-	.word   -37,-30,06000H
-	.long   JEEPP
+	.word   24,90,-37,-30
+	.long   027f7e80H,JEEPP
 JEEP4:
-	.word   129,76
-	.long   056cdd0H
-	.word   57,-21,06000H
-	.long   JEEPP
+	.word   132,76,57,-21
+	.long   027fc200H,JEEPP
 AKHSHAD:
-	.word   191,14
-	.long   057b3a0H
-	.word   93,-86,06000H
-	.long   JEEPP
+	.word   192,14,93,-86
+	.long   0280fb80H,JEEPP
 AKHBITCH1:
-	.word   26,30
-	.long   057f250H
-	.word   15,-38,06000H
-	.long   BOOBP
+	.word   28,30,15,-38
+	.long   02814f80H,BOOBP
 AKHLIMO:
-	.word   199,78
-	.long   05804a0H
-	.word   107,-7,06000H
-	.long   LIMOP
+	.word   200,78,107,-7
+	.long   028169c0H,LIMOP
 AKHTIREA:
-	.word   29,21
-	.long   0597070H
-	.word   0,0,06000H
-	.long   JEEPP
+	.word   32,21,0,0
+	.long   02835140H,JEEPP
 AKHTIREB:
-	.word   29,21
-	.long   0597ec0H
-	.word   0,0,06000H
-	.long   JEEPP
+	.word   32,21,0,0
+	.long   02836640H,JEEPP
 AKHBITCH2:
-	.word   25,30
-	.long   0598d10H
-	.word   14,-38,06000H
+	.word   28,30,14,-38
+	.long   02837b40H
 AKHBITCH3:
-	.word   28,30
-	.long   0599eb0H
-	.word   17,-38,06000H
+	.word   28,30,17,-38
+	.long   02839580H
 AKHBITCH4:
-	.word   26,30
-	.long   059b260H
-	.word   15,-38,06000H
+	.word   28,30,15,-38
+	.long   0283afc0H
 AKHBITCH5:
-	.word   27,30
-	.long   059c4b0H
-	.word   16,-38,06000H
+	.word   28,30,16,-38
+	.long   0283ca00H
 AKHBITCH6:
-	.word   30,30
-	.long   059d7b0H
-	.word   19,-38,06000H
+	.word   32,30,19,-38
+	.long   0283e440H
 	.TEXT
 

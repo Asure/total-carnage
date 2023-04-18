@@ -1,253 +1,174 @@
 	.DATA
 SLEG1:
-	.word   36,41
-	.long   0185300H
-	.word   8,35,06000H
-	.long   SPYDERP1
+	.word   36,41,8,35
+	.long   0225af80H,SPYDERP1
 SCHUNK1:
-	.word   20,19
-	.long   01875a0H
-	.word   9,9,06000H
-	.long   SPYDERP1
+	.word   20,19,9,9
+	.long   0225dda0H,SPYDERP1
 SEGG1:
-	.word   20,19
-	.long   0187e90H
-	.word   10,9,06000H
-	.long   SPYDERP1
+	.word   20,19,10,9
+	.long   0225e980H,SPYDERP1
 SPYDERA1:
-	.word   63,58
-	.long   0188780H
-	.word   31,7,06000H
-	.long   SPYDERP1
+	.word   64,58,31,7
+	.long   0225f560H,SPYDERP1
 SPYDEREGG:
-	.word   15,16
-	.long   018dd30H
-	.word   7,-21,06000H
-	.long   SPYDERP1
+	.word   16,16,7,-21
+	.long   02266960H,SPYDERP1
 SPYDEREGG1:
-	.word   16,19
-	.long   018e2d0H
-	.word   9,-21,06000H
-	.long   SPYDERP1
+	.word   16,19,9,-21
+	.long   02267160H,SPYDERP1
 SPYDEREGG1A:
-	.word   15,9
-	.long   018e9f0H
-	.word   9,-31,06000H
-	.long   SPYDERP1
+	.word   16,9,9,-31
+	.long   02267ae0H,SPYDERP1
 SPYDERB1:
-	.word   17,14
-	.long   018ed20H
-	.word   9,-23,06000H
-	.long   SPYDERP1
+	.word   20,14,9,-23
+	.long   02267f60H,SPYDERP1
 ARACSHAD:
-	.word   11,11
-	.long   018f2c0H
-	.word   6,-26,06000H
-	.long   SPYDERP1
+	.word   12,11,6,-26
+	.long   02268820H,SPYDERP1
 SLEG2:
-	.word   49,27
-	.long   018f5a0H
-	.word   26,24,06000H
+	.word   52,27,26,24
+	.long   02268c40H
 SLEG3:
-	.word   33,26
-	.long   01914b0H
-	.word   27,23,06000H
+	.word   36,26,27,23
+	.long   0226b820H
 SLEG4:
-	.word   19,30
-	.long   01928d0H
-	.word   17,13,06000H
+	.word   20,30,17,13
+	.long   0226d560H
 SLEG5:
-	.word   18,17
-	.long   0193630H
-	.word   16,1,06000H
+	.word   20,17,16,1
+	.long   0226e820H
 SLEG6:
-	.word   20,15
-	.long   0193d60H
-	.word   13,1,06000H
+	.word   20,15,13,1
+	.long   0226f2c0H
 SLEG7:
-	.word   16,9
-	.long   0194470H
-	.word   5,0,06000H
+	.word   16,9,5,0
+	.long   0226fc20H
 SCHUNK2:
-	.word   17,19
-	.long   01947d0H
-	.word   8,9,06000H
+	.word   20,19,8,9
+	.long   022700a0H
 SCHUNK3:
-	.word   14,16
-	.long   0194f70H
-	.word   6,8,06000H
+	.word   16,16,6,8
+	.long   02270c80H
 SCHUNK4:
-	.word   13,14
-	.long   01954b0H
-	.word   6,7,06000H
+	.word   16,14,6,7
+	.long   02271480H
 SCHUNK5:
-	.word   13,8
-	.long   0195900H
-	.word   7,4,06000H
+	.word   16,8,7,4
+	.long   02271b80H
 SCHUNK6:
-	.word   6,5
-	.long   0195b70H
-	.word   3,2,06000H
+	.word   8,5,3,2
+	.long   02271f80H
 SEGG2:
-	.word   17,18
-	.long   0195c30H
-	.word   8,8,06000H
+	.word   20,18,8,8
+	.long   022720c0H
 SEGG3:
-	.word   15,14
-	.long   0196360H
-	.word   7,6,06000H
+	.word   16,14,7,6
+	.long   02272c00H
 SEGG4:
-	.word   13,14
-	.long   0196850H
-	.word   6,7,06000H
+	.word   16,14,6,7
+	.long   02273300H
 SEGG5:
-	.word   10,8
-	.long   0196ca0H
-	.word   4,4,06000H
+	.word   12,8,4,4
+	.long   02273a00H
 SEGG6:
-	.word   6,5
-	.long   0196e80H
-	.word   3,2,06000H
+	.word   8,5,3,2
+	.long   02273d00H
 SPYDERA2:
-	.word   63,66
-	.long   0196f40H
-	.word   31,7,06000H
+	.word   64,66,31,7
+	.long   02273e40H
 SPYDERA3:
-	.word   60,64
-	.long   019d0c0H
-	.word   32,7,06000H
+	.word   60,64,32,7
+	.long   0227c240H
 SPYDERA4:
-	.word   60,66
-	.long   01a2ac0H
-	.word   31,7,06000H
+	.word   60,66,31,7
+	.long   02283a40H
 SPYDERA5:
-	.word   60,66
-	.long   01a8790H
-	.word   28,7,06000H
+	.word   60,66,28,7
+	.long   0228b600H
 SPYDERA6:
-	.word   60,66
-	.long   01a8790H
-	.word   27,7,06000H
+	.word   60,66,27,7
+	.long   022931c0H
 SPYDEREGG2:
-	.word   15,18
-	.long   01ae460H
-	.word   8,-19,06000H
+	.word   16,18,8,-19
+	.long   0229ad80H
 SPYDEREGG3:
-	.word   15,12
-	.long   01aeac0H
-	.word   9,-25,06000H
+	.word   16,12,9,-25
+	.long   0229b680H
 SPYDERB2:
-	.word   17,14
-	.long   01aef00H
-	.word   9,-23,06000H
+	.word   20,14,9,-23
+	.long   0229bc80H
 SPYDERB3:
-	.word   11,14
-	.long   01af4a0H
-	.word   6,-20,06000H
+	.word   12,14,6,-20
+	.long   0229c540H
 HATCH1:
-	.word   16,19
-	.long   01af840H
-	.word   9,-21,06000H
+	.word   16,19,9,-21
+	.long   0229ca80H
 HATCH2:
-	.word   16,20
-	.long   01aff60H
-	.word   9,-20,06000H
+	.word   16,20,9,-20
+	.long   0229d400H
 HATCH3:
-	.word   22,22
-	.long   01b06e0H
-	.word   13,-18,06000H
+	.word   24,22,13,-18
+	.long   0229de00H
 HATCH4:
-	.word   20,19
-	.long   01b1240H
-	.word   9,-20,06000H
+	.word   20,19,9,-20
+	.long   0229ee80H
 SDEATH1:
-	.word   17,14
-	.long   01b1b30H
-	.word   10,-23,06000H
+	.word   20,14,10,-23
+	.long   0229fa60H
 SDEATH2:
-	.word   17,14
-	.long   01b20d0H
-	.word   10,-23,06000H
+	.word   20,14,10,-23
+	.long   022a0320H
 SDEATH3:
-	.word   17,15
-	.long   01b2670H
-	.word   10,-22,06000H
+	.word   20,15,10,-22
+	.long   022a0be0H
 SDEATH4:
-	.word   24,21
-	.long   01b2c70H
-	.word   15,-19,06000H
+	.word   24,21,15,-19
+	.long   022a1540H
 SDEATH5:
-	.word   29,27
-	.long   01b3840H
-	.word   17,-15,06000H
+	.word   32,27,17,-15
+	.long   022a2500H
 SDEATH6:
-	.word   34,33
-	.long   01b4aa0H
-	.word   19,-11,06000H
+	.word   36,33,19,-11
+	.long   022a4000H
 NEUTRON:
-	.word   40,45
-	.long   01b64f0H
-	.word   17,17,05000H
-	.long   NEUTRONP
+	.word   40,45,17,17
+	.long   022a6520H,NEUTRONP
 NEUTRONB:
-	.word   35,39
-	.long   01b8820H
-	.word   14,11,05000H
-	.long   NEUTRONP
+	.word   36,39,14,11
+	.long   022a9d60H,NEUTRONP
 NEUTSHAD:
-	.word   31,27
-	.long   01ba2d0H
-	.word   12,-4,05000H
-	.long   NEUTRONP
+	.word   32,27,12,-4
+	.long   022ac940H,NEUTRONP
 SMNEUT:
-	.word   27,33
-	.long   01bb330H
-	.word   11,7,05000H
-	.long   NEUTRONP
+	.word   28,33,11,7
+	.long   022ae440H,NEUTRONP
 SMNEUTB:
-	.word   24,26
-	.long   01bc4a0H
-	.word   9,3,05000H
-	.long   NEUTRONP
+	.word   24,26,9,3
+	.long   022b0120H,NEUTRONP
 SMNEUTSHAD:
-	.word   20,19
-	.long   01bd0d0H
-	.word   6,-6,05000H
-	.long   NEUTRONP
+	.word   20,19,6,-6
+	.long   022b14a0H,NEUTRONP
 EGGBON:
-	.word   36,18
-	.long   01bd840H
-	.word   19,-20,06000H
-	.long   PPLP
+	.word   36,18,19,-20
+	.long   022b2080H,PPLP
 DISARM:
-	.word   55,8
-	.long   01be770H
-	.word   28,-6,06000H
-	.long   PPLP
+	.word   56,8,28,-6
+	.long   022b34c0H,PPLP
 BINGO:
-	.word   32,8
-	.long   01bf1c0H
-	.word   7,-7,06000H
-	.long   PPLP
+	.word   32,8,7,-7
+	.long   022b42c0H,PPLP
 WINNER:
-	.word   85,36
-	.long   01bf7c0H
-	.word   70,21,06000H
-	.long   PPLP
+	.word   88,36,70,21
+	.long   022b4ac0H,PPLP
 WVBONUS:
-	.word   36,8
-	.long   01c3f80H
-	.word   19,4,06000H
-	.long   PPLP
+	.word   36,8,19,4
+	.long   022badc0H,PPLP
 DUD:
-	.word   20,8
-	.long   01c4640H
-	.word   2,-7,06000H
-	.long   PPLP
+	.word   20,8,2,-7
+	.long   022bb6c0H,PPLP
 LOSER:
-	.word   34,8
-	.long   01c4a00H
-	.word   18,4,06000H
-	.long   PPLP
+	.word   36,8,18,4
+	.long   022bbbc0H,PPLP
 	.TEXT
 

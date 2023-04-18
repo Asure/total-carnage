@@ -79,7 +79,7 @@ totcarn	.word	0f980H,30,080cfH,0		;Total carnage!
 	.ref	RACKBMOD,RANDOM,GPALOBJ,PALSET,FINDPAL,GETFPAL,PCNT
 	.ref	IRQSKYE,ERASE_TXT,HEXTOASC,FRANIM,HSTGLST,HALT,PLYROBJS
 	.ref	CRMP,BCDBIN,BINBCD
-	.ref	WSPEED,STRT_S,STATUS,STOPPLYR
+	.ref	WSPEED,STRT_S,STATUS2,STOPPLYR
 	.ref	COLCYC,BGND_UD1,BAKMODS,WNDWON,WNDWOFF,NO_START,WRLD
 	.ref	STRCNRMO,STRCNRMO_1,STRCNRM,LOWZ
 	.ref	RD15FONT,RD7FONT,RD8FONT
@@ -365,12 +365,12 @@ engtran_s
 	PUSH	a8
 	move	a1,a8
 
-	move	@STATUS,a1
+	move	@STATUS2,a1
 	btst	0,a1
 	jrz	pipx10
 	callr	prt0_xy		;P1
 
-pipx10	move	@STATUS,a1
+pipx10	move	@STATUS2,a1
 	btst	1,a1
 	jrz	pipx20
 	move	a8,a0
@@ -702,7 +702,7 @@ pirw10	SLEEPK	10
 	move	a0,*a13(scorecopy1),L
 	move	a0,*a13(scorecopy2),L
 
-scp20	move	@STATUS,a8
+scp20	move	@STATUS2,a8
 
 	btst	0,a8
 	jrz	scp50
@@ -758,7 +758,7 @@ score2_st
 	movk	[0,1],a10		;Spacing
 	movi	RD7FONT,a11
 
-scbp20	move	@STATUS,a2
+scbp20	move	@STATUS2,a2
 	btst	0,a2
 	jrz	scbp50
 	move	@P1DATA+PSCORE,a8,L	;0CaHlc bonus score
@@ -775,7 +775,7 @@ scbp20	move	@STATUS,a2
 	callr	scoreb_prt2
 
 scbp50	SLEEPK	3
-	move	@STATUS,a2
+	move	@STATUS2,a2
 	btst	1,a2
 	jrz	scbp80
 	move	@P2DATA+PSCORE,a8,L	;0CaHlc bonus score
@@ -862,7 +862,7 @@ sv20	jauc	PRCSLP
 	movi	bonus_st,a0
 	callr	prt0_xy
 
-	move	@STATUS,a2
+	move	@STATUS2,a2
 	btst	0,a2
 	jrz	bm20
 	movi	bonusp1_as,a8
@@ -925,7 +925,7 @@ collectb_s
 
  SUBRP	bonus_cntup	;A0=*P1_st, A1=*P2_st, A2=Z
 			;A9=Base YX, A10=Pts each, A11=Plyr data offset
-	move	@STATUS,a3
+	move	@STATUS2,a3
 	subk	3,a3
 	jrnz	bcu10
 	sll	1,a10			;*2 pts for two players
@@ -946,7 +946,7 @@ bcu10	PUSH	a2
 	calla	ONESND
 
 bcu20	SLEEPK	1
-	move	@STATUS,a2
+	move	@STATUS2,a2
 
 	clr	a3
 
@@ -1028,7 +1028,7 @@ bcu220	movi	DMACNZ+M_NOCOLL,a3
 bpilp	move	*a13(bonusz),a0
 	callr	text_delz
 
-	move	@STATUS,a2
+	move	@STATUS2,a2
 	move	a10,a4			;A4=Pts
 	movk	[0,1],a10		;Spacing
 
@@ -1187,7 +1187,7 @@ bfb30	move	*a1,a1,L
 
 	clr	a7			;A7=Bonus pts Y:X offset
 
-;	move	@STATUS,a0
+;	move	@STATUS2,a0
 ;	cmpi	3,a0
 ;	jrne	pst20
 ;	movi	statsbo_st,a0
@@ -1200,7 +1200,7 @@ pst20	movi	statssnd_t,a8
 
 pst50	move	*a8+,a0,L
 	calla	ONESND
-	move	@STATUS,a6
+	move	@STATUS2,a6
 	move	a9,a0
 	callr	prt0_xy
 	move	a0,a9
@@ -1228,7 +1228,7 @@ pst400	move	a7,-*a12,L
 ********************************************************************
 ;now do bonus word rackup
 
-	move	@STATUS,a0
+	move	@STATUS2,a0
 	cmpi	3,a0
 	jrne	pst500
 
@@ -1359,7 +1359,7 @@ statsp2_st
 	CLR	A9			;A9=LITTLE MESSAGE ON CONTROL PANEL
 ;TURMELL
 	movi	plbwp1o_as,a8		;P1 only initial script
-	move	@STATUS,a0
+	move	@STATUS2,a0
 	btst	1,a0
 	jrz	pbw90
 	MOVK	1,A9
@@ -1842,7 +1842,7 @@ plbw2lose3_st
 	subk	1,a0
 	jrnz	dt20
 	movi	dictator1_1p_as,a8	;1 Player
-	move	@STATUS,a0
+	move	@STATUS2,a0
 	cmpi	3,a0
 	jrnz	dt20
 	movi	dictator1_2p_as,a8	;2 Players
@@ -2368,7 +2368,7 @@ debugf
 	movi	frypdict_as,a8		;Dictator taunt
 	CREATE	ANIMPID,anim_script
 
-	move	@STATUS,a6
+	move	@STATUS2,a6
 	btst	0,a6			;Player1
 	jrz	f200
 	movi	fryp1_as,a8
@@ -2502,7 +2502,7 @@ FGMTR_H	.equ	120
 	clr	a7
 	movk	2,b3			;Cause skip of plyr meter
 	movk	2,b4
-	move	@STATUS,b2
+	move	@STATUS2,b2
 	btst	0,b2			;Player1
 	jrz	fm20
 	calla	BEGINOBJ
@@ -2633,7 +2633,7 @@ fm300	jruc	fm50
 	clr	a6
 	clr	a7
 	movi	50,a10			;Meter Y offset
-	move	@STATUS,b2
+	move	@STATUS2,b2
 	btst	0,b2			;Player1
 	jrz	fdm20
 	calla	BEGINOBJ
@@ -2652,7 +2652,7 @@ fdm20	btst	1,b2			;Player2
 fdm80	movi	fryp1stat,a11		;A11=Status (dictator)
 
 fdm100	SLEEPK	1
-	move	@STATUS,b2
+	move	@STATUS2,b2
 
 	btst	0,b2			;Player1
 	jrz	fdm200			;Not in game?
@@ -4343,13 +4343,13 @@ frydict_t
 
 frydmeteron_as				;Scroll in the meter
 	ASASM
-	move	@STATUS,a0
+	move	@STATUS2,a0
 	btst	0,a0
 	jrz	fdmo20
 	ASENDASM
 	ASNEW	frydmeter1_t
 	ASASM
-fdmo20	move	@STATUS,a0
+fdmo20	move	@STATUS2,a0
 	btst	1,a0
 	jrz	fdmo30
 	ASENDASM
@@ -5342,7 +5342,7 @@ bcd10	movk	0fH,a2
  SUBRP	bonus_showrack	;A0=*XY text, A1=*Anim list, A2=1Cnt, A3=2Cnt
 			;A4=Points per item
 
-	move	@STATUS,a8
+	move	@STATUS2,a8
 	btst	0,a8
 	jrnz	bsr20
 	clr	a2

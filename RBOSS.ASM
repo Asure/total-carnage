@@ -29,7 +29,7 @@
 ;Symbols externally defined
 
 	.ref	SUCIDE,GANIOF,BEGINOBJ2,GAMSTATE
-	.ref	PLYROBJS,PLYRPRCS,P1DATA,P2DATA,WAVE,STATUS
+	.ref	PLYROBJS,PLYRPRCS,P1DATA,P2DATA,WAVE,STATUS2
 	.ref	FLASHME,KILALL,KILL
 	.ref	SCRADD2,BONE,HEXTOASC
 	.ref	FRANIM,FRANIMQ,GETFPAL,HALT
@@ -2432,7 +2432,7 @@ GRUNTMODE	equ	1
  SUBR	mortar_akhboob	;A8=*Src Obj
 
 	movi	160,a0
-	move	@STATUS,a1
+	move	@STATUS2,a1
 	subk	3,a1
 	jreq	makb50			;2 plyrs?
 	movi	88,a0

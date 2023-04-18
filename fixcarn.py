@@ -14,7 +14,8 @@ hexmatcher = re.compile("(>)([0-9A-Fa-f]{1,8})(,?)")
 asmfiles = glob.glob("*.ASM")
 tblfiles = glob.glob("*.TBL")
 macfiles = glob.glob("*.MAC")
-hdrfiles = glob.glob("*.HDR")
+# Don't touch HDR files anymore, it breaks macros!
+hdrfiles = glob.glob("*.HDR") 
 hfiles = glob.glob("*.H")
 incfiles = glob.glob("*.INC")
 equfiles = glob.glob("*.EQU")
@@ -47,12 +48,12 @@ for asmfile in (asmfiles + tblfiles + macfiles + hdrfiles + equfiles + incfiles 
             out.write(line.replace("\"", "'"))          # GSPA 6.10
 
 # Carnage specific fixes
-
-#        elif "STATUS," in line:
-#            out.write(line.replace("STATUS,", "STATUS2,"))
+# STATUS used in rackup.asm
+        elif "STATUS," in line:
+            out.write(line.replace("STATUS,", "STATUS2,"))
 #
-#        elif ",STATUS" in line:
-#            out.write(line.replace(",STATUS", ",STATUS2"))
+        elif ",STATUS" in line:
+            out.write(line.replace(",STATUS", ",STATUS2"))
 #
 #        elif ".SECT SHIT" in line:
 #            out.write(line.replace("SHIT", "\"SHIT\""))

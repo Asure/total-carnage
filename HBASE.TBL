@@ -1,111 +1,84 @@
 	.DATA
 TARM1:
-	.word   27,34
-	.long   094bb60H
-	.word   -30,-70,06000H
+	.word   28,34,-30,-70
+	.long   02cfd740H
 TARM2:
-	.word   32,34
-	.long   094d0f0H
-	.word   -30,-71,06000H
+	.word   32,34,-30,-71
+	.long   02cff500H
 TARM3:
-	.word   38,35
-	.long   094ea70H
-	.word   -30,-71,06000H
+	.word   40,35,-30,-71
+	.long   02d01700H
 GH1:
-	.word   36,43
-	.long   09509a0H
-	.word   18,-4,06000H
+	.word   36,43,18,-4
+	.long   02d042c0H
 GH2:
-	.word   38,42
-	.long   0952df0H
-	.word   19,-5,06000H
+	.word   40,42,19,-5
+	.long   02d07320H
 GH3:
-	.word   39,43
-	.long   0955360H
-	.word   20,-4,06000H
+	.word   40,43,20,-4
+	.long   02d0a7a0H
 GH3A:
-	.word   39,43
-	.long   0957ab0H
-	.word   20,-4,06000H
+	.word   40,43,20,-4
+	.long   02d0dd60H
 GLARM1:
-	.word   27,94
-	.long   095a200H
-	.word   35,-59,06000H
+	.word   28,94,35,-59
+	.long   02d11320H
 GLARM2:
-	.word   34,85
-	.long   095dd80H
-	.word   41,-59,06000H
+	.word   36,85,41,-59
+	.long   02d16560H
 GLARM3:
-	.word   41,65
-	.long   0962140H
-	.word   49,-59,06000H
+	.word   44,65,49,-59
+	.long   02d1c500H
 GRARM1:
-	.word   14,88
-	.long   0965fc0H
-	.word   -30,-63,06000H
+	.word   16,88,-30,-63
+	.long   02d21e60H
 GRARM2:
-	.word   19,72
-	.long   0967ca0H
-	.word   -30,-62,06000H
+	.word   20,72,-30,-62
+	.long   02d24a60H
 GRARM3:
-	.word   25,70
-	.long   0969cb0H
-	.word   -30,-52,06000H
+	.word   28,70,-30,-52
+	.long   02d27760H
 PEYE1:
-	.word   56,18
-	.long   096c5c0H
-	.word   29,-47,06000H
+	.word   56,18,29,-47
+	.long   02d2b4a0H
 PEYE2:
-	.word   56,18
-	.long   096dd60H
-	.word   29,-47,06000H
+	.word   56,18,29,-47
+	.long   02d2d420H
 PEYE3:
-	.word   56,18
-	.long   096f500H
-	.word   29,-47,06000H
+	.word   56,18,29,-47
+	.long   02d2f3a0H
 PEYE4:
-	.word   56,20
-	.long   0970ca0H
-	.word   29,-45,06000H
+	.word   56,20,29,-45
+	.long   02d31320H
 PMTH1:
-	.word   22,16
-	.long   09726e0H
-	.word   12,-86,06000H
+	.word   24,16,12,-86
+	.long   02d33620H
 PMTH2:
-	.word   22,14
-	.long   0972f20H
-	.word   12,-86,06000H
+	.word   24,14,12,-86
+	.long   02d34220H
 PMTH3:
-	.word   22,13
-	.long   0973660H
-	.word   12,-86,06000H
+	.word   24,13,12,-86
+	.long   02d34ca0H
 PMTH4:
-	.word   20,21
-	.long   0973d20H
-	.word   11,-85,06000H
+	.word   20,21,11,-85
+	.long   02d35660H
 GRARM4:
-	.word   18,56
-	.long   0974700H
-	.word   -30,-61,06000H
+	.word   20,56,-30,-61
+	.long   02d36380H
 GRARM5:
-	.word   30,49
-	.long   0975ea0H
-	.word   -18,-40,06000H
+	.word   32,49,-18,-40
+	.long   02d38680H
 GRARM6:
-	.word   37,77
-	.long   0978120H
-	.word   -10,-11,06000H
+	.word   40,77,-10,-11
+	.long   02d3b780H
 GLARM4:
-	.word   40,53
-	.long   097c3f0H
-	.word   48,-58,06000H
+	.word   40,53,48,-58
+	.long   02d417c0H
 GLARM5:
-	.word   57,48
-	.long   097f5a0H
-	.word   62,-47,06000H
+	.word   60,48,62,-47
+	.long   02d45a00H
 GLARM6:
-	.word   64,82
-	.long   09835c0H
-	.word   57,-13,06000H
+	.word   64,82,57,-13
+	.long   02d4b400H
 	.TEXT
 

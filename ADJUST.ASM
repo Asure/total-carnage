@@ -82,6 +82,7 @@
 
 	.REF	RD15FONT,RD7FONT,STRCNRM,BLNKAREA,HEXTOASC
 	.REF	STRRNRM,STRLNRM,CLR_SCRN
+;	.REF	snd_play1
 
 
 ********************************

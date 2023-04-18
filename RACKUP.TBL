@@ -1,1243 +1,747 @@
 	.DATA
 CLOUD:
-	.word   189,51
-	.long   01c5060H
-	.word   0,0,06000H
-	.long   CLDS9
+	.word   192,51,0,0
+	.long   022bc4c0H,CLDS9
 BDBOD1:
-	.word   135,111
-	.long   01d3250H
-	.word   78,-39,06000H
-	.long   BIGPL1
+	.word   136,111,78,-39
+	.long   022cf6c0H,BIGPL1
 BDBOD2:
-	.word   116,50
-	.long   01e9190H
-	.word   78,-119,06000H
-	.long   GUNSP1
+	.word   116,50,78,-119
+	.long   022ece80H,GUNSP1
 CCHED1:
-	.word   36,51
-	.long   01f1980H
-	.word   19,-6,06000H
-	.long   BIGPL1
+	.word   36,51,19,-6
+	.long   022f83c0H,BIGPL1
 CCHED2:
-	.word   36,52
-	.long   01f4490H
-	.word   19,-6,06000H
-	.long   BIGPL1
+	.word   36,52,19,-6
+	.long   022fbd20H,BIGPL1
 CCHED3:
-	.word   36,54
-	.long   01f7070H
-	.word   19,-6,06000H
-	.long   BIGPL1
+	.word   36,54,19,-6
+	.long   022ff7a0H,BIGPL1
 CCHED4:
-	.word   36,54
-	.long   01f9e00H
-	.word   19,-6,06000H
-	.long   BIGPL1
+	.word   36,54,19,-6
+	.long   02303460H,BIGPL1
 CCHED5:
-	.word   36,51
-	.long   01fcb90H
-	.word   19,-6,06000H
-	.long   BIGPL1
+	.word   36,51,19,-6
+	.long   02307120H,BIGPL1
 CCHED6:
-	.word   36,55
-	.long   01ff6a0H
-	.word   19,-6,06000H
-	.long   BIGPL1
+	.word   36,55,19,-6
+	.long   0230aa80H,BIGPL1
 MMHED1:
-	.word   36,51
-	.long   0202510H
-	.word   19,-6,06000H
-	.long   BIGPL2
+	.word   36,51,19,-6
+	.long   0230e860H,BIGPL2
 MMHED2:
-	.word   36,52
-	.long   0205020H
-	.word   19,-6,06000H
-	.long   BIGPL2
+	.word   36,52,19,-6
+	.long   023121c0H,BIGPL2
 MMHED3:
-	.word   36,54
-	.long   0207c00H
-	.word   19,-6,06000H
-	.long   BIGPL2
+	.word   36,54,19,-6
+	.long   02315c40H,BIGPL2
 MMHED4:
-	.word   36,54
-	.long   020a990H
-	.word   19,-6,06000H
-	.long   BIGPL2
+	.word   36,54,19,-6
+	.long   02319900H,BIGPL2
 MMHED5:
-	.word   36,51
-	.long   020d720H
-	.word   19,-6,06000H
-	.long   BIGPL2
+	.word   36,51,19,-6
+	.long   0231d5c0H,BIGPL2
 MMHED6:
-	.word   36,55
-	.long   0210230H
-	.word   19,-6,06000H
-	.long   BIGPL2
+	.word   36,55,19,-6
+	.long   02320f20H,BIGPL2
 GUN1:
-	.word   42,115
-	.long   02130a0H
-	.word   -42,38,06000H
-	.long   GUNSP1
+	.word   44,115,-42,38
+	.long   02324d00H,GUNSP1
 GUN2:
-	.word   60,91
-	.long   021a1e0H
-	.word   -75,25,06000H
-	.long   GUNSP1
+	.word   60,91,-75,25
+	.long   0232eb20H,GUNSP1
 GUN3:
-	.word   82,77
-	.long   02221e0H
-	.word   -78,-14,06000H
-	.long   GUNSP1
+	.word   84,77,-78,-14
+	.long   023395c0H,GUNSP1
 LFTARMBND:
-	.word   31,31
-	.long   022b5e0H
-	.word   -27,-91,06000H
-	.long   GUNSP1
+	.word   32,31,-27,-91
+	.long   02345fe0H,GUNSP1
 STRAP:
-	.word   41,37
-	.long   022cc70H
-	.word   -109,-91,00H
-	.long   GUNSP1
+	.word   44,37,-109,-91
+	.long   02347ee0H,GUNSP1
 STRAPA:
-	.word   41,37
-	.long   022cc70H
-	.word   -89,-65,00H
-	.long   GUNSP1
+	.word   44,37,-89,-65
+	.long   0234b1c0H,GUNSP1
 LILRIB1:
-	.word   40,20
-	.long   022fbe0H
-	.word   -15,-21,06000H
-	.long   GUNSP1
+	.word   40,20,-15,-21
+	.long   0234e4a0H,GUNSP1
 LILRIB2:
-	.word   40,19
-	.long   0230ea0H
-	.word   -16,-23,06000H
-	.long   GUNSP1
+	.word   40,19,-16,-23
+	.long   0234fda0H,GUNSP1
 LILRIB3:
-	.word   42,19
-	.long   0232070H
-	.word   -16,-22,06000H
-	.long   GUNSP1
+	.word   44,19,-16,-22
+	.long   02351560H,GUNSP1
 LILRIB4:
-	.word   41,20
-	.long   0233330H
-	.word   -16,-21,06000H
-	.long   GUNSP1
+	.word   44,20,-16,-21
+	.long   02352f80H,GUNSP1
 LILRIB5:
-	.word   42,20
-	.long   0234670H
-	.word   -16,-21,06000H
-	.long   GUNSP1
+	.word   44,20,-16,-21
+	.long   02354b00H,GUNSP1
 RIB1:
-	.word   40,33
-	.long   0235a20H
-	.word   -15,-31,06000H
-	.long   GUNSP1
+	.word   40,33,-15,-31
+	.long   02356680H,GUNSP1
 RIB2:
-	.word   41,33
-	.long   0237910H
-	.word   -15,-32,06000H
-	.long   GUNSP1
+	.word   44,33,-15,-32
+	.long   02358fc0H,GUNSP1
 RIB3:
-	.word   42,31
-	.long   02398d0H
-	.word   -15,-32,06000H
-	.long   GUNSP1
+	.word   44,31,-15,-32
+	.long   0235bd20H,GUNSP1
 RIB4:
-	.word   42,32
-	.long   023b760H
-	.word   -15,-30,06000H
-	.long   GUNSP1
+	.word   44,32,-15,-30
+	.long   0235e7c0H,GUNSP1
 RIB5:
-	.word   40,31
-	.long   023d6e0H
-	.word   -15,-30,06000H
-	.long   GUNSP1
+	.word   40,31,-15,-30
+	.long   023613c0H,GUNSP1
 RTARMBND:
-	.word   31,25
-	.long   023f3f0H
-	.word   81,-90,06000H
-	.long   GUNSP1
+	.word   32,25,81,-90
+	.long   02363a80H,GUNSP1
 RTHAND1:
-	.word   30,29
-	.long   0240620H
-	.word   63,-136,06000H
-	.long   BIGPL1
+	.word   32,29,63,-136
+	.long   02365380H,BIGPL1
 RTLBOW1:
-	.word   51,59
-	.long   0241a90H
-	.word   104,-97,06000H
-	.long   BIGPL1
+	.word   52,59,104,-97
+	.long   02367080H,BIGPL1
 RTWRISTBND:
-	.word   38,34
-	.long   0246120H
-	.word   92,-133,06000H
-	.long   GUNSP1
+	.word   40,34,92,-133
+	.long   0236d060H,GUNSP1
 SMHEAD1:
-	.word   29,33
-	.long   0247f70H
-	.word   11,-4,06000H
-	.long   BIGPL1
+	.word   32,33,11,-4
+	.long   0236fae0H,BIGPL1
 SMHEAD2:
-	.word   29,33
-	.long   02495e0H
-	.word   11,-4,06000H
-	.long   BIGPL2
+	.word   32,33,11,-4
+	.long   02371be0H,BIGPL2
 SMBOD1:
-	.word   98,65
-	.long   024ac50H
-	.word   60,-37,06000H
-	.long   BIGPL1
+	.word   100,65,60,-37
+	.long   02373ce0H,BIGPL1
 SMBOD2:
-	.word   63,94
-	.long   02541a0H
-	.word   44,-99,06000H
-	.long   GUNSP2
+	.word   64,94,44,-99
+	.long   02380800H,GUNSP2
 SMWRISTS:
-	.word   32,37
-	.long   025cc70H
-	.word   51,-57,06000H
-	.long   GUNSP1
+	.word   32,37,51,-57
+	.long   0238c400H,GUNSP1
 SMARMBND:
-	.word   17,28
-	.long   025e830H
-	.word   -7,-56,06000H
-	.long   GUNSP1
+	.word   20,28,-7,-56
+	.long   0238e900H,GUNSP1
 HAND1:
-	.word   27,49
-	.long   025f360H
-	.word   -56,-37,06000H
-	.long   BIGPL1
+	.word   28,49,-56,-37
+	.long   0238fa80H,BIGPL1
 HAND2:
-	.word   28,51
-	.long   0261270H
-	.word   -83,-46,06000H
-	.long   BIGPL1
+	.word   28,51,-83,-46
+	.long   02392560H,BIGPL1
 HAND3:
-	.word   32,44
-	.long   02633f0H
-	.word   -84,-74,06000H
-	.long   BIGPL1
+	.word   32,44,-84,-74
+	.long   02395200H,BIGPL1
 LBOW1:
-	.word   51,58
-	.long   02654f0H
-	.word   -31,-95,06000H
-	.long   BIGPL1
+	.word   52,58,-31,-95
+	.long   02397e00H,BIGPL1
 LBOW2:
-	.word   44,54
-	.long   0269a50H
-	.word   -31,-97,06000H
-	.long   BIGPL1
+	.word   44,54,-31,-97
+	.long   0239dc40H,BIGPL1
 LBOW3:
-	.word   38,54
-	.long   026d200H
-	.word   -31,-97,06000H
-	.long   BIGPL1
+	.word   40,54,-31,-97
+	.long   023a2680H,BIGPL1
 WRISTBND1:
-	.word   38,67
-	.long   0270220H
-	.word   -46,-77,06000H
-	.long   GUNSP1
+	.word   40,67,-46,-77
+	.long   023a6a00H,GUNSP1
 WRISTBND2:
-	.word   61,81
-	.long   0273dd0H
-	.word   -47,-65,06000H
-	.long   GUNSP1
+	.word   64,81,-47,-65
+	.long   023abdc0H,GUNSP1
 WRISTBND3:
-	.word   58,55
-	.long   027b1a0H
-	.word   -51,-91,06000H
-	.long   GUNSP1
+	.word   60,55,-51,-91
+	.long   023b5fc0H,GUNSP1
 MTHGRIM:
-	.word   41,63
-	.long   027fc70H
-	.word   41,-77,06000H
-	.long   MADP1
+	.word   44,63,41,-77
+	.long   023bc6e0H,MADP1
 MTHSMILE1:
-	.word   41,63
-	.long   0283900H
-	.word   41,-77,06000H
-	.long   MADP1
+	.word   44,63,41,-77
+	.long   023c1d80H,MADP1
 MTHSMILE2:
-	.word   41,63
-	.long   0287590H
-	.word   41,-77,06000H
-	.long   MADP1
+	.word   44,63,41,-77
+	.long   023c7420H,MADP1
 MTHOPEN1:
-	.word   41,70
-	.long   028b220H
-	.word   41,-77,06000H
-	.long   MADP1
+	.word   44,70,41,-77
+	.long   023ccac0H,MADP1
 MTHOPEN2:
-	.word   41,75
-	.long   028f570H
-	.word   41,-77,06000H
-	.long   MADP1
+	.word   44,75,41,-77
+	.long   023d2b00H,MADP1
 MTHOPEN3:
-	.word   41,80
-	.long   0293d90H
-	.word   41,-77,06000H
-	.long   MADP1
+	.word   44,80,41,-77
+	.long   023d9220H,MADP1
 MADEYE1:
-	.word   41,28
-	.long   0298a70H
-	.word   41,-49,06000H
-	.long   MADP1
+	.word   44,28,41,-49
+	.long   023e0020H,MADP1
 MADEYE2:
-	.word   41,28
-	.long   029a560H
-	.word   41,-49,06000H
-	.long   MADP1
+	.word   44,28,41,-49
+	.long   023e26a0H,MADP1
 MADEYE3:
-	.word   41,28
-	.long   029c050H
-	.word   41,-49,06000H
-	.long   MADP1
+	.word   44,28,41,-49
+	.long   023e4d20H,MADP1
 MADHAT:
-	.word   50,46
-	.long   029db40H
-	.word   50,-7,06000H
-	.long   MADP2
+	.word   52,46,50,-7
+	.long   023e73a0H,MADP2
 MADARM:
-	.word   69,62
-	.long   02a1130H
-	.word   75,-65,06000H
-	.long   MADP2
+	.word   72,62,75,-65
+	.long   023ebe60H,MADP2
 MADFIST:
-	.word   60,77
-	.long   02a7580H
-	.word   43,-18,06000H
-	.long   MADP1
+	.word   60,77,43,-18
+	.long   023f49e0H,MADP1
 MADBOD:
-	.word   110,58
-	.long   02ae1d0H
-	.word   109,-132,06000H
-	.long   MADP2
+	.word   112,58,109,-132
+	.long   023fda40H,MADP2
 MADNECK:
-	.word   25,18
-	.long   02b7760H
-	.word   25,-129,06000H
-	.long   MADP1
+	.word   28,18,25,-129
+	.long   0240a540H,MADP1
 WRINK1:
-	.word   71,62
-	.long   02b81f0H
-	.word   0,0,04000H
-	.long   BIOFLG
+	.word   72,62,0,0
+	.long   0240b500H,BIOFLG
 WRINK2:
-	.word   52,57
-	.long   02bc6c0H
-	.word   0,0,04000H
-	.long   BIOFLG
+	.word   52,57,0,0
+	.long   02414080H,BIOFLG
 BIOSIGN:
-	.word   76,146
-	.long   02bf510H
-	.word   0,0,04000H
-	.long   BIOFLG
+	.word   76,146,0,0
+	.long   02419d20H,BIOFLG
 HSTGHD:
-	.word   38,42
-	.long   02ca270H
-	.word   0,0,04000H
-	.long   BIOFLG
+	.word   40,42,0,0
+	.long   0242f7e0H,BIOFLG
 SBOLT1:
-	.word   43,10
-	.long   02cbb60H
-	.word   25,4,06000H
-	.long   SHKPAL
+	.word   44,10,25,4
+	.long   02432c60H,SHKPAL
 SBOLT2:
-	.word   73,7
-	.long   02cc580H
-	.word   35,2,06000H
-	.long   SHKPAL
+	.word   76,7,35,2
+	.long   02433a20H,SHKPAL
 SBOLT3:
-	.word   105,15
-	.long   02cd180H
-	.word   52,7,06000H
-	.long   SHKPAL
+	.word   108,15,52,7
+	.long   02434ac0H,SHKPAL
 SBOLT4:
-	.word   106,21
-	.long   02cf670H
-	.word   53,13,06000H
-	.long   SHKPAL
+	.word   108,21,53,13
+	.long   02437d60H,SHKPAL
 SBOLT5:
-	.word   105,14
-	.long   02d2aa0H
-	.word   51,7,06000H
-	.long   SHKPAL
+	.word   108,14,51,7
+	.long   0243c440H,SHKPAL
 SBOLT6:
-	.word   105,13
-	.long   02d4d20H
-	.word   52,7,06000H
-	.long   SHKPAL
+	.word   108,13,52,7
+	.long   0243f380H,SHKPAL
 SBOLT7:
-	.word   105,17
-	.long   02d6d20H
-	.word   52,5,06000H
-	.long   SHKPAL
+	.word   108,17,52,5
+	.long   02441f60H,SHKPAL
 BLT1:
-	.word   15,27
-	.long   02d9700H
-	.word   31,-27,06000H
-	.long   SHKPAL
+	.word   16,27,31,-27
+	.long   024458c0H,SHKPAL
 BLT2:
-	.word   39,44
-	.long   02da080H
-	.word   34,-31,06000H
-	.long   SHKPAL
+	.word   40,44,34,-31
+	.long   02446640H,SHKPAL
 BLT3:
-	.word   71,75
-	.long   02dc8c0H
-	.word   36,-28,06000H
-	.long   SHKPAL
+	.word   72,75,36,-28
+	.long   02449d40H,SHKPAL
 BLT4:
-	.word   71,74
-	.long   02e4590H
-	.word   31,-34,06000H
-	.long   SHKPAL
+	.word   72,74,31,-34
+	.long   02454600H,SHKPAL
 BLT5:
-	.word   47,48
-	.long   02ec0c0H
-	.word   6,-60,06000H
-	.long   SHKPAL
+	.word   48,48,6,-60
+	.long   0245ec80H,SHKPAL
 BLT6:
-	.word   27,22
-	.long   02ef5a0H
-	.word   -15,-86,06000H
-	.long   SHKPAL
+	.word   28,22,-15,-86
+	.long   02463480H,SHKPAL
 LILBLT1:
-	.word   9,5
-	.long   02f0390H
-	.word   4,2,06000H
-	.long   SHKPAL
+	.word   12,5,4,2
+	.long   024647c0H,SHKPAL
 LILBLT2:
-	.word   18,8
-	.long   02f04a0H
-	.word   9,3,06000H
-	.long   SHKPAL
+	.word   20,8,9,3
+	.long   024649a0H,SHKPAL
 LILBLT3:
-	.word   25,8
-	.long   02f0800H
-	.word   12,3,06000H
-	.long   SHKPAL
+	.word   28,8,12,3
+	.long   02464ea0H,SHKPAL
 LILBLT4:
-	.word   35,12
-	.long   02f0cb0H
-	.word   17,8,06000H
-	.long   SHKPAL
+	.word   36,12,17,8
+	.long   024655a0H,SHKPAL
 LILBLT5:
-	.word   35,8
-	.long   02f1690H
-	.word   17,5,06000H
-	.long   SHKPAL
+	.word   36,8,17,5
+	.long   02466320H,SHKPAL
 LILBLT6:
-	.word   35,10
-	.long   02f1d20H
-	.word   19,3,06000H
-	.long   SHKPAL
+	.word   36,10,19,3
+	.long   02466c20H,SHKPAL
 LILBLT7:
-	.word   36,10
-	.long   02f2560H
-	.word   17,5,06000H
-	.long   SHKPAL
+	.word   36,10,17,5
+	.long   02467760H,SHKPAL
 SKULL1:
-	.word   27,40
-	.long   02f2dd0H
-	.word   13,20,06000H
-	.long   MTRP
+	.word   28,40,13,20
+	.long   024682a0H,MTRP
 SKULL2:
-	.word   32,41
-	.long   02f4720H
-	.word   15,21,06000H
-	.long   MTRP
+	.word   32,41,15,21
+	.long   0246a5a0H,MTRP
 SKULL3:
-	.word   38,36
-	.long   02f65e0H
-	.word   18,19,06000H
-	.long   MTRP
+	.word   40,36,18,19
+	.long   0246cea0H,MTRP
 SKULL4:
-	.word   41,27
-	.long   02f85f0H
-	.word   20,12,06000H
-	.long   MTRP
+	.word   44,27,20,12
+	.long   0246fba0H,MTRP
 SKULL5:
-	.word   36,36
-	.long   02f9ff0H
-	.word   17,17,06000H
-	.long   MTRP
+	.word   36,36,17,17
+	.long   024720c0H,MTRP
 ECTOR1:
-	.word   58,65
-	.long   02fbe50H
-	.word   58,-38,06000H
-	.long   BIGPL1
+	.word   60,65,58,-38
+	.long   02474940H,BIGPL1
 ECTOR2:
-	.word   56,73
-	.long   03016b0H
-	.word   56,-28,06000H
-	.long   BIGPL1
+	.word   56,73,56,-28
+	.long   0247c320H,BIGPL1
 ECTOR3:
-	.word   57,77
-	.long   0307680H
-	.word   57,-24,06000H
-	.long   BIGPL1
+	.word   60,77,57,-24
+	.long   024842e0H,BIGPL1
 ECTOR4:
-	.word   62,65
-	.long   030dd60H
-	.word   62,-39,06000H
-	.long   BIGPL1
+	.word   64,65,62,-39
+	.long   0248d340H,BIGPL1
 ECTOR5:
-	.word   67,83
-	.long   0313be0H
-	.word   67,-25,06000H
-	.long   BIGPL1
+	.word   68,83,67,-25
+	.long   02495540H,BIGPL1
 ECTOR6:
-	.word   85,73
-	.long   031be40H
-	.word   85,-25,06000H
-	.long   BIGPL1
+	.word   88,73,85,-25
+	.long   024a05a0H,BIGPL1
 ECFIST1:
-	.word   26,16
-	.long   0324fb0H
-	.word   75,-95,06000H
-	.long   BIGPL1
+	.word   28,16,75,-95
+	.long   024ace60H,BIGPL1
 ECFIST2:
-	.word   22,32
-	.long   0325970H
-	.word   83,-52,06000H
-	.long   BIGPL1
+	.word   24,32,83,-52
+	.long   024adc60H,BIGPL1
 ECFIST3:
-	.word   28,31
-	.long   03269f0H
-	.word   71,12,06000H
-	.long   BIGPL1
+	.word   28,31,71,12
+	.long   024af460H,BIGPL1
 ECLEG1:
-	.word   67,40
-	.long   0327e50H
-	.word   67,-96,06000H
-	.long   GUNSP1
+	.word   68,40,67,-96
+	.long   024b0f80H,GUNSP1
 ECLEG1A:
-	.word   47,68
-	.long   032bd20H
-	.word   64,-136,06000H
-	.long   GUNSP1
+	.word   48,68,64,-136
+	.long   024b6480H,GUNSP1
 ECLEG2:
-	.word   70,57
-	.long   0330810H
-	.word   70,-95,06000H
-	.long   GUNSP1
+	.word   72,57,70,-95
+	.long   024bca80H,GUNSP1
 ECLEG2A:
-	.word   43,80
-	.long   03365a0H
-	.word   70,-152,06000H
-	.long   GUNSP1
+	.word   44,80,70,-152
+	.long   024c4ac0H,GUNSP1
 ECLEG3:
-	.word   39,99
-	.long   033b640H
-	.word   39,-95,06000H
-	.long   GUNSP1
+	.word   40,99,39,-95
+	.long   024cb8c0H,GUNSP1
 ECWRIST1:
-	.word   30,21
-	.long   03410c0H
-	.word   70,-88,06000H
-	.long   GUNSP1
+	.word   32,21,70,-88
+	.long   024d3480H,GUNSP1
 ECWRIST2:
-	.word   28,21
-	.long   0341f90H
-	.word   68,-85,06000H
-	.long   GUNSP1
+	.word   28,21,68,-85
+	.long   024d4980H,GUNSP1
 ECWRIST3:
-	.word   31,36
-	.long   0342d60H
-	.word   79,-67,06000H
-	.long   GUNSP1
+	.word   32,36,79,-67
+	.long   024d5be0H,GUNSP1
 ECWRIST4:
-	.word   30,50
-	.long   0344790H
-	.word   83,-7,06000H
-	.long   GUNSP1
+	.word   32,50,83,-7
+	.long   024d7fe0H,GUNSP1
 ECPHD1:
-	.word   29,40
-	.long   0346ac0H
-	.word   15,-7,06000H
-	.long   BIGPL1
+	.word   32,40,15,-7
+	.long   024db1e0H,BIGPL1
 ECPHD1A:
-	.word   29,40
-	.long   03485f0H
-	.word   15,-7,06000H
-	.long   BIGPL1
+	.word   32,40,15,-7
+	.long   024dd9e0H,BIGPL1
 ECPHD1B:
-	.word   29,40
-	.long   034a120H
-	.word   15,-7,06000H
-	.long   BIGPL1
+	.word   32,40,15,-7
+	.long   024e01e0H,BIGPL1
 ECPHD1C:
-	.word   29,40
-	.long   034bc50H
-	.word   15,-7,06000H
-	.long   BIGPL1
+	.word   32,40,15,-7
+	.long   024e29e0H,BIGPL1
 ECPHD1D:
-	.word   29,40
-	.long   034d780H
-	.word   15,-7,06000H
-	.long   BIGPL1
+	.word   32,40,15,-7
+	.long   024e51e0H,BIGPL1
 ECPHD1E:
-	.word   29,40
-	.long   034f2b0H
-	.word   15,-7,06000H
-	.long   BIGPL1
+	.word   32,40,15,-7
+	.long   024e79e0H,BIGPL1
 ECPHD1F:
-	.word   29,40
-	.long   0350de0H
-	.word   15,-7,06000H
-	.long   BIGPL1
+	.word   32,40,15,-7
+	.long   024ea1e0H,BIGPL1
 ECPHD1G:
-	.word   29,40
-	.long   0352910H
-	.word   15,-7,06000H
-	.long   BIGPL1
+	.word   32,40,15,-7
+	.long   024ec9e0H,BIGPL1
 ECPHD2:
-	.word   29,42
-	.long   0354440H
-	.word   15,-7,06000H
-	.long   BIGPL1
+	.word   32,42,15,-7
+	.long   024ef1e0H,BIGPL1
 ECPHD3:
-	.word   29,44
-	.long   03560d0H
-	.word   15,-7,06000H
-	.long   BIGPL1
+	.word   32,44,15,-7
+	.long   024f1be0H,BIGPL1
 ECPHD1H:
-	.word   29,40
-	.long   0357ec0H
-	.word   15,-7,06000H
-	.long   BIGPL1
+	.word   32,40,15,-7
+	.long   024f47e0H,BIGPL1
 ECP2HD1:
-	.word   29,39
-	.long   03599f0H
-	.word   15,-8,06000H
-	.long   BIGPL2
+	.word   32,39,15,-8
+	.long   024f6fe0H,BIGPL2
 ECP2HD1A:
-	.word   29,39
-	.long   035b480H
-	.word   15,-8,06000H
-	.long   BIGPL2
+	.word   32,39,15,-8
+	.long   024f96e0H,BIGPL2
 ECP2HD1B:
-	.word   29,39
-	.long   035cf10H
-	.word   15,-8,06000H
-	.long   BIGPL2
+	.word   32,39,15,-8
+	.long   024fbde0H,BIGPL2
 ECP2HD1C:
-	.word   29,39
-	.long   035e9a0H
-	.word   15,-8,06000H
-	.long   BIGPL2
+	.word   32,39,15,-8
+	.long   024fe4e0H,BIGPL2
 ECP2HD1D:
-	.word   29,39
-	.long   0360430H
-	.word   15,-8,06000H
-	.long   BIGPL2
+	.word   32,39,15,-8
+	.long   02500be0H,BIGPL2
 ECP2HD1E:
-	.word   29,39
-	.long   0361ec0H
-	.word   15,-8,06000H
-	.long   BIGPL2
+	.word   32,39,15,-8
+	.long   025032e0H,BIGPL2
 ECP2HD1F:
-	.word   29,39
-	.long   0363950H
-	.word   15,-8,06000H
-	.long   BIGPL2
+	.word   32,39,15,-8
+	.long   025059e0H,BIGPL2
 ECP2HD1G:
-	.word   29,39
-	.long   03653e0H
-	.word   15,-8,06000H
-	.long   BIGPL2
+	.word   32,39,15,-8
+	.long   025080e0H,BIGPL2
 ECP2HD1H:
-	.word   29,39
-	.long   0366e70H
-	.word   15,-8,06000H
-	.long   BIGPL2
+	.word   32,39,15,-8
+	.long   0250a7e0H,BIGPL2
 ECP2HD2:
-	.word   29,41
-	.long   0368900H
-	.word   15,-8,06000H
-	.long   BIGPL2
+	.word   32,41,15,-8
+	.long   0250cee0H,BIGPL2
 ECP2HD3:
-	.word   29,43
-	.long   036a4e0H
-	.word   15,-8,06000H
-	.long   BIGPL2
+	.word   32,43,15,-8
+	.long   0250f7e0H,BIGPL2
 BUGEYE1A:
-	.word   29,40
-	.long   036c220H
-	.word   15,-7,06000H
-	.long   BIGPL1
+	.word   32,40,15,-7
+	.long   025122e0H,BIGPL1
 BUGEYE1B:
-	.word   35,49
-	.long   036dd50H
-	.word   18,1,06000H
-	.long   BIGPL1
+	.word   36,49,18,1
+	.long   02514ae0H,BIGPL1
 BUGEYE1C:
-	.word   29,40
-	.long   0370590H
-	.word   15,-7,06000H
-	.long   BIGPL1
+	.word   32,40,15,-7
+	.long   02518200H,BIGPL1
 BUGEYE1D:
-	.word   35,49
-	.long   03720c0H
-	.word   18,1,06000H
-	.long   BIGPL1
+	.word   36,49,18,1
+	.long   0251aa00H,BIGPL1
 BUGEYE2A:
-	.word   35,48
-	.long   0374900H
-	.word   18,1,06000H
-	.long   BIGPL1
+	.word   36,48,18,1
+	.long   0251e120H,BIGPL1
 BUGEYE2B:
-	.word   29,40
-	.long   0377060H
-	.word   15,-7,06000H
-	.long   BIGPL1
+	.word   32,40,15,-7
+	.long   02521720H,BIGPL1
 BUGEYE2C:
-	.word   35,48
-	.long   0378b90H
-	.word   18,1,06000H
-	.long   BIGPL1
+	.word   36,48,18,1
+	.long   02523f20H,BIGPL1
 BUGEYE2D:
-	.word   35,48
-	.long   037b2f0H
-	.word   18,1,06000H
-	.long   BIGPL1
+	.word   36,48,18,1
+	.long   02527520H,BIGPL1
 BUGEYE2E:
-	.word   34,48
-	.long   037da50H
-	.word   18,1,06000H
-	.long   BIGPL1
+	.word   36,48,18,1
+	.long   0252ab20H,BIGPL1
 BUGEYE2F:
-	.word   35,48
-	.long   0380090H
-	.word   18,1,06000H
-	.long   BIGPL1
+	.word   36,48,18,1
+	.long   0252e120H,BIGPL1
 BUGEYE2G:
-	.word   35,48
-	.long   037b2f0H
-	.word   18,1,06000H
-	.long   BIGPL1
+	.word   36,48,18,1
+	.long   02531720H,BIGPL1
 BUGEYE2H:
-	.word   35,48
-	.long   0378b90H
-	.word   18,1,06000H
-	.long   BIGPL1
+	.word   36,48,18,1
+	.long   02534d20H,BIGPL1
 BUGEYE2I:
-	.word   35,48
-	.long   0378b90H
-	.word   18,1,06000H
-	.long   BIGPL1
+	.word   36,48,18,1
+	.long   02538320H,BIGPL1
 BUGEYE2J:
-	.word   35,48
-	.long   03827f0H
-	.word   18,1,06000H
-	.long   BIGPL1
+	.word   36,48,18,1
+	.long   0253b920H,BIGPL1
 BUG2EYE1A:
-	.word   29,39
-	.long   0384f50H
-	.word   15,-8,06000H
-	.long   BIGPL2
+	.word   32,39,15,-8
+	.long   0253ef20H,BIGPL2
 BUG2EYE1B:
-	.word   29,40
-	.long   03869e0H
-	.word   15,-8,06000H
-	.long   BIGPL2
+	.word   32,40,15,-8
+	.long   02541620H,BIGPL2
 BUG2EYE1C:
-	.word   29,39
-	.long   0388510H
-	.word   15,-8,06000H
-	.long   BIGPL2
+	.word   32,39,15,-8
+	.long   02543e20H,BIGPL2
 BUG2EYE1D:
-	.word   31,40
-	.long   0389fa0H
-	.word   16,-8,06000H
-	.long   BIGPL2
+	.word   32,40,16,-8
+	.long   02546520H,BIGPL2
 BUG2EYE2A:
-	.word   29,39
-	.long   038bcb0H
-	.word   15,-8,06000H
-	.long   BIGPL2
+	.word   32,39,15,-8
+	.long   02548d20H,BIGPL2
 BUG2EYE2B:
-	.word   29,39
-	.long   038d740H
-	.word   15,-8,06000H
-	.long   BIGPL2
+	.word   32,39,15,-8
+	.long   0254b420H,BIGPL2
 BUG2EYE2C:
-	.word   31,40
-	.long   038f1d0H
-	.word   16,-8,06000H
-	.long   BIGPL2
+	.word   32,40,16,-8
+	.long   0254db20H,BIGPL2
 BUG2EYE2D:
-	.word   31,40
-	.long   0390ee0H
-	.word   16,-8,06000H
-	.long   BIGPL2
+	.word   32,40,16,-8
+	.long   02550320H,BIGPL2
 BUG2EYE2E:
-	.word   31,40
-	.long   038f1d0H
-	.word   16,-8,06000H
-	.long   BIGPL2
+	.word   32,40,16,-8
+	.long   02552b20H,BIGPL2
 BUG2EYE2F:
-	.word   31,40
-	.long   0390ee0H
-	.word   16,-8,06000H
-	.long   BIGPL2
+	.word   32,40,16,-8
+	.long   02555320H,BIGPL2
 BUG2EYE2G:
-	.word   31,40
-	.long   0390ee0H
-	.word   16,-8,06000H
-	.long   BIGPL2
+	.word   32,40,16,-8
+	.long   02557b20H,BIGPL2
 BUG2EYE2H:
-	.word   31,40
-	.long   038f1d0H
-	.word   16,-8,06000H
-	.long   BIGPL2
+	.word   32,40,16,-8
+	.long   0255a320H,BIGPL2
 BUG2EYE2I:
-	.word   31,40
-	.long   038f1d0H
-	.word   16,-8,06000H
-	.long   BIGPL2
+	.word   32,40,16,-8
+	.long   0255cb20H,BIGPL2
 BUG2EYE2J:
-	.word   31,40
-	.long   0390ee0H
-	.word   16,-8,06000H
-	.long   BIGPL2
+	.word   32,40,16,-8
+	.long   0255f320H,BIGPL2
 BONES1:
-	.word   50,64
-	.long   0392bf0H
-	.word   50,-49,06000H
-	.long   MTRP
+	.word   52,64,50,-49
+	.long   02561b20H,MTRP
 BONES2:
-	.word   51,59
-	.long   03976f0H
-	.word   51,-54,06000H
-	.long   MTRP
+	.word   52,59,51,-54
+	.long   02568320H,MTRP
 BONES3:
-	.word   48,54
-	.long   039bd80H
-	.word   48,-59,06000H
-	.long   MTRP
+	.word   48,54,48,-59
+	.long   0256e300H,MTRP
 BONES4:
-	.word   44,48
-	.long   039fa40H
-	.word   44,-64,06000H
-	.long   MTRP
+	.word   44,48,44,-64
+	.long   02573400H,MTRP
 BONES5:
-	.word   44,57
-	.long   03a2bc0H
-	.word   44,-69,06000H
-	.long   MTRP
+	.word   44,57,44,-69
+	.long   02577600H,MTRP
 BONES6:
-	.word   42,63
-	.long   03a6690H
-	.word   42,-81,06000H
-	.long   MTRP
+	.word   44,63,42,-81
+	.long   0257c460H,MTRP
 BONEARM:
-	.word   35,21
-	.long   03aa4a0H
-	.word   75,-103,06000H
-	.long   MTRP
+	.word   36,21,75,-103
+	.long   02581b00H,MTRP
 BONELEG2:
-	.word   44,73
-	.long   03ab5e0H
-	.word   65,-144,06000H
-	.long   MTRP
+	.word   44,73,65,-144
+	.long   025832a0H,MTRP
 BONELEG1:
-	.word   66,32
-	.long   03b0130H
-	.word   66,-113,06000H
-	.long   MTRP
+	.word   68,32,66,-113
+	.long   02589700H,MTRP
 SHOCK1:
-	.word   82,221
-	.long   03b32b0H
-	.word   82,-3,06000H
-	.long   SHKPAL
+	.word   84,221,82,-3
+	.long   0258db00H,SHKPAL
 SHOCK2:
-	.word   79,216
-	.long   03cdb70H
-	.word   79,-5,06000H
-	.long   SHKPAL
+	.word   80,216,79,-5
+	.long   025b1f20H,SHKPAL
 SHOCK1A:
-	.word   21,34
-	.long   03e6b60H
-	.word   21,-3,06000H
-	.long   SHKPAL
+	.word   24,34,21,-3
+	.long   025d3b20H,SHKPAL
 SHOCK1B:
-	.word   60,55
-	.long   03e7c20H
-	.word   60,-37,06000H
-	.long   SHKPAL
+	.word   60,55,60,-37
+	.long   025d54a0H,SHKPAL
 SHOCK1C:
-	.word   82,64
-	.long   03ec980H
-	.word   82,-92,06000H
-	.long   SHKPAL
+	.word   84,64,82,-92
+	.long   025dbbc0H,SHKPAL
 SHOCK1D:
-	.word   59,68
-	.long   03f4480H
-	.word   71,-156,06000H
-	.long   SHKPAL
+	.word   60,68,71,-156
+	.long   025e63c0H,SHKPAL
 SHOCK2A:
-	.word   19,38
-	.long   03fa290H
-	.word   19,-5,06000H
-	.long   SHKPAL
+	.word   20,38,19,-5
+	.long   025ee340H,SHKPAL
 SHOCK2B:
-	.word   53,41
-	.long   03fb380H
-	.word   53,-43,06000H
-	.long   SHKPAL
+	.word   56,41,53,-43
+	.long   025efb00H,SHKPAL
 SHOCK2C:
-	.word   79,69
-	.long   03fe670H
-	.word   79,-84,06000H
-	.long   SHKPAL
+	.word   80,69,79,-84
+	.long   025f42c0H,SHKPAL
 SHOCK2D:
-	.word   52,68
-	.long   0406640H
-	.word   68,-153,06000H
-	.long   SHKPAL
+	.word   52,68,68,-153
+	.long   025fef40H,SHKPAL
 CLAMP1:
-	.word   23,44
-	.long   040b920H
-	.word   19,-12,06000H
-	.long   CHAIRP
+	.word   24,44,19,-12
+	.long   02605dc0H,CHAIRP
 CLAMP2:
-	.word   42,48
-	.long   040d0e0H
-	.word   8,-10,06000H
-	.long   CHAIRP
+	.word   44,48,8,-10
+	.long   02607ec0H,CHAIRP
 CLAMP3:
-	.word   42,24
-	.long   0410020H
-	.word   3,-32,06000H
-	.long   CHAIRP
+	.word   44,24,3,-32
+	.long   0260c0c0H,CHAIRP
 SPARKL1:
-	.word   19,16
-	.long   04117c0H
-	.word   -1,5,06000H
-	.long   SHKPAL
+	.word   20,16,-1,5
+	.long   0260e1c0H,SHKPAL
 SPARKL2:
-	.word   27,28
-	.long   0411ee0H
-	.word   -7,1,06000H
-	.long   SHKPAL
+	.word   28,28,-7,1
+	.long   0260ebc0H,SHKPAL
 SPARKL3:
-	.word   30,44
-	.long   04130a0H
-	.word   -9,0,06000H
-	.long   SHKPAL
+	.word   32,44,-9,0
+	.long   02610440H,SHKPAL
 SPARKL4:
-	.word   32,45
-	.long   0414f90H
-	.word   -9,-4,06000H
-	.long   SHKPAL
+	.word   32,45,-9,-4
+	.long   02613040H,SHKPAL
 SPARKL5:
-	.word   33,44
-	.long   0417150H
-	.word   -10,-8,06000H
-	.long   SHKPAL
+	.word   36,44,-10,-8
+	.long   02615d40H,SHKPAL
 SPARKL6:
-	.word   37,34
-	.long   0419360H
-	.word   -11,-22,06000H
-	.long   SHKPAL
+	.word   40,34,-11,-22
+	.long   02618ec0H,SHKPAL
 SPARKL7HOLD:
-	.word   38,34
-	.long   041b0e0H
-	.word   -13,-26,06000H
-	.long   SHKPAL
+	.word   40,34,-13,-26
+	.long   0261b940H,SHKPAL
 SPARKL9:
-	.word   38,32
-	.long   041cf30H
-	.word   -13,-28,06000H
-	.long   SHKPAL
+	.word   40,32,-13,-28
+	.long   0261e3c0H,SHKPAL
 SPARKL10:
-	.word   38,30
-	.long   041ebb0H
-	.word   -13,-30,06000H
-	.long   SHKPAL
+	.word   40,30,-13,-30
+	.long   02620bc0H,SHKPAL
 SPARKL11:
-	.word   38,28
-	.long   0420670H
-	.word   -13,-32,06000H
-	.long   SHKPAL
+	.word   40,28,-13,-32
+	.long   02623140H,SHKPAL
 SPARKL12:
-	.word   38,26
-	.long   0421f60H
-	.word   -13,-34,06000H
-	.long   SHKPAL
+	.word   40,26,-13,-34
+	.long   02625440H,SHKPAL
 SPARKL13:
-	.word   38,24
-	.long   0423690H
-	.word   -13,-36,06000H
-	.long   SHKPAL
+	.word   40,24,-13,-36
+	.long   026274c0H,SHKPAL
 SPARKL14:
-	.word   38,22
-	.long   0424bf0H
-	.word   -13,-38,06000H
-	.long   SHKPAL
+	.word   40,22,-13,-38
+	.long   026292c0H,SHKPAL
 SPARKL15:
-	.word   38,20
-	.long   0425f90H
-	.word   -13,-40,06000H
-	.long   SHKPAL
+	.word   40,20,-13,-40
+	.long   0262ae40H,SHKPAL
 SPARKL16:
-	.word   38,18
-	.long   0427160H
-	.word   -13,-42,06000H
-	.long   SHKPAL
+	.word   40,18,-13,-42
+	.long   0262c740H,SHKPAL
 SPARKL17:
-	.word   38,16
-	.long   0428170H
-	.word   -13,-44,06000H
-	.long   SHKPAL
+	.word   40,16,-13,-44
+	.long   0262ddc0H,SHKPAL
 SPARKL18:
-	.word   21,14
-	.long   0428fb0H
-	.word   -30,-46,06000H
-	.long   SHKPAL
+	.word   24,14,-30,-46
+	.long   0262f1c0H,SHKPAL
 SPARKL19:
-	.word   21,12
-	.long   04296a0H
-	.word   -30,-48,06000H
-	.long   SHKPAL
+	.word   24,12,-30,-48
+	.long   0262fc40H,SHKPAL
 SPARKL20:
-	.word   15,10
-	.long   0429c90H
-	.word   -35,-50,06000H
-	.long   SHKPAL
+	.word   16,10,-35,-50
+	.long   02630540H,SHKPAL
 WISP1:
-	.word   20,12
-	.long   042a020H
-	.word   11,-38,06000H
-	.long   CHAIRP
+	.word   20,12,11,-38
+	.long   02630a40H,CHAIRP
 WISP2:
-	.word   17,14
-	.long   042a5c0H
-	.word   11,-35,06000H
-	.long   CHAIRP
+	.word   20,14,11,-35
+	.long   026311c0H,CHAIRP
 WISP3:
-	.word   15,19
-	.long   042ab60H
-	.word   11,-29,06000H
-	.long   CHAIRP
+	.word   16,19,11,-29
+	.long   02631a80H,CHAIRP
 WISP4:
-	.word   14,24
-	.long   042b210H
-	.word   12,-24,06000H
-	.long   CHAIRP
+	.word   16,24,12,-24
+	.long   02632400H,CHAIRP
 WISP5:
-	.word   13,27
-	.long   042b9f0H
-	.word   12,-22,06000H
-	.long   CHAIRP
+	.word   16,27,12,-22
+	.long   02633000H,CHAIRP
 WISP6:
-	.word   16,30
-	.long   042c230H
-	.word   13,-17,06000H
-	.long   CHAIRP
+	.word   16,30,13,-17
+	.long   02633d80H,CHAIRP
 WISP7:
-	.word   16,39
-	.long   042cd70H
-	.word   12,-6,06000H
-	.long   CHAIRP
+	.word   16,39,12,-6
+	.long   02634c80H,CHAIRP
 WISP8:
-	.word   15,41
-	.long   042dc10H
-	.word   12,1,06000H
-	.long   CHAIRP
+	.word   16,41,12,1
+	.long   02636000H,CHAIRP
 WISP9:
-	.word   15,41
-	.long   042ea80H
-	.word   11,4,06000H
-	.long   CHAIRP
+	.word   16,41,11,4
+	.long   02637480H,CHAIRP
 WISP10:
-	.word   18,41
-	.long   042f8f0H
-	.word   14,5,06000H
-	.long   CHAIRP
+	.word   20,41,14,5
+	.long   02638900H,CHAIRP
 WISP11:
-	.word   17,37
-	.long   0430a40H
-	.word   15,5,06000H
-	.long   CHAIRP
+	.word   20,37,15,5
+	.long   0263a2a0H,CHAIRP
 WISP12:
-	.word   17,28
-	.long   0431900H
-	.word   16,5,06000H
-	.long   CHAIRP
+	.word   20,28,16,5
+	.long   0263b9c0H,CHAIRP
 WISP13:
-	.word   16,15
-	.long   0432430H
-	.word   14,4,06000H
-	.long   CHAIRP
+	.word   16,15,14,4
+	.long   0263cb40H,CHAIRP
 WISP14:
-	.word   13,12
-	.long   04329d0H
-	.word   14,3,06000H
-	.long   CHAIRP
+	.word   16,12,14,3
+	.long   0263d2c0H,CHAIRP
 WISP15:
-	.word   11,9
-	.long   0432d80H
-	.word   12,1,06000H
-	.long   CHAIRP
+	.word   12,9,12,1
+	.long   0263d8c0H,CHAIRP
 GGWTTS:
-	.word   27,129
-	.long   0432fe0H
-	.word   0,0,06000H
-	.long   MTRP
+	.word   28,129,0,0
+	.long   0263dc20H,MTRP
 STRNGTHMTR:
-	.word   12,199
-	.long   0438190H
-	.word   0,0,06000H
-	.long   MTRP
+	.word   12,199,0,0
+	.long   02644d00H,MTRP
 SM2:
-	.word   63,19
-	.long   043b990H
-	.word   0,0,06000H
-	.long   MTRP
+	.word   64,19,0,0
+	.long   026497a0H,MTRP
 SMARRW2:
-	.word   18,18
-	.long   043d5a0H
-	.word   0,0,06000H
-	.long   MTRP
+	.word   20,18,0,0
+	.long   0264bda0H,MTRP
 GGSWRD:
-	.word   54,7
-	.long   043dd40H
-	.word   0,0,06000H
-	.long   MTRP
+	.word   56,7,0,0
+	.long   0264c8e0H,MTRP
 AKTORSO1:
-	.word   68,69
-	.long   043e620H
-	.word   68,-40,06000H
-	.long   BOOBP
+	.word   68,69,68,-40
+	.long   0264d520H,BOOBP
 AKTORSO2:
-	.word   68,77
-	.long   0445420H
-	.word   68,-32,06000H
-	.long   BOOBP
+	.word   68,77,68,-32
+	.long   026567c0H,BOOBP
 AKTORSO3:
-	.word   68,81
-	.long   044cee0H
-	.word   68,-28,06000H
-	.long   BOOBP
+	.word   68,81,68,-28
+	.long   02660b60H,BOOBP
 AKTORSO4:
-	.word   68,66
-	.long   0455000H
-	.word   68,-43,06000H
-	.long   BOOBP
+	.word   68,66,68,-43
+	.long   0266b780H,BOOBP
 AKHED1:
-	.word   33,45
-	.long   045b930H
-	.word   16,-2,06000H
-	.long   BOOBP
+	.word   36,45,16,-2
+	.long   026743c0H,BOOBP
 AKHED2:
-	.word   33,45
-	.long   045dc00H
-	.word   16,-2,06000H
-	.long   BOOBP
+	.word   36,45,16,-2
+	.long   02677660H,BOOBP
 AKHED3:
-	.word   33,45
-	.long   045fed0H
-	.word   16,-2,06000H
-	.long   BOOBP
+	.word   36,45,16,-2
+	.long   0267a900H,BOOBP
 AKHED4:
-	.word   33,45
-	.long   04621a0H
-	.word   16,-2,06000H
-	.long   BOOBP
+	.word   36,45,16,-2
+	.long   0267dba0H,BOOBP
 AKHED5:
-	.word   33,46
-	.long   0464470H
-	.word   16,-2,06000H
-	.long   BOOBP
+	.word   36,46,16,-2
+	.long   02680e40H,BOOBP
 AKHED6:
-	.word   33,46
-	.long   0466810H
-	.word   16,-2,06000H
-	.long   BOOBP
+	.word   36,46,16,-2
+	.long   02684200H,BOOBP
 AKHED7:
-	.word   33,46
-	.long   0468bb0H
-	.word   16,-2,06000H
-	.long   BOOBP
+	.word   36,46,16,-2
+	.long   026875c0H,BOOBP
 AKHED8:
-	.word   33,46
-	.long   046af50H
-	.word   16,-2,06000H
-	.long   BOOBP
+	.word   36,46,16,-2
+	.long   0268a980H,BOOBP
 AKHED9:
-	.word   33,49
-	.long   046d2f0H
-	.word   16,-2,06000H
-	.long   BOOBP
+	.word   36,49,16,-2
+	.long   0268dd40H,BOOBP
 AKHED10:
-	.word   33,53
-	.long   046f8e0H
-	.word   16,-1,06000H
-	.long   BOOBP
+	.word   36,53,16,-1
+	.long   02691460H,BOOBP
 BIGEYES1:
-	.word   33,46
-	.long   04721e0H
-	.word   16,-2,06000H
-	.long   BOOBP
+	.word   36,46,16,-2
+	.long   02695000H,BOOBP
 BIGEYES2:
-	.word   33,46
-	.long   0474580H
-	.word   16,-2,06000H
-	.long   BOOBP
+	.word   36,46,16,-2
+	.long   026983c0H,BOOBP
 BIGEYES3:
-	.word   33,46
-	.long   0474580H
-	.word   16,-2,06000H
-	.long   BOOBP
+	.word   36,46,16,-2
+	.long   0269b780H,BOOBP
 BIGEYES4:
-	.word   33,46
-	.long   0476920H
-	.word   16,-2,06000H
-	.long   BOOBP
+	.word   36,46,16,-2
+	.long   0269eb40H,BOOBP
 BIGEYES5:
-	.word   33,46
-	.long   0474580H
-	.word   16,-2,06000H
-	.long   BOOBP
+	.word   36,46,16,-2
+	.long   026a1f00H,BOOBP
 BIGEYES6:
-	.word   33,46
-	.long   0478cc0H
-	.word   16,-2,06000H
-	.long   BOOBP
+	.word   36,46,16,-2
+	.long   026a52c0H,BOOBP
 BIGEYES7:
-	.word   33,46
-	.long   0476920H
-	.word   16,-2,06000H
-	.long   BOOBP
+	.word   36,46,16,-2
+	.long   026a8680H,BOOBP
 BIGEYES8:
-	.word   33,46
-	.long   0474580H
-	.word   16,-2,06000H
-	.long   BOOBP
+	.word   36,46,16,-2
+	.long   026aba40H,BOOBP
 BIGEYES9:
-	.word   33,46
-	.long   0474580H
-	.word   16,-2,06000H
-	.long   BOOBP
+	.word   36,46,16,-2
+	.long   026aee00H,BOOBP
 BIGEYES10:
-	.word   33,46
-	.long   047b060H
-	.word   16,-2,06000H
-	.long   BOOBP
+	.word   36,46,16,-2
+	.long   026b21c0H,BOOBP
 AKLEG1:
-	.word   67,42
-	.long   047d400H
-	.word   67,-99,06000H
-	.long   BOOBP
+	.word   68,42,67,-99
+	.long   026b5580H,BOOBP
 AKLEG2:
-	.word   48,70
-	.long   0481600H
-	.word   65,-141,06000H
-	.long   BOOBP
+	.word   48,70,65,-141
+	.long   026baec0H,BOOBP
 	.TEXT
 

@@ -1,8 +1,8 @@
 /*	CARN linker command file			       		*/
 -e INIT_PROG			/* entry point of program		*/
 -f 0xFFFF			/* fill unspecified memory with value	*/
--o d:CARN.out			/* specify output file			*/
--m d:CARN.map			/* map file				*/
+-o CARN.out			/* specify output file			*/
+-m CARN.map			/* map file				*/
 -s				/* Kill the symbol table		*/
 NDSP1.OBJ		/*IMAGE HANDLER*/
 RAM.OBJ			/*RAM ALLOCATIONS*/

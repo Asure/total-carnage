@@ -49,7 +49,7 @@
 	.ref	TAUNTOUT,NO_START,SHK_ON,ICONS_DN,ESCAPED
 	.ref	SCRLUP,SCORE_FLAG,INIT_SCORE,BONE
 	.ref	PLYRS_CNTR,JOY_UPDATE,P1CTRL,P2CTRL
-	.ref	STATUS,DRAW_PLYR_TORSO,DMA_SCORE,ZONE_TXT2
+	.ref	STATUS2,DRAW_PLYR_TORSO,DMA_SCORE,ZONE_TXT2
 	.ref	FIXGUNS,SETDET,COLLISIONS
 	.ref	AFTR_WRP,LSHIT
 	.ref	GAMEOVER,vidhwfx_flyin
@@ -592,7 +592,7 @@ abl2000	SLEEPK	10
 
 	callr	fountains_strtani
 
-	move	@STATUS,a6		;>Start plyrs
+	move	@STATUS2,a6		;>Start plyrs
 	move	a2,@AFTR_WRP
 	btst	0,a6
 	jrz	abl2400
@@ -1836,7 +1836,7 @@ aml550	movk	4,a0
 
 amlslp
 	movi	55,a0
-	move	@STATUS,a1
+	move	@STATUS2,a1
 	subk	3,a1
 	jreq	aml700				;2 plyrs?
 	addk	20,a0				;Easier
@@ -2055,7 +2055,7 @@ abs50	SLEEPK	3
 	dsj	a10,abs50
 	movi	40,a0
 	callr	rndrng0
-	move	@STATUS,a1
+	move	@STATUS2,a1
 	subk	3,a1
 	jreq	abs300				;2 plyrs?
 	addi	60,a0				;Easier
@@ -3009,7 +3009,7 @@ afw700	movk	25,a11				;>Tongue
 afwslp	movi	60*6,a0
 	callr	rndrng0
 	addk	30,a0
-	move	@STATUS,a1
+	move	@STATUS2,a1
 	subk	3,a1
 	jreq	afw900				;2 plyrs?
 	addi	60,a0				;Easier
@@ -3300,7 +3300,7 @@ awtlp2	CREATE	BOSSPID,ab_wtubeshot
 	movi	180,a0
 	callr	rndrng0
 	addi	60,a0
-	move	@STATUS,a1
+	move	@STATUS2,a1
 	subk	3,a1
 	jreq	awt50			;2 plyrs?
 	addi	120,a0			;Easier

@@ -1,78 +1,57 @@
 	.DATA
 WTIMER0:
-	.word   5,7
-	.long   0540890H
-	.word   0,0,06000H
-	.long   WARPP
+	.word   8,7,0,0
+	.long   027be7e0H,WARPP
 SHLD1:
-	.word   34,33
-	.long   0540970H
-	.word   17,16,06000H
-	.long   WARPP
+	.word   36,33,17,16
+	.long   027be9a0H,WARPP
 SHLD2:
-	.word   36,33
-	.long   05423c0H
-	.word   18,16,06000H
-	.long   WARPP
+	.word   36,33,18,16
+	.long   027c0ec0H,WARPP
 WTIMER2:
-	.word   5,7
-	.long   0543fa0H
-	.word   0,0,06000H
+	.word   8,7,0,0
+	.long   027c33e0H
 WTIMER3:
-	.word   5,7
-	.long   0543fa0H
-	.word   0,0,06000H
+	.word   8,7,0,0
+	.long   027c35a0H
 WTIMER4:
-	.word   5,7
-	.long   0544080H
-	.word   0,0,06000H
+	.word   8,7,0,0
+	.long   027c3760H
 WTIMER5:
-	.word   5,7
-	.long   0543fa0H
-	.word   0,0,06000H
+	.word   8,7,0,0
+	.long   027c3920H
 WTIMER6:
-	.word   5,7
-	.long   0544160H
-	.word   0,0,06000H
+	.word   8,7,0,0
+	.long   027c3ae0H
 WTIMER7:
-	.word   5,7
-	.long   0544240H
-	.word   0,0,06000H
+	.word   8,7,0,0
+	.long   027c3ca0H
 WTIMER8:
-	.word   5,7
-	.long   0544320H
-	.word   0,0,06000H
+	.word   8,7,0,0
+	.long   027c3e60H
 WTIMER9:
-	.word   5,7
-	.long   0544160H
-	.word   0,0,06000H
+	.word   8,7,0,0
+	.long   027c4020H
 SPIN2:
-	.word   31,28
-	.long   0544400H
-	.word   0,0,06000H
+	.word   32,28,0,0
+	.long   027c41e0H
 SPIN3:
-	.word   31,28
-	.long   0545860H
-	.word   0,0,06000H
+	.word   32,28,0,0
+	.long   027c5de0H
 SPIN4:
-	.word   31,28
-	.long   0546cc0H
-	.word   0,0,06000H
+	.word   32,28,0,0
+	.long   027c79e0H
 SPIN5:
-	.word   31,28
-	.long   0548120H
-	.word   0,0,06000H
+	.word   32,28,0,0
+	.long   027c95e0H
 SPIN6:
-	.word   31,28
-	.long   0549580H
-	.word   0,0,06000H
+	.word   32,28,0,0
+	.long   027cb1e0H
 SPIN7:
-	.word   31,28
-	.long   054a9e0H
-	.word   0,0,06000H
+	.word   32,28,0,0
+	.long   027ccde0H
 SPIN8:
-	.word   31,28
-	.long   054be40H
-	.word   0,0,06000H
+	.word   32,28,0,0
+	.long   027ce9e0H
 	.TEXT
 

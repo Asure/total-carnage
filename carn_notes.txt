@@ -1,0 +1,39 @@
+STATUS ref/def (again, why?)
+
+Macros in ASM file to new format i.e:
+
+.macro
+.if
+.endm
+
+shawn.hdr mostly from NBA Jam, that code works with gspa 6.10 otherwise it was a mess.
+
+HSTD Macros replaced with versions from NBA Jam (again) to work with gspa 6.10
+
+This one starts at FFC00000 so sys.inc and linker CMD are ok.
+
+Lots of corrupt tables/sprites.
+
+ARPRT9 2797e80h vs 
+ARPRT9 27c80e0h
+diff 30260
+
+
+Backup entry - 0x0213AFC0
+New file entry - 0x0213A940
+
+Difference 680H
+Current 027d7200H PITDR1
+
+Current starting point for FINGRNT is 0x0213CA40
+
+Therefore, add the difference on to create the new starting point:
+
+0x0213CA40+0x680 = 0x0213D0C0
+
+Boon2b
+org 2CAA0E0
+new 2CAFBE0
+5B00
+
+FONT8A 02cabb20H

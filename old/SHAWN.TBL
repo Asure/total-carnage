@@ -1,0 +1,174 @@
+	.DATA
+SLEG1:
+	.word   36,41,8,35
+	.long   021f00a0H,SPYDERP1
+SCHUNK1:
+	.word   20,19,9,9
+	.long   021f2ec0H,SPYDERP1
+SEGG1:
+	.word   20,19,10,9
+	.long   021f3aa0H,SPYDERP1
+SPYDERA1:
+	.word   64,58,31,7
+	.long   021f4680H,SPYDERP1
+SPYDEREGG:
+	.word   16,16,7,-21
+	.long   021fba80H,SPYDERP1
+SPYDEREGG1:
+	.word   16,19,9,-21
+	.long   021fc280H,SPYDERP1
+SPYDEREGG1A:
+	.word   16,9,9,-31
+	.long   021fcc00H,SPYDERP1
+SPYDERB1:
+	.word   20,14,9,-23
+	.long   021fd080H,SPYDERP1
+ARACSHAD:
+	.word   12,11,6,-26
+	.long   021fd940H,SPYDERP1
+SLEG2:
+	.word   52,27,26,24
+	.long   021fdd60H
+SLEG3:
+	.word   36,26,27,23
+	.long   02200940H
+SLEG4:
+	.word   20,30,17,13
+	.long   02202680H
+SLEG5:
+	.word   20,17,16,1
+	.long   02203940H
+SLEG6:
+	.word   20,15,13,1
+	.long   022043e0H
+SLEG7:
+	.word   16,9,5,0
+	.long   02204d40H
+SCHUNK2:
+	.word   20,19,8,9
+	.long   022051c0H
+SCHUNK3:
+	.word   16,16,6,8
+	.long   02205da0H
+SCHUNK4:
+	.word   16,14,6,7
+	.long   022065a0H
+SCHUNK5:
+	.word   16,8,7,4
+	.long   02206ca0H
+SCHUNK6:
+	.word   8,5,3,2
+	.long   022070a0H
+SEGG2:
+	.word   20,18,8,8
+	.long   022071e0H
+SEGG3:
+	.word   16,14,7,6
+	.long   02207d20H
+SEGG4:
+	.word   16,14,6,7
+	.long   02208420H
+SEGG5:
+	.word   12,8,4,4
+	.long   02208b20H
+SEGG6:
+	.word   8,5,3,2
+	.long   02208e20H
+SPYDERA2:
+	.word   64,66,31,7
+	.long   02208f60H
+SPYDERA3:
+	.word   60,64,32,7
+	.long   02211360H
+SPYDERA4:
+	.word   60,66,31,7
+	.long   02218b60H
+SPYDERA5:
+	.word   60,66,28,7
+	.long   02220720H
+SPYDERA6:
+	.word   60,66,27,7
+	.long   02220720H
+SPYDEREGG2:
+	.word   16,18,8,-19
+	.long   022282e0H
+SPYDEREGG3:
+	.word   16,12,9,-25
+	.long   02228be0H
+SPYDERB2:
+	.word   20,14,9,-23
+	.long   022291e0H
+SPYDERB3:
+	.word   12,14,6,-20
+	.long   02229aa0H
+HATCH1:
+	.word   16,19,9,-21
+	.long   02229fe0H
+HATCH2:
+	.word   16,20,9,-20
+	.long   0222a960H
+HATCH3:
+	.word   24,22,13,-18
+	.long   0222b360H
+HATCH4:
+	.word   20,19,9,-20
+	.long   0222c3e0H
+SDEATH1:
+	.word   20,14,10,-23
+	.long   0222cfc0H
+SDEATH2:
+	.word   20,14,10,-23
+	.long   0222d880H
+SDEATH3:
+	.word   20,15,10,-22
+	.long   0222e140H
+SDEATH4:
+	.word   24,21,15,-19
+	.long   0222eaa0H
+SDEATH5:
+	.word   32,27,17,-15
+	.long   0222fa60H
+SDEATH6:
+	.word   36,33,19,-11
+	.long   02231560H
+NEUTRON:
+	.word   40,45,17,17
+	.long   02233a80H,NEUTRONP
+NEUTRONB:
+	.word   36,39,14,11
+	.long   022372c0H,NEUTRONP
+NEUTSHAD:
+	.word   32,27,12,-4
+	.long   02239ea0H,NEUTRONP
+SMNEUT:
+	.word   28,33,11,7
+	.long   0223b9a0H,NEUTRONP
+SMNEUTB:
+	.word   24,26,9,3
+	.long   0223d680H,NEUTRONP
+SMNEUTSHAD:
+	.word   20,19,6,-6
+	.long   0223ea00H,NEUTRONP
+EGGBON:
+	.word   36,18,19,-20
+	.long   0223f5e0H,PPLP
+DISARM:
+	.word   56,8,28,-6
+	.long   02240a20H,PPLP
+BINGO:
+	.word   32,8,7,-7
+	.long   02241820H,PPLP
+WINNER:
+	.word   88,36,70,21
+	.long   02242020H,PPLP
+WVBONUS:
+	.word   36,8,19,4
+	.long   02248320H,PPLP
+DUD:
+	.word   20,8,2,-7
+	.long   02248c20H,PPLP
+LOSER:
+	.word   36,8,18,4
+	.long   02249120H,PPLP
+	.TEXT
+

@@ -1005,15 +1005,20 @@ GO_PATTERNS
 	WORD	AUD_COLOR	,5	;Color for this line
 	LABEL	AUD_T_SIZE	,6	;Size of structure
 
-AMAC	$macro	mess,rout,audit,color
+AMAC	.macro	mess,rout,audit,color
 	.long	:mess:,:rout:
 	.word	:audit:,:color:
-	$endm
+	.endm
 
-TXTLINE	$macro	s
-	.byte	:s:,0
+;TXTLINE	.macro	s
+;	.byte	:s:,0
+;	.even
+;	.endm
+
+TXTLINE	.macro	s
+	.byte	":s:",0
 	.even
-	$endm
+	.endm
 
 
 AUD_LM		EQU	TIT_ULX		;SQUARE OFF AUDITS W/ HEADER.

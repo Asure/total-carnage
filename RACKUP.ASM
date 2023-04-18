@@ -1,11 +1,13 @@
 **************************************************************
 *
-* INITIATED:		 JUNE 6,1991
-* MODIFIED:		 !
-* SOFTWARE:		 SHAWN LIPTAK
+* Software:		Shawn Liptak
+* Initiated:		June 6,1991
+*
+* Modified:		!
 *
 * COPYRIGHT (C) 1991 WILLIAMS ELECTRONICS GAMES, INC.
 *
+*.Last mod - 1/7/92 14:02
 **************************************************************
       	.FILE	"RACKUP.ASM"
 	.TITLE	"TOTAL CARNAGE GAME PROGRAM"
@@ -13,93 +15,208 @@
 	.OPTION	B,D,L,T
 	.MNOLIST
 
-	.include	"mproc.equ"		;mproc equates
-	.include	"disp.equ"		;Display proc. equates
-	.include	"sys.inc"	;Z unit system equates
+	.include	"mproc.equ"
+	.include	"disp.equ"
+	.include	"sys.inc"
 	.include	"game.equ"
 	.include	"imgtbl.glo"
+	.include	"audit.equ"
 	.include	"shawn.hdr"		;My macros
+	.include	"rackup.tbl"
 
 
 
 ;sound headers used
 
+	.ref	GLSEXP,NOWAY,SETDWN,TUNE3,TUNE2,STATSND
+
+CVSDOFF .word	0F0F0H,10,0807DH,0		;SPEECH OFF
+TUNE4	.word	0f3feH,10,08007H,0		;Rackup tune
+racksup	.word	0f280H,1,080b3H,0			;Rackup bonus sweep up
+rackoff	.word	0fa81H,1,080a7H,0			;Rackup bonus off
+kilfgnd	.word	0f000H,1,0807fH,0			;Kill foregnd snds
+rackp1p	.word	0fa80H,1,080b4H,0			;Rackup P1 gets 1000 pts
+rackp2p	.word	0fa80H,1,080b5H,0			;^ P2
+stats1	.word	0f280H,1,08100H,0			;Rackup stat line snd
+stats2	.word	0f280H,1,08101H,0			;^
+stats3	.word	0f280H,1,08102H,0			;^
+stats4	.word	0f280H,1,08103H,0			;^
+stats5	.word	0f280H,1,08104H,0			;^
+stats6	.word	0f280H,1,08105H,0			;^
+stats7	.word	0f280H,1,08106H,0			;^
+stats8	.word	0f280H,1,08107H,0			;^
+stats9	.word	0f280H,1,08108H,0			;^
+stats10	.word	0f280H,1,08109H,0			;^
+stats11	.word	0f280H,1,0810aH,0			;^
+stats12	.word	0f280H,1,0810bH,0			;^
+txtssnd	.word	0f3f7H,8,080b1H,0			;Text shrink
+shout	.word	0f1a0H,60,080feH,0		;Rackup victory shout
+rackgun	.word	0fca0H,4,08030H,0			;Player shoots gun
+gigle1	.word	0f9a0H,60,080f3H,0		;Rackup winner laughs
+ahkb1	.word	0f9a0H,10,080ebH,0		;Akhboob speech
+ahkb2	.word	0f9a0H,10,080ecH,0		;^
+ahkb3	.word	0f9a0H,10,080edH,0		;^
+ahkbsta	.word	0f9a0H,10,080eeH,0		;^ start angry
+ahkbang	.word	0f9a0H,10,080efH,0		;^ angry
+DOLLAR	.WORD	0F9F7H,050H,0814EH,0		;BUY 4 DOLLAR
+;CITIZEN	.WORD	0F9F7H,050H,08155H,0		;PEACEFUL CITIZEN
+yousuck	.word	0f9a0H,10,080c5H,0		;You suck at this game!
+fisthit	.word	0fca0H,10,0803cH,0		;Ahkboob hits desk
+ermtune	.word	0f3f0H,10,08004H,0		;Electrocution tune
+fshock	.word	0f540H,20,080bbH,0		;Electric chair shocks
+fburn	.word	0f048H,30,080d7H,0		;^ burn
+fpain1	.word	0f965H,20,080f6H,0		;Player in pain
+fpain2	.word	0f160H,20,080f7H,0		;^
+fpain3	.word	0f160H,20,080fdH,0		;^
+fskullb	.word	0f460H,20,08040H,0		;Skull bounce
+fryexp	.word	0fc50H,6,0803eH,0			;Fry explosion
+fryexp2	.word	0fd50H,8,080d9H,0			;^
+totcarn	.word	0f980H,30,080cfH,0		;Total carnage!
+gluck	.word	0f1f7H,040H,080e5H,0		;"Good luck"
+;TURMELL
+TXTSND1	.WORD	0F3F7H,08H,080AEH,0
+
+
 ;symbols externally defined
 
-	.ref	JM1,COLTAB,CYCLE_TABLE,STATIC_COVER,PLYRPRCS,INTRO
-	.ref	RACKBMOD,RANDOM,GPALOBJ,PALSET,FINDPAL,PCNT
-	.ref	IRQSKYE,ERASE_TXT,HEXTOASC,FRANIM,HSTGLST
+	.ref	anim_script,anim_kilslp,animscnt,anim_killall,anim_wait
+	.ref	COLTAB,CYCLE_TABLE,STATIC_COVER,PLYRPRCS,INTRO,AIRSCRM
+	.ref	RACKBMOD,RANDOM,GPALOBJ,PALSET,FINDPAL,GETFPAL,PCNT,WAVE
+	.ref	IRQSKYE,ERASE_TXT,HEXTOASC,FRANIM,HSTGLST,HALT,PLYROBJS
 	.ref	CRMP,BCDBIN,BINBCD
-	.ref	WSPEED,STRT_S,STATUS2
+	.ref	WSPEED,STRT_S,STATUS2,STOPPLYR
 	.ref	COLCYC,BGND_UD1,BAKMODS,WNDWON,WNDWOFF,NO_START,WRLD
-	.ref	STRCNRMO,STRCNRMO_1,STRCNRM,RD15FONT,RD7FONT,RD8FONT
-	.ref	P1DATA,P2DATA
+	.ref	KILBGND
+	.ref	STRCNRMO,STRCNRMO_1,STRCNRM,LOWZ
+	.ref	RD15FONT,RD7FONT,RD8FONT
+
+	.ref	P1DATA,P2DATA,HSTGS_LOST
+
+	.IF	DEBUG
 	.ref	SLDEBUG
+	.ENDIF
+
+	.ref	timerp1,timerp2
+	.ref	PCOUNT,TAUNTOUT
+	.ref	RNDRNG,RNDRNG0
+	.ref	ELECRM1BMOD,CHAIR2BMOD
+	.ref	BLUEEXP,FIREEXP,XBOOM2,BOOM3
+	.ref	FRANIMQ
+	.ref	TNT_TYPE,SHAKER
+	.ref	STRT_CRM,CYCSPECT
+	.ref	NOCAN2,START,YESPWRD
+	.ref	GET_ADJ,aud_addnumplyrs,AUD
+	.ref	DELAYALL,DELOFFBOTL,ZERO_BITS
 
 ;symbols defined in this file
 
+	.def	frypbg_t,DEATHS
 
 ;uninitialized ram definitions
 
-	.bss	PALTMP		,16*16*2 ;Allocate 2 x color area in ram
+	.bss	cycmem		,5*16*2	;Allocate 2 x color area in ram
 	.bss	statspal	,31*16 	;Statistics palette
-	.bss	animdeath1	,16    	;CntDn for anim procs to die
-	.bss	animdeath2	,16    	;^
-	.bss	scoredie	,16	;!0=Score process dies
+	.bss	boanimdeath1	,16    	;CntDn for bonus anim procs to die
+	.bss	boanimdeath2	,16    	;^
+	.bss	scoredie	,16	;00H=Score processes die
 	.bss	hitpercent1	,16	;Player1 %
 	.bss	hitpercent2	,16	;Player2 %
 	.bss	hitsmin1	,16	;Player1 hits per minute
 	.bss	hitsmin2	,16	;Player2 ^
+	.bss	score1old	,32	;P1 score before bonuses
+	.bss	score2old	,32	;P2 ^
+
+	.bss	bonusstat	,16	;Status of bonus
+
+	.bss	fryp1palmem	,65*16	;P1 mem for pallette pulse
+	.bss	fryp2palmem	,65*16	;P2 ^
+
+	.bss	DEATHS		,16	;DEATH STATUS 0,1,2, OR 3 WHEN DONE
 
 	.text
 
 
+********************************
+* Do dictator taunt 1
+
+ SUBR	DO_MAN
+
+	SLEEPK	10
+	clr	a11			;1st taunt
+	jruc	dictt
+
+
+********************************
+* Print incoming trans text
+
+ SUBR	INCOM_TRAN		;A1=Rackup # (0-2)
+       	PUSH	a1
+	move	a1,a2
+	movi	incom_st,a0 		;*Text
+	subk	1,a2
+	jrlt	it20			;0?
+	jreq	it10			;1?
+	movi	[0,0fcbdH],a1		;Fix X for purple guy eating
+	jruc	it20
+it10	movi	[0,-40],a1		;Fix X
+it20	clr	a2
+	move	a2,@WRLD		;Do world adj
+	callr	prt_xy
+
+	PULL	A1
+	move	a1,a2
+	movi	incom_st2,a0 		;*Text
+	subk	1,a2
+	jrlt	Mit20			;0?
+	jreq	Mit10			;1?
+	movi	[0,0fcbdH],a1		;Fix X for purple guy eating
+	jruc	Mit20
+Mit10	movi	[0,-40],a1		;Fix X
+Mit20	clr	a2
+	move	a2,@WRLD		;Do world adj
+	callr	prt_xy
+	RETS
+
+incom_st
+	XYTXT	PRTF15,652,55,1,"INCOMING TRANSMISSION"
+	.word	-1
+;TURMELL
+incom_st2
+	XYTXT	0,652,45,1,"UNITED NATIONS"
+	.word	-1
+
+
+********************************
+* Rack it up!
+
  SUBR	DO_RACKUP
 
-	move	@SLDEBUG,a0
-	btst	0,a0
-	jrnz	skiprc
-	CREATE	0,rackcaller		;DEBUG
-skiprc
-	movk	5,a0			;speed of window
-	move	a0,@WSPEED
-	JSRP	WNDWON			;grow window
+	calla	STOPOBJS		;Keep all objs still
 
-	movk	1,a0			;delay start of a second plyr flag
+	movk	1,a0			;Delay start of a 2nd plyr flag
 	move	a0,@NO_START
-
-	movi	6*32*32+4*32+4,a0	;Bkgnd color
+	move	a0,@INTRO
+	clr	a0
 	move	a0,@IRQSKYE
 
-;This will turn on general and chick.  they will animate until all
-;intrpid processes are killed
+	movi	TUNE4,a0
+	calla	ONESND
 
-	movi	rackupbg_t,a0		;Show home base view screen
-	move	a0,@BAKMODS,L
-	calla	BGND_UD1
-	calla	STRT_S			;Static color cycle
-	movi	CRMP,A8 		;Pal name
-	movi	PALTMP,A9		;Ram area
-	movi	[58,64],A10		;Begin/end color #
-	movk	4,a11			;Rate in ticks
-	CREATE	CYCPID,COLCYC		;Color cycler on
+	SLEEP	96
 
+ 	move	@PLYROBJS,a9,L
+	jrz	rp10
+	calla	STOPPLYR
+rp10	move	@PLYROBJS+32,a9,L
+	jrz	rp12
+	calla	STOPPLYR
+rp12
 	clr	a0
-	move	a0,@WRLD		;Do world adj
-
-
-	movi	incom_st,a0 		;*Text
-	callr	print_xy
-
-	JSRP	WNDWOFF
-
-	SLEEP	80
-	calla	ERASE_TXT
-
+	move	a0,@HALT
 					;>Make tiles
-	movi	8*4,a1			;# Panels
-	movi	-4*>25800+>12c00,a2	;Velocity
-	movi	10,a3
+	movk	8*4,a1			;# Panels
+	movi	-4*025800H+012c00H,a2	;Velocity
+	movk	10,a3
 	movi	200,a5
 rp20	movi	panel_t,a14
 	calla	GPALOBJ			;Get palette & obj
@@ -112,65 +229,52 @@ rp20	movi	panel_t,a14
 	and	a1,a4
 	subk	1,a4
 	jrne	rp30
-	addi	>25800,a2
-	movi	10,a3
+	addi	025800H,a2
+	movk	10,a3
 	movk	1,a4
 	xor	a4,a5			;Toggle 0 Bit
 rp30	calla	ADJSTWTL		;Adjust into world
 	calla	INSOBJ			;Insert obj
 	dsj	a1,rp20
 
-	SLEEP	20
+	SLEEPK	20
 
 	calla	STOPOBJS		;Stop tiles
 
-	move	@P1DATA+PSCORE,a0,L	;Scores to binary
-	calla	BCDBIN
-	move	a0,@P1DATA+PSCORE,L
-	move	@P2DATA+PSCORE,a0,L
-	calla	BCDBIN
-	move	a0,@P2DATA+PSCORE,L
+	callr	scores_bcdbin
 
-;	move	@PLYRPRCS,a0,L			;transfer tshots from
-;	move	*a0(TSHOTS),a0			;plyr procs into
-;	move	a0,@P1DATA+TOTSHOTS		;p1 and p2 data area
-;	move	@PLYRPRCS+32,A0,L		;for rackup screen
-;	move	*a0(TSHOTS),A0
-;	move	a0,@P2DATA+TOTSHOTS
-
-	move	@P1DATA+THITS,a1
+	move	@P1DATA+THITS,a1	;0CaHlc P1 % & hitsmin
+	move	a1,a3
 	movi	100,a0
 	mpyu	a0,a1
 	move	@P1DATA+TSHOTS,a2
 	divu	a2,a1
 	move	a1,@hitpercent1
 
-	move	@P2DATA+THITS,a1
+	movi	60,a0
+	mpyu	a0,a3
+	move	@timerp1,a2
+	divu	a2,a3
+	move	a3,@hitsmin1
+
+	move	@P2DATA+THITS,a1	;0CaHlc P2 % & hitsmin
+	move	a1,a3
 	movi	100,a0
 	mpyu	a0,a1
 	move	@P2DATA+TSHOTS,a2
 	divu	a2,a1
 	move	a1,@hitpercent2
 
-	CREATE	0,score_prt
-
-	movi	stats_st,a0 		;Print stats
-	callr	print_xy
-	move	@STATUS2,a8
-	btst	0,a8			;Player1
-	jrz	rp100
-	movi	statsp1_st,a0
-	callr	print_xy
-rp100	btst	1,a8			;Player2
-	jrz	rp110
-	movi	statsp2_st,a0
-	callr	print_xy
-rp110
+	movi	60,a0
+	mpyu	a0,a3
+	move	@timerp2,a2
+	divu	a2,a3
+	move	a3,@hitsmin2
 
 	movi	[2,30],a8		;Color 2, 30 colors
 	movi	SCOREPAL,a9
 	movi	COLTAB,a10		;Color table
-	movk	3,a11			;Rate of cycle
+	movk	7,a11			;Rate of cycle
 	CREATE	CYCPID,CYCLE_TABLE
 	movi	[1,1],a8
 	movi	SCOREPAL,a9
@@ -183,164 +287,82 @@ rp110
 	movk	5,a11
 	CREATE	CYCPID,CYCLE_TABLE
 
-	callr	joy_read
-	jrnz	rpsk30
-	SLEEP	60*4
-rpsk30
+	CREATE0	score_prt
+	SLEEPK	1
+	CREATE0	scorebonus_prt
+
+	JSRP	bonus_main
+
+	JSRP	player_showstats
+
+	movk	1,a0
+	move	a0,@scoredie		;Kill score processes
+	SLEEPK	8
 
 	movk	5,a11
 	JSRP	text_shrink
 
-	callr	joy_read		;DEBUG
-	jrnz	rpsk50
-
-	move	@P1DATA+THSTGS,a2
-	move	@P2DATA+THSTGS,a3
-	movi	bonush_st,a0
-	movi	hostage_l,a1
-	JSRP	bonus_showrack
-
-	move	@P1DATA+TFLAGS,a2
-	move	@P2DATA+TFLAGS,a3
-	movi	bonusf_st,a0
-	movi	flag_l,a1
-	JSRP	bonus_showrack
-
-	move	@P1DATA+CASHCNT,a2
-	move	@P2DATA+CASHCNT,a3
-	movi	bonusg_st,a0
-	movi	JM1,a1
-	JSRP	bonus_showrack
+	JSRP	player_bonuswin		;Show bonus winner!
 
 
-	SLEEP	60*1
-rpsk50
-	movk	1,a0
-	move	a0,@scoredie		;Kill it
+	movi	60*7,a0			;8
+	callr	sleep_var
 
 
-	movi	play_t,a14		;>Show heros
-rpp30	calla	GPALOBJ
-	calla	STFOBJ
-	calla	ADJSTWTL
-	calla	INSOBJ
-	move	*a14,a0
-	jrge	rpp30
-
-;	MOVE	*A1,A0,L
-;	movi	HERO2P,A0		;HERO 2 PAL
-;	CALLA	GETFPAL			;GET A COLOR MAP ASSIGNMENT
-;A8=EYES
-;	MOVE	A0,*A8(OPAL),W		;STORE THE NEW PALETTE
-
-
-
-	move	@OBJLST,a1,L		;>Tiles fly away
-rp200	move	*a1(OZPOS),a0
-	subi	200,a0
-	cmpi	1,a0
-	jrhi	rp230
-	movk	5,a2			;Vel
-	btst	0,a0
-	jrz	rp220
-	neg	a2			;-Vel
-rp220	move	a2,*a1(OYVEL+16)
-
-rp230	move	*a1,a1,L
-	jrnz	rp200
-
-
-	SLEEP	60*1
-
-	move	@OBJLST,a0,L		;>Delete tiles
-rp300	move	*a0(OZPOS),a2
-	subi	200,a2
-	cmpi	1,a2
-	jrhi	rp330
-	move	*a0,a1,L		;Get * to next obj
-	calla	DELOBJ			;Kill
-	move	a1,a0
-	jruc	rp340
-rp330	move	*a0,a0,L
-rp340	jrnz	rp300
-
-
-;Heros say stuff
-;	SLEEP	60*2
-
-
-	move	@P1DATA+PSCORE,a0,L	;Scores to BCD
-	calla	BINBCD
-	move	a0,@P1DATA+PSCORE,L
-	move	@P2DATA+PSCORE,a0,L
-	calla	BINBCD
-	move	a0,@P2DATA+PSCORE,L
-
-
-	movk	1,a11
-	CREATE	0,STATIC_COVER
-	SLEEP	25
-
-	clr	a0
-	move	a0,@IRQSKYE
-
-	movi	CLSDEAD,a0		;>Delete heros
-	movi	>ff00,a1
-	calla	KILOBJ
-
-	JSRP	dictator_taunt
+	callr	scores_binbcd
 
 	movi	CYCPID,a0
-	movi	-1,a1
-	calla	KILALL
+       	calla	KIL1C
+
+debug	movk	1,a11
+	CREATE0	STATIC_COVER
+
+	movi	TUNE3,a0		;Turn on dictator taunt music
+	calla	ONESND
+	
+	SLEEPK	25
 
 	movi	SCOREPAL,a0		;*Color
 	clr	a1			;Palette 0, Color 0
 	move	*a0+,a2			;# Colors
 	calla	PALSET
+	movi	DESRTPL,a0		;*Color
+	move	*a0,a2			;# Colors
+	calla	GETFPAL
+	srl	8,a0
+	sll	8,a0
+	move	a0,a1
+	movi	DESRTPL+16,a0		;*Color
+	calla	PALSET
 
-	clr	a0			;Enable player starts
-	move	a0,@NO_START
+	movi	2*32*32+2*32+2,a0
+	move	a0,@IRQSKYE		;Dark grey background behind dictator
 
-rackend	SLEEP	1
-	jruc	rackend
+	calla	ERASE_TXT
+	calla	anim_killall
+
+	move	@WAVE,a0
+	cmpi	33,a0
+	jrge	dictx
+
+	calla	STRT_CRM		;Start headquarters cycle
+
+	movk	1,a11			;2nd taunt
+dictt	movi	engtran_s,a8
+	movi	40,a9
+	CREATE	MADPID,prt_inrackwin
+
+	move	a11,a0
+	JSRP	dictator_taunt
+
+dictx	movk	3,a0
+	move	a0,@TAUNTOUT		;Taunt over
+	DIE
 
 
-rackupbg_t
-	.long	RACKBMOD		;this is from blimp (module name)
-	.word	2,>35e			;x,y start pos.
-	.long	>ffffffff
 
-incom_st
-	.word	PRTF15,200,55,1			;Mode,X,Y,color
-	.byte	"INCOMING DATA TRANSMISSION...",0
-	.word	-1
-
-play_t	.long	[40,0],[74,0],HERO1		;x,y,img name
-	.word	50,DMAWNZ,CLSDEAD+1		;zpos,oflags,oid
-	.long	0,0				;xvel,yvel
-	.long	[230,0],[30,0],HERO2
-	.word	50,DMAWNZ,CLSDEAD+1
-	.long	0,0
-	.long	[50,0],[60,0],HEROI1
-	.word	50,DMAWNZ,CLSDEAD+1
-	.long	0,0
-	.long	[250,0],[30,0],HEROI1
-	.word	50,DMAWNZ,CLSDEAD+1
-	.long	0,0
-	.long	[120,0],[18,0],BOON1
-	.word	50,DMAWNZ,CLSDEAD+1
-	.long	0,0
-	.long	[250,0],[18,0],BOON1
-	.word	50,DMAWNZ+M_FLIPH,CLSDEAD+1
-	.long	0,0
-	.long	[200,0],[76,0],BOON2
-	.word	50,DMAWNZ+M_FLIPH,CLSDEAD+1
-	.long	0,0
-	.word	-1				;End
-
-panel_t	.long	[174,0],[0,0],RACKBLK		;x,y,img name
-	.word	200,DMAWNZ,CLSDEAD		;zpos,oflags,oid
+panel_t	.long	[177,0],[0,0],RACKBLK		;x,y,img name
+	.word	200,DMAWNZ+M_NOCOLL,CLSDEAD	;zpos,oflags,oid
 	.long	0,0				;xvel,yvel
 
 statscolor_t
@@ -354,185 +376,81 @@ statscolor_t
 	COLORW	16,0,0
 	.word	-1
 
-PRTF15	.equ	1		;Font15
-PRTF8	.equ	2		;Font8 MultiColor
-PRTDEC	.equ	4		;Decimal
-PRTBCD	.equ	8		;BCD (Long)
-PRTL	.equ	16		;Long data
-
-PRTF15B	.equ	0
-PRTF8B	.equ	1
-PRTDECB	.equ	2
-PRTBCDB	.equ	3
-PRTLB	.equ	4
-
-stats_st
-	.word	PRTF15,200,20,1			;Mode,X,Y,color
-	.byte	"SCORE",0
-	.word	0,200,40,2
-	.byte	"SHOTS FIRED",0
-	.word	0,200,50,3
-	.byte	"ENEMY HITS",0
-	.word	0,200,60,4
-	.byte	"HIT PERCENTAGE",0
-	.word	0,200,70,5
-	.byte	"HITS PER MINUTE",0
-	.word	0,200,80,6
-	.byte	"WEAPONS PICKED UP",0
-	.word	0,200,90,7
-	.byte	"BOMBS USED",0
-	.word	0,200,100,8
-	.byte	"MISSILE STRIKES",0
-	.word	0,200,110,9
-	.byte	"BIG STUFF DESTROYED",0
-	.word	0,200,120,10
-	.byte	"EXTRA MEN EARNED",0
-	.word	0,200,130,11
-	.byte	"MINES STEPPED ON",0
-	.word	PRTF15,190,160,1
-	.byte	"STATISTICS",0
-	.word	-1			;End
-
-statsp1_st
-	.word	PRTDEC,70,40,30
-	.long	P1DATA+TSHOTS
-	.word	PRTDEC,70,50,29
-	.long	P1DATA+THITS
-	.word	PRTDEC,70,60,28
-	.long	hitpercent1
-	.word	PRTDEC,70,70,27
-	.long	hitsmin1
-	.word	PRTDEC,70,80,26
-	.long	P1DATA+TWPNS
-	.word	PRTDEC,70,90,25
-	.long	P1DATA+BMBSUSED
-	.word	PRTDEC,70,100,24
-	.long	P1DATA+TMISLS
-	.word	PRTDEC,70,110,23
-	.long	P1DATA+TBIGSTF
-	.word	PRTDEC,70,120,22
-	.long	P1DATA+TEARNED
-	.word	PRTDEC,70,130,21
-	.long	P1DATA+TEARNED
-	.word	-1
-
-statsp2_st
-	.word	PRTDEC,330,40,30
-	.long	P2DATA+TOTSHOTS
-	.word	PRTDEC,330,50,29
-	.long	P2DATA+THITS
-	.word	PRTDEC,330,60,28
-	.long	hitpercent2
-	.word	PRTDEC,330,70,27
-	.long	hitsmin2
-	.word	PRTDEC,330,80,26
-	.long	P2DATA+TWPNS
-	.word	PRTDEC,330,90,25
-	.long	P2DATA+BMBSUSED
-	.word	PRTDEC,330,100,24
-	.long	P2DATA+TMISLS
-	.word	PRTDEC,330,110,23
-	.long	P2DATA+TBIGSTF
-	.word	PRTDEC,330,120,22
-	.long	P2DATA+TEARNED
-	.word	PRTDEC,330,130,21
-	.long	P2DATA+TEARNED
-	.word	-1
-
-bonush_st
-	.word	PRTF15,198,20,1
-	.byte	"SCORE",0
-	.word	PRTF15,198,160,1
-	.byte	"HOSTAGE BONUS",0
-	.word	-1
-bonusf_st
-	.word	PRTF15,198,20,1
-	.byte	"SCORE",0
-	.word	PRTF15,198,160,1
-	.byte	"AMERICA BONUS",0
-	.word	-1
-bonusg_st
-	.word	PRTF15,198,20,1
-	.byte	"SCORE",0
-	.word	PRTF15,198,160,1
-	.byte	"GEM BONUS",0
-	.word	-1
-
-
-hostxy_t
-	.word	34,45, 64,45, 94,45, 124,45, 154,45
-	.word	49,65, 79,65, 109,65, 139,65
-	.word	34,85, 64,85, 94,85, 124,85, 154,85
-	.word	49,105, 79,105, 109,105, 139,105
-;	.word	34,125, 64,125, 94,125, 124,125, 154,125
-	.word	-1
-
-
-hostage_l
-	.long	MUG1Z
-	.word	1
-	.long	MUG1AZ
-	.word	255
-	.long	0
-
-flag_l	.long	FLG1	;USA flag list
-	.word	5
-	.long	FLG2
-	.word	5
-	.long	FLG3
-	.word	5
-	.long	FLG4
-	.word	5
-	.long	FLG5
-	.word	5
-	.long	0
-
+engtran_s
+	.byte	"ENGLISH TRANSLATION",0
+	.even
 
 
 ********************************
-* Read joysticks
+* Print XY sting set if player in game
+* Trashes A2-A6
 
- SUBRP	joy_read
-	move	@SWITCH,a0
-	not	a0
-	rets			;Pass CC
+ SUBRP	printifp_xy	;A0=*Plyr1 string, A1=*Plyr2 string
 
+	PUSH	a8
+	move	a1,a8
+
+	move	@STATUS2,a1
+	btst	0,a1
+	jrz	pipx10
+	calla	prt0_xy		;P1
+
+pipx10	move	@STATUS2,a1
+	btst	1,a1
+	jrz	pipx20
+	move	a8,a0
+	calla	prt0_xy		;P2
+
+pipx20	PULL	a8
+	rets
 
 ********************************
 * Print an XY string set
+* A0=*XY text
+* A1=Y:X offset
+* Trashes A1-A5
+* Rets: A0=*Next XY or End
 
- SUBRP	print_xy	;A0=*XY Text
+ SUBR	prt0_xy
 
-	PUSH	a8
+	clr	a1		;No offset
 
-	move	a0,a8
-prtxy5	movk	[0,1],a10		;Char y,x spacing
+ SUBRP	prt_xy
+
+	PUSH	a6,a7,a8,a9,a10,a11
+
+	move	a0,a8			;A8=*Txt data
+	move	a1,a3			;A3=Y:X offset
+prtxy5	move	*a8+,a1			;Mode word
+	move	*a8+,a9,L		;Scrn Y:X
+	addxy	a3,a9			;+Offset
+	btst	PRTOBJB,a1
+	jrnz	pxy300
+
+	movk	[0,1],a10		;Char Y:X spacing
 	movi	RD7FONT,a11		;*Font
-	move	*a8+,a1			;Mode word
 	btst	PRTF15B,a1
-	jreq	prtxy10
+	jrz	prtxy10
 	movi	RD15FONT,a11		;*Font
-prtxy10	move	*a8+,a9,L		;Scrn y/x
-	move	*a8+,a6			;Color
-	move	a6,a2
+prtxy10	move	*a8+,a6			;Color
+	move	a6,a0
 	sll	8,a6
-	or	a2,a6
+	or	a0,a6
 
 	btst	PRTDECB,a1
-	jreq	prtxy30
+	jrz	prtxy30
 	move	*a8+,a2,L		;Binary mode
-	move	*a2,a0			;Get word
+	PUSH	a8
+	move	*a2,a8			;Get word
 	btst	PRTLB,a1
-	jreq	prtxy20
-	move	*a2,a0,L		;Get long
-prtxy20	PUSH	a8
-	move	a0,a8
-	calla	HEXTOASC
+	jrz	prtxy20
+	move	*a2,a8,L		;Get long
+prtxy20	calla	HEXTOASC
 	jruc	prtxy40
 
 prtxy30	btst	PRTBCDB,a1
 	jruc	prtxy70
-;	jreq	prtxy70
+;	jrz	prtxy70
 ;	move	*a8+,a0,L		;BCD mode
 ;	move	*a0,a0,L
 ;	callr	bcdtoasc
@@ -541,11 +459,11 @@ prtxy30	btst	PRTBCDB,a1
 prtxy40	clr	a0
 	JSRP	STRCNRMO
 	PULL	a8
-	jruc	prtxy80
+	jruc	pxy80
 
-prtxy70					;String mode
+prtxy70					;>String mode
 	btst	PRTF8B,a1
-	jreq	prtxy74
+	jrz	prtxy74
 	movi	BLLNP5,a0
 	calla	FINDPAL
 	move	a0,a6
@@ -559,43 +477,93 @@ prtxy74	clr	a0			;Sleep time
 prtxy77	addk	8,a8			;Round up
 	srl	4,a8
 	sll	4,a8
-prtxy80	move	*a8,a0			;-=End
+pxy80	move	*a8,a0			;-=End
 	jrge	prtxy5
 
-	PULL	a8
+	move	a8,a0
+	PULL	a6,a7,a8,a9,a10,a11
 	rets
+
+pxy300	move	a3,a10			;>Print obj
+	move	*a8+,a3			;Z
+	move	*a8+,a2,L		;*Img
+	move	*a2,a1			;Get ISIZEX
+	srl	1,a1			;/2
+	move	a9,a0
+	sub	a1,a0			;Center
+	sll	16,a0			;X
+	clr	a1
+	movy	a9,a1			;Y
+	movi	DMAWNZ+M_NOCOLL,a4
+	movi	CLSNEUT|TYPTEXT|SUBTXT,a5
+	clr	a6
+	clr	a7
+	move	a8,a9
+	calla	BEGINOBJ
+	move	a9,a8
+	move	a10,a3
+	jruc	pxy80
 
 
 ********************************
-* Set pallette 0 from buffer
+* Print an XY string set number with no objects
+* Trashes A2-A7
 
-	.bss	colorbuf	,16*31		;31 Color buffer
+	NOTINUSE
+ SUBRP	prtnobj_xy		;A0=*XY Text
 
- SUBRP	setpall0
-	PUSH	a1,a2
-	movi	colorbuf,a0		;*Color
-	movk	1,a1			;Palette 0, Color 1
-	movk	31,a2			;# Colors
-	calla	PALSET
-	PULL	a1,a2
+	PUSH	a8,a9,a10,a11
+
+	move	a0,a8
+pdnox5	movk	[0,1],a10		;Char y,x spacing
+	movi	RD7FONT,a11		;*Font
+	move	*a8+,a1			;Mode word
+	btst	PRTF15B,a1
+	jrz	pdnox10
+	movi	RD15FONT,a11		;*Font
+pdnox10	move	*a8+,a9,L		;Scrn y/x
+	move	*a8+,a6			;Color
+	move	a6,a2
+	sll	8,a6
+	or	a2,a6
+
+	btst	PRTDECB,a1
+	jrz	pdnoxx
+	move	*a8+,a2,L		;Binary mode
+	move	*a2,a0			;Get word
+	btst	PRTLB,a1
+	jrz	pdnox20
+	move	*a2,a0,L		;Get long
+pdnox20	PUSH	a8
+	move	a0,a8
+	calla	HEXTOASC
+	clr	a0
+	JSRP	STRCNRM
+	PULL	a8
+
+	move	*a8,a0			;-=End
+	jrge	pdnox5
+
+pdnoxx	PULL	a8,a9,a10,a11
 	rets
-
-
+	.endif
 
 ********************************
 * Vertically shrink text
+* Trashes A0-A10
 
  SUBRP	text_shrink		;A11=Sleep time
 
-	movk	8,a10			;Size for x2 shrinage
+	movi	txtssnd,a0
+	calla	ONESND
+
+	movk	8,a10			;Size for x2 shrinkage
 txs20	move	a11,a0
 	calla	PRCSLP
 	clr	a8
-	move	@OBJLST,a9,L		;>Find and shrink
+	move	@OBJLST,a9,L		;0FHind and shrink
 txs40	move	*a9(OID),a0
-	sll	3+16,a0			;Mask type
-	srl	8+3+16,a0
-	cmpi	TYPTEXT/256,a0
+	cmpi	CLSNEUT|TYPTEXT|SUBTXT,a0
 	jrne	txs70
 	move	*a9(OSIZEY),a0
 	subk	1,a0			;Shrink
@@ -603,6 +571,9 @@ txs40	move	*a9(OID),a0
 	cmp	a10,a0
 	jrlt	txs50
 	subk	1,a0			;Shrink again
+	cmpi	15,a0
+	jrlt	txs50
+	subk	5,a0			;Shrink x7
 txs50	move	a0,*a9(OSIZEY)
 	movk	1,a8
 txs70	move	*a9,a9,L
@@ -618,752 +589,4160 @@ txs70	move	*a9,a9,L
 
 
 ********************************
-* Print players score (Process)
+* Delete text at a ZPOS
+* Trashes A0-A3
 
- SUBRP	score_prt
-	clr	a0
-	move	a0,@scoredie
+ SUBRP	text_delz		;A0=ZPOS
 
-scp20	move	@STATUS2,a8
-	btst	0,a8
-	jrz	scp50
-	PUSH	a8
-	move	@P1DATA+PSCORE,a8,L
-	calla	HEXTOASC
-	movi	>2020,a6
-	movi	[20,100],a9		;Scrn y/x
-	movk	[0,1],a10		;Spacing
-	movi	RD15FONT,a11
-	clr	a0			;No sleep
-	JSRP	STRCNRM			;Print, no objs
-	PULL	a8
+	move	a0,a2
 
-scp50	btst	1,a8
-	jrz	scp80
-	move	@P2DATA+PSCORE,a8,L
-	calla	HEXTOASC
-	movi	>2121,a6
-	movi	[20,300],a9		;Scrn y/x
-	movk	[0,1],a10		;Spacing
-	movi	RD15FONT,a11
-	clr	a0			;No sleep
-	JSRP	STRCNRM			;Print, no objs
-
-scp80	SLEEP	1
-	move	@scoredie,a0
-	jrz	scp20
-	DIE
-
+	move	@OBJLST,a0,L
+tdz40	move	*a0(OID),a1
+	cmpi	CLSNEUT|TYPTEXT|SUBTXT,a1
+	jrne	tdz70
+	move	*a0(OZPOS),a1
+	cmp	a2,a1
+	jrne	tdz70
+	move	*a0,a3,L	;Get * next
+	calla	DELOBJ
+	move	a3,a0
+	jruc	tdz80
+tdz70	move	*a0,a0,L
+tdz80	jrnz	tdz40		;Continue?
+	rets
 
 
 ********************************
-* Do a bonus rack
+* Delete text in a Y range
+* Trashes A0-A3
 
-	APTRPD	BONUSLP,0	;*Bonus anim list
-	WORDPD	BONUSC1,2	;Play 1 # items
-	WORDPD	BONUSC2,3	;Play 2 ^
+ SUBRP	text_delyrng		;A0=Lower Y, A1=Upper Y
+
+	move	@WORLDTLY+16,a2
+	add	a2,a1		;A1=World adjusted upper Y
+	add	a0,a2		;A2=^ lower Y
+
+	move	@OBJLST,a0,L
+tdy40	move	*a0(OID),a3
+	cmpi	CLSNEUT|TYPTEXT|SUBTXT,a3
+	jrne	tdy70
+	move	*a0(OYPOS),a3
+	cmp	a2,a3
+	jrlt	tdy70
+	cmp	a1,a3
+	jrgt	tdy70
+	move	*a0,a3,L	;Get * next
+	calla	DELOBJ
+	move	a3,a0
+	jruc	tdy80
+tdy70	move	*a0,a0,L
+tdy80	jrnz	tdy40		;Continue?
+	rets
 
 
- SUBRP	bonus_showrack	;A0=*XY text, A1=*Anim list, A2.W=1Cnt, A3.W=2Cnt
+********************************
+* Print text in rackup window (Process)
 
-	move	@STATUS2,a8
-	btst	0,a8
-	jrnz	bsr20
-	clr	a2
-bsr20	btst	1,a8
-	jrnz	bsr25
-	clr	a3
-bsr25
-	move	a1,*a13(BONUSLP),L
-	move	a2,*a13(BONUSC1)
-	move	a3,*a13(BONUSC2)
+ SUBR	prt_inrackwin	;A8=*Text, A9=#Loops
 
-	callr	print_xy
+	move	a9,*a13(PDATA)
+	SLEEPK	30
+	movk	1,a10			;Y:X spacing
+	movi	RD7FONT,a11		;font table
 
-	movk	10,a0
-	move	a0,@animdeath1
-	move	a0,@animdeath2
+pirw10	SLEEPK	10
+	movi	-210,a0
+	move	a0,@LOWZ
+	movi	[187,198],a9		;Y:X
+	movi	02525H,a6
+	clr	a0
+	PUSH	a8
+	JSRP	STRCNRMO
+	PULL	a8
+	SLEEPK	10
+	movi	20000-210,a0
+	callr	text_delz
+	move	*a13(PDATA),a0
+	subk	1,a0
+	move	a0,*a13(PDATA)
+	jrgt	pirw10
+	DIE
 
-	movi	hostxy_t,a8		;A8=*Next XY
-	clr	a9			;A9=Play1 cnt
-	clr	a10			;A10=Play2 cnt
-	clr	a11			;A11=P1/2 Death delay bits
-bsr40
-	move	*a13(BONUSC1),a0
-	cmp	a0,a9
-	jrlo	bsr70
-	move	@animdeath1,a0
-	jrle	bsr90
-	btst	0,a11
-	jrnz	bsr60
-	addk	1,a11			;Set bit 0
-	addk	14,a0			;Add delay
-bsr60	subk	1,a0
-	move	a0,@animdeath1
-	jruc	bsr90
+********************************
+* Convert scores to binary
 
-bsr70	addk	1,a9
+ SUBRP	scores_bcdbin
+
 	move	@P1DATA+PSCORE,a0,L
-	addi	50,a0			;Add bonus
+	calla	BCDBIN
 	move	a0,@P1DATA+PSCORE,L
-;Do sound
-	move	*a8,a1			;Get X
-	jrn	bsr90
-	PUSH	a9,a10,a11
-	move	*a13(BONUSLP),a9,L
-	clr	a10
-	movi	animdeath1,a11
-	CREATE	0,bonus_anim
-	PULL	a9,a10,a11
-bsr90
-	move	*a13(BONUSC2),a0
-	cmp	a0,a10
-	jrlo	bsr120
-	move	@animdeath2,a0
-	jrle	bsr150
-	btst	1,a11
-	jrnz	bsr100
-	addk	2,a11			;Set bit 1
-	addk	14,a0			;Add delay
-bsr100	subk	1,a0
-	move	a0,@animdeath2
-	jruc	bsr150
-
-bsr120	addk	1,a10
+	move	a0,@score1old,L
 	move	@P2DATA+PSCORE,a0,L
-	addi	50,a0			;Add bonus
+	calla	BCDBIN
 	move	a0,@P2DATA+PSCORE,L
-;Do sound
-	move	*a8,a1			;Get X
-	jrn	bsr150
-	PUSH	a9,a10,a11
-	move	*a13(BONUSLP),a9,L
-	movi	192,a10			;X offset
-	movi	animdeath2,a11
-	CREATE	0,bonus_anim
-	PULL	a9,a10,a11
+	move	a0,@score2old,L
+	rets
 
-bsr150
+********************************
+* Convert scores to BCD
+
+ SUBRP	scores_binbcd
+
+	move	@P1DATA+PSCORE,a0,L
+	calla	BINBCD
+	move	a0,@P1DATA+PSCORE,L
+	move	@P2DATA+PSCORE,a0,L
+	calla	BINBCD
+	move	a0,@P2DATA+PSCORE,L
+	rets
+
+
+********************************
+* Print players score (Process)
+
+	LONGPD	scorecopy1	,0	;Last P1 score
+	LONGPD	scorecopy2	,2	;^ P2
+
+ SUBRP	score_prt
+
+	clr	a0
+	move	a0,@scoredie
+	subk	1,a0
+	move	a0,*a13(scorecopy1),L	;-1
+	move	a0,*a13(scorecopy2),L
+
+scp20	move	@STATUS2,a8
+
+	btst	0,a8
+	jrz	scp50
+	move	*a13(scorecopy1),a0,L
+	move	@P1DATA+PSCORE,a1,L
+	cmp	a0,a1
+	jreq	scp50
+	move	a1,*a13(scorecopy1),L
+	movi	305,a0
+	callr	text_delz
+	movi	305-20000,a0
+	move	a0,@LOWZ
+	movi	score1_st,a0
+	calla	prt0_xy		;P1
+
+scp50	SLEEPK	3
+	btst	1,a8
+	jrz	scp80
+	move	*a13(scorecopy2),a0,L
+	move	@P2DATA+PSCORE,a1,L
+	cmp	a0,a1
+	jreq	scp80
+	move	a1,*a13(scorecopy2),L
+	movi	306,a0
+	callr	text_delz
+	movi	306-20000,a0
+	move	a0,@LOWZ
+	movi	score2_st,a0
+	calla	prt0_xy		;P2
+
+scp80	SLEEPK	3
+	move	@scoredie,a0
+	jrle	scp20
+	DIE
+
+score1_st
+	XYNUM	PRTDEC+PRTL+PRTF15,85,16,32,P1DATA+PSCORE
+	.word	-1
+score2_st
+	XYNUM	PRTDEC+PRTL+PRTF15,315,16,33,P2DATA+PSCORE
+	.word	-1
+
+
+********************************
+* Print players bonus score (Process)
+
+ SUBRP	scorebonus_prt
+
+	movi	-1,a0
+	move	a0,*a13(scorecopy1),L
+	move	a0,*a13(scorecopy2),L
+
+	movk	[0,1],a10		;Spacing
+	movi	RD7FONT,a11
+
+scbp20	move	@STATUS2,a2
+	btst	0,a2
+	jrz	scbp50
+	move	@P1DATA+PSCORE,a8,L	;0CaHlc bonus score
+	move	*a13(scorecopy1),a0,L
+	cmp	a0,a8
+	jreq	scbp50
+	move	a8,*a13(scorecopy1),L
+	movi	300,a0
+	callr	text_delz
+	move	@score1old,a0,L
+	movi	300-20000,a1
+	movi	02020H,a6
+	movi	[35,85],a9		;Scrn y/x
+	callr	scoreb_prt2
+
+scbp50	SLEEPK	3
+	move	@STATUS2,a2
+	btst	1,a2
+	jrz	scbp80
+	move	@P2DATA+PSCORE,a8,L	;0CaHlc bonus score
+	move	*a13(scorecopy2),a0,L
+	cmp	a0,a8
+	jreq	scbp80
+	move	a8,*a13(scorecopy2),L
+	movi	301,a0
+	callr	text_delz
+	move	@score2old,a0,L
+	movi	301-20000,a1
+	movi	02121H,a6
+	movi	[35,315],a9		;Scrn y/x
+	callr	scoreb_prt2
+
+scbp80	SLEEPK	3
+	move	@scoredie,a0
+	jrle	scbp20
+	DIE
+
+
+scoreb_prt2
+	move	a1,@LOWZ
+	sub	a0,a8
+	calla	HEXTOASC
+	clr	a0			;No sleep
+	JSRP	STRCNRMO		;Print
+	rets
+
+
+********************************
+* Variable sleep (call it)
+
+;TURMELL MADE PUBLIC
+ SUBR	sleep_var	;A0=Sleep time
+
+	PUSHP	a8,a9
+	PULL	a8
+	move	a0,a9
+sv20	SLEEPK	1
+	move	@SWITCH+16,a1	;Chk for impatience
+	not	a1
+	andi	024H,a1
+	jrnz	sv50
+	dsj	a9,sv20	
+sv50	move	a8,a0
+	PULLP	a8,a9
+	jump	a0
+
+********************************
+* Give collection bonus
+
+	.bss	bonuscnt	,32	;P1/P2 item cnt (word*2)
+
+ SUBRP	bonus_main
+
+;	movk	3,a0
+;	move	a0,@STATUS	;DEBUG
+;
+;	movi	200,a0		;0DEBHUG
+;	calla	RNDRNG0
+;	move	a0,@P1DATA+TFLAGS
+;	movi	200,a0
+;	calla	RNDRNG0
+;	move	a0,@P2DATA+TFLAGS
+;
+;	movi	200,a0
+;	calla	RNDRNG0
+;	move	a0,@P1DATA+CASHCNT
+;	movi	200,a0
+;	calla	RNDRNG0
+;	move	a0,@P2DATA+CASHCNT
+;
+;	movi	200,a0
+;	calla	RNDRNG0
+;	move	a0,@P1DATA+THSTGS
+;	movi	200,a0
+;	calla	RNDRNG0
+;	move	a0,@P2DATA+THSTGS
+
+	movi	collectb_s,a8
+	movi	100,a9
+	CREATE0	prt_inrackwin
+	move	a0,-*a12,L
+
+	movi	-1,a0
+	move	a0,@bonusstat
+
+	movi	bonus_st,a0
+	calla	prt0_xy
+
+	move	@STATUS2,a6
+	cmpi	3,a6
+	jreq	bm15			;Two plyrs?
+
+	movi	115,a1
+	btst	0,a6
+	jrz	bm10			;P1 off?
+	movi	285,a1
+bm10	movi	joinin_st,a0
+	calla	prt_xy
+
+bm15	btst	0,a6
+	jrz	bm20
+	movi	bonusp1_as,a8
+	CREATE	ANIMPID,anim_script	;P1
+
+bm20	btst	1,a6
+	jrz	bm40
+	movi	bonusp2_as,a8
+	CREATE	ANIMPID2,anim_script	;P2
+bm40
+	movi	bonus1p1_st,a0
+	movi	bonus1p2_st,a1
+	movi	210,a2
+	movi	[70,116],a9		;YX
+	movi	60,a10
+	movi	TFLAGS,a11
+	JSRP	bonus_cntup		;Flags
+
+	clr	a0
+	move	a0,@bonusstat
+
+	movi	bonus2p1_st,a0
+	movi	bonus2p2_st,a1
+	movi	211,a2
+	movi	[108,116],a9		;YX
+	movi	40,a10
+	movi	CASHCNT,a11
+	JSRP	bonus_cntup		;Crystals
+
+	movk	1,a0
+	move	a0,@bonusstat
+
+	movi	bonus3p1_st,a0
+	movi	bonus3p2_st,a1
+	movi	212,a2
+	movi	[146,116],a9		;YX
+	movi	100,a10
+	movi	THSTGS,a11
+	JSRP	bonus_cntup		;Hostages
+
+	movi	60*2,a0			;4
+	callr	sleep_var
+
+	move	*a12+,a0,L
+	clr	a1
+	move	a1,*a0(PDATA)		;Stop window text
+
+	movk	2,a0
+	move	a0,@bonusstat
+	movi	55,a0
+	movi	200,a1
+	callr	text_delyrng
+	SLEEPK	30
+
+	RETP
+
+collectb_s
+	.byte	"COLLECTION BONUS",0
+	.even
+joinin_st		       
+	XYTXT	PRTF15,0,104,3,"HELP!"
+	XYTXT	PRTF15,0,86,3,"JOIN IN!"
+;	XYTXT	PRTF15,0,86,3,"JOIN IN"
+;	XYTXT	PRTF15,0,104,3,"SCUM!"
+	.word	-1
+
+
+
+ SUBRP	bonus_cntup	;A0=*P1_st, A1=*P2_st, A2=Z
+			;A9=Base YX, A10=Pts each, A11=Plyr data offset
+	move	@STATUS2,a3
+	subk	3,a3
+	jrnz	bcu10
+	sll	1,a10			;*2 pts for two players
+
+bcu10	PUSH	a2
+	callr	printifp_xy
+
+	movi	bonuscnt,a8
+	CREATE0	bonus_prtitem		;Display
+	move	a0,-*a12,L
+	PULL	a2
+	move	a2,*a0(bonusz)
+
+	clr	a0
+	move	a0,*a8,L		;Cnt=0
+
+	movi	racksup,a0
+	calla	ONESND
+
+bcu20	move	@SWITCH+16,a1		;Chk for impatience
+	not	a1
+	andi	024H,a1
+	jrnz	bcu25
+	SLEEPK	1
+
+bcu25	move	@STATUS2,a2
+	clr	a3
+
+	btst	0,a2
+	jrz	bcu30
 	move	*a8,a0
-	jrn	bsr180
-	addk	32,a8			;Next XY
-bsr180	SLEEP	4
-	move	@animdeath1,a0		;Both done?
-	jrgt	bsr40
-	move	@animdeath2,a0
-	jrgt	bsr40
+	movi	P1DATA,a1
+	add	a11,a1
+	move	*a1,a1
+	cmp	a1,a0
+	jrge	bcu30			;Count maxed?
+	addk	1,a0
+	move	a0,*a8
+	movk	1,a3
+	move	@P1DATA+PSCORE,a0,L
+	add	a10,a0
+	move	a0,@P1DATA+PSCORE,L
 
-	calla	ERASE_TXT
+bcu30	btst	1,a2
+	jrz	bcu60
+	move	*a8(16),a0
+	movi	P2DATA,a1
+	add	a11,a1
+	move	*a1,a1
+	cmp	a1,a0
+	jrge	bcu60			;Count maxed?
+	addk	1,a0
+	move	a0,*a8(16)
+	movk	1,a3
+	move	@P2DATA+PSCORE,a0,L
+	add	a10,a0
+	move	a0,@P2DATA+PSCORE,L
+
+bcu60	move	a3,a3
+	jrnz	bcu20			;More to do?
+
+	movi	rackoff,a0		;End
+	calla	ONESND
+	SLEEPK	5
+
+	move	*a8+,a1			;P1
+	move	*a8,a2			;P2
+	move	@WORLDTLX+16,a10
+	cmp	a2,a1
+	jrhi	bcu200			;P1 won?
+	jrlo	bcu180			;P2 won?
+	move	@P1DATA+PSCORE,a0,L	;Tie!
+	move	@P2DATA+PSCORE,a1,L
+	cmp	a1,a0
+	jrhs	bcu200			;P1 won?
+bcu180	addi	190,a10			;Min X of tiles
+bcu200	movi	190,a11			;X range of tiles
+	movk	3,a8
+bcu220	movi	DMACNZ+M_NOCOLL,a3
+	callr	bonus_flashblk
+	SLEEPK	2
+	movi	DMAWNZ+M_NOCOLL,a3
+	callr	bonus_flashblk
+	SLEEPK	8
+	dsj	a8,bcu220
+
+	move	*a12+,a0,L
+	calla	KILL
+	movi	60*1,a0
+	callr	sleep_var
 
 	RETP
 
 
 ********************************
-* Animation of a bonus item (Process)
+* Print bonus item count & score (Process)
 
- SUBRP	bonus_anim		;A8=*XY, A9=*FRANIM table, A10=X offset
-				;A11=*animdeath var
-	move	*a8+,a0			;Get X
-	move	*a8+,a1			;Get Y
-	move	*a11,a2
-	move	a2,*a13(PDATA)		;Save death #
-	addk	1,a2			;+1
-	move	a2,*a11
-	add	a10,a0
-	sll	16,a0
-	sll	16,a1
-	move	*a9,a2,L
-	movi	220,a3
-	movi	DMAWNZ,a4
-	clr	a5
-	clr	a6
-	clr	a7
-	calla	BEGINOBJ
-	move	a9,*a13(PDATA+16),L
-bo40	movk	4,a1			;Do one, no sleep
-	JSRP	FRANIM
-	jrnc	bo60
-	move	*a13(PDATA+16),a9,L
-	jruc	bo40
-bo60	move	a0,a10
-bo80	SLEEP	1
-	move	*a11,a0			;Get death #
-	move	*a13(PDATA),a1
-	cmp	a0,a1
-	jrgt	bo90
-	dsj	a10,bo80
-	jruc	bo40
-bo90	move	a8,a0
-	calla	DELOBJ
-	DIE
+	WORDPD	bonusz	,0	;ZPOS for text, set by creator
+
+
+ SUBRP	bonus_prtitem	;A8=*P1/2 item cnt, A9=Y:X, A10=Pts each
+
+	movi	RD7FONT,a11
+
+bpilp	move	*a13(bonusz),a0
+	callr	text_delz
+
+	move	@STATUS2,a2
+	move	a10,a4			;A4=Pts
+	movk	[0,1],a10		;Spacing
+
+	btst	0,a2
+	jrz	bpi50
+
+	PUSH	a8,a9
+	move	*a8,a8			;Get P1 cnt
+	move	a8,a3
+	movi	02525H,a6
+	callr	strcnrmo_nosleep	;Print cnt
+	callr	strcnrmo_nosleep2	;Print score
+	PULL	a8,a9
+
+bpi50	btst	1,a2
+	jrz	bpi80
+
+	PUSH	a8,a9
+	addi	160,a9			;+X
+	move	*a8(16),a8		;Get P2 cnt
+	move	a8,a3
+	movi	02525H,a6
+	callr	strcnrmo_nosleep	;Print cnt
+	callr	strcnrmo_nosleep2	;Print score
+	PULL	a8,a9
+
+bpi80	move	a4,a10
+	SLEEPK	2
+	jruc	bpilp
+
+
+ SUBRP	strcnrmo_nosleep2
+	mpyu	a4,a3
+	move	a3,a8
+	addi	45,a9			;+X
+
+ SUBRP	strcnrmo_nosleep
+
+	PUSH	a9
+	calla	HEXTOASC
+	move	*a13(bonusz),a0
+	subi	20000,a0
+	move	a0,@LOWZ
+	clr	a0			;No sleep
+	JSRP	STRCNRMO
+	PULL	a9
+	rets
+
+
+bonusp2_as				;Scripts
+	ASBXY	160,0
+bonusp1_as
+	ASADDW	1,animscnt
+	ASNEW	bonusflag_t
+	ASFRA	flag_l,020H,100
+
+bas10	ASSLP	2
+	ASJMPEQ	-1,bonusstat,bas10
+
+	ASNEW	bonusgem_t
+	ASFRA	gems_l,021H,100
+
+bas20	ASSLP	2
+	ASJMPEQ	0,bonusstat,bas20
+
+	ASNEW	bonushstg_t
+
+bas30	ASSLP	2
+	ASJMPEQ	1,bonusstat,bas30
+
+	ASKIL	0,0ffH
+	ASDELM	0,0ffH
+
+	ASADDW	-1,animscnt
+	ASEND
+
+bonus_st
+	XYOBJ	PRTOBJ,200,16,500,TSCORE
+	.word	-1
+
+bonus1p1_st
+	XYTXT	0,116,70,35,"X     ="
+	.word	-1
+bonus1p2_st
+	XYTXT	0,276,70,35,"X     ="
+	.word	-1
+
+bonus2p1_st
+	XYTXT	0,116,108,35,"X     ="
+	.word	-1
+bonus2p2_st
+	XYTXT	0,276,108,35,"X     ="
+	.word	-1
+
+bonus3p1_st
+	XYTXT	0,116,146,35,"X     ="
+	.word	-1
+bonus3p2_st
+	XYTXT	0,276,146,35,"X     ="
+	.word	-1
+
+bonusflag_t
+	ASITEMN	50,55,FLG1,220,DMAWNZ,020H
+	.word	-1000
+bonusgem_t
+	ASITEMN	50,90,GEMS1,220,DMAWNZ,021H
+	.word	-1000
+bonushstg_t
+	ASITEMN	50,130,HSTGHD,220,DMAWNZ,021H
+	.word	-1000
+
+
+flag_l	LW	FLG1,5
+	LW	FLG2,5
+	LW	FLG3,5
+	LW	FLG4,5
+	LWL0	FLG5,5
+
+gems_l	LW	GEMS1,4
+	LW	GEMS2,4
+	LW	GEMS3,4
+	LW	GEMS4,4
+	LW	GEMS3,4
+	LW	GEMS2,4
+	LWL0	GEMS1,4
+
+
+ SUBRP	bonus_flashblk		;A3=OFLAGS, A10=XMin, A11=XWidth
+
+	move	@OBJLST,a1,L
+bfb20	move	*a1(OZPOS),a0
+	subi	200,a0
+	subk	1,a0
+	jrhi	bfb30			;Not 200-201?
+	move	*a1(OXPOS),a0
+	sub	a10,a0
+	cmp	a11,a0
+	jrhi	bfb30
+	move	a3,*a1(OFLAGS)
+	movi	0909H,a0
+	move	a0,*a1(OCONST)
+bfb30	move	*a1,a1,L
+	jrnz	bfb20
+	rets
+
+
+********************************
+* Show player stats and give bonuses
+
+ SUBRP	player_showstats
+
+	movi	gamestat_s,a8
+	movi	100,a9
+	CREATE0	prt_inrackwin
+	move	a0,-*a12,L
+
+	clr	a7			;A7=Bonus pts Y:X offset
+
+	move	@STATUS2,a0
+	subk	3,a0
+	jrne	pst20
+	movi	statsbo_st,a0
+	calla	prt0_xy
+
+pst20	movi	statssnd_t,a8
+	movi	stats_st,a9
+	movi	statsp1_st,a10
+	movi	statsp2_st,a11
+
+pst50	move	*a8+,a0,L
+	calla	ONESND
+	move	@STATUS2,a6
+	move	a9,a0
+	calla	prt0_xy
+	move	a0,a9
+	btst	0,a6			;P1
+	jrz	pst300
+	move	a10,a0
+	calla	prt0_xy
+	move	a0,a10
+pst300	btst	1,a6			;P2
+	jrz	pst310
+
+	movi	-400,a0			;So general is above number
+	move	a0,@LOWZ
+
+	move	a11,a0
+	calla	prt0_xy
+	move	a0,a11
+
+pst310	cmpi	3,a6
+	jrne	pst400			;Not 2 plyrs?
+	move	*a10(-32),a2,L
+	move	*a11(-32),a3,L
+	cmpi	P1DATA+TMINEDTH,a2
+	jrne	pst330			;Normal compare?
+	SWAP	a2,a3
+pst330	move	*a2,a2
+	move	*a3,a3
+	movi	P1DATA+PSCORE,a4
+;	movi	rackp1p,a0
+	clr	a1
+	cmp	a3,a2
+	jrz	pst380			;Same stats?
+	jrhi	pst350			;P1 higher?
+	movi	P2DATA+PSCORE,a4
+;	movi	rackp2p,a0
+	addi	300,a7			;P2 offset
+pst350	move	*a4,a2,L		;Give points
+	addi	1000,a2
+	move	a2,*a4,L
+;	calla	ONESND
+	movi	statspts_st,a0
+	move	a7,a1
+	calla	prt_xy
+pst380	srl	16,a7			;X=0
+	addk	10,a7			;Y=Y+10
+	sll	16,a7
+
+pst400	move	a7,-*a12,L
+	SLEEPK	4
+	movk	9,a0
+	callr	sleep_var
+	move	*a12+,a7,L
+	move	*a9,a0
+	addk	1,a0
+	jrnz	pst50			;End?
+
+	movi	60*6,a0
+	callr	sleep_var
+
+	move	*a12+,a0,L
+	clr	a1
+	move	a1,*a0(PDATA)		;Stop window text
+
+	RETP
+
+
+gamestat_s
+	.byte	"GAME STATISTICS",0
+	.even
+statssnd_t	
+	.long	stats1,stats2,stats3,stats4,stats5,stats6,stats7,stats8
+	.long	stats9,stats10,stats11,stats12
+
+SY	.equ	55
+
+statsbo_st
+	XYOBJ	PRTOBJ,50,45,280,BWORD
+	XYOBJ	PRTOBJ,350,45,280,BWORD
+	.word	-1
+statspts_st
+	XYOBJ	PRTOBJ,50,SY,280,FIVE
+	.word	-1
+stats_st
+	XYTXT	0,200,SY,2,"SHOTS FIRED"
+	XYTXT	PRTE,200,SY+10,3,"ENEMY HITS"
+	XYTXT	PRTE,200,SY+20,4,"HIT PERCENTAGE"
+;	XYTXT	PRTE,200,SY+30,5,"HITS PER MINUTE"
+	XYTXT	PRTE,200,SY+30,5,"WEAPONS PICKED UP"
+	XYTXT	PRTE,200,SY+40,6,"BOMBS USED"
+	XYTXT	PRTE,200,SY+50,7,"MISSILE STRIKES"
+	XYTXT	PRTE,200,SY+60,8,"BIG STUFF DESTROYED"
+	XYTXT	PRTE,200,SY+70,9,"EXTRA MEN COLLECTED"
+	XYTXT	PRTE,200,SY+80,10,"MINES STEPPED ON"
+	XYTXT	PRTE,200,SY+90,11,"KEYS COLLECTED"
+	XYTXT	PRTE,200,SY+100,12,"HOSTAGES NOT RESCUED"
+	.word	-1	;End
+
+statsp1_st
+	XYNUM	PRTDEC,95,SY,2,P1DATA+TSHOTS
+	XYNUM	PRTDEC+PRTE,95,SY+10,3,P1DATA+THITS
+	XYNUM	PRTDEC+PRTE,95,SY+20,4,hitpercent1
+;	XYNUM	PRTDEC+PRTE,95,SY+30,5,hitsmin1
+	XYNUM	PRTDEC+PRTE,95,SY+30,5,P1DATA+TWPNS
+	XYNUM	PRTDEC+PRTE,95,SY+40,6,P1DATA+BMBSUSED
+	XYNUM	PRTDEC+PRTE,95,SY+50,7,P1DATA+TMISLS
+	XYNUM	PRTDEC+PRTE,95,SY+60,8,P1DATA+TBIGSTF
+	XYNUM	PRTDEC+PRTE,95,SY+70,9,P1DATA+TEARNED
+	XYNUM	PRTDEC+PRTE,95,SY+80,10,P1DATA+TMINEDTH
+	XYNUM	PRTDEC+PRTE,95,SY+90,11,P1DATA+TKEYS
+	XYNUM	PRTDEC+PRTE,95,SY+100,12,HSTGS_LOST
+	.word	-1
+
+statsp2_st
+	XYNUM	PRTDEC,305,SY,2,P2DATA+TSHOTS
+	XYNUM	PRTDEC+PRTE,305,SY+10,3,P2DATA+THITS
+	XYNUM	PRTDEC+PRTE,305,SY+20,4,hitpercent2
+;	XYNUM	PRTDEC+PRTE,305,SY+30,5,hitsmin2
+	XYNUM	PRTDEC+PRTE,305,SY+30,5,P2DATA+TWPNS
+	XYNUM	PRTDEC+PRTE,305,SY+40,6,P2DATA+BMBSUSED
+	XYNUM	PRTDEC+PRTE,305,SY+50,7,P2DATA+TMISLS
+	XYNUM	PRTDEC+PRTE,305,SY+60,8,P2DATA+TBIGSTF
+	XYNUM	PRTDEC+PRTE,305,SY+70,9,P2DATA+TEARNED
+	XYNUM	PRTDEC+PRTE,305,SY+80,10,P2DATA+TMINEDTH
+	XYNUM	PRTDEC+PRTE,305,SY+90,11,P2DATA+TKEYS
+	XYNUM	PRTDEC+PRTE,305,SY+100,12,HSTGS_LOST
+	.word	-1
+
+
+********************************
+* Player bonus winner animations
+
+
+ SUBRP	player_bonuswin
+
+	movi	plbwp1o_as,a8		;P1 only initial script
+	clr	a9			;A9=Winner message #
+	move	@STATUS2,a0
+	btst	1,a0
+	jrz	pbw90
+
+	movi	plbwp2o_as,a8		;P2 only initial script
+	movk	1,a9
+	btst	0,a0
+	jrz	pbw90
+
+	movi	plbwp1w_as,a8		;P1 win initial script
+	movk	2,a9
+
+	move	@P1DATA+PSCORE,a0,L
+	move	@P2DATA+PSCORE,a1,L
+	cmp	a1,a0			;P1 score > P2 score?
+	jrhi	pbw90
+	jrlo	pbw80			;P1sc < P2sc
+	move	@score1old,a3,L
+	move	@score2old,a4,L
+	cmp	a4,a3			;Score same!
+	jrlo	pbw90			;P1 old < P2 old?
+
+pbw80	movi	plbwp2w_as,a8		;P2 win initial script
+	movk	3,a9
+
+pbw90	CREATE	ANIMPID,prt_winnertxt
+	CREATE	ANIMPID,anim_script
+
+	movi	1*32*32+15*32+27,a0	;Bkgnd color
+	move	a0,@IRQSKYE
+
+	move	@OBJLST,a1,L		;>Tiles fly away
+pbw200	move	*a1(OZPOS),a0
+	subi	200,a0
+	subk	1,a0
+	jrhi	pbw230
+	movk	8,a2			;Vel
+	btst	0,a0
+	jrnz	pbw220
+	neg	a2			;-Vel
+pbw220	move	a2,*a1(OYVEL+16)
+
+pbw230	move	*a1,a1,L
+	jrnz	pbw200
+
+	SLEEP	60
+
+	move	@OBJLST,a0,L		;0DeHlete tiles
+pbw300	move	*a0(OZPOS),a2
+	subi	200,a2
+	subk	1,a2
+	jrhi	pbw330
+	move	*a0,a1,L		;Get * to next obj
+	calla	DELOBJ			;Kill
+	move	a1,a0
+	jruc	pbw340
+pbw330	move	*a0,a0,L
+pbw340	jrnz	pbw300
+
+	movi	200,a0
+	callr	sleep_var
+
+;	movi	plbwpal_t,a0		;*Palette list
+;	movk	5,a1
+;	movi	040H,a2
+;	move	a2,@PCOUNT
+;	calla	FADEOUT2
+;
+;	SLEEPK	30
+
+	RETP
+
+
+********************************
+* A9=Message # 0-3 (Process)
+* 0=PLYR 1 ONLY
+* 1=PLYR 2 ONLY
+* 2=PLYR 1 WINS OVER PLYR 2
+* 3=PLYR 2 WINS OVER PLYR 1
+
+ SUBRP	prt_winnertxt
+
+	sll	5,a9
+	addi	winmsgs,a9
+	move	*a9,a8,L		;*Message
+	movi	34,a9
+	jruc	prt_inrackwin
+
+winmsgs	.long	win0_s,win1_s,win2_s,win3_s
+
+;COME UP WITH MORE CLEVER TEXT HERE!
+win0_s	.byte	"PLAYER ONE IS GREAT!",0
+win1_s	.byte	"PLAYER TWO IS GREAT!",0
+win2_s	.byte	"PLAYER ONE KICKED BUTT!",0
+win3_s	.byte	"PLAYER TWO KICKED BUTT!",0
+	.even
+
+
+;plbwpal_t
+;	.long	0,BIGPL1,GUNSP1,CLDS9,DESRTPL,BIGPL2,GUNSP2,0
+
+
+plbwp1o_as
+	ASNEW	plyr1wnew_t
+	ASXY	040H,01fH,70,0
+	ASJMP	plbw_as
+
+plbwp2o_as
+	ASNEW	plyr2wnew_t
+	ASXY	040H,01fH,-50,0
+	ASSVL	BIGPL2
+	ASPAL	041H
+	ASPAL	054H
+	ASPAL	055H
+	ASSVL	GUNSP2
+	ASPAL	042H
+	ASPAL	048H
+	ASJMP	plbw_as
+
+plbwp1w_as
+	ASNEW	plyr1wnew_t
+	ASNEW	plyr2lnew_t
+	ASSVL	BIGPL2
+	ASPAL	081H
+	ASSVL	GUNSP2
+	ASPAL	082H
+	ASPAL	088H
+	ASRUN	plbw2txt_as
+	ASJMP	plbw_as
+
+plbwp2w_as
+	ASNEW	plyr1lnew_t
+	ASNEW	plyr2wnew_t
+	ASSVL	BIGPL2
+	ASPAL	041H
+	ASPAL	054H
+	ASPAL	055H
+	ASSVL	GUNSP2
+	ASPAL	042H
+	ASPAL	048H
+	ASRUN	plbw1txt_as
+
+plbw_as
+	ASADDW	1,animscnt
+	ASNEW	plyrbgnew_t
+	ASFRA	ribbonb_l,048H,-1
+	ASFRA	ribbonl_l,088H,-1
+
+	ASRUN	pbwcloud1_as
+	ASRUN	pbwcloud2_as
+	ASRUN	pbwcloud3_as
+	ASRUN	pbwsnd_as
+	ASSLP	90
+	ASFRA	plhdcc_l,04cH,1
+	ASFRA	plhdmm_l,04dH,1
+	ASLAB	5
+	ASXY	0,0ffH,0,1	;Pan up
+	ASDSJS1
+	ASLAB	20
+	ASXY	0,0ffH,0,2
+	ASDSJS1
+	ASLAB	5
+	ASXY	0,0ffH,0,1
+	ASDSJS1
+
+	ASANI	LBOW2,054H
+	ASANI	WRISTBND2,050H
+	ASANI	HAND2,055H
+	ASANI	GUN2,051H
+	ASXY	044H,1,-1000,0	;Put middle strap on screen
+	ASSLP	4
+	ASANI	LBOW1,054H
+	ASANI	WRISTBND1,050H
+	ASANI	HAND1,055H
+	ASANI	GUN1,051H
+	ASXY	044H,1,-1000,0	;Straps off screen
+
+	ASLAB	40
+	ASSND	rackgun
+	ASLAB	2
+	ASXY	050H,07H,0,1	;Shake gun
+	ASXY	056H,0,-1000,0	;Show flame
+	ASDSJS1
+	ASLAB	2
+	ASXY	050H,07H,0,-1
+	ASXY	056H,0,1000,0	;Hide flame
+	ASDSJS1
+	ASDSJ
+
+	ASSLP	30
+	ASLAB	5
+	ASXY	0,0ffH,0,-1	;Pan down
+	ASDSJS1
+	ASLAB	20
+	ASXY	0,0ffH,0,-2
+	ASDSJS1
+	ASLAB	5
+	ASXY	0,0ffH,0,-1
+	ASDSJS1
+
+	ASSLP	20
+	ASANI	LBOW2,054H
+	ASANI	WRISTBND2,050H
+	ASANI	HAND2,055H
+	ASANI	GUN2,051H
+	ASXY	044H,1,1000,0	;Middle strap on screen
+	ASSLP	4
+	ASANI	LBOW3,054H
+	ASANI	WRISTBND3,050H
+	ASANI	HAND3,055H
+	ASANI	GUN3,051H
+	ASXY	044H,1,1000,0	;1st strap on screen
+	ASADDW	-1,animscnt
+	ASEND
+
+
+pbwcloud1_as
+	ASLAB	4
+	ASLAB	188
+	ASXY	010H,0,1,0
+	ASSLP	4
+	ASDSJ
+	ASXY	010H,0,-188,0
+	ASDSJ
+	ASEND
+pbwcloud2_as
+	ASLAB	4
+	ASLAB	188
+	ASXY	011H,0,1,0
+	ASSLP	5
+	ASDSJ
+	ASXY	011H,0,-188,0
+	ASDSJ
+	ASEND
+pbwcloud3_as
+	ASLAB	4
+	ASLAB	188
+	ASXY	012H,0,1,0
+	ASSLP	6
+	ASDSJ
+	ASXY	012H,0,-188,0
+	ASDSJ
+	ASEND
+
+
+pbwsnd_as			;Sounds
+	ASSLP	130
+	ASSND	shout
+	ASSLP	170
+	ASSND	gigle1
+	ASEND
+
+
+CLY	.equ	142
+
+plyrbgnew_t	;X,Y,img name,Z,oflags,oid
+
+	ASITEMN	12,-40,CLOUD,25,DMAWNZ+M_FLIPH,010H
+	ASITEMN	200,-40,CLOUD,25,DMAWNZ+M_FLIPH,010H
+	ASITEMN	388,-40,CLOUD,25,DMAWNZ+M_FLIPH,010H
+	ASITEMN	12,-10,CLOUD,24,DMAWNZ+M_FLIPH,011H
+	ASITEMN	200,-10,CLOUD,24,DMAWNZ+M_FLIPH,011H
+	ASITEMN	388,-10,CLOUD,24,DMAWNZ+M_FLIPH,011H
+	ASITEMN	-178,20,CLOUD,23,DMAWNZ,012H
+	ASITEMN	10,20,CLOUD,23,DMAWNZ,012H
+	ASITEMN	198,20,CLOUD,23,DMAWNZ,012H
+	ASITEMN	10,CLY,CLIFF3A,30,DMAWNZ,8
+	ASITEMN	128,CLY,CLIFF3A,30,DMAWNZ+M_FLIPH,8
+	ASITEMN	129,CLY+6,CLIFF2A,30,DMAWNZ,8
+	ASITEMN	186,CLY-1,CLIFF3A,30,DMAWNZ,8
+	ASITEMN	304,CLY-1,CLIFF3A,30,DMAWNZ+M_FLIPH,8
+	ASITEMN	355,CLY+7,CLIFF2A,30,DMAWNZ+M_FLIPH,8
+	ASITEMN	356,CLY+1,CLIFF3A,30,DMAWNZ,8
+	.word	-1000
+
+P1X	.equ	120
+P1Y	.equ	23
+P1LX	.equ	70
+P1LY	.equ	30
+P2X	.equ	260
+P2Y	.equ	23
+P2LX	.equ	305
+P2LY	.equ	30
+
+plyr1wnew_t
+	ASITEMN	P1X,P1Y,CCHED1,51,DMAWNZ,04cH
+	ASITEMN	P1X,P1Y,RIB1,45,DMAWNZ,048H
+	ASITEMN	P1X,P1Y,BDBOD1,50,DMAWNZ,040H
+	ASITEMN	P1X,P1Y,BDBOD2,50,DMAWNZ,040H
+	ASITEMN	P1X,P1Y,RTARMBND,51,DMAWNZ,040H
+	ASITEMN	P1X,P1Y,RTLBOW1,52,DMAWNZ,040H
+	ASITEMN	P1X,P1Y,RTWRISTBND,53,DMAWNZ,040H
+	ASITEMN	P1X,P1Y,RTHAND1,53,DMAWNZ,040H
+	ASITEMN	P1X,P1Y,LFTARMBND,52,DMAWNZ,040H
+	ASITEMN	P1X,P1Y,LBOW3,51,DMAWNZ,054H
+	ASITEMN	P1X,P1Y,WRISTBND3,52,DMAWNZ,050H
+	ASITEMN	P1X,P1Y,HAND3,54,DMAWNZ,055H
+	ASITEMN	P1X,P1Y,GUN3,53,DMAWNZ,051H
+	ASITEMN	P1X,P1Y,STRAP,51,DMAWNZ,044H
+	ASITEMN	P1X+1000,P1Y,STRAPA,51,DMAWNZ,045H
+	ASITEMN	P1X+1054,P1Y-33,T72BLAST1,55,DMAWNZ+M_FLIPV,056H
+	ASITEMN	P1X+2054,P1Y-33,T72BLAST2,55,DMAWNZ+M_FLIPV,056H
+	.word	-1000
+
+plyr2wnew_t
+	ASITEMN	P2X,P2Y,MMHED1,51,DMAWNZ+M_FLIPH,04dH
+	ASITEMN	P2X,P2Y-5,RIB1,45,DMAWNZ,048H
+	ASITEMN	P2X,P2Y,BDBOD1,50,DMAWNZ+M_FLIPH,041H
+	ASITEMN	P2X,P2Y,BDBOD2,50,DMAWNZ+M_FLIPH,042H
+	ASITEMN	P2X,P2Y,RTARMBND,51,DMAWNZ+M_FLIPH,040H
+	ASITEMN	P2X,P2Y,RTLBOW1,52,DMAWNZ+M_FLIPH,041H
+	ASITEMN	P2X,P2Y,RTWRISTBND,53,DMAWNZ+M_FLIPH,040H
+	ASITEMN	P2X,P2Y,RTHAND1,53,DMAWNZ+M_FLIPH,041H
+	ASITEMN	P2X,P2Y,LFTARMBND,52,DMAWNZ+M_FLIPH,040H
+	ASITEMN	P2X,P2Y,LBOW3,51,DMAWNZ+M_FLIPH,054H
+	ASITEMN	P2X,P2Y,WRISTBND3,52,DMAWNZ+M_FLIPH,050H
+	ASITEMN	P2X,P2Y,HAND3,54,DMAWNZ+M_FLIPH,055H
+	ASITEMN	P2X,P2Y,GUN3,53,DMAWNZ+M_FLIPH,051H
+	ASITEMN	P2X,P2Y,STRAP,51,DMAWNZ+M_FLIPH,044H
+	ASITEMN	P2X+1000,P2Y,STRAPA,51,DMAWNZ+M_FLIPH,045H
+	ASITEMN	P2X+945,P2Y-33,T72BLAST1,55,DMAWNZ+M_FLIPV,056H
+	ASITEMN	P2X+1945,P2Y-33,T72BLAST2,55,DMAWNZ+M_FLIPV,056H
+	.word	-1000
+
+plyr1lnew_t
+	ASITEMN	P1LX,P1LY,SMHEAD1,40,DMAWNZ+M_FLIPH,080H
+	ASITEMN	P1LX-10,P1LY,LILRIB1,35,DMAWNZ,088H
+	ASITEMN	P1LX,P1LY,SMBOD1,40,DMAWNZ+M_FLIPH,081H
+	ASITEMN	P1LX,P1LY,SMBOD2,40,DMAWNZ+M_FLIPH,082H
+	ASITEMN	P1LX,P1LY,SMARMBND,41,DMAWNZ+M_FLIPH,080H
+	ASITEMN	P1LX,P1LY,SMWRISTS,41,DMAWNZ+M_FLIPH,080H
+	.word	-1000
+
+plyr2lnew_t
+	ASITEMN	P2LX,P2LY,SMHEAD2,40,DMAWNZ,080H
+	ASITEMN	P2LX-1,P2LY-3,LILRIB1,35,DMAWNZ,088H
+	ASITEMN	P2LX,P2LY,SMBOD1,40,DMAWNZ,081H
+	ASITEMN	P2LX,P2LY,SMBOD2,40,DMAWNZ,082H
+	ASITEMN	P2LX,P2LY,SMARMBND,41,DMAWNZ,080H
+	ASITEMN	P2LX,P2LY,SMWRISTS,41,DMAWNZ,080H
+	.word	-1000
+
+
+ribbonb_l
+	LW	RIB1,4
+	LW	RIB2,4
+	LW	RIB3,4
+	LW	RIB4,4
+	LWL0	RIB5,4
+
+ribbonl_l
+	LW	LILRIB1,3
+	LW	LILRIB2,4
+	LW	LILRIB3,3
+	LW	LILRIB4,4
+	LWL0	LILRIB5,4
+
+plhdcc_l
+	LW	CCHED1,30
+	LW	CCHED2,8
+	LW	CCHED3,8
+	LW	CCHED4,60
+	LW	CCHED3,5
+	LW	CCHED2,5
+	LW	CCHED1,70
+	LW	CCHED5,5
+	LWL0	CCHED6,15
+
+plhdmm_l
+	LW	MMHED1,30
+	LW	MMHED2,8
+	LW	MMHED3,8
+	LW	MMHED4,60
+	LW	MMHED3,5
+	LW	MMHED2,5
+	LW	MMHED1,70
+	LW	MMHED5,5
+	LWL0	MMHED6,15
+
+plbw1txt_as
+	ASSLP	140
+	ASNEW	plbw1balloon_t
+	ASTXTR	plbw1ltxt_t
+	ASJMP	plbw280
+
+plbw2txt_as
+	ASSLP	140
+	ASNEW	plbw2balloon_t
+	ASTXTR	plbw2ltxt_t
+plbw280	ASSLP	140
+	ASDEL	2
+	ASTXTK
+	ASEND
+
+plbw1balloon_t
+	ASITEMN	P1LX+0,P1LY+8-20,BLLN1,46,DMAWNZ,2
+	ASITEMN	P1LX+20,P1LY+8-20,BLLN2,46,DMAWNZ,2
+	ASITEMN	P1LX+40,P1LY+8-20,BLLN2,46,DMAWNZ,2
+	ASITEMN	P1LX+80,P1LY+8-20,BLLN1,46,DMAWNZ+M_FLIPH,2
+	ASITEMN	P1LX+40,P1LY+40-20,BOON2B,47,DMAWNZ+M_FLIPH,2
+	.word	-1000
+
+plbw2balloon_t
+	ASITEMN	P2LX-80,P2LY+8-20,BLLN1,46,DMAWNZ,2
+	ASITEMN	P2LX-60,P2LY+8-20,BLLN2,46,DMAWNZ,2
+	ASITEMN	P2LX-40,P2LY+8-20,BLLN2,46,DMAWNZ,2
+	ASITEMN	P2LX+0,P2LY+8-20,BLLN1,46,DMAWNZ+M_FLIPH,2
+	ASITEMN	P2LX-40,P2LY+40-20,BOON2B,47,DMAWNZ,2
+	.word	-1000
+
+plbw1ltxt_t	;Lost
+	.word	10
+	.long	plbw1l1_st,plbw1l2_st,plbw1l3_st,plbw1l4_st
+	.long	plbw1l5_st,plbw1l6_st,plbw1l7_st
+	.long	plbw1l8_st,plbw1l9_st,plbw1l10_st
+plbw1l1_st
+	XYTXT	PRTF8,P1LX+40,P1LY+12-20,2,"I SUCK AT"
+	XYTXT	PRTF8,P1LX+40,P1LY+22-20,2,"THIS GAME"
+	.word	-1
+plbw1l2_st				   
+	XYTXT	PRTF8,P1LX+40,P1LY+12-20,2,"I WILL"
+	XYTXT	PRTF8,P1LX+40,P1LY+22-20,2,"FEAST NOW"
+	.word	-1
+plbw1l3_st
+	XYTXT	PRTF8,P1LX+40,P1LY+12-20,2,"I NEED"
+	XYTXT	PRTF8,P1LX+40,P1LY+22-20,2,"MORE CASH."
+	.word	-1
+plbw1l4_st
+	XYTXT	PRTF8,P1LX+40,P1LY+12-20,2,"HE IS A"
+	XYTXT	PRTF8,P1LX+40,P1LY+22-20,2,"DOG"
+	.word	-1
+plbw1l5_st
+	XYTXT	PRTF8,P1LX+40,P1LY+12-20,2,"PLAYER 2"
+	XYTXT	PRTF8,P1LX+40,P1LY+22-20,2,"IS A JERK"
+	.word	-1
+plbw1l6_st
+	XYTXT	PRTF8,P1LX+40,P1LY+12-20,2,"THAT SCUM"
+	XYTXT	PRTF8,P1LX+40,P1LY+22-20,2,"CHEATED"
+	.word	-1
+plbw1l7_st
+	XYTXT	PRTF8,P1LX+40,P1LY+12-20,2,"HOW DOES"
+	XYTXT	PRTF8,P1LX+40,P1LY+22-20,2,"HE DO IT?"
+	.word	-1
+plbw1l8_st
+	XYTXT	PRTF8,P1LX+40,P1LY+12-20,2,"PUNCH"
+	XYTXT	PRTF8,P1LX+40,P1LY+22-20,2,"PLAYER 2"
+	.word	-1
+plbw1l9_st
+	XYTXT	PRTF8,P1LX+40,P1LY+12-20,2,"I NEED"
+	XYTXT	PRTF8,P1LX+40,P1LY+22-20,2,"A DRINK..."
+	.word	-1
+plbw1l10_st
+	XYTXT	PRTF8,P1LX+40,P1LY+12-20,2,"I WANT MY"
+	XYTXT	PRTF8,P1LX+40,P1LY+22-20,2,"MOMMY"
+	.word	-1
+plbw1l11_st
+	XYTXT	PRTF8,P1LX+40,P1LY+12-20,2,"I SWEAT"
+	XYTXT	PRTF8,P1LX+40,P1LY+22-20,2,"LIKE A PIG"
+	.word	-1
+
+plbw2ltxt_t	;Lost
+	.word	10
+	.long	plbw2l1_st,plbw2l2_st,plbw2l3_st,plbw2l4_st
+	.long	plbw2l5_st,plbw2l6_st,plbw2l7_st
+	.long	plbw2l8_st,plbw2l9_st,plbw2l10_st
+plbw2l1_st
+	XYTXT	PRTF8,P2LX-40,P2LY+12-20,2,"PLAYER 1"
+	XYTXT	PRTF8,P2LX-40,P2LY+22-20,2,"IS A DORK"
+	.word	-1
+plbw2l2_st
+	XYTXT	PRTF8,P2LX-40,P2LY+12-20,2,"THAT BOY"
+	XYTXT	PRTF8,P2LX-40,P2LY+22-20,2,"IS GOOD..."
+	.word	-1
+plbw2l3_st
+	XYTXT	PRTF8,P2LX-40,P2LY+12-20,2,"HOW CAN I"
+	XYTXT	PRTF8,P2LX-40,P2LY+22-20,2,"BEAT HIM?"
+	.word	-1
+plbw2l4_st
+	XYTXT	PRTF8,P2LX-40,P2LY+12-20,2,"I NEED"
+	XYTXT	PRTF8,P2LX-40,P2LY+22-20,2,"MUSCLES"
+	.word	-1
+plbw2l5_st
+	XYTXT	PRTF8,P2LX-40,P2LY+12-20,2,"PLAYER 1"
+	XYTXT	PRTF8,P2LX-40,P2LY+22-20,2,"WAS LUCKY"
+	.word	-1
+plbw2l6_st
+	XYTXT	PRTF8,P2LX-40,P2LY+12-20,2,"THAT GUY'S"
+	XYTXT	PRTF8,P2LX-40,P2LY+22-20,2,"A BIG JERK"
+	.word	-1
+plbw2l7_st
+	XYTXT	PRTF8,P2LX-40,P2LY+12-20,2,"I SUCK AT"
+	XYTXT	PRTF8,P2LX-40,P2LY+22-20,2,"ALL GAMES"
+	.word	-1
+plbw2l8_st
+	XYTXT	PRTF8,P2LX-40,P2LY+12-20,2,"I CAN'T"
+	XYTXT	PRTF8,P2LX-40,P2LY+22-20,2,"BEAT HIM"
+	.word	-1
+plbw2l9_st
+	XYTXT	PRTF8,P2LX-40,P2LY+12-20,2,"I CAN"
+	XYTXT	PRTF8,P2LX-40,P2LY+22-20,2,"PLAY PONG"
+	.word	-1
+plbw2l10_st
+	XYTXT	PRTF8,P2LX-40,P2LY+12-20,2,"I SUCK"
+	XYTXT	PRTF8,P2LX-40,P2LY+22-20,2,"BIG TIME"
+	.word	-1
+plbw2l11_st
+	XYTXT	PRTF8,P1LX+40,P1LY+12-20,2,"I SUCK AT"
+	XYTXT	PRTF8,P1LX+40,P1LY+22-20,2,"THIS GAME"
+	.word	-1
 
 
 ********************************
 * Dictator taunts players
 
 
- SUBRP	dictator_taunt
-	movi	dictator_t,a8
-	jruc	anim_script
+ SUBRP	dictator_taunt		;A0=Taunt # (0-?)
+
+	movi	dictator0_as,a8
+	subk	1,a0
+	jrnz	dt20
+	movi	dictator1_1p_as,a8	;1 Player
+	move	@STATUS2,a0
+	cmpi	3,a0
+	jrnz	dt20
+	movi	dictator1_2p_as,a8	;2 Players
+dt20	CREATE	ANIMPID,anim_script
+
+dt50	move	@SWITCH+16,a1		;Chk for impatience
+	not	a1
+	andi	024H,a1
+	jrnz	dtx			;Abort?
+	SLEEPK	3
+	move	@animscnt,a1
+	jrgt	dt50			;!Done?
+dtx	RETP
 
 
-dictator_t
-	.word	ASNEW
-	.long	dictnew_t
+dictator0_as
+	ASRUN	dicttxt0_as
+	ASJMP	dictmain_as
 
-	.word	ASNEW
-	.long	dictnew2_t
+dictator1_1p_as				;1 player game
+	ASRUN	dicttxt1a_as
+	ASJMP	dictmain_as
 
-	.word	ASLAB,50
-	.word	ASXY,1,0,-4
-	.word	ASXY,>10,0,-4
-	.word	ASXY,>11,0,-4
-	.word	ASXY,>20,0,-4
-	.word	ASXY,>21,0,-4
-	.word	ASSLP,1
-	.word	ASDSJ
+dictator1_2p_as				;2 player game
+	ASRUN	dicttxt1b_as
 
-	.word	ASSLP,30
+dictmain_as
+	ASADDW	1,animscnt
+	ASNEW	dictnew_t
+	ASNEW	dictnew2_t
 
-	.word	ASNEW
-	.long	dictnew3_t
+	ASSND	txtssnd
+	ASLAB	50			;Scroll up
+	ASXY	0,01fH,0,-4
+	ASDSJS1
 
-	.word	ASTXT		;Say1
-	.long	dicttxtb1_st
+	ASSLP	30
+	ASNEW	dictboon_t
+	ASRUN	dictarm_as
+	ASRUN	dictsnd_as
+	ASRUN	dicteyes_as
 
-	.word	ASFRA
-	.long	dicteybl_l
-	.word	>10
+	ASFRA	dictmtk_l,018H,3
+	ASFRA	dictmtk_l,019H,3
 
-	.word	ASFRA
-	.long	dicteytw_l
-	.word	>11
+	ASWAIT
 
-	.word	ASFRA
-	.long	dictmtk_l
-	.word	>20
+	ASFRA	dictmtk2_l,018H,1
+	ASFRA	dictmtk2_l,019H,1
 
-	.word	ASFRA
-	.long	dictmtk_l
-	.word	>21
+	ASWAIT
 
-	.word	ASWAIT
+	ASFRA	dictmtk_l,018H,1
+	ASFRA	dictmtk_l,019H,1
 
-	.word	ASTXTK
-	.word	ASTXT		;Say2
-	.long	dicttxtb2_st
+	ASWAIT
 
-	.word	ASFRA
-	.long	dicteybl_l
-	.word	>10
+	ASFRA	dictmtk2_l,018H,1
+	ASFRA	dictmtk2_l,019H,1
 
-	.word	ASFRA
-	.long	dicteytw_l
-	.word	>11
+	ASWAIT
 
-	.word	ASFRA
-	.long	dictmtk_l
-	.word	>20
+	ASFRA	dicteymd_l,010H,1
+	ASFRA	dicteymd_l,011H,1
+	ASFRA	dictmyell_l,018H,1
+	ASFRA	dictmyell_l,019H,1
 
-	.word	ASFRA
-	.long	dictmtk_l
-	.word	>21
+	ASWAIT
+	ASRUN	dicteyes_as
+	ASSLP	40
+	ASFRA	dictmusuck_l,018H,1
+	ASFRA	dictmusuck_l,019H,1
 
-	.word	ASLAB,5
-	.word	ASXY,>20,1,0
-	.word	ASSLP,1
-	.word	ASXY,>20,-1,0
-	.word	ASSLP,3
-	.word	ASDSJ
-	.word	ASWAIT
+	ASWAIT
 
-	.word	ASTXTK
-	.word	ASTXT		;Say3
-	.long	dicttxtb3_st
+	ASFRA	dictsmile_l,018H,1
+	ASFRA	dictsmile_l,019H,1
 
-	.word	ASFRA
-	.long	dicteymd_l
-	.word	>10
+	ASSLP	60*4
+	ASADDW	-1,animscnt
+	ASEND
 
-	.word	ASFRA
-	.long	dicteymd_l
-	.word	>11
 
-	.word	ASFRA
-	.long	dictmyell_l
-	.word	>20
+dicttxt0_as
+	ASSLP	80
+	ASTXT	dicttxta1_st		;Say1
+	ASSLP	180
+	ASTXTK
+	ASTXT	dicttxta2_st		;Say2
+	ASSLP	204
+	ASTXTK
+	ASTXT	dicttxta3_st		;Say3
+	ASEND
 
-	.word	ASFRA
-	.long	dictmyell_l
-	.word	>21
+dicttxt1a_as
+	ASSLP	80
+	ASTXT	dicttxtb1a_st		;Say1
+	ASJMP	dicttxt1_as
 
-	.word	ASWAIT
+dicttxt1b_as
+	ASSLP	80
+	ASTXT	dicttxtb1b_st		;Say1
 
-	.word	ASSLP,60*4
-	.word	ASTXTK
-	.word	-1		;End
+dicttxt1_as
+	ASSLP	180
+	ASTXTK
+	ASTXT	dicttxtb2_st		;Say2
+	ASSLP	204
+	ASTXTK
+	ASTXT	dicttxtb3_st		;Say3
+	ASEND
 
+
+dictarm_as				;Move arm
+	ASSLP	90
+
+	ASLAB	28
+	ASXY	020H,1,-1,-8
+	ASDSJS1
+
+	ASSLP	20
+
+	ASLAB	3
+	ASLAB	10
+
+	ASLAB	3
+	ASXY	020H,1,0,1
+	ASDSJS1
+	ASLAB	3
+	ASXY	020H,1,0,-1
+	ASDSJS1
+
+	ASDSJ
+	ASSLP	30
+	ASDSJ
+
+	ASLAB	4		;0BaHng arm up and down
+
+	ASLAB	6
+	ASXY	020H,1,1,14
+	ASDSJS1
+	ASXY	0,03fH,0,-2	;body up
+	ASSND	fisthit
+	ASSLP1
+	ASXY	0,03fH,0,2	;body dn
+
+	ASLAB	6
+	ASXY	020H,1,-1,-14
+	ASDSJS1
+
+	ASDSJ
+
+	ASLAB	8		;>move arm off screen
+	ASXY	020H,1,1,14
+	ASDSJS1
+	ASXY	0,03fH,0,-2	;body up
+	ASSND	GLSEXP
+	ASSLP1
+	ASXY	0,03fH,0,2	;body dn
+
+	ASEND
+
+dicteyes_as
+	ASFRA	dicteybl_l,010H,2
+	ASFRA	dicteybl_l,011H,2
+	ASEND
+
+
+dictsnd_as
+	ASSLP	15
+	ASSND	ahkb1
+	ASSLP	60
+	ASSND	ahkb2
+	ASSLP	60
+	ASSND	ahkb3
+	ASSLP	60
+	ASSND	ahkbsta
+	ASSLP	72
+	ASSND	ahkb1
+	ASSLP	60
+	ASSND	ahkbsta
+	ASSLP	72
+	ASSND	ahkbang
+;	ASSLP	115
+	ASASM
+	move	@TNT_TYPE,a0		;0=TAUNT ONE,1=RACK UP ONE
+	jrnz	dsnd5
+	ASENDASM
+	ASSLP	115
+	ASSND	DOLLAR			;ahkbang
+;	ASSLP	65
+;	ASSND	CVSDOFF
+	ASEND
+
+dsnd5	ASENDASM
+	ASSLP	115
+	ASSND	yousuck
+	ASEND
 
 dictnew_t
-	.long	[67,69],WRINK2			;x,y,img name
-	.word	30,DMAWNZ+M_FLIPH+M_FLIPV,3	;pri,oflags,oid
-	.long	[326,69],WRINK2
-	.word	30,DMAWNZ+M_FLIPV,3
-	.long	[15,132],WRINK1
-	.word	30,DMAWNZ,3
-	.long	[370,132],WRINK1
-	.word	30,DMAWNZ+M_FLIPH,3
-	.long	[122,25],BIOSIGN
-	.word	30,DMAWNZ,3
-	.long	[273,25],BIOSIGN
-	.word	30,DMAWNZ+M_FLIPH,3
-	.word	-1				;End
+	ASITEMN	67,66,WRINK2,30,DMAWNZ+M_FLIPH+M_FLIPV,040H
+	ASITEMN	328,66,WRINK2,30,DMAWNZ+M_FLIPV,040H
+	ASITEMN	15,132,WRINK1,30,DMAWNZ,040H
+	ASITEMN	370,132,WRINK1,30,DMAWNZ+M_FLIPH,040H
+	ASITEMN	122,25,BIOSIGN,30,DMAWNZ,040H
+	ASITEMN	273,25,BIOSIGN,30,DMAWNZ+M_FLIPH,040H
+	.word	-1000				;End
 
 X	.set	145
 dictnew2_t
-	.long	[X+1,210],MADBOD
-	.word	50,DMAWNZ,1
-	.long	[X,210],MADBOD
-	.word	50,DMAWNZ+M_FLIPH,1
-	.long	[X+1,210],MADNECK
-	.word	50,DMAWNZ,1
-	.long	[X,210],MADNECK
-	.word	50,DMAWNZ+M_FLIPH,1
-	.long	[X+1,210],MADHAT
-	.word	50,DMAWNZ,1
-	.long	[X,210],MADHAT
-	.word	50,DMAWNZ+M_FLIPH,1
-	.long	[X+1,210],MADEYE1
-	.word	52,DMAWNZ,>10
-	.long	[X,210],MADEYE1
-	.word	52,DMAWNZ+M_FLIPH,>11
-	.long	[X+1,210],MTHSMILE1
-	.word	52,DMAWNZ,>20
-	.long	[X,210],MTHSMILE1
-	.word	52,DMAWNZ+M_FLIPH,>21
-	.word	-1
+	ASITEMN	X+1,210,MADBOD,250,DMAWNZ,1
+	ASITEMN	X,210,MADBOD,250,DMAWNZ+M_FLIPH,1
+	ASITEMN	X+1,210,MADNECK,250,DMAWNZ,1
+	ASITEMN	X,210,MADNECK,250,DMAWNZ+M_FLIPH,1
+	ASITEMN	X+1,210,MADHAT,250,DMAWNZ,1
+	ASITEMN	X,210,MADHAT,250,DMAWNZ+M_FLIPH,1
+	ASITEMN	X+1,210,MADEYE1,252,DMAWNZ,010H
+	ASITEMN	X,210,MADEYE1,252,DMAWNZ+M_FLIPH,011H
+	ASITEMN	X+1,210,MTHGRIM,252,DMAWNZ,018H
+	ASITEMN	X,210,MTHGRIM,252,DMAWNZ+M_FLIPH,019H
+	ASITEMN	X+74,300,MADARM,255,DMAWNZ+M_FLIPH,020H
+	ASITEMN	X+74,300,MADFIST,256,DMAWNZ+M_FLIPH,021H
+	.word	-1000
 
-dictnew3_t
-	.long	[220,18],BOON1
-	.word	40,DMAWNZ,2
-	.long	[350,18],BOON1
-	.word	40,DMAWNZ+M_FLIPH,2
-	.long	[290,76],BOON2
-	.word	40,DMAWNZ+M_FLIPH,2
-	.word	-1
+dictboon_t
+	ASITEMN	220,17,BOON1,240,DMAWNZ,060H
+	ASITEMN	350,17,BOON1,240,DMAWNZ+M_FLIPH,060H
+	ASITEMN	270,75,BOON2,240,DMAWNZ+M_FLIPH,060H
+	.word	-1000
 
 
-;Eyes
 dicteybl_l
-	.long	MADEYE1
-	.word	30
-	.long	MADEYE2
-	.word	8
-	.long	MADEYE1
-	.word	30
-	.long	MADEYE2
-	.word	8
-	.long	MADEYE1
-	.word	1
-	.long	0
-
-dicteytw_l
-	.long	MADEYE1
-	.word	20
-	.long	MADEYE2
-	.word	7
-	.long	MADEYE1
-	.word	15
-	.long	MADEYE2
-	.word	9
-	.long	MADEYE1
-	.word	25
-	.long	MADEYE2
-	.word	5
-	.long	MADEYE1
-	.word	1
-	.long	0
+	LW	MADEYE1,20
+	LW	MADEYE2,20
+	LW	MADEYE3,50
+	LW	MADEYE2,6
+	LW	MADEYE1,5
+	LW	MADEYE2,6
+	LW	MADEYE3,40
+	LW	MADEYE2,5
+	LW	MADEYE1,4
+	LW	MADEYE2,4
+	LW	MADEYE1,5
+	LW	MADEYE2,4
+	LW	MADEYE3,50
+	LW	MADEYE2,6
+	LWL0	MADEYE1,5
 
 dicteymd_l
-	.long	MADEYE1
-	.word	30
-	.long	MADEYE2
-	.word	20
-	.long	MADEYE3
-	.word	30
-	.long	MADEYE1
-	.word	1
-	.long	0
+	LW	MADEYE1,5
+	LW	MADEYE2,15
+	LW	MADEYE3,30
+	LWL0	MADEYE1,1
 
-;Mouth
 dictmtk_l
-	.long	MTHOPEN1
-	.word	10
-	.long	MTHOPEN2
-	.word	9
-	.long	MTHOPEN1
-	.word	10
-	.long	MTHSMILE1
-	.word	10
-	.long	MTHOPEN1
-	.word	12
-	.long	MTHSMILE1
-	.word	10
-	.long	MTHOPEN1
-	.word	10
-	.long	MTHOPEN2
-	.word	7
-	.long	MTHOPEN1
-	.word	10
-	.long	MTHOPEN2
-	.word	10
-	.long	MTHSMILE1
-	.word	8
-	.long	MTHOPEN1
-	.word	10
-	.long	MTHSMILE1
-	.word	6
-	.long	MTHOPEN1
-	.word	10
-	.long	MTHSMILE1
-	.word	8
-	.long	MTHOPEN1
-	.word	10
-	.long	MTHOPEN2
-	.word	7
-	.long	MTHSMILE1
-	.word	1
-	.long	0
+	LW	MTHSMILE1,10		;Mouth for ahkb1,2,3 (60 ticks)
+	LW	MTHOPEN1,4
+	LW	MTHOPEN2,4
+	LW	MTHOPEN1,3
+
+	LW	MTHSMILE1,3
+	LW	MTHOPEN1,4
+	LW	MTHOPEN2,3
+	LW	MTHOPEN3,4
+	LW	MTHOPEN2,3
+	LW	MTHOPEN1,3
+
+	LW	MTHSMILE1,3
+	LW	MTHOPEN1,3
+	LW	MTHOPEN2,3
+	LW	MTHOPEN3,3
+	LW	MTHOPEN2,3
+	LW	MTHOPEN1,3
+
+	LWL0	MTHSMILE1,1
+
+dictmtk2_l
+	LW	MTHSMILE1,3		;ahkbsta (72 ticks)
+	LW	MTHOPEN1,3
+	LW	MTHOPEN2,3
+	LW	MTHOPEN3,3
+	LW	MTHOPEN2,3
+	LW	MTHOPEN1,3
+
+	LW	MTHSMILE1,2
+	LW	MTHOPEN1,2
+	LW	MTHOPEN2,2
+	LW	MTHOPEN1,3
+
+	LW	MTHSMILE1,2
+	LW	MTHOPEN1,2
+	LW	MTHOPEN2,3
+	LW	MTHOPEN3,2
+	LW	MTHOPEN2,3
+
+	LW	MTHOPEN1,3
+	LW	MTHOPEN2,2
+	LW	MTHOPEN1,2
+
+	LW	MTHOPEN1,3
+	LW	MTHOPEN2,3
+	LW	MTHOPEN3,2
+	LW	MTHOPEN2,3
+	LW	MTHOPEN1,3
+
+	LW	MTHSMILE1,2
+	LW	MTHOPEN1,3
+	LW	MTHOPEN2,3
+	LW	MTHOPEN1,3
+	LWL0	MTHSMILE1,1
+
 
 dictmyell_l
-	.long	MTHSMILE1
-	.word	15
-	.long	MTHSMILE2
-	.word	10
-	.long	MTHSMILE1
-	.word	30
-	.long	MTHOPEN1
-	.word	7
-	.long	MTHOPEN2
-	.word	7
-	.long	MTHOPEN3
-	.word	5
-	.long	MTHOPEN2
-	.word	7
-	.long	MTHOPEN1
-	.word	7
-	.long	MTHOPEN3
-	.word	6
-	.long	MTHOPEN2
-	.word	8
-	.long	MTHOPEN1
-	.word	7
-	.long	MTHOPEN2
-	.word	5
-	.long	MTHOPEN3
-	.word	6
-	.long	MTHOPEN2
-	.word	7
-	.long	MTHOPEN3
-	.word	6
-	.long	MTHOPEN2
-	.word	5
-	.long	MTHOPEN1
-	.word	7
-	.long	MTHSMILE1
-	.word	1
-	.long	0
+	LW	MTHOPEN1,2		;ahkbang (75 ticks)
+	LW	MTHOPEN2,2
+	LW	MTHOPEN3,3
+	LW	MTHOPEN2,1
+
+	LW	MTHOPEN1,3
+	LW	MTHOPEN2,3
+	LW	MTHOPEN3,2
+	LW	MTHOPEN2,3
+
+	LW	MTHSMILE1,1
+	LW	MTHOPEN1,2
+	LW	MTHOPEN2,3
+	LW	MTHOPEN3,3
+	LW	MTHOPEN2,2
+
+	LW	MTHOPEN1,3
+	LW	MTHOPEN2,2
+	LW	MTHOPEN1,2
+
+	LW	MTHSMILE1,2
+	LW	MTHOPEN1,2
+	LW	MTHOPEN2,2
+	LW	MTHOPEN3,2
+	LW	MTHOPEN2,2
+
+	LW	MTHOPEN1,2
+	LW	MTHOPEN2,3
+	LW	MTHOPEN1,3
+
+	LW	MTHSMILE1,3
+	LW	MTHOPEN1,3
+	LW	MTHOPEN2,3
+	LW	MTHOPEN3,3
+	LW	MTHOPEN2,3
+	LW	MTHOPEN1,3
+	LWL0	MTHSMILE1,2
+
+dictmusuck_l
+	LW	MTHSMILE1,5		;You suck at this game!
+	LW	MTHOPEN1,3
+	LW	MTHOPEN2,3
+	LW	MTHOPEN3,2
+	LW	MTHOPEN2,3
+	LW	MTHOPEN1,3
+
+	LW	MTHSMILE1,2
+	LW	MTHOPEN1,3
+	LW	MTHOPEN2,2
+	LW	MTHOPEN3,2
+	LW	MTHOPEN2,2
+
+	LW	MTHOPEN1,2
+	LW	MTHOPEN2,2
+	LW	MTHOPEN3,3
+	LW	MTHOPEN2,2
+
+	LW	MTHSMILE1,2
+	LW	MTHOPEN1,2
+	LW	MTHOPEN2,2
+	LW	MTHOPEN3,2
+	LW	MTHOPEN2,2
+	LW	MTHOPEN1,2
+
+	LW	MTHSMILE1,2
+	LW	MTHOPEN1,2
+	LW	MTHOPEN2,2
+	LW	MTHOPEN3,2
+	LW	MTHOPEN2,2
+	LWL0	MTHOPEN1,2
+
+dictsmile_l
+	LW	MTHSMILE1,30
+	LW	MTHGRIM,50
+	LW	MTHSMILE1,8
+	LWL0	MTHSMILE2,60
 
 
-dicttxt1_st
-	.word	PRTF8,320,25,1			;Mode,X,Y,color
-	.byte	"YOU HAVE INVADED",0
-	.word	PRTF8,320,35,1
-	.byte	"MY PEACE LOVING",0
-	.word	PRTF8,320,45,1
-	.byte	"COUNTRY.",0
+dicttxta1_st
+	XYTXT	PRTF8,286,25,1,"AMERICAN PIGS!!"
+	XYTXT	PRTF8,286,36,1,"GET OUT OF MY"
+	XYTXT	PRTF8,286,47,1,"PEACE LOVING"
+	XYTXT	PRTF8,286,58,1,"COUNTRY."
 	.word	-1
-dicttxt2_st
-	.word	PRTF8,320,25,1
-	.byte	"THIS ACT OF",0
-	.word	PRTF8,320,35,1
-	.byte	"AGRESSION WILL",0
-	.word	PRTF8,320,45,1
-	.byte	"NOT BE TOLERATED.",0
+dicttxta2_st
+	XYTXT	PRTF8,286,30,1,"THESE ACTS OF"
+	XYTXT	PRTF8,286,41,1,"AGGRESSION WILL"
+	XYTXT	PRTF8,286,52,1,"NOT BE TOLERATED!"
 	.word	-1
-dicttxt3_st
-	.word	PRTF8,320,25,1
-	.byte	"PURSUE ME AND",0
-	.word	PRTF8,320,35,1
-	.byte	"YOU SHALL SWIM IN",0
-	.word	PRTF8,320,45,1
-	.byte	"YOUR OWN BLOOD!!!",0
+dicttxta3_st
+	XYTXT	PRTF8,286,25,1,"PURSUE ME AND"
+	XYTXT	PRTF8,286,36,1,"YOU SHALL SWIM"
+	XYTXT	PRTF8,286,47,1,"IN POOLS OF YOUR"
+	XYTXT	PRTF8,286,58,1,"OWN BLOOD!!"
 	.word	-1
 
-dicttxtb1_st
-	.word	PRTF8,286,25,1
-	.byte	"YOU THINK YOU",0
-	.word	PRTF8,286,36,1
-	.byte	"ARE TOUGH",0
-	.word	PRTF8,286,47,1
-	.byte	"BECAUSE YOU HAVE",0
-	.word	PRTF8,286,58,1
-	.byte	"KILLED ORCUS?",0
+dicttxtb1b_st 	;FOR 2 PLYRS
+	XYTXT	PRTF8,286,25,1,"YOU BOTH SUCK AT"
+	XYTXT	PRTF8,286,36,1,"THIS GAME!  YOU"
+	XYTXT	PRTF8,286,47,1,"WILL NOT CAPTURE"
+	XYTXT	PRTF8,286,58,1,"ME. I AM TOO GOOD."
+	.word	-1
+dicttxtb1a_st	;FOR 1 PLYR
+	XYTXT	PRTF8,286,25,1,"YOU SUCK AT THIS"
+	XYTXT	PRTF8,286,36,1,"GAME!  YOU SHALL"
+	XYTXT	PRTF8,286,47,1,"NEVER CAPTURE ME!"
+	XYTXT	PRTF8,286,58,1,"I AM TOO GOOD."
 	.word	-1
 dicttxtb2_st
-	.word	PRTF8,286,25,1
-	.byte	"IT WAS ONLY A",0
-	.word	PRTF8,286,36,1
-	.byte	"TOY FOR THE",0
-	.word	PRTF8,286,47,1
-	.byte	"CHILDREN!",0
+	XYTXT	PRTF8,286,25,1,"WITH MY ADVANCED"
+	XYTXT	PRTF8,286,36,1,"BIO-NUCLEAR"
+	XYTXT	PRTF8,286,47,1,"FACTORY I WILL"
+	XYTXT	PRTF8,286,58,1,"RULE THE WORLD!!"
 	.word	-1
 dicttxtb3_st
-	.word	PRTF8,286,25,1
-	.byte	"MY REAL FORCES",0
-	.word	PRTF8,286,36,1
-	.byte	"WILL RIP YOUR",0
-	.word	PRTF8,286,47,1
-	.byte	"MEN APART!",0
+	XYTXT	PRTF8,286,25,1,"SO GIVE UP NOW"
+	XYTXT	PRTF8,286,36,1,"OR YOU WILL BE"
+	XYTXT	PRTF8,286,47,1,"EATEN BY MY BIG"
+	XYTXT	PRTF8,286,58,1,"PURPLE FRIEND!"
 	.word	-1
 
+	NOTINUSE
 dicttxt4_st
-	.word	PRTF8,320,25,1
-	.byte	"YOU WILL DIE!",0
-	.word	PRTF8,320,35,1
-	.byte	"YOU WILL DIE!!",0
-	.word	PRTF8,320,45,1
-	.byte	"YOU WILL DIE!!!",0
-	.word	-1
-dicttxt5_st
-	.word	PRTF8,320,25,1
-	.byte	"MY FORCES WILL",0
-	.word	PRTF8,320,35,1
-	.byte	"CRUSH YOUR MEN!",0
-	.word	-1
-dicttxt6_st
-	.word	PRTF8,320,25,1
-	.byte	"THEY WILL DIE",0
-	.word	PRTF8,320,35,1
-	.byte	"BY THE THOUSANDS!",0
-	.word	-1
-dicttxt7_st
-	.word	PRTF8,320,25,1
-	.byte	"THE SANDS WILL BE",0
-	.word	PRTF8,320,35,1
-	.byte	"COVERED BY YOUR",0
-	.word	PRTF8,320,45,1
-	.byte	"BLOOD!",0
+	XYTXT	PRTF8,320,25,1,"YOU WILL DIE!"
+	XYTXT	PRTF8,320,35,1,"YOU WILL DIE!!"
+	XYTXT	PRTF8,320,45,1,"YOU WILL DIE!!!"
 	.word	-1
 dicttxt8_st
-	.word	PRTF8,320,25,1
-	.byte	"IF YOU CONTINUE,",0
-	.word	PRTF8,320,35,1
-	.byte	"THE HOSTAGES",0
-	.word	PRTF8,320,45,1
-	.byte	"WILL DIE!",0
+	XYTXT	PRTF8,320,25,1,("IF YOU CONTINUE,")
+	XYTXT	PRTF8,320,35,1,"THE HOSTAGES"
+	XYTXT	PRTF8,320,45,1,"WILL DIE!"
 	.word	-1
+	.endif
 
 
 
 ********************************
-* Run an animation script
+* Electrocution code
+* A8=Fry # (0=Plyrs, 1=Dict caught, 2=Dict escaped)
+
+ SUBR	fry_plyrs
+
+	clr	a0
+	move	a0,@DEATHS		;Plyrs not dead yet!
+
+	movi	ermtune,a0
+	calla	ONESND
+
+	calla	STOPOBJS		;Keep all objs still
+
+	movk	1,a0			;Delay start of a 2nd plyr
+	move	a0,@NO_START
+	move	a0,@INTRO
+
+	clr	a0
+	move	a0,@IRQSKYE
+
+	movk	10,a0
+	move	a0,@WORLDTLX+16
+	movi	960,a0
+	move	a0,@WORLDTLY+16
+
+	SLEEPK	2
+	move	a8,a8
+	jrnz	fry_dict
+
+	movi	AUDECHAIRPL,a0
+	calla	aud_addnumplyrs
+
+	movi	frypbg_t,a0		;Show electric chairs
+	move	a0,@BAKMODS,L
+	calla	BGND_UD1
+
+	movi	CHAIRP,a8 		;Pal name
+	movi	cycmem,a9		;Ram area
+	movi	[59,64],a10		;Begin/end color #
+	movk	4,a11			;Rate in ticks
+	CREATE	CYCPID,COLCYC		;Color cycler on
+	CREATE	CYCPID,CYCSPECT 	;Color 62 (Text)
+
+ 	move	@PLYROBJS,a9,L
+	jrz	f50
+	calla	STOPPLYR
+f50	move	@PLYROBJS+32,a9,L
+	jrz	f55
+	calla	STOPPLYR
+f55
+
+debugf
+	movi	frypdict_as,a8		;Dictator taunt
+	CREATE	ANIMPID,anim_script
+
+	move	@STATUS2,a6
+	btst	0,a6			;Player1
+	jrz	f200
+	movi	fryp1_as,a8
+	CREATE	ANIMPID2,anim_script
+
+f200	btst	1,a6			;Player2
+	jrz	f300
+	movi	fryp2_as,a8
+	CREATE	ANIMPID3,anim_script
+
+f300	SLEEP	509+60
+
+	CREATE	FRYPID,frypmeters
+
+	JSRP	anim_wait
+	CREATE0	anim_kilslp
+
+	movi	FRYPID,a0
+	calla	KIL1C
+;	jruc	debugf
+
+	movk	1,a1		;1 plyr
+	move	@STATUS2,a0
+	subk	3,a0
+	jrne	f400		;Only 1?
+	movk	2,a1		;2 plyrs
+f400	move	@DEATHS,a0
+	jrz	f420		;No deaths?
+	subk	1,a1
+	subk	3,a0
+	jreq	f450		;Both died?
+f420	movi	AUDECHAIRSV,a0
+	calla	AUD
+
+f450	movi	CYCPID,a0
+	calla	KIL1C
+
+	clr	a0			;Enable player starts
+	move	a0,@NO_START
+	move	a0,@INTRO
+
+	movi	TUNE2,a0		;Do some akhboob speech here?
+	calla	ONESND
+
+	move	@START,a0
+	cmpi	10,a0
+	jane	NOCAN2
+	addk	1,a0
+	move	a0,@START
+	jauc	YESPWRD
 
 
-	.bss	animsfnum	,16	;# FRANIMs running
-	.bss	animslp		,32+16	;*Loop point, Loop cnt
-
-ASNEW	.equ	0		;AnimScript commands
-ASFRA	.equ	1		;
-ASSLP	.equ	2		;
-ASTXT	.equ	3		;
-ASTXTK	.equ	4		;
-ASWAIT	.equ	5		;
-ASXY	.equ	10		;
-ASLAB	.equ	20		;
-ASDSJ	.equ	21		;
+frypbg_t
+	.long	ELECRM1BMOD
+	.word	12,1000
+	.long	-1
 
 
- SUBRP	anim_script		;A8=*Script
 
+ SUBRP	fry_dict
+
+	PUSH	a8
+
+	movi	frydbg_t,a0		;Show electric chairs
+	move	a0,@BAKMODS,L
+	calla	BGND_UD1
+
+	movi	CHAIRP,a8 		;Pal name
+	movi	cycmem,a9		;Ram area
+	movi	[59,64],a10		;Begin/end color #
+	movk	4,a11			;Rate in ticks
+	CREATE	CYCPID,COLCYC		;Color cycler on
+
+	PULL	a8
+	subk	1,a8
+	jreq	fd100			;Captured?
+	SLEEP	60*1			;Let plyrs see chair
+	jruc	fd150
+
+fd100	movi	[10,30],a8		;Color 10, 30 colors
+	movi	SCOREPAL,a9
+	movi	COLTAB,a10		;Color table
+	movk	7,a11			;Rate of cycle
+	CREATE	CYCPID,CYCLE_TABLE
+
+	callr	scores_bcdbin
+	CREATE	FRYPID,score_prt
+
+	movi	frydict_as,a8		;Dictator
+	CREATE	ANIMPID,anim_script
+
+	SLEEP	185+75
+	CREATE	FRYPID,frydmeters
+
+	JSRP	anim_wait
+
+	movi	FRYPID,a0
+	calla	KIL1C
+
+	callr	scores_binbcd
+
+	movi	SCOREPAL,a0		;Reset SCOREPAL
 	clr	a1
-	move	a1,@animsfnum
+	move	*a0+,a2
+	calla	PALSET
 
-ans50	move	*a8+,a1			;Get command
-	move	*a8+,a0,L		;Get data
+fd150	movk	1,a1
+	callr	INCOM_TRAN
+	movi	CYCPID,a0
+	calla	KIL1C
 
-	cmpi	ASNEW,a1		;New objects
-	jrne	ans200
-	PUSH	a8
-	move	a0,a9
-ans100	move	*a9+,a1			;Get Y
-	move	*a9+,a0			;Get X
-	sll	16,a0
-	sll	16,a1
-	move	*a9+,a2,L		;*Image
-	move	*a9+,a3			;Pri
-	move	*a9+,a4			;Flags
-	move	*a9+,a5			;ID
-	addi	CLSDEAD,a5
-	clr	a6
-	clr	a7
-	calla	BEGINOBJ
-	move	*a9,a0
-	jrge	ans100
-	PULL	a8
-	jruc	ans50
+	calla	ZERO_BITS
+	movi	STATSND,a0
+	calla	ONESND
+	calla	STRT_S			;Static cycle
+	movk	26,a9
+	move	a9,@DELAYALL
 
-ans200	cmpi	ASFRA,a1		;FRANIM
-	jrne	ans300
-	move	@animsfnum,a2
-	addk	1,a2
-	move	a2,@animsfnum
-	move	a0,a9
-	move	*a8+,a10		;OID
-	CREATE	0,anims_franim
-	jruc	ans50
+fd200	SLEEPK	1			;>Slide over to rackup
+	move	@WORLDTLX+16,a0
+	addk	16,a0
+	move	a0,@WORLDTLX+16
+	calla	BGND_UD1
+	dsj	a9,fd200
 
-ans300	cmpi	ASSLP,a1		;Sleep
-	jrne	ans400
-	subk	16,a8			;-WORD
-	calla	PRCSLP
-	jruc	ans50
+	calla	anim_killall
+	calla	DELOFFBOTL
 
-ans400	cmpi	ASTXT,a1		;Print text
-	jrne	ans500
-	PUSH	a8
-	callr	print_xy
-	PULL	a8
-	jruc	ans50
-
-ans500	cmpi	ASTXTK,a1		;Kill text
-	jrne	ans600
-	move	a8,-*a12,L		;Save in process stack
+	CREATE0 DO_RACKUP
+	SLEEP	50
+	clr	a0
+	move	a0,@DELAYALL		;Tell static to go away
+	SLEEPK	10
 	calla	ERASE_TXT
-;	movk	4,a11
-;	JSRP	text_shrink		;Sleeps
-	move	*a12+,a8,L
-	subk	32,a8			;-LONG
-	jruc	ans50
+	calla	STRT_CRM		;Start headquarters cycle
 
-ans600	cmpi	ASWAIT,a1		;Wait on FRANIMs
-	jrne	ans700
-	subk	32,a8			;-LONG
-ans620	SLEEP	2
-	move	@animsfnum,a1
-	jrnz	ans620
-	jruc	ans50
-
-ans700	cmpi	ASXY,a1			;New XY
-	jrne	ans1200
-	subk	16,a8			;-WORD
-	move	*a8+,a3
-	move	*a8+,a4
-	sll	16,a0
-	srl	16,a0
-	addi	CLSDEAD,a0
-	move	@OBJLST,a1,L
-ans720	callr	obj_find
-	jrz	ans50
-	move	*a1(OXPOS),a2		;New X
-	add	a3,a2
-	move	a2,*a1(OXPOS)
-	move	*a1(OYPOS),a2		;New Y
-	add	a4,a2
-	move	a2,*a1(OYPOS)
-	move	*a1,a1,L
-	jrz	ans50
-	jruc	ans720
-
-ans1200	cmpi	ASLAB,a1		;Set label
-	jrne	ans1300
-	subk	16,a8			;-WORD
-	move	a8,@animslp,L
-	move	a0,@animslp+32
-	jruc	ans50
-
-ans1300	cmpi	ASDSJ,a1		;Decrement and loop to label
-	jrne	ans2000
-	subk	32,a8			;-LONG
-	move	@animslp+32,a2
-	subk	1,a2
-	move	a2,@animslp+32
-	jrz	ans50
-	move	@animslp,a8,L		;Loop
-	jruc	ans50
-
-ans2000	SLEEP	1			;DEBUG
-	move	@SWITCH,a0
-	not	a0
-	jrz	ans2000
-
-	movi	CLSDEAD,a0		;>Delete objects
-	movi	>ff00,a1
-	calla	KILOBJ
-
-
-	RETP
-
-
-
-********************************
-* Animation of a part (Process)
-
-	APTRPD	ANFL,0		;*Franim list
-
-
- SUBRP	anims_franim		;A9=*FRAN list, A10=OID
-
-	addi	CLSDEAD,a10
-	move	@OBJLST,a8,L		;>Find object
-anf100	move	*a8(OID),a0
-	cmp	a10,a0
-	jreq	anf300
-	move	*a8,a8,L
-	jrnz	anf100
-	jruc	anf700			;No match!
-
-anf300	move	a9,*a13(ANFL),L
-anf340	movk	1,a1			;Do one, no sleep
-	JSRP	FRANIM
-	jrnc	anf340
-	move	*a13(ANFL),a9,L		;Go to 1st
-;	jruc	anf340
-
-anf390
-;	move	a8,a0
-;	calla	DELOBJ
-anf700	move	@animsfnum,a2
-	subk	1,a2
-	move	a2,@animsfnum
 	DIE
 
 
+frydbg_t
+	.long	CHAIR2BMOD
+	.word	102,1000
+	.long	RACKBMOD
+	.word	10+406,960
+	.long	-1
+
+
 ********************************
-* Find an object by OID
+* Fry meters (Process)
 
- SUBRP	obj_find		;A0=OID, A1=*1st obj
-of20	move	*a1(OID),a2
-	cmp	a0,a2
-	jreq	of50
-	move	*a1,a1,L
-	jrnz	of20
-of50	move	a1,a1		;A1=*Obj or 0
-	rets			;Pass CC
+	WORDPD	fmp1str	,0	;Plyr 1 strength (0-?, 4LBits fractional)
+	WORDPD	fmp2str	,1	;Plyr 2 ^
+	WORDPD	fmgwts	,2	;Electrocution gigawatts (0-?) Fry players
+
+	WORDPD	fmgwts1	,2	;^ Fry dictator by P1
+	WORDPD	fmgwts2	,3	;^ P2
+
+	.bss	fryp1stat,16	;0=Plyr1 OK, -=Fried, 1=Hyper, 01H=Bust free
+	.bss	fryp2stat,16	;Plyr2 ^
+
+FMTR_X	.equ	14		;Plyr mtr
+FMTR_Y	.equ	39
+FMTR_H	.equ	192
+FGMTR_X	.equ	188		;GWatt mtr
+FGMTR_Y	.equ	14
+FGMTR_H	.equ	120
+
+ SUBRP	frypmeters
+
+	movi	185*16,a2		;Initial strengths
+
+	movk	2,a8
+	move	a13,a9
+	addi	fmp1str,a9		;A9=*1st variable
+	CREATE	FRYPID,fm_swsc		;Start P1 switch scan
+	move	a2,*a9+
+
+	movk	5,a8
+	CREATE	FRYPID,fm_swsc		;P2 ^
+	move	a2,*a9+
+
+	movi	[FMTR_X+19,0],a0
+	movi	[FMTR_Y,0],a1
+	movi	CLAMP1,a2
+	movi	198,a3			;Z
+	movi	DMACAL+M_NOCOLL,a4
+	movi	CLSANIM+0180H,a5		;Same as ANIM meter ID
+	clr	a6
+	clr	a7
+	movk	2,b3			;Cause skip of plyr meter
+	movk	2,b4
+	move	@STATUS2,b2
+	btst	0,b2			;Player1
+	jrz	fm20
+	calla	BEGINOBJ
+	move	a8,a10			;A10=*P1 meter
+	movi	01414H,a0
+	move	a0,*a10(OCONST)
+	movk	12,a0
+	move	a0,*a10(OSIZEX)
+	clr	b3			;Ok
+
+fm20	movi	[372+19,0],a0
+	movi	[FMTR_Y,0],a1
+	movi	CLSANIM+0280H,a5		;Same as ANIM meter ID
+	btst	1,b2			;Player2
+	jrz	fm30
+	calla	BEGINOBJ
+	move	a8,a11			;A11=*P2 meter
+	movi	01414H,a0
+	move	a0,*a11(OCONST)
+	movk	12,a0
+	move	a0,*a11(OSIZEX)
+	clr	b4			;Ok
+
+fm30	move	b3,@fryp1stat
+	move	b4,@fryp2stat
+
+	movi	[FGMTR_X+19,0],a0
+	movk	1,a1
+	movi	90,a3			;Z
+	movi	CLSANIM+080H,a5
+	calla	BEGINOBJ
+	move	a10,a2
+	clr	a10
+	CREATE	FRYPID,fm_gmtr		;Gigawatt meter
+	move	a2,a10
+
+	movi	fryp1stat,a8		;Cache A8/A9
+	movi	fryp2stat,a9
 
 
+fmlp	SLEEPK	1
+	move	@WORLDTLY+16,a7
+	addi	FMTR_H+FMTR_Y,a7
+	movi	FMTR_H*16-16,a3
+	movk	15,a4			;A4=Strength drain
+	move	*a13(fmgwts),a5		;A5=Current gwts
+	cmpi	90,a5
+	jrlo	fm60
+	movk	1,a2
+	move	*a8,a1
+	jrnz	fm54
+	move	a2,*a8			;P1 Hyper
+fm54	move	*a9,a1
+	jrnz	fm55
+	move	a2,*a9			;P2 Hyper
+fm55	cmpi	118,a5
+	jrlo	fm60
+	sll	2,a4			;*4
+	neg	a4			;They made it, so run up meters
+
+fm60	move	*a8,a0
+	subk	1,a0
+	jrhi	fm120
+	move	*a13(fmp1str),a0
+	sub	a4,a0			;Decrease strength
+	jrge	fm70
+	movi	-1,a1
+	move	a1,*a8			;Die
+	clr	a0			;Set min
+fm70	move	a0,*a13(fmp1str)
+	cmp	a3,a0
+	jrls	fm80			;In range?
+	move	a3,a0			;Set max
+	cmpi	50,a5
+	jrlo	fm80			;Too early for escape?
+	movk	2,a1
+	move	a1,*a8			;Break free
+fm80	srl	4,a0			;/16
+	addk	1,a0
+	move	a0,*a10(OSIZEY)
+	move	a7,a1
+	sub	a0,a1
+	move	a1,*a10(OYPOS)		;New Y
+
+fm120	move	*a9,a0
+	subk	1,a0
+	jrhi	fm300
+	move	*a13(fmp2str),a0
+	sub	a4,a0
+	jrgt	fm150
+	movi	-1,a1
+	move	a1,*a9			;Die
+	clr	a0			;Set min
+fm150	move	a0,*a13(fmp2str)
+	cmp	a3,a0
+	jrls	fm180
+	move	a3,a0
+	cmpi	50,a5
+	jrlo	fm180			;Too early for escape?
+	movk	2,a1
+	move	a1,*a9			;Break free
+fm180	srl	4,a0
+	addk	1,a0
+	move	a0,*a11(OSIZEY)
+	sub	a0,a7
+	move	a7,*a11(OYPOS)
+
+fm300	jruc	fmlp
+
+
+
+ SUBRP	frydmeters
+
+	clr	a2			;Initial strengths
+	move	a2,@fryp1stat
+
+	movk	2,a8
+	move	a13,a9
+	addi	fmp1str,a9		;A9=*1st variable
+	CREATE	FRYPID,fm_swsc		;Start P1 switch scan
+	move	a2,*a9+
+
+	movk	5,a8
+	CREATE	FRYPID,fm_swsc		;P2 ^
+	move	a2,*a9+
+
+	movi	[57+19,0],a0
+	movk	1,a1
+	movi	CLAMP1,a2
+	movi	90,a3			;Z
+	movi	DMACAL+M_NOCOLL,a4
+	movi	CLSANIM+080H,a5		;Same as ANIM meter ID
+	clr	a6
+	clr	a7
+	movi	50,a10			;Meter Y offset
+	move	@STATUS2,b2
+	btst	0,b2			;Player1
+	jrz	fdm20
+	calla	BEGINOBJ
+	CREATE	FRYPID,fm_gmtr		;Gigawatt meter P1
+
+fdm20	btst	1,b2			;Player2
+	jrz	fdm80
+	movi	[324+19,0],a0
+	movk	1,a1
+	movi	CLSANIM+081H,a5		;Same as ANIM meter ID
+	clr	a7
+	calla	BEGINOBJ
+	addk	16,a9
+	CREATE	FRYPID,fm_gmtr		;Gigawatt meter P2
+
+fdm80	movi	fryp1stat,a11		;A11=Status (dictator)
+
+
+fdm100	SLEEPK	1
+	move	@STATUS2,b2
+
+	btst	0,b2			;Player1
+	jrz	fdm200			;Not in game?
+
+	move	*a13(fmgwts1),a3	;A3=Meter1 watts
+	cmpi	80,a3
+	jrlo	fdm150
+	movk	1,a2			;Hyper
+	cmpi	FGMTR_H,a3
+	jrlo	fdm130
+	move	@P1DATA+PSCORE,a0,L	;1st to fry dict gets 10000 pts
+	addi	10000,a0
+	move	a0,@P1DATA+PSCORE,L
+	subk	2,a2			;-1 Kill dict
+fdm130	move	a2,*a11
+
+fdm150	move	*a13(fmp1str),a0
+	jrz	fdm200
+	clr	a0
+	move	a0,*a13(fmp1str)
+	movk	7,a0			;Skip watt add 87%
+	calla	RNDRNG0
+	move	a0,a0
+	jrnz	fdm170
+	addk	1,a3
+	move	a3,*a13(fmgwts1)	;Add in watts
+fdm170	move	@P1DATA+PSCORE,a0,L	;Bonus points
+	addi	100,a0
+	move	a0,@P1DATA+PSCORE,L
+
+fdm200	btst	1,b2			;Player2
+	jrz	fdm300			;Not in game?
+
+	move	*a13(fmgwts2),a3	;A3=Meter2 watts
+	cmpi	80,a3
+	jrlo	fdm250
+	move	*a11,a0
+	jrn	fdm250			;P1 killed dict?
+	movk	1,a2			;Hyper
+	cmpi	FGMTR_H,a3
+	jrlo	fdm230
+	move	@P2DATA+PSCORE,a0,L	;1st to fry dict gets 10000 pts
+	addi	10000,a0
+	move	a0,@P2DATA+PSCORE,L
+	subk	2,a2			;-1 Kill dict
+fdm230	move	a2,*a11
+
+fdm250	move	*a13(fmp2str),a0
+	jrz	fdm300
+	clr	a0
+	move	a0,*a13(fmp2str)
+
+	movk	7,a0			;Skip watt add 87%
+	calla	RNDRNG0
+	move	a0,a0
+	jrnz	fdm270
+	addk	1,a3
+	move	a3,*a13(fmgwts2)	;Add in watts
+fdm270	move	@P2DATA+PSCORE,a0,L	;Bonus points
+	addi	100,a0
+	move	a0,@P2DATA+PSCORE,L
+
+fdm300	move	*a11,a0
+	jrnn	fdm100			;Dict alive?
+
+
+fdm800	SLEEPK	30
+	jruc	fdm800			;Forever!
+
+
+********************************
+* Fry switch scanner (Process)
+
+ SUBRP	fm_swsc		;A8=Bit to test, A9=*Strength var
+
+fmss50	SLEEPK	1
+	move	@COINS,a0
+	btst	a8,a0
+	jrnz	fmss50			;Off?
+
+	move	*a9,a0
+	addi	40,a0			;SHOCK DIFFICULTY: LOWER THE HARDER
+;	addi	500,a0			;DEBUG
+	move	a0,*a9
+	
+fmss70	SLEEPK	1
+	move	@COINS,a0
+	btst	a8,a0
+	jrz	fmss70			;Off?
+ 
+	move	*a9,a0
+	addi	40,a0			;39 SHOCK
+	move	a0,*a9
+
+	jruc	fmss50
+
+
+********************************
+* Fry gigawatt meter (Process)
+
+ SUBRP	fm_gmtr		;A8=*Meter obj, A9=*fmgwts var, A10=Y offset
+
+	movi	01414H,a0
+	move	a0,*a8(OCONST)
+	movk	19,a0
+	move	a0,*a8(OSIZEX)
+	clr	a0
+	move	a0,*a9
+
+fmgm50	move	*a9,a0
+	addk	1,a0
+	cmpi	FGMTR_H,a0
+	jrls	fmgm80			;In range?
+	movi	FGMTR_H,a0		;Set max
+fmgm80	move	a0,*a9
+
+	addk	1,a0
+	move	a0,*a8(OSIZEY)
+	move	@WORLDTLY+16,a1
+	addi	FGMTR_H+FGMTR_Y,a1
+	add	a10,a1			;+Offset
+	sub	a0,a1
+	move	a1,*a8(OYPOS)		;New Y
+
+	SLEEPK	8
+
+	jruc	fmgm50
+
+
+
+
+********************************
+* Pulse fleshtones in pal
+
+	APTRPD	fppal_p	,0	;Plyr 1 strength (0-?, 4LBits fractional)
+
+ SUBRP	fry_pulsep1
+
+	movi	BIGPL1,a0
+	movi	fryp1palmem,a10
+	jruc	fpp5
+
+ SUBRP	fry_pulsep2
+
+	movi	BIGPL2,a0
+	movi	fryp2palmem,a10
+
+fpp5	move	a0,*a13(fppal_p),L
+
+	calla	FINDPAL
+	jrz	fppx
+	sll	8,a0
+	move	a0,a11			;needed later for palset
+
+	movk	9,a9
+	clr	a8
+fpp20	move	a10,a0
+	addk	2,a8
+	move	a8,a2
+	move	*a13(fppal_p),a1,L
+	callr	pal_addb
+	SLEEPK	1
+	dsj	a9,fpp20
+
+	movk	9,a9
+fpp50	move	a10,a0
+	subk	2,a8
+	move	a8,a2
+	move	*a13(fppal_p),a1,L
+	callr	pal_addb
+	SLEEPK	1
+	dsj	a9,fpp50
+fppx	DIE
+
+
+********************************
+* Change brightness of a palette
+* Each color in palette will have A2 added to its RGB
+* A0=*Ram for pal, A1=*Palette, A2=Brightness (-31 to 31)
+
+ SUBRP	pal_addb
+
+	PUSH	a3,a5,a7,a8
+
+	move	*a1+,a14	;# Colors
+	move	a14,*a0+
+
+	sll	23,a14		;Remove any flags
+	srl	23,a14		;9 bits needed for # colors
+
+pb1c	movk	01fH,a8		;A8=Mask for 5 bits of color
+
+pb100	move	*a1+,a3
+	movk	01fH,a7
+	and	a3,a7		;A7=Blue
+	srl	5,a3
+	movk	01fH,a5
+	and	a3,a5		;A5=Green
+	srl	5,a3		;A3=Red
+
+	add	a2,a3
+;	add	a2,a5
+;	add	a2,a7
+
+	cmp	a8,a3
+	jrls	pbrok
+	move	a8,a3
+
+pbrok
+;	cmp	a8,a5
+;	jrls	pbgok
+;	move	a8,a5
+;
+;pbgok	cmp	a8,a7
+;	jrls	pbbok
+;	move	a8,a7
+;
+pbbok	sll	10,a3
+	sll	5,a5
+	or	a5,a3
+	or	a7,a3
+	move	a3,*a0+		;Save color
+	dsj	a14,pb100
+
+	PULL	a3,a5,a7,a8
+
+	move	a10,a0		;*Color data
+	move	a11,a1		;Pal#
+	move	*a0+,a2		;#Colors
+	jauc	PALSET
+
+
+********************************
+* Electrocution scripts
+
+frypdict_as
+	ASADDW	1,animscnt
+	ASBXY	0,58			;Set base
+
+	ASNEW	dictnew2_t
+	ASSND	fisthit
+	ASSND	txtssnd
+
+	ASLAB	50			;Scroll up
+	ASXY	0,01fH,0,-4
+	ASDSJS1
+
+	ASSLP	30
+	ASNEW	dictboon_t
+
+	ASJMPEQ	10,START,fpd50
+	ASTXT	frypdict_st
+	ASJMP	fpd60
+fpd50	ASTXT	frypdictpw_st
+
+fpd60	ASRUN	frypdictarm_as
+	ASRUN	frypdictsnd_as
+	ASRUN	dicteyes_as
+
+	ASFRA	dictmtk_l,018H,1
+	ASFRA	dictmtk_l,019H,1
+
+	ASWAIT
+
+	ASSLP	15
+
+	ASFRA	dicteymd_l,010H,1
+	ASFRA	dicteymd_l,011H,1
+	ASFRA	dictmyell_l,018H,1
+	ASFRA	dictmyell_l,019H,1
+
+	ASWAIT
+
+	ASFRA	dictsmile_l,018H,1
+	ASFRA	dictsmile_l,019H,1
+
+	ASSLP	60
+	ASTXTK
+	ASDEL	060H
+
+	ASLAB	25			;Scroll dn
+	ASXY	0,01fH,0,8
+	ASDSJS1
+
+	ASKIL	0,0ffH
+	ASDELM	0,0ffH
+	ASRUN	frypgigmeteron_as
+
+	ASSND	TXTSND1
+	ASTXT	fryhitbut_st
+	ASSLP	60*2
+	ASTXTK
+
+	ASADDW	-1,animscnt
+	ASEND
+
+
+frypdict_st	;Captured
+	XYTXT	PRTF8,286,30+58,1,"YOU WILL PAY FOR"
+	XYTXT	PRTF8,286,41+58,1,"YOUR CRIMES."
+	XYTXT	PRTF8,286,52+58,1,"FRY LIKE A PIG!"
+	.word	-1
+
+frypdictpw_st	;Pass word entry
+	XYTXT	PRTF8,286,25+58,1,"YOU WILL NEVER"
+	XYTXT	PRTF8,286,36+58,1,"SURVIVE MY"
+	XYTXT	PRTF8,286,47+58,1,"MEGA-POWERFUL"
+	XYTXT	PRTF8,286,58+58,1,"ELECTRIC CHAIR!"
+	.word	-1
+;	XYTXT	PRTF8,286,30-5+58,1,"I HAVE YOU NOW!!"
+;	XYTXT	PRTF8,286,41-5+58,1,"YOU WILL NOW PAY"
+;	XYTXT	PRTF8,286,52-5+58,1,"FOR YOUR CRIMES."
+;	XYTXT	PRTF8,286,63-5+58,1,"FRY LIKE A PIG!"
+
+fryhitbut_st
+	XYTXT	PRTF15,200,90,37,"TAP BUTTON TO ESCAPE"
+	.word	-1
+
+
+frypdictarm_as				;Move arm
+	ASLAB	28
+	ASXY	020H,1,-1,-8
+	ASDSJS1
+
+	ASLAB	10		;Vibrate fist
+	ASLAB	3
+	ASXY	020H,1,0,1
+	ASDSJS1
+	ASLAB	3
+	ASXY	020H,1,0,-1
+	ASDSJS1
+	ASDSJ
+
+	ASLAB	4		;0BaHng arm up and down
+
+	ASLAB	6
+	ASXY	020H,1,1,14
+	ASDSJS1
+	ASXY	0,03fH,0,-2	;body up
+	ASSND	fisthit
+	ASSLP1
+	ASXY	0,03fH,0,2	;body dn
+
+	ASLAB	6
+	ASXY	020H,1,-1,-14
+	ASDSJS1
+
+	ASDSJ
+
+	ASLAB	8		;>move arm off screen
+	ASXY	020H,1,1,14
+	ASDSJS1
+	ASXY	0,03fH,0,-2	;body up
+	ASSND	GLSEXP
+	ASSLP1
+	ASXY	0,03fH,0,2	;body dn
+
+	ASEND
+
+
+frypdictsnd_as
+	ASSLP	15
+	ASSND	ahkb3
+	ASSLP	60
+	ASSND	ahkbang
+	ASEND
+
+
+frypgigmeteron_as			;Scroll in the meter
+	ASSLP	70
+	ASNEW	frypgigmeter_t
+	ASLAB	100
+	ASXY	082H,0,0,2
+	ASDSJS1
+	ASEND
+
+frypgigmeter_t
+	ASITEMN	172,2-258,GGSWRD,90,DMAWNZ,082H
+	ASITEMN	184,10-258,GGWTTS,91,DMAWNZ,082H
+	.word	-1000
+	
+
+
+********************************
+* Player 1 scripts
+
+fryp1_as
+	ASADDW	1,animscnt
+	ASNEW	fryplyr_t
+
+	ASSLP	270+60
+	ASRUN	frypdropin_as
+	ASSLP	54
+	ASFRA	fryp1look_l,040H,1
+	ASSLP	60
+	ASFRA	clampclose_l,020H,1
+	ASSLP	5
+	ASSND	SETDWN
+	ASSLP	15
+	ASFRA	clampclose_l,021H,1
+	ASSLP	5
+	ASSND	SETDWN
+	ASRUN	fryp1meteron_as
+
+	ASSLP	100
+	ASNEW	fryshocks_t
+	ASRUNI	fryshocks_as,070H
+	ASRUNI	fryshakex_as,010H
+	ASRUNI	fryshakey_as,010H
+	ASSLP	30
+
+fryp1_lp
+	ASRUNI	fryshakehdx_as,030H
+	ASRUNI	fryshakehdy_as,030H
+
+	ASRUN	fryp1stretch_as
+	ASSLPR	5,14
+
+	ASJMPR	750,fryp1_40		;75% skip shock
+	ASRUN	fryshakescr_as
+	ASSND	fpain1
+	ASLABR	1,4
+	ASNEW	fryshockbig_t
+	ASSLPR	1,4
+	ASDEL	060H
+	ASNEW	fryshockbigb_t
+	ASSLPR	1,4
+	ASDEL	060H
+	ASDSJ
+
+	ASNEW	fryshockbig_t
+	ASSLP	2
+	ASDEL	060H
+fryp1_40
+	ASRUN	fryp1unstretch_as
+	ASSLP	16
+
+	ASRUNI	fryp1face_as,020H
+
+	ASJMPR	800,fryp1_50		;80% skip slouch
+	ASSND	fpain2
+	ASXY	040H,0,0,9
+	ASANI	ECTOR4,041H		;Slouch
+	ASANI	ECTOR4,046H
+	ASSLPR	8,70
+	ASXY	040H,0,0,-9
+	ASANI	ECTOR1,041H
+	ASANI	ECTOR1,046H
+fryp1_50
+	ASCRE	fry_pulsep1,0
+	ASJMPEQ	1,fryp1stat,fryp1h_lp
+
+fryp1_80
+	ASLABR	15,70
+	ASASM
+	move	@fryp1stat,a0
+	jrn	fryp1_die
+	subk	1,a0
+	jrgt	fryp1_brkfree
+	ASENDASM
+	ASDSJS1
+
+	ASSND	fpain3
+	ASKIL	020H,7
+
+	ASJMP	fryp1_lp
+
+
+fryp1h_lp				;Hyper loop
+	ASSND	fpain3
+	ASKIL	020H,7
+
+	ASRUNI	fryshakehdx_as,030H
+	ASRUNI	fryshakehdy_as,030H
+
+	ASRUN	fryp1stretch_as
+	ASSLP	4
+
+	ASSND	fpain1
+	ASRUN	fryshakescr_as
+	ASLABR	1,4
+	ASNEW	fryshockbig_t
+	ASSLPR	1,3
+	ASDEL	060H
+	ASNEW	fryshockbigb_t
+	ASSLPR	1,3
+	ASDEL	060H
+	ASDSJ
+
+	ASRUNI	frysprks2_as,070H	;More sparks
+	ASNEW	fryshockbig_t
+	ASSLP	2
+	ASDEL	060H
+
+	ASRUN	fryp1unstretch_as
+	ASSLP	16
+
+	ASRUNI	fryp1face_as,020H
+
+	ASCRE	fry_pulsep1,0
+	ASJMPNE	1,fryp1stat,fryp1_80
+
+	ASSLPR	1,30
+	ASJMP	fryp1h_lp
+
+
+fryp1_die				;Plyr fries
+	
+	ASENDASM
+	ASADDW	1,DEATHS
+	ASRUN	fryp1dietxt_as
+	ASRUN	fryp1stretch_as
+fryp1_die2				;P2 entry
+	ASSLP	12
+	ASSND	AIRSCRM			;Death scream	
+	ASRUNI	frysprks3_as,070H
+
+	ASLAB	15
+	ASRUN	fryshakescr_as
+	ASNEW	fryshockbig_t
+	ASSLP	2
+	ASDEL	060H
+	ASNEW	fryshockbigb_t
+	ASSLP	2
+	ASDEL	060H
+	ASDSJ
+
+	ASDELM	070H,0fH			;Kill electricity
+	ASKIL	070H,7
+	ASKIL	010H,7
+	ASKIL	020H,7
+
+	ASRUN	frysmoke_as
+	ASRUN	frywisp_as
+
+	ASSND	fburn
+	ASXY	040H,0fH,0,-12
+	ASRUN	fryskull_as
+	ASZ	041H,0,117
+	ASZ	046H,0,117
+	ASFRA	bonetor_l,041H,1
+	ASFRA	bonetor_l,046H,1
+
+	ASANI	BONEARM,042H		;Make bones
+	ASANI	BONEARM,047H
+	ASANI	BONELEG1,044H
+	ASANI	BONELEG1,049H
+	ASANI	BONELEG2,045H
+	ASANI	BONELEG2,04aH
+	ASDEL	043H
+	ASDEL	048H
+	ASSVL	MTRP			;Bone pal
+	ASPAL	042H
+	ASPAL	047H
+	ASPAL	044H
+	ASPAL	049H
+	ASPAL	045H
+	ASPAL	04aH
+	ASSLP	60*2
+fry_end_as
+	ASSLP	60*3
+	ASADDW	-1,animscnt
+	ASEND
+
+
+fryp1dietxt_as
+	ASSLP	250
+	ASTXT	fryp1die_st
+	ASEND
+
+fryp1die_st	;Burned
+	XYTXT	PRTF15,110,90,37,"NICE TRY"
+	.word	-1
+
+
+fryp1_brkfree				;Plyr breaks free
+	ASENDASM
+	ASDELM	070H,0fH			;Kill electricity
+	ASKIL	070H,7
+	ASKIL	010H,7
+	ASKIL	020H,7
+	ASRUN	fry_jmpup_as
+	ASXY	040H,0,0,-8
+	ASRUN	fry_clampfly_as
+	ASNEW	fryclexp_t
+	ASFRA	BLUEEXP,028H,1
+	ASFRA	BLUEEXP,029H,1
+	ASFRA	BLUEEXP,02aH,1
+	ASFRA	BLUEEXP,02bH,1
+	ASSND	GLSEXP
+
+	ASXYV	080H,0,-030000H,0
+
+	ASANI	ECPHD1A,040H
+	ASANI	ECTOR5,041H
+	ASANI	ECTOR5,046H
+	ASANI	ECWRIST3,042H
+	ASANI	ECWRIST3,047H
+	ASANI	ECFIST2,043H
+	ASANI	ECFIST2,048H
+	ASANI	ECLEG2,044H
+	ASANI	ECLEG2,049H
+	ASANI	ECLEG2A,045H
+	ASANI	ECLEG2A,04aH
+
+	ASSLP	10
+
+	ASANI	ECTOR6,041H
+	ASANI	ECTOR6,046H
+	ASANI	ECWRIST4,042H
+	ASANI	ECWRIST4,047H
+	ASANI	ECFIST3,043H
+	ASANI	ECFIST3,048H
+	ASZ	040H,0fH,130		;Plyr hi Z
+	ASZ	040H,0,131
+
+	ASSLP	29
+	ASDELM	028H,7			;Kill explosions
+	ASSND	NOWAY
+	ASRUN	fryp1freetxt_as
+	ASSLP	11
+	ASANI	ECPHD1F,040H
+fryp1_brkfree2				;P2 entry
+	ASANI	ECLEG3,044H
+	ASANI	ECLEG3,049H
+	ASDEL	045H
+	ASDEL	04aH
+
+	ASDEL	080H			;Plyrs meter
+	ASJMP	fry_end_as
+
+
+fryp1freetxt_as				;Delayed winner txt
+	ASSLP	60*1
+	ASJMPEQ	10,START,fp1ft40
+	ASTXT	fryp1free_st
+	ASJMP	fp1ftx
+fp1ft40	ASTXT	fryp1freebm_st
+	ASASM
+	movk	15,a0
+	move	a0,@P1DATA+BMB_CNT
+	ASENDASM
+fp1ftx	ASEND
+
+fryp1freebm_st	;Escaped, get bombs
+	XYTXT	PRTF15,110,112,62,"MAX BOMBS"
+	XYTXT	PRTF15,110,132,62,"AWARDED."
+	.even
+fryp1free_st	;Escaped
+	XYTXT	PRTF15,110,5,62,"YOU HAVE"	;70
+	XYTXT	PRTF15,110,25,62,"ESCAPED!"	;90
+	.word	-1
+
+
+fryp1meteron_as				;Scroll in the meter
+	ASNEW	fryp1meter_t
+	ASLAB	100
+	ASXY	080H,0,1,0
+	ASDSJS1
+	ASEND
+
+fryp1meter_t
+	ASITEMN	50-100,10,SM2,200,DMAWNZ,080H
+	ASITEMN	26-100,13,SMARRW2,200,DMAWNZ,080H
+	ASITEMN	8-100,35,STRNGTHMTR,200,DMAWNZ,080H
+	ASITEMN	31-100,35,STRNGTHMTR,200,DMAWNZ+M_FLIPH,080H
+	.word	-1000
+	
+
+fryp1look_l
+	LW	ECPHD1B,20
+	LW	ECPHD1,25
+	LW	ECPHD1C,20
+	LW	ECPHD1,6
+	LW	ECPHD1D,20
+	LW	ECPHD1,5
+	LW	ECPHD1E,20
+	LW	ECPHD1A,60
+	LWL0	ECPHD1G,1
+
+
+fryp1stretch_as
+	ASANI	ECPHD2,040H
+	ASXY	040H,0,0,-5
+	ASANI	ECTOR2,041H
+	ASANI	ECTOR2,046H
+	ASANI	ECWRIST2,042H
+	ASANI	ECWRIST2,047H
+	ASSLP	4
+	ASANI	ECPHD3,040H
+	ASXY	040H,0,0,-5
+	ASANI	ECTOR3,041H
+	ASANI	ECTOR3,046H
+	ASEND
+
+fryp1unstretch_as
+	ASANI	ECPHD2,040H
+	ASXY	040H,0,0,5
+	ASANI	ECTOR2,041H
+	ASANI	ECTOR2,046H
+	ASSLP	4
+	ASANI	ECPHD1H,040H
+	ASXY	040H,0,0,5
+	ASANI	ECTOR1,041H
+	ASANI	ECTOR1,046H
+	ASANI	ECWRIST1,042H
+	ASANI	ECWRIST1,047H
+	ASSLP	4
+	ASXY	040H,0,0,9
+	ASANI	ECTOR4,041H		;Slouch
+	ASANI	ECTOR4,046H
+	ASSLP	4
+	ASXY	040H,0,0,-9
+	ASANI	ECTOR1,041H
+	ASANI	ECTOR1,046H
+	ASEND
+
+
+fryp1face_as			;ID 020H
+	ASJMPR	700,fp1f10	;70%
+	ASLABR	2,5		;0BHlink
+	ASSLPR	3,20
+	ASANI	ECPHD1G,040H
+	ASSLPR	3,20
+	ASANI	ECPHD1H,040H
+	ASDSJ
+	ASEND
+
+fp1f10	ASSND	fpain2
+
+	ASJMPR	600,fp1f20
+	ASFRA	fp1face1_l,040H,1
+	ASEND
+fp1f20	ASJMPR	200,fp1f30
+	ASFRA	fp1face2_l,040H,1
+	ASEND
+fp1f30	ASFRA	fp1face3_l,040H,1
+	ASEND
+
+fp1face1_l
+	LW	BUGEYE1A,5
+	LW	BUGEYE1B,5
+	LW	BUGEYE1C,5
+	LW	BUGEYE1D,5
+	LW	BUGEYE1C,5
+	LW	BUGEYE1B,5
+	LWL0	BUGEYE1A,5
+
+fp1face2_l
+	LW	BUGEYE2A,4
+	LW	BUGEYE2B,4
+	LW	BUGEYE2C,4
+	LW	BUGEYE2B,4
+	LWL0	BUGEYE2A,4
+
+fp1face3_l
+	LW	BUGEYE2A,3
+	LW	BUGEYE2B,3
+	LW	BUGEYE2C,2
+	LW	BUGEYE2D,2
+	LW	BUGEYE2E,2
+	LW	BUGEYE2F,2
+	LW	BUGEYE2E,2
+	LW	BUGEYE2D,2
+	LW	BUGEYE2C,3
+	LW	BUGEYE2G,2
+	LW	BUGEYE2H,2
+	LW	BUGEYE2I,2
+	LW	BUGEYE2J,2
+	LW	BUGEYE2I,2
+	LW	BUGEYE2H,2
+	LW	BUGEYE2C,2
+	LW	BUGEYE2B,2
+	LWL0	BUGEYE2A,2
+
+
+********************************
+* Player 2 scripts
+
+fryp2_as
+	ASADDW	1,animscnt
+	ASBXY	186,0			;Set base
+	ASNEW	fryplyr_t
+	ASSVL	BIGPL2			;Black pal
+	ASPAL	040H
+	ASPAL	041H
+	ASPAL	043H
+	ASPAL	046H
+	ASPAL	048H
+
+	ASSLP	270+60
+	ASRUN	frypdropin_as
+	ASSLP	54
+	ASFRA	fryp2look_l,040H,1
+	ASSLP	60
+	ASFRA	clampclose_l,020H,1
+	ASSLP	5
+	ASSND	SETDWN
+	ASSLP	15
+	ASFRA	clampclose_l,021H,1
+	ASSLP	5
+	ASSND	SETDWN
+	ASRUN	fryp2meteron_as
+
+	ASSLP	100
+	ASNEW	fryshocks_t
+	ASRUNI	fryshocks_as,070H
+	ASRUNI	fryshakex_as,010H
+	ASRUNI	fryshakey_as,010H
+	ASSLP	30
+
+fryp2_lp
+	ASRUNI	fryshakehdx_as,030H
+	ASRUNI	fryshakehdy_as,030H
+
+	ASRUN	fryp2stretch_as
+	ASSLPR	5,14
+
+	ASJMPR	750,fryp2_40		;75% skip shock
+	ASRUN	fryshakescr_as
+	ASSND	fpain1
+	ASLABR	1,4
+	ASNEW	fryshockbig_t
+	ASSLPR	1,4
+	ASDEL	060H
+	ASNEW	fryshockbigb_t
+	ASSLPR	1,4
+	ASDEL	060H
+	ASDSJ
+
+	ASNEW	fryshockbig_t
+	ASSLP	2
+	ASDEL	060H
+fryp2_40
+	ASRUN	fryp2unstretch_as
+	ASSLP	16
+
+	ASRUNI	fryp1face_as,020H
+
+	ASJMPR	800,fryp2_50		;80% skip slouch
+	ASSND	fpain2
+	ASXY	040H,0,0,9
+	ASANI	ECTOR4,041H		;Slouch
+	ASANI	ECTOR4,046H
+	ASSLPR	8,70
+	ASXY	040H,0,0,-9
+	ASANI	ECTOR1,041H
+	ASANI	ECTOR1,046H
+fryp2_50
+	ASCRE	fry_pulsep2,0
+	ASJMPEQ	1,fryp2stat,fryp2h_lp
+
+fryp2_80
+	ASLABR	15,70
+	ASASM
+	move	@fryp2stat,a0
+	jrn	fryp2_die
+	subk	1,a0
+	jrgt	fryp2_brkfree
+	ASENDASM
+	ASDSJS1
+
+	ASSND	fpain3
+	ASKIL	020H,7
+
+	ASJMP	fryp2_lp
+
+
+fryp2h_lp				;Hyper loop
+	ASSND	fpain3
+	ASKIL	020H,7
+
+	ASRUNI	fryshakehdx_as,030H
+	ASRUNI	fryshakehdy_as,030H
+
+	ASRUN	fryp2stretch_as
+	ASSLP	4
+
+	ASRUN	fryshakescr_as
+	ASSND	fpain1
+	ASLABR	1,4
+	ASNEW	fryshockbig_t
+	ASSLPR	1,3
+	ASDEL	060H
+	ASNEW	fryshockbigb_t
+	ASSLPR	1,3
+	ASDEL	060H
+	ASDSJ
+
+	ASRUNI	frysprks2_as,070H	;More sparks
+	ASNEW	fryshockbig_t
+	ASSLP	2
+	ASDEL	060H
+
+	ASRUN	fryp2unstretch_as
+	ASSLP	16
+
+	ASRUNI	fryp2face_as,020H
+
+	ASCRE	fry_pulsep2,0
+	ASJMPNE	1,fryp2stat,fryp2_80
+
+	ASSLPR	1,30
+	ASJMP	fryp2h_lp
+
+
+fryp2_die				;Plyr 2 fries
+	ASENDASM
+	ASRUN	fryp2stretch_as
+	ASADDW	2,DEATHS
+	ASRUN	fryp2dietxt_as
+	ASJMP	fryp1_die2
+
+
+fryp2dietxt_as
+	ASSLP	250
+	ASTXT	fryp2die_st
+	ASEND
+
+fryp2die_st	;Burned
+	XYTXT	PRTF15,290,90,37,"NICE TRY"
+	.word	-1
+
+
+fryp2_brkfree				;Plyr 2 breaks free
+	ASENDASM
+	ASDELM	070H,0fH			;Kill electricity
+	ASKIL	070H,7
+	ASKIL	010H,7
+	ASKIL	020H,7
+	ASRUN	fry_jmpup_as
+	ASXY	040H,0,0,-8
+	ASRUN	fry_clampfly_as
+	ASNEW	fryclexp_t
+	ASFRA	BLUEEXP,028H,1
+	ASFRA	BLUEEXP,029H,1
+	ASFRA	BLUEEXP,02aH,1
+	ASFRA	BLUEEXP,02bH,1
+	ASSND	GLSEXP
+
+	ASXYV	080H,0,030000H,0
+
+	ASANI	ECP2HD1A,040H
+	ASANI	ECTOR5,041H
+	ASANI	ECTOR5,046H
+	ASANI	ECWRIST3,042H
+	ASANI	ECWRIST3,047H
+	ASANI	ECFIST2,043H
+	ASANI	ECFIST2,048H
+	ASANI	ECLEG2,044H
+	ASANI	ECLEG2,049H
+	ASANI	ECLEG2A,045H
+	ASANI	ECLEG2A,04aH
+
+	ASSLP	10
+
+	ASANI	ECTOR6,041H
+	ASANI	ECTOR6,046H
+	ASANI	ECWRIST4,042H
+	ASANI	ECWRIST4,047H
+	ASANI	ECFIST3,043H
+	ASANI	ECFIST3,048H
+	ASZ	040H,0fH,130		;Plyr hi Z
+	ASZ	040H,0,131
+
+	ASSLP	29
+	ASDELM	028H,7			;Kill explosions
+	ASSND	NOWAY
+	ASRUN	fryp2freetxt_as
+	ASSLP	11
+	ASANI	ECP2HD1F,040H
+	ASJMP	fryp1_brkfree2
+
+
+fryp2freetxt_as				;Delayed winner txt
+	ASSLP	60*1
+	ASJMPEQ	10,START,fp2ft40
+	ASTXT	fryp2free_st
+	ASJMP	fp2ftx
+fp2ft40	ASTXT	fryp2freebm_st
+	ASASM
+	movk	15,a0
+	move	a0,@P2DATA+BMB_CNT
+	ASENDASM
+fp2ftx	ASEND
+
+fryp2freebm_st	;Escaped, get bombs
+	XYTXT	PRTF15,290,112,62,"MAX BOMBS"
+	XYTXT	PRTF15,290,132,62,"AWARDED."
+	.even
+fryp2free_st	;Escaped
+	XYTXT	PRTF15,290,5,62,"YOU HAVE"
+	XYTXT	PRTF15,290,25,62,"ESCAPED!"
+	.word	-1
+
+
+fryp2meteron_as				;Scroll in the meter
+	ASNEW	fryp2meter_t
+	ASLAB	100
+	ASXY	080H,0,-1,0
+	ASDSJS1
+	ASEND
+
+fryp2meter_t
+	ASITEMN	280+100-186,10,SM2,200,DMAWNZ,080H
+	ASITEMN	372+100-186,13,SMARRW2,200,DMAWNZ+M_FLIPH,080H
+	ASITEMN	366+100-186,35,STRNGTHMTR,200,DMAWNZ,080H
+	ASITEMN	389+100-186,35,STRNGTHMTR,200,DMAWNZ+M_FLIPH,080H
+	.word	-1000
+
+
+fryp2look_l
+	LW	ECP2HD1B,20
+	LW	ECP2HD1,25
+	LW	ECP2HD1C,20
+	LW	ECP2HD1,6
+	LW	ECP2HD1D,20
+	LW	ECP2HD1,5
+	LW	ECP2HD1E,20
+	LW	ECP2HD1A,60
+	LWL0	ECP2HD1G,1
+
+
+fryp2stretch_as
+	ASANI	ECP2HD2,040H
+	ASXY	040H,0,0,-5
+	ASANI	ECTOR2,041H
+	ASANI	ECTOR2,046H
+	ASANI	ECWRIST2,042H
+	ASANI	ECWRIST2,047H
+	ASSLP	4
+	ASANI	ECP2HD3,040H
+	ASXY	040H,0,0,-5
+	ASANI	ECTOR3,041H
+	ASANI	ECTOR3,046H
+	ASEND
+
+fryp2unstretch_as
+	ASANI	ECP2HD2,040H
+	ASXY	040H,0,0,5
+	ASANI	ECTOR2,041H
+	ASANI	ECTOR2,046H
+	ASSLP	4
+	ASANI	ECP2HD1H,040H
+	ASXY	040H,0,0,5
+	ASANI	ECTOR1,041H
+	ASANI	ECTOR1,046H
+	ASANI	ECWRIST1,042H
+	ASANI	ECWRIST1,047H
+	ASSLP	4
+	ASXY	040H,0,0,9
+	ASANI	ECTOR4,041H		;Slouch
+	ASANI	ECTOR4,046H
+	ASSLP	4
+	ASXY	040H,0,0,-9
+	ASANI	ECTOR1,041H
+	ASANI	ECTOR1,046H
+	ASEND
+
+fryp2face_as			;ID 020H
+	ASJMPR	700,fp2f10	;70%
+	ASLABR	2,5		;0BHlink
+	ASSLPR	3,20
+	ASANI	ECP2HD1G,040H
+	ASSLPR	3,20
+	ASANI	ECP2HD1H,040H
+	ASDSJ
+	ASEND
+
+fp2f10	ASSND	fpain2
+	ASJMPR	600,fp2f20
+	ASFRA	fp2face1_l,040H,1
+	ASEND
+fp2f20	ASJMPR	200,fp2f30
+	ASFRA	fp2face2_l,040H,1
+	ASEND
+fp2f30	ASFRA	fp2face3_l,040H,1
+	ASEND
+
+fp2face1_l
+	LW	BUG2EYE1A,5
+	LW	BUG2EYE1B,5
+	LW	BUG2EYE1C,5
+	LW	BUG2EYE1D,5
+	LW	BUG2EYE1C,5
+	LW	BUG2EYE1B,5
+	LWL0	BUG2EYE1A,5
+
+fp2face2_l
+	LW	BUG2EYE2A,4
+	LW	BUG2EYE2B,4
+	LW	BUG2EYE2C,4
+	LW	BUG2EYE2B,4
+	LWL0	BUG2EYE2A,4
+
+fp2face3_l
+	LW	BUG2EYE2A,3
+	LW	BUG2EYE2B,3
+	LW	BUG2EYE2C,2
+	LW	BUG2EYE2D,2
+	LW	BUG2EYE2E,2
+	LW	BUG2EYE2F,2
+	LW	BUG2EYE2E,2
+	LW	BUG2EYE2D,2
+	LW	BUG2EYE2C,3
+	LW	BUG2EYE2G,2
+	LW	BUG2EYE2H,2
+	LW	BUG2EYE2I,2
+	LW	BUG2EYE2J,2
+	LW	BUG2EYE2I,2
+	LW	BUG2EYE2H,2
+	LW	BUG2EYE2C,2
+	LW	BUG2EYE2B,2
+	LWL0	BUG2EYE2A,2
+
+
+********************************
+* Generic electrocution scripts
+
+
+FP1X	.equ	104
+FP1Y	.equ	38
+fryplyr_t
+	ASITEMN	FP1X,FP1Y-254,ECPHD1A,101,DMAWNZ,040H
+	ASITEMN	FP1X,FP1Y-254,ECTOR1,100,DMAWNZ,041H
+	ASITEMN	FP1X,FP1Y-254,ECWRIST1,101,DMAWNZ,042H
+	ASITEMN	FP1X,FP1Y-254,ECFIST1,103,DMAWNZ,043H
+	ASITEMN	FP1X,FP1Y-254,ECLEG1,115,DMAWNZ,044H
+	ASITEMN	FP1X,FP1Y-254,ECLEG1A,104,DMAWNZ,045H
+	ASITEMN	FP1X-1,FP1Y-254,ECTOR1,100,DMAWNZ+M_FLIPH,046H
+	ASITEMN	FP1X-1,FP1Y-254,ECWRIST1,101,DMAWNZ+M_FLIPH,047H
+	ASITEMN	FP1X-1,FP1Y-254,ECFIST1,103,DMAWNZ+M_FLIPH,048H
+	ASITEMN	FP1X-1,FP1Y-254,ECLEG1,115,DMAWNZ+M_FLIPH,049H
+	ASITEMN	FP1X-1,FP1Y-254,ECLEG1A,104,DMAWNZ+M_FLIPH,04aH
+	ASITEMN	FP1X-81,FP1Y+61,CLAMP1,102,DMAWNZ,020H
+	ASITEMN	FP1X+81,FP1Y+61,CLAMP1,102,DMAWNZ+M_FLIPH,021H
+	.word	-1000
+
+frypdropin_as			;Player drops into chair
+	ASLAB	11
+	ASXY	040H,0fH,0,6
+	ASDSJS1
+	ASLAB	11
+	ASXY	040H,0fH,0,8
+	ASDSJS1
+	ASLAB	10
+	ASXY	040H,0fH,0,10
+	ASDSJS1
+	ASRUN	fryshakescr_as
+	ASSND	gluck
+	ASEND
+
+clampclose_l
+	LW	CLAMP2,5
+	LWL0	CLAMP3,1
+clampopen_l
+	LW	CLAMP2,5
+	LWL0	CLAMP1,1
+
+
+fryshockbig_t
+	ASITEMN	FP1X,FP1Y-15,SHOCK1A,150,DMAWNZ,060H
+	ASITEMN	FP1X,FP1Y-15,SHOCK1B,150,DMAWNZ,060H
+	ASITEMN	FP1X,FP1Y-15,SHOCK1C,150,DMAWNZ,060H
+	ASITEMN	FP1X,FP1Y-15,SHOCK1D,152,DMAWNZ,060H
+	ASITEMN	FP1X-1,FP1Y-15,SHOCK1A,150,DMAWNZ+M_FLIPH,060H
+	ASITEMN	FP1X-1,FP1Y-15,SHOCK1B,150,DMAWNZ+M_FLIPH,060H
+	ASITEMN	FP1X-1,FP1Y-15,SHOCK1C,150,DMAWNZ+M_FLIPH,060H
+	ASITEMN	FP1X-1,FP1Y-15,SHOCK1D,152,DMAWNZ+M_FLIPH,060H
+	.word	-1000
+
+fryshockbigb_t
+	ASITEMN	FP1X,FP1Y-15,SHOCK2A,150,DMAWNZ,060H
+	ASITEMN	FP1X,FP1Y-15,SHOCK2B,150,DMAWNZ,060H
+	ASITEMN	FP1X,FP1Y-15,SHOCK2C,150,DMAWNZ,060H
+	ASITEMN	FP1X,FP1Y-15,SHOCK2D,152,DMAWNZ,060H
+	ASITEMN	FP1X-1,FP1Y-15,SHOCK2A,150,DMAWNZ+M_FLIPH,060H
+	ASITEMN	FP1X-1,FP1Y-15,SHOCK2B,150,DMAWNZ+M_FLIPH,060H
+	ASITEMN	FP1X-1,FP1Y-15,SHOCK2C,150,DMAWNZ+M_FLIPH,060H
+	ASITEMN	FP1X-1,FP1Y-15,SHOCK2D,152,DMAWNZ+M_FLIPH,060H
+	.word	-1000
+
+fryshocks_t
+	ASITEMN	FP1X+3,FP1Y,BLT1,110,DMAWNZ,070H
+	ASITEMN	FP1X-5,FP1Y,BLT1,110,DMAWNZ+M_FLIPH,071H
+	ASITEMN	FP1X-60,FP1Y+95,LILBLT1,110,DMAWNZ,072H
+	ASITEMN	FP1X+60,FP1Y+95,LILBLT1,110,DMAWNZ+M_FLIPH,073H
+	ASITEMN	FP1X,FP1Y+55,LILBLT1,110,DMAWNZ,074H
+	ASITEMN	FP1X,FP1Y+85,LILBLT1,110,DMAWNZ+M_FLIPH,075H
+	ASITEMN	FP1X,FP1Y+120,LILBLT1,118,DMAWNZ,076H
+	ASITEMN	FP1X,FP1Y+160,LILBLT1,118,DMAWNZ,077H
+	.word	-1000
+
+fryshocks_as				;ID 070H
+	ASRUN	fryshock2_as
+	ASRUN	fryshock3_as
+	ASRUN	fryshock4_as
+	ASRUN	fryshock5_as
+	ASRUN	fryshock6_as
+	ASRUN	fryshock7_as
+	ASRUN	fryshock8_as
+	ASRUN	fryshocksnd_as
+	ASRUN	frysprks_as
+
+fs1lp	ASFRA	dbolt_l,070H,1
+	ASWAIT
+	ASHIDE	070H
+	ASSLPR	5,50
+	ASSHOW	070H
+	ASJMP	fs1lp
+
+
+fryshock2_as
+	ASFRA	dbolt_l,071H,1
+	ASWAIT
+	ASHIDE	071H
+	ASSLPR	5,50
+	ASSHOW	071H
+	ASJMP	fryshock2_as
+
+fryshock3_as
+	ASFRA	lbolt_l,072H,1
+	ASWAIT
+	ASHIDE	072H
+	ASSLPR	5,50
+	ASSHOW	072H
+	ASJMP	fryshock3_as
+
+fryshock4_as
+	ASFRA	lbolt_l,073H,1
+	ASWAIT
+	ASHIDE	073H
+	ASSLPR	5,50
+	ASSHOW	073H
+	ASJMP	fryshock4_as
+
+fryshock5_as
+	ASFRA	sbolt_l,074H,1
+	ASWAIT
+	ASHIDE	074H
+	ASSLPR	5,50
+	ASSHOW	074H
+	ASJMP	fryshock5_as
+
+fryshock6_as
+	ASFRA	sbolt_l,075H,1
+	ASWAIT
+	ASHIDE	075H
+	ASSLPR	5,50
+	ASSHOW	075H
+	ASJMP	fryshock6_as
+
+fryshock7_as
+	ASFRA	sbolt_l,076H,1
+	ASWAIT
+	ASHIDE	076H
+	ASSLPR	5,50
+	ASSHOW	076H
+	ASJMP	fryshock7_as
+
+fryshock8_as
+	ASFRA	sbolt_l,077H,1
+	ASWAIT
+	ASHIDE	077H
+	ASSLPR	5,50
+	ASSHOW	077H
+	ASJMP	fryshock8_as
+
+
+fryshocksnd_as				;ID 070H
+	ASSND	fshock
+	ASSLPR	20,80
+	ASJMP	fryshocksnd_as
+
+
+dbolt_l	LW	BLT1,2
+	LW	BLT2,2
+	LW	BLT3,2
+	LW	BLT4,2
+	LW	BLT5,2
+	LWL0	BLT6,2
+
+lbolt_l	LW	LILBLT1,3
+	LW	LILBLT2,3
+	LW	LILBLT3,3
+	LW	LILBLT4,3
+	LW	LILBLT5,3
+	LWL0	LILBLT6,3
+
+sbolt_l	LW	LILBLT1,1
+	LW	LILBLT2,1
+	LW	LILBLT3,1
+	LW	LILBLT4,1
+	LW	SBOLT1,2
+	LW	SBOLT2,2
+	LW	SBOLT3,2
+	LW	SBOLT4,2
+	LW	SBOLT5,2
+	LW	SBOLT6,2
+	LWL0	SBOLT7,2
+
+
+frysprks_as				;ID 070H
+	ASLAB	500
+	ASRUNI	frysprk_as,0
+	ASSLPR	5,15
+	ASDSJ
+	ASEND
+
+frysprks2_as				;ID 070H
+	ASSLP	20
+	ASLAB	6
+	ASRUNI	frysprk_as,0
+	ASSLPR	1,6
+	ASDSJ
+	ASEND
+
+frysprk_as				;ID 0
+	ASNEW	frysprk_t
+	ASFRA	frysprk_l,-1,0
+	ASJMPR	500,fs20		;50% L or R
+	ASADDWO	M_FLIPH,OFLAGS		;Left
+	ASXYRNG	-1,0,-55,-15,-20,32
+	ASSVRL	-010000H,-04000H
+	ASJMP	frysprkg_as
+
+fs20	ASXYRNG	-1,0,15,55,-20,32	;Right
+	ASSVRL	04000H,010000H
+frysprkg_as				;Gravity
+	ASSLP	12
+	ASADLVO	OXVEL
+	ASLAB	32
+	ASADDLO	03000H,OYVEL
+	ASDSJS1
+	ASXYV0
+	ASEND
+
+frysprks3_as				;ID 070H
+	ASRUNI	frysprk3_as,0
+	ASSLPR	2,5
+	ASJMP	frysprks3_as
+frysprk3_as				;ID 0
+	ASNEW	frysprk_t
+	ASFRA	frysprk_l,-1,0
+	ASJMPR	500,fs320
+	ASADDWO	M_FLIPH,OFLAGS		;Left
+	ASXYRNG	-1,0,-55,-15,-20,32
+	ASSVRL	-0e0000H,-030000H
+	ASJMP	frysprkg_as
+
+fs320	ASXYRNG	-1,0,15,55,-20,32	;Right
+	ASSVRL	030000H,0e0000H
+	ASJMP	frysprkg_as
+
+
+frysprk_t
+	ASITEMN	FP1X-10,FP1Y+56,SPARKL1,118,DMAWNZ,0
+	.word	-1000
+
+frysprk_l
+	LW	SPARKL1,3
+	LW	SPARKL2,3
+	LW	SPARKL3,3
+	LW	SPARKL4,3
+	LW	SPARKL5,3
+	LW	SPARKL6,3
+	LW	SPARKL7HOLD,26
+	LW	SPARKL9,3
+	LW	SPARKL10,3
+	LW	SPARKL11,3
+	LW	SPARKL12,3
+	LW	SPARKL13,3
+	LW	SPARKL14,3
+	LW	SPARKL15,3
+	LW	SPARKL16,3
+	LW	SPARKL17,3
+	LW	SPARKL18,3
+	LW	SPARKL19,3
+	LWL0	SPARKL20,3
+
+
+fryshakex_as			;ID 010H
+	ASJMPR	500,fsx20
+	ASXY	040H,0fH,-1,0
+	ASSLPR	1,2
+	ASXY	040H,0fH,1,0
+	ASSLPR	1,2
+	ASJMP	fryshakex_as
+
+fsx20	ASXY	040H,0fH,1,0
+	ASSLPR	1,2
+	ASXY	040H,0fH,-1,0
+	ASSLPR	1,2
+	ASJMP	fryshakex_as
+
+fryshakey_as			;ID 010H
+	ASXY	040H,0fH,0,-1
+	ASSLPR	1,3
+	ASXY	040H,0fH,0,1
+	ASSLPR	1,3
+	ASJMP	fryshakey_as
+
+fryshakehdx_as			;ID 030H
+	ASLAB	4
+	ASXY	040H,0,-1,0
+	ASSLPR	1,3
+	ASXY	040H,0,1,0
+	ASSLPR	1,3
+	ASXY	040H,0,1,0
+	ASSLPR	1,3
+	ASXY	040H,0,-1,0
+	ASSLPR	1,3
+	ASDSJ
+	ASEND
+fryshakehdy_as			;ID 030H
+	ASLAB	4
+	ASXY	040H,0,0,1
+	ASSLPR	1,3
+	ASXY	040H,0,0,-1
+	ASSLPR	1,3
+	ASDSJ
+	ASEND
+
+fryshakescr_as
+	ASASM
+	movk	8,a10
+	calla	SHAKER
+	ASENDASM
+	ASEND
+fryshakescr2_as
+	ASASM
+	movi	100,a10
+	calla	SHAKER
+	ASENDASM
+	ASEND
+
+
+fryclexp_t
+	ASITEMN	FP1X-81,FP1Y+95,CLAMP1,102,DMAWNZ,028H
+	ASITEMN	FP1X-81+25,FP1Y+95,CLAMP1,102,DMAWNZ,029H
+	ASITEMN	FP1X+81-25,FP1Y+95,CLAMP1,102,DMAWNZ,02aH
+	ASITEMN	FP1X+81,FP1Y+95,CLAMP1,102,DMAWNZ,02bH
+	.word	-1000
+
+fry_clampfly_as
+	ASZ	020H,1,250
+	ASFRA	clampopen_l,020H,1
+	ASFRA	clampopen_l,021H,1
+	ASSLP	5
+	ASXYV	020H,0,-070000H,-020000H
+	ASXYV	021H,0,070000H,-020000H
+	ASSLP	90
+	ASDELM	020H,1
+	ASEND
+
+
+fry_jmpup_as				;Jump out of chair
+	ASRUN	fryplyrgrav_as
+	ASXYVA	040H,0fH,0,-084000H
+	ASSLP	50
+	ASXYVA	040H,0fH,0,0
+	ASYA	040H,0fH,62		;Stuff correct Y
+	ASYA	040H,0,62-8		;Head
+	ASEND
+
+fryplyrgrav_as				;Plyr gravity
+	ASLAB	49
+	ASXYV	040H,0fH,0,05800H
+	ASDSJS1
+	ASEND
+
+fryexp_t
+	ASITEMN	FP1X-60,FP1Y+20,CLD1A,120,DMAWNZ,0
+	.word	-1000
+
+okbm_l	LW	OKBM1,4
+	LW	OKBM2,4
+	LW	OKBM3,4
+	LW	OKBM4,4
+	LW	OKBM5,4
+	LW	OKBM6,4
+	LWL0	OKBM7,4
+
+xpld_l	LW	XPLD1,4
+	LW	XPLD2,4
+	LW	XPLD3,4
+	LW	XPLD4,4
+	LW	XPLD5,4
+	LW	XPLD6,4
+	LW	XPLD7,5
+	LW	XPLD8,5
+	LW	XPLD9,5
+	LWL0	XPLD10,5
+
+
+frysmoke_as
+	ASLAB	200
+	ASNEW	fryexp_t
+	ASXYRNG	-1,0,0,130,30,100
+	ASSVRL	-010000H,010000H
+	ASADLVO	OXVEL
+	ASSVRL	-040000H,-010000H
+	ASADLVO	OYVEL
+	ASJMPR	600,fs10		;60% hi Z
+	ASADDWO	-40,OZPOS
+fs10	ASFRA	okbm_l,-1,1
+	ASDSJS1
+	ASEND
+
+fryskull_as				;Drop off skull
+	ASZ	040H,0,118
+	ASXY	040H,0,0,43
+	ASFRA	skull_l,040H,1
+	ASSLP	30
+
+	ASRUN	fryskullgrav_as
+	ASXYV	040H,0,010000H,02000H
+
+	ASSLP	29
+	ASXYV	040H,0,-01f000H,-084000H
+	ASSND	fskullb
+
+	ASSLP	34
+	ASXYV	040H,0,0,-084000H
+	ASSND	fskullb
+
+	ASSLP	31
+	ASXYVA	040H,0,0,0
+	ASSND	fskullb
+	ASEND
+
+fryskullgrav_as				;Skull gravity
+	ASLAB	92
+	ASXYV	040H,0,0,03800H
+	ASDSJS1
+	ASEND
+
+
+skull_l	LWL	SKULL1,NEWPALET+30,MTRP
+	LW	SKULL2,6
+	LW	SKULL3,7
+	LW	SKULL4,8
+	LW	SKULL5,8
+	LW	SKULL4,6
+	LW	SKULL3,5
+	LW	SKULL2,5
+	LW	SKULL1,5
+	LWW	SKULL2,FLIPBITS+4,M_FLIPH
+	LW	SKULL3,4
+	LWL0	SKULL4,1
+
+bonetor_l
+	LWL	BONES1,NEWPALET+230,MTRP
+	LW	BONES2,3
+	LW	BONES3,3
+	LW	BONES4,3
+	LW	BONES5,3
+	LWL0	BONES6,3
+
+frywisp_as
+	ASLAB	80
+	ASNEW	frywisp_t
+	ASXYRNG	-1,0,-50,50,-28,17
+	ASJMPR	500,fryw10		;50% either wisp
+	ASFRA	frywisp1_l,-1,0
+	ASJMP	fryw20
+fryw10	ASFRA	frywisp2_l,-1,0
+fryw20	ASJMPR	500,fryw40		;50% low Z
+	ASADDWO	18,OZPOS
+fryw40	ASSLP	2
+	ASDSJ
+	ASEND
+
+frywisp_t
+	ASITEMN	FP1X,FP1Y+66,WISP1,101,DMAWNZ,0
+	.word	-1000
+
+frywisp1_l
+	LW	WISP1,5
+	LW	WISP2,5
+	LW	WISP3,5
+	LW	WISP4,5
+	LW	WISP5,5
+	LW	WISP6,5
+	LW	WISP7,5
+	LW	WISP8,5
+	LW	WISP9,5
+	LW	WISP10,5
+	LW	WISP11,5
+	LW	WISP12,5
+	LW	WISP13,5
+	LW	WISP14,5
+	LWL0	WISP15,5
+frywisp2_l
+	LWW	WISP1,FLIPBITS+8,M_FLIPH
+	LW	WISP2,8
+	LW	WISP3,8
+	LW	WISP4,8
+	LW	WISP5,8
+	LW	WISP6,8
+	LW	WISP7,8
+	LW	WISP8,8
+	LW	WISP9,8
+	LW	WISP10,8
+	LW	WISP11,8
+	LW	WISP12,8
+	LW	WISP13,8
+	LW	WISP14,8
+	LWL0	WISP15,8
+
+
+
+********************************
+* Fry dictator scripts
+
+frydict_as
+	ASADDW	1,animscnt
+	ASBXY	91,0			;Set base
+	ASNEW	frydict_t
+	ASTXT	frydict_st
+
+	ASFRA	frydlook_l,040H,1
+	ASSND	ahkbang
+	ASSLP	75+60
+	ASFRA	clampclose_l,020H,1
+	ASSLP	5
+	ASSND	SETDWN
+	ASSLP	15
+	ASFRA	clampclose_l,021H,1
+	ASSLP	5
+	ASSND	SETDWN
+	ASRUN	frydmeteron_as
+
+	ASSLP	80
+	ASNEW	fryshocks_t
+	ASRUNI	fryshocks_as,070H
+	ASRUNI	fryshakex_as,010H
+	ASRUNI	fryshakey_as,010H
+	ASSLP	30
+
+fryd_lp
+	ASRUNI	fryshakehdx_as,030H
+	ASRUNI	fryshakehdy_as,030H
+
+	ASRUN	frydstretch_as
+	ASSLPR	4,14
+fryd_8
+	ASASM
+	move	@fryp1stat,a0
+	jrz	fryd_20			;Not hyper?
+	ASENDASM
+	ASRUNI	frysprks2_as,070H	;More sparks
+	ASRUNI	frysprks2_as,070H	;More sparks!
+	ASJMP	fryd_30
+
+fryd_20
+	ASENDASM
+	ASJMPR	750,fryd_40		;75% skip shock
+fryd_30
+	ASRUN	fryshakescr_as
+	ASSND	fpain1
+	ASLABR	1,4
+	ASNEW	fryshockbig_t
+	ASSLPR	1,4
+	ASDEL	060H
+	ASNEW	fryshockbigb_t
+	ASSLPR	1,4
+	ASDEL	060H
+	ASDSJ
+
+	ASNEW	fryshockbig_t
+	ASSLP	2
+	ASDEL	060H
+fryd_40
+	ASRUN	frydunstretch_as
+	ASSLP	16
+
+	ASRUNI	frydface_as,020H
+
+	ASJMPR	800,fryd_50		;80% skip slouch
+	ASSND	fpain2
+	ASXY	040H,0,0,9
+	ASANI	AKTORSO4,041H		;Slouch
+	ASANI	AKTORSO4,046H
+	ASSLPR	8,70
+	ASXY	040H,0,0,-9
+	ASANI	AKTORSO1,041H
+	ASANI	AKTORSO1,046H
+fryd_50
+	ASCRE	fry_pulsep1,0
+	ASLABR	10,50
+	ASASM
+	move	@fryp1stat,a0
+	jrn	fryd_die
+	ASENDASM
+	ASDSJS1
+
+	ASSND	fpain3
+	ASKIL	020H,7
+
+	ASJMP	fryd_lp
+
+
+fryd_die				;Dict fries
+	ASENDASM
+	ASRUN	frydstretch_as
+	ASSLP	5
+
+	ASRUNI	frysprks3_as,070H
+	ASRUN	frydexp_as
+	ASRUN	frydexp_as
+
+	ASLAB	120
+	ASSND	fpain1
+	ASRUN	fryshakescr2_as
+	ASNEW	fryshockbig_t
+	ASSLPR	1,2
+	ASDEL	060H
+	ASNEW	fryshockbigb_t
+	ASSLPR	1,2
+	ASDEL	060H
+	ASDSJ
+
+	ASDELM	070H,0fH			;Kill electricity
+	ASKIL	070H,7
+	ASKIL	010H,7
+	ASKIL	020H,7
+
+	ASRUN	frysmoke_as
+	ASRUN	frywisp_as
+	ASNEW	frydbone_t		;FIX!
+
+	ASSND	fburn
+	ASXY	040H,0fH,0,-12
+	ASRUN	fryskull_as
+	ASZ	041H,0,117
+	ASZ	046H,0,117
+	ASFRA	bonetor_l,041H,1
+	ASFRA	bonetor_l,046H,1
+
+	ASANI	BONELEG1,044H		;Make bones
+	ASANI	BONELEG1,049H
+	ASANI	BONELEG2,045H
+	ASANI	BONELEG2,04aH
+	ASDEL	043H
+	ASDEL	048H
+	ASSVL	MTRP			;Bone pal
+	ASPAL	044H
+	ASPAL	049H
+	ASPAL	045H
+	ASPAL	04aH
+
+	ASSLP	60*2
+	ASSND	totcarn
+	ASJMP	fry_end_as
+
+
+
+frydict_t
+	ASITEMN	FP1X,FP1Y,AKHED1,101,DMAWNZ,040H
+	ASITEMN	FP1X,FP1Y,AKTORSO1,100,DMAWNZ,041H
+	ASITEMN	FP1X,FP1Y,ECFIST1,103,DMAWNZ,043H
+	ASITEMN	FP1X,FP1Y,AKLEG1,115,DMAWNZ,044H
+	ASITEMN	FP1X,FP1Y,AKLEG2,104,DMAWNZ,045H
+	ASITEMN	FP1X-1,FP1Y,AKTORSO1,100,DMAWNZ+M_FLIPH,046H
+	ASITEMN	FP1X-1,FP1Y,ECFIST1,103,DMAWNZ+M_FLIPH,048H
+	ASITEMN	FP1X-1,FP1Y,AKLEG1,115,DMAWNZ+M_FLIPH,049H
+	ASITEMN	FP1X-1,FP1Y,AKLEG2,104,DMAWNZ+M_FLIPH,04aH
+	ASITEMN	FP1X-81,FP1Y+61,CLAMP1,102,DMAWNZ,020H
+	ASITEMN	FP1X+81,FP1Y+61,CLAMP1,102,DMAWNZ+M_FLIPH,021H
+	.word	-1000
+
+frydict_st
+	XYTXT	PRTF15,197,5,18,"BONUS"
+	.word	-1
+
+frydmeteron_as				;Scroll in the meter
+	ASASM
+	move	@STATUS2,a0
+	btst	0,a0
+	jrz	fdmo20
+	ASENDASM
+	ASNEW	frydmeter1_t
+	ASASM
+fdmo20	move	@STATUS2,a0
+	btst	1,a0
+	jrz	fdmo30
+	ASENDASM
+	ASNEW	frydmeter2_t
+	ASASM
+fdmo30	ASENDASM
+	ASLAB	30
+	ASXY	080H,0,2,0
+	ASXY	081H,0,-2,0
+	ASDSJS1
+	ASEND
+
+frydmeter1_t
+	ASITEMN	2-112,2+50,GGSWRD,90,DMAWNZ,080H
+	ASITEMN	14-112,10+50,GGWTTS,91,DMAWNZ,080H
+	.word	-1000
+frydmeter2_t
+	ASITEMN	2+275,2+50,GGSWRD,90,DMAWNZ,081H
+	ASITEMN	14+275,10+50,GGWTTS,91,DMAWNZ,081H
+	.word	-1000
+	
+frydlook_l
+	LW	AKHED1,2			;Angry speech
+	LW	AKHED9,6
+	LW	AKHED1,3
+	LW	AKHED9,8
+	LW	AKHED1,3
+	LW	AKHED9,8
+	LW	AKHED1,3
+	LW	AKHED9,2
+	LW	AKHED1,6
+	LW	AKHED9,6
+	LW	AKHED1,2
+	LW	AKHED9,3
+	LW	AKHED1,9
+	LW	AKHED9,9
+	LW	AKHED1,5+10
+
+	LW	AKHED2,20			;Look
+	LW	AKHED1,10
+	LWW	AKHED2,FLIPBITS+20,M_FLIPH
+	LWW	AKHED1,FLIPBITS+20,0
+	LW	AKHED3,25
+	LW	AKHED1,5
+	LWL0	AKHED6,1
+
+
+frydstretch_as
+	ASXY	040H,0,0,-5
+	ASANI	AKTORSO2,041H
+	ASANI	AKTORSO2,046H
+	ASSLP	4
+	ASXY	040H,0,0,-5
+	ASANI	AKTORSO3,041H
+	ASANI	AKTORSO3,046H
+	ASEND
+
+frydunstretch_as
+	ASXY	040H,0,0,5
+	ASANI	AKTORSO2,041H
+	ASANI	AKTORSO2,046H
+	ASSLP	4
+	ASXY	040H,0,0,5
+	ASANI	AKTORSO1,041H
+	ASANI	AKTORSO1,046H
+	ASSLP	4
+	ASXY	040H,0,0,9
+	ASANI	AKTORSO4,041H		;Slouch
+	ASANI	AKTORSO4,046H
+	ASSLP	4
+	ASXY	040H,0,0,-9
+	ASANI	AKTORSO1,041H
+	ASANI	AKTORSO1,046H
+	ASEND
+
+
+frydface_as			;ID 020H
+	ASJMPR	800,fdf10
+	ASLABR	2,5		;0BHlink 20%
+	ASSLPR	3,20
+	ASANI	AKHED4,040H
+	ASSLPR	3,20
+	ASANI	AKHED8,040H
+	ASDSJ
+	ASEND
+
+fdf10	ASSND	fpain2
+	ASJMPR	440,fdf20
+	ASJMPR	333,fdf30
+	ASJMPR	500,fdf40
+	ASFRA	fdface1_l,040H,1		;15%
+	ASEND
+fdf20	ASFRA	fdface2_l,040H,1		;35%
+	ASEND
+fdf30	ASFRA	fdface3_l,040H,1		;15%
+	ASEND
+fdf40	ASFRA	fdface4_l,040H,1		;15%
+	ASEND
+
+fdface1_l
+	LW	BIGEYES1,5
+	LW	BIGEYES2,5
+	LW	BIGEYES3,5
+	LW	BIGEYES4,5
+	LW	BIGEYES5,5
+	LW	BIGEYES4,5
+	LW	BIGEYES3,5
+	LW	BIGEYES2,5
+	LWL0	BIGEYES1,5
+
+fdface2_l
+	LW	AKHED8,4
+	LW	BIGEYES1,4
+	LW	BIGEYES2,4
+	LW	BIGEYES1,4
+	LW	AKHED8,4
+	LW	AKHED5,4
+	LWL0	AKHED4,4
+
+fdface3_l
+	LW	AKHED9,5
+	LW	AKHED10,20
+	LW	AKHED9,5
+	LWL0	AKHED7,5
+
+fdface4_l
+	LW	BIGEYES1,3
+	LW	BIGEYES2,3
+	LW	BIGEYES3,2
+	LW	BIGEYES4,2
+	LW	BIGEYES5,2
+	LW	BIGEYES6,2
+	LW	BIGEYES5,2
+	LW	BIGEYES4,2
+	LW	BIGEYES3,3
+	LW	BIGEYES7,2
+	LW	BIGEYES8,2
+	LW	BIGEYES9,2
+	LW	BIGEYES10,2
+	LW	BIGEYES9,2
+	LW	BIGEYES8,2
+	LW	BIGEYES7,2
+	LW	BIGEYES2,2
+	LWL0	BIGEYES1,2
+
+frydexp_as
+	ASLAB	300
+	ASNEW	fryexp_t
+	ASXYRNG	-1,0,0,130,20,100
+	ASSVRL	-0e0000H,0e0000H
+	ASADLVO	OXVEL
+	ASSVRL	-0e0000H,0e0000H
+	ASADLVO	OYVEL
+	ASJMPR	500,fde10		;50% low Z
+	ASADDWO	40,OZPOS
+fde10	ASJMPR	200,fde20
+	ASJMPR	250,fde40
+	ASJMPR	333,fde50
+	ASJMPR	500,fde60
+	ASFRA	okbm_l,-1,1
+	ASJMP	fde300
+fde20	ASFRA	FIREEXP,-1,1		;Has pal
+	ASJMP	fde400
+fde40	ASFRA	BOOM3,-1,1		;^
+	ASJMP	fde400
+fde50	ASFRA	BLUEEXP,-1,1		;^
+	ASJMP	fde400
+fde60	ASFRA	xpld_l,-1,1
+fde300	ASSVRLT	frydpal_t
+	ASPAL	-1
+fde400	ASSND	fryexp
+	ASSLP1
+	ASSND	fryexp2
+	ASDSJ
+	ASEND
+
+
+frydpal_t
+	.word	4
+	.long	GREYPAL,RDBOOM,GRNBOOM,BLUBOOM
+
+frydbone_t
+	ASITEMN	FP1X,FP1Y-254,BONEARM,101,DMAWNZ,042H
+	ASITEMN	FP1X-1,FP1Y-254,BONEARM,101,DMAWNZ+M_FLIPH,047H
+	.word	-1000
+
+
+
+
+********************************
+********************************
+* Extra junk!!!
+
+	NOTINUSE
 
 ********************************
 * Calls DO_RACKUP
 
 	.ref	SCORE_FLAG
-	.ref	KILBGND,KILALL
+	.ref	KILALL
 
  SUBRP	rackcaller
-rc10	SLEEP	30
+
+rc10	SLEEPK	30
 	move	@SLDEBUG,a0
 	btst	0,a0
 	jrz	rc10
+
 	movk	1,a0
 	move	a0,@INTRO
 
@@ -1376,50 +4755,15 @@ rc10	SLEEP	30
 	calla	KILOBJ
 	clr	a0
 	move	a0,@SCORE_FLAG
+	clr	a0
+	move	a0,@WORLDTLX+16
+	movi	035bH,a0
+	move	a0,@WORLDTLY+16
 	jruc	DO_RACKUP
 
 
 
-********************************
-* Extra junk!!!
-
-	.if	0
-
-;text objectives appear slowly
-;tag	MOVI	FADEDWN,A0		;LIST OF PALS TO FADE
-;	MOVK	3,A1			;RATE
-;	MOVI	30H,A2			;HOW MANY TIMES TO FADE
-;	MOVE	A2,@COUNT		
-;	CALLA	FADEOUT2		;DO IT
-
-	move	@OBJLST,a1,L		;>Tiles fly away
-rp200	move	*a1(OZPOS),a0
-	cmpi	200,a0
-	jrnz	rp230
-
-	calla	RANDOM
-	sll	32-18,a0
-	pushst
-	srl	32-18,a0
-	addi	>30000,a0
-	popst
-	jrc	rp210
-	neg	a0
-rp210	move	a0,*a1(OXVEL),L
-	calla	RANDOM
-	sll	32-18,a0
-	pushst
-	srl	32-18,a0
-	popst
-	jrc	rp220
-	neg	a0
-rp220	move	a0,*a1(OYVEL),L
-
-rp230	move	*a1,a1,L
-	jrnz	rp200
-
-
-	movi	statspal,a0		;>Cycle color loop
+	movi	statspal,a0		;0CHycle color loop
 	movk	31,a1
 	clr	a2
 rp45	move	a2,*a0+
@@ -1451,17 +4795,34 @@ rp60	move	*a0+,*a1+
 	move	a3,*a2+
 	dsj	a4,rp55
 
-	callr	setpall0
+	callr	setpal0
 
-rp70	SLEEP	1			;Sleep 4??
+rp70	SLEEPK	1			;Sleep 4??
 	dsj	a8,rp50
 
 
 ********************************
+* Set palette 0 from buffer
+
+	.bss	colorbuf	,16*31		;31 Color buffer
+
+ SUBRP	setpal0
+
+	PUSH	a1,a2
+	movi	colorbuf,a0		;*Color
+	movk	1,a1			;Palette 0, Color 1
+	movk	31,a2			;# Colors
+	calla	PALSET
+	PULL	a1,a2
+	rets
+
+********************************
+* Convert BCD to ASCII
 
 	.bss	scorebuf	,12*8	;11 char_s
 
  SUBRP	bcdtoasc		;A0.L=BCD
+
 	PUSH	a1,a2,a3
 	movi	scorebuf+11*8,a1
 	clr	a2
@@ -1472,7 +4833,7 @@ bcd5	dsj	a3,bcd10		;Convert BCD
 	movi	',',a2
 	subk	8,a1
 	movb	a2,*a1
-bcd10	movk	>f,a2
+bcd10	movk	0fH,a2
 	and	a0,a2
 	addi	'0',a2
 	subk	8,a1
@@ -1482,6 +4843,262 @@ bcd10	movk	>f,a2
 	move	a1,a0
 	PULL	a1,a2,a3
 	rets
+
+
+********************************
+* Read joysticks
+
+ SUBRP	joy_read
+	move	@SWITCH,a0
+	not	a0
+	rets			;Pass CC
+
+********************************
+
+;	movi	bonush_st,a0		;>Rackup items
+;	movi	hostage_l,a1
+;	move	@P1DATA+THSTGS,a2
+;	move	@P2DATA+THSTGS,a3
+;	movk	5,a4
+;	JSRP	bonus_showrack
+;
+;	movi	bonusf_st,a0
+;	movi	flag_l,a1
+;	move	@P1DATA+TFLAGS,a2
+;	move	@P2DATA+TFLAGS,a3
+;	movk	6,a4
+;	JSRP	bonus_showrack
+;
+;	movi	bonusg_st,a0
+;	movi	gems_l,a1
+;	move	@P1DATA+CASHCNT,a2
+;	move	@P2DATA+CASHCNT,a3
+;	movk	3,a4
+;	JSRP	bonus_showrack
+
+
+
+********************************
+* Do a bonus rack
+
+	APTRPD	BONUSLP,0	;*Bonus anim list
+	WORDPD	BONUSC1,2	;Play 1 # items
+	WORDPD	BONUSC2,3	;Play 2 ^
+	WORDPD	BONUSPT,4	;Points per item
+
+
+ SUBRP	bonus_showrack	;A0=*XY text, A1=*Anim list, A2=1Cnt, A3=2Cnt
+			;A4=Points per item
+
+	move	@STATUS2,a8
+	btst	0,a8
+	jrnz	bsr20
+	clr	a2
+bsr20	btst	1,a8
+	jrnz	bsr25
+	clr	a3
+bsr25
+	move	a1,*a13(BONUSLP),L
+	move	a2,*a13(BONUSC1)
+	move	a3,*a13(BONUSC2)
+	move	a4,*a13(BONUSPT)
+
+	calla	prt0_xy
+
+	movi	racksup,a0
+	calla	ONESND
+
+	movk	10,a0
+	move	a0,@boanimdeath1
+	move	a0,@boanimdeath2
+
+	movi	hostxy_t,a8		;A8=*Next XY
+	clr	a9			;A9=Play1 cnt
+	clr	a10			;A10=Play2 cnt
+	clr	a11			;A11=P1/2 Death delay bits
+
+
+bsr40	move	*a13(BONUSC1),a0
+	cmp	a0,a9
+	jrlo	bsr70			;Cnt up?
+	move	@boanimdeath1,a0
+	jrle	bsr90
+	btst	0,a11
+	jrnz	bsr60
+	addk	1,a11			;Set bit 0
+	PUSH	a0,a8,a9
+	move	a13,a8
+	clr	a9
+	CREATE0	bonus_flashwinblk
+	PULL	a0,a8,a9
+	addk	14,a0			;Add delay
+bsr60	subk	1,a0
+	move	a0,@boanimdeath1
+	jruc	bsr90
+
+bsr70	addk	1,a9
+	move	@P1DATA+PSCORE,a0,L
+	move	*a13(BONUSPT),a1
+	add	a1,a0			;Add bonus
+	move	a0,@P1DATA+PSCORE,L
+	movi	rack1it,a0
+	calla	ONESND
+	move	*a8,a1			;Get X
+	jrn	bsr90
+	PUSH	a9,a10,a11
+	move	*a13(BONUSLP),a9,L
+	clr	a10
+	movi	boanimdeath1,a11
+	CREATE0	bonus_anim
+	PULL	a9,a10,a11
+bsr90
+	move	*a13(BONUSC2),a0
+	cmp	a0,a10
+	jrlo	bsr120
+	move	@boanimdeath2,a0
+	jrle	bsr150
+	btst	1,a11
+	jrnz	bsr100
+	addk	2,a11			;Set bit 1
+	PUSH	a0,a8,a9
+	move	a13,a8
+	movk	1,a9
+	CREATE0	bonus_flashwinblk
+	PULL	a0,a8,a9
+	addk	14,a0			;Add delay
+bsr100	subk	1,a0
+	move	a0,@boanimdeath2
+	jruc	bsr150
+
+bsr120	addk	1,a10
+	move	@P2DATA+PSCORE,a0,L
+	move	*a13(BONUSPT),a1
+	add	a1,a0			;Add bonus
+	move	a0,@P2DATA+PSCORE,L
+	movi	rack1it,a0
+	calla	ONESND
+	move	*a8,a1			;Get X
+	jrn	bsr150
+	PUSH	a9,a10,a11
+	move	*a13(BONUSLP),a9,L
+	movi	184,a10			;X offset
+	movi	boanimdeath2,a11
+	CREATE0	bonus_anim
+	PULL	a9,a10,a11
+
+bsr150
+	move	*a8,a0
+	jrn	bsr180
+	addk	32,a8			;Next XY
+bsr180	movk	3,a0
+	callr	sleep_var
+	move	@boanimdeath1,a0	;Both done?
+	jrgt	bsr40
+	move	@boanimdeath2,a0
+	jrgt	bsr40
+
+	movi	kilfgnd,a0
+	calla	ONESND
+
+	calla	ERASE_TXT
+
+	RETP
+
+hostxy_t
+	.word	30,45, 60,45, 90,45, 120,45, 150,45
+	.word	45,65, 75,65, 105,65, 135,65
+	.word	30,85, 60,85, 90,85, 120,85, 150,85
+	.word	45,105, 75,105, 105,105, 135,105
+	.word	-1
+
+
+
+********************************
+* Flash other players blocks if he won
+
+ SUBRP	bonus_flashwinblk	;A8=*Creators process, A9=P1 or P2 (0-1)
+
+	move	*a8(BONUSC1),a1
+	move	*a8(BONUSC2),a2
+	move	@WORLDTLX+16,a10
+	move	a9,a9
+	jrnz	bfwb70
+	SWAP	a1,a2
+	addi	190,a10			;A10=Min X of tiles
+bfwb70	cmp	a2,a1
+	jrlo	bfwbx			;Win round?
+	movi	190,a11			;A11=X range of tiles
+
+	movk	3,a8
+bfwb80	movi	DMACNZ+M_NOCOLL,a3
+	callr	bonus_flashblk
+	SLEEPK	2
+	movi	DMAWNZ+M_NOCOLL,a3
+	callr	bonus_flashblk
+	SLEEPK	8
+	dsj	a8,bfwb80
+
+bfwbx	DIE
+
+
+ SUBRP	bonus_flashblk		;A3=OFLAGS, A10=XMin, A11=XWidth
+
+	move	@OBJLST,a1,L
+bfb20	move	*a1(OZPOS),a0
+	subi	200,a0
+	subk	1,a0
+	jrhi	bfb30			;Not 200-201?
+	move	*a1(OXPOS),a0
+	sub	a10,a0
+	cmp	a11,a0
+	jrhi	bfb30
+	move	a3,*a1(OFLAGS)
+	movi	0909H,a0
+	move	a0,*a1(OCONST)
+bfb30	move	*a1,a1,L
+	jrnz	bfb20
+	rets
+
+
+********************************
+* Animation of a bonus item (Process)
+
+ SUBRP	bonus_anim		;A8=*XY, A9=*FRANIM table, A10=X offset
+				;A11=*boanimdeath var
+	move	*a8+,a0			;Get X
+	move	*a8+,a1			;Get Y
+	move	*a11,a2
+	move	a2,*a13(PDATA)		;Save death #
+	addk	1,a2			;+1
+	move	a2,*a11
+	add	a10,a0
+	sll	16,a0
+	sll	16,a1
+	move	*a9,a2,L
+	movi	220,a3
+	movi	DMAWNZ+M_NOCOLL,a4
+	clr	a5
+	clr	a6
+	clr	a7
+	calla	BEGINOBJ
+	move	a9,*a13(PDATA+16),L
+bo40	movk	4,a1			;Do one, no sleep
+	JSRP	FRANIM
+	jrnc	bo60
+	move	*a13(PDATA+16),a9,L
+	jruc	bo40
+bo60	move	a0,a10
+bo80	SLEEPK	1
+	move	*a11,a0			;Get death #
+	move	*a13(PDATA),a1
+	cmp	a0,a1
+	jrgt	bo90
+	dsj	a10,bo80
+	jruc	bo40
+bo90	move	a8,a0
+	calla	DELOBJ
+	DIE
+
 
 
 ********************************

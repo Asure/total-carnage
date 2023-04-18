@@ -1,0 +1,8 @@
+>> warning: can't align within GROUP - section .text not aligned
+>> warning: section SYSWORK starts on an odd byte boundary!
+
+undefined                        first referenced
+ symbol                              in file
+---------                        ----------------
+snd_play1                        ATTRACT.OBJ
+>> symbol referencing errors - CARN.out not built

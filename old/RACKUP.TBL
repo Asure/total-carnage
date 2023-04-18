@@ -1,0 +1,747 @@
+	.DATA
+CLOUD:
+	.word   192,51,0,0
+	.long   02249a20H,CLDS9
+BDBOD1:
+	.word   136,111,78,-39
+	.long   0225cc20H,BIGPL1
+BDBOD2:
+	.word   116,50,78,-119
+	.long   0227a3e0H,GUNSP1
+CCHED1:
+	.word   36,51,19,-6
+	.long   02285920H,BIGPL1
+CCHED2:
+	.word   36,52,19,-6
+	.long   02289280H,BIGPL1
+CCHED3:
+	.word   36,54,19,-6
+	.long   0228cd00H,BIGPL1
+CCHED4:
+	.word   36,54,19,-6
+	.long   022909c0H,BIGPL1
+CCHED5:
+	.word   36,51,19,-6
+	.long   02294680H,BIGPL1
+CCHED6:
+	.word   36,55,19,-6
+	.long   02297fe0H,BIGPL1
+MMHED1:
+	.word   36,51,19,-6
+	.long   0229bdc0H,BIGPL2
+MMHED2:
+	.word   36,52,19,-6
+	.long   0229f720H,BIGPL2
+MMHED3:
+	.word   36,54,19,-6
+	.long   022a31a0H,BIGPL2
+MMHED4:
+	.word   36,54,19,-6
+	.long   022a6e60H,BIGPL2
+MMHED5:
+	.word   36,51,19,-6
+	.long   022aab20H,BIGPL2
+MMHED6:
+	.word   36,55,19,-6
+	.long   022ae480H,BIGPL2
+GUN1:
+	.word   44,115,-42,38
+	.long   022b2260H,GUNSP1
+GUN2:
+	.word   60,91,-75,25
+	.long   022bc080H,GUNSP1
+GUN3:
+	.word   84,77,-78,-14
+	.long   022c6b20H,GUNSP1
+LFTARMBND:
+	.word   32,31,-27,-91
+	.long   022d3540H,GUNSP1
+STRAP:
+	.word   44,37,-109,-91
+	.long   022d5440H,GUNSP1
+STRAPA:
+	.word   44,37,-89,-65
+	.long   022d5440H,GUNSP1
+LILRIB1:
+	.word   40,20,-15,-21
+	.long   022d8720H,GUNSP1
+LILRIB2:
+	.word   40,19,-16,-23
+	.long   022da020H,GUNSP1
+LILRIB3:
+	.word   44,19,-16,-22
+	.long   022db7e0H,GUNSP1
+LILRIB4:
+	.word   44,20,-16,-21
+	.long   022dd200H,GUNSP1
+LILRIB5:
+	.word   44,20,-16,-21
+	.long   022ded80H,GUNSP1
+RIB1:
+	.word   40,33,-15,-31
+	.long   022e0900H,GUNSP1
+RIB2:
+	.word   44,33,-15,-32
+	.long   022e3240H,GUNSP1
+RIB3:
+	.word   44,31,-15,-32
+	.long   022e5fa0H,GUNSP1
+RIB4:
+	.word   44,32,-15,-30
+	.long   022e8a40H,GUNSP1
+RIB5:
+	.word   40,31,-15,-30
+	.long   022eb640H,GUNSP1
+RTARMBND:
+	.word   32,25,81,-90
+	.long   022edd00H,GUNSP1
+RTHAND1:
+	.word   32,29,63,-136
+	.long   022ef600H,BIGPL1
+RTLBOW1:
+	.word   52,59,104,-97
+	.long   022f1300H,BIGPL1
+RTWRISTBND:
+	.word   40,34,92,-133
+	.long   022f72e0H,GUNSP1
+SMHEAD1:
+	.word   32,33,11,-4
+	.long   022f9d60H,BIGPL1
+SMHEAD2:
+	.word   32,33,11,-4
+	.long   022fbe60H,BIGPL2
+SMBOD1:
+	.word   100,65,60,-37
+	.long   022fdf60H,BIGPL1
+SMBOD2:
+	.word   64,94,44,-99
+	.long   0230aa80H,GUNSP2
+SMWRISTS:
+	.word   32,37,51,-57
+	.long   02316680H,GUNSP1
+SMARMBND:
+	.word   20,28,-7,-56
+	.long   02318b80H,GUNSP1
+HAND1:
+	.word   28,49,-56,-37
+	.long   02319d00H,BIGPL1
+HAND2:
+	.word   28,51,-83,-46
+	.long   0231c7e0H,BIGPL1
+HAND3:
+	.word   32,44,-84,-74
+	.long   0231f480H,BIGPL1
+LBOW1:
+	.word   52,58,-31,-95
+	.long   02322080H,BIGPL1
+LBOW2:
+	.word   44,54,-31,-97
+	.long   02327ec0H,BIGPL1
+LBOW3:
+	.word   40,54,-31,-97
+	.long   0232c900H,BIGPL1
+WRISTBND1:
+	.word   40,67,-46,-77
+	.long   02330c80H,GUNSP1
+WRISTBND2:
+	.word   64,81,-47,-65
+	.long   02336040H,GUNSP1
+WRISTBND3:
+	.word   60,55,-51,-91
+	.long   02340240H,GUNSP1
+MTHGRIM:
+	.word   44,63,41,-77
+	.long   02346960H,MADP1
+MTHSMILE1:
+	.word   44,63,41,-77
+	.long   0234c000H,MADP1
+MTHSMILE2:
+	.word   44,63,41,-77
+	.long   023516a0H,MADP1
+MTHOPEN1:
+	.word   44,70,41,-77
+	.long   02356d40H,MADP1
+MTHOPEN2:
+	.word   44,75,41,-77
+	.long   0235cd80H,MADP1
+MTHOPEN3:
+	.word   44,80,41,-77
+	.long   023634a0H,MADP1
+MADEYE1:
+	.word   44,28,41,-49
+	.long   0236a2a0H,MADP1
+MADEYE2:
+	.word   44,28,41,-49
+	.long   0236c920H,MADP1
+MADEYE3:
+	.word   44,28,41,-49
+	.long   0236efa0H,MADP1
+MADHAT:
+	.word   52,46,50,-7
+	.long   02371620H,MADP2
+MADARM:
+	.word   72,62,75,-65
+	.long   023760e0H,MADP2
+MADFIST:
+	.word   60,77,43,-18
+	.long   0237ec60H,MADP1
+MADBOD:
+	.word   112,58,109,-132
+	.long   02387cc0H,MADP2
+MADNECK:
+	.word   28,18,25,-129
+	.long   023947c0H,MADP1
+WRINK1:
+	.word   72,62,0,0
+	.long   02395780H,BIOFLG
+WRINK2:
+	.word   52,57,0,0
+	.long   0239e300H,BIOFLG
+BIOSIGN:
+	.word   76,146,0,0
+	.long   023a3fa0H,BIOFLG
+HSTGHD:
+	.word   40,42,0,0
+	.long   023b9a60H,BIOFLG
+SBOLT1:
+	.word   44,10,25,4
+	.long   023bcee0H,SHKPAL
+SBOLT2:
+	.word   76,7,35,2
+	.long   023bdca0H,SHKPAL
+SBOLT3:
+	.word   108,15,52,7
+	.long   023bed40H,SHKPAL
+SBOLT4:
+	.word   108,21,53,13
+	.long   023c1fe0H,SHKPAL
+SBOLT5:
+	.word   108,14,51,7
+	.long   023c66c0H,SHKPAL
+SBOLT6:
+	.word   108,13,52,7
+	.long   023c9600H,SHKPAL
+SBOLT7:
+	.word   108,17,52,5
+	.long   023cc1e0H,SHKPAL
+BLT1:
+	.word   16,27,31,-27
+	.long   023cfb40H,SHKPAL
+BLT2:
+	.word   40,44,34,-31
+	.long   023d08c0H,SHKPAL
+BLT3:
+	.word   72,75,36,-28
+	.long   023d3fc0H,SHKPAL
+BLT4:
+	.word   72,74,31,-34
+	.long   023de880H,SHKPAL
+BLT5:
+	.word   48,48,6,-60
+	.long   023e8f00H,SHKPAL
+BLT6:
+	.word   28,22,-15,-86
+	.long   023ed700H,SHKPAL
+LILBLT1:
+	.word   12,5,4,2
+	.long   023eea40H,SHKPAL
+LILBLT2:
+	.word   20,8,9,3
+	.long   023eec20H,SHKPAL
+LILBLT3:
+	.word   28,8,12,3
+	.long   023ef120H,SHKPAL
+LILBLT4:
+	.word   36,12,17,8
+	.long   023ef820H,SHKPAL
+LILBLT5:
+	.word   36,8,17,5
+	.long   023f05a0H,SHKPAL
+LILBLT6:
+	.word   36,10,19,3
+	.long   023f0ea0H,SHKPAL
+LILBLT7:
+	.word   36,10,17,5
+	.long   023f19e0H,SHKPAL
+SKULL1:
+	.word   28,40,13,20
+	.long   023f2520H,MTRP
+SKULL2:
+	.word   32,41,15,21
+	.long   023f4820H,MTRP
+SKULL3:
+	.word   40,36,18,19
+	.long   023f7120H,MTRP
+SKULL4:
+	.word   44,27,20,12
+	.long   023f9e20H,MTRP
+SKULL5:
+	.word   36,36,17,17
+	.long   023fc340H,MTRP
+ECTOR1:
+	.word   60,65,58,-38
+	.long   023febc0H,BIGPL1
+ECTOR2:
+	.word   56,73,56,-28
+	.long   024065a0H,BIGPL1
+ECTOR3:
+	.word   60,77,57,-24
+	.long   0240e560H,BIGPL1
+ECTOR4:
+	.word   64,65,62,-39
+	.long   024175c0H,BIGPL1
+ECTOR5:
+	.word   68,83,67,-25
+	.long   0241f7c0H,BIGPL1
+ECTOR6:
+	.word   88,73,85,-25
+	.long   0242a820H,BIGPL1
+ECFIST1:
+	.word   28,16,75,-95
+	.long   024370e0H,BIGPL1
+ECFIST2:
+	.word   24,32,83,-52
+	.long   02437ee0H,BIGPL1
+ECFIST3:
+	.word   28,31,71,12
+	.long   024396e0H,BIGPL1
+ECLEG1:
+	.word   68,40,67,-96
+	.long   0243b200H,GUNSP1
+ECLEG1A:
+	.word   48,68,64,-136
+	.long   02440700H,GUNSP1
+ECLEG2:
+	.word   72,57,70,-95
+	.long   02446d00H,GUNSP1
+ECLEG2A:
+	.word   44,80,70,-152
+	.long   0244ed40H,GUNSP1
+ECLEG3:
+	.word   40,99,39,-95
+	.long   02455b40H,GUNSP1
+ECWRIST1:
+	.word   32,21,70,-88
+	.long   0245d700H,GUNSP1
+ECWRIST2:
+	.word   28,21,68,-85
+	.long   0245ec00H,GUNSP1
+ECWRIST3:
+	.word   32,36,79,-67
+	.long   0245fe60H,GUNSP1
+ECWRIST4:
+	.word   32,50,83,-7
+	.long   02462260H,GUNSP1
+ECPHD1:
+	.word   32,40,15,-7
+	.long   02465460H,BIGPL1
+ECPHD1A:
+	.word   32,40,15,-7
+	.long   02467c60H,BIGPL1
+ECPHD1B:
+	.word   32,40,15,-7
+	.long   0246a460H,BIGPL1
+ECPHD1C:
+	.word   32,40,15,-7
+	.long   0246cc60H,BIGPL1
+ECPHD1D:
+	.word   32,40,15,-7
+	.long   0246f460H,BIGPL1
+ECPHD1E:
+	.word   32,40,15,-7
+	.long   02471c60H,BIGPL1
+ECPHD1F:
+	.word   32,40,15,-7
+	.long   02474460H,BIGPL1
+ECPHD1G:
+	.word   32,40,15,-7
+	.long   02476c60H,BIGPL1
+ECPHD2:
+	.word   32,42,15,-7
+	.long   02479460H,BIGPL1
+ECPHD3:
+	.word   32,44,15,-7
+	.long   0247be60H,BIGPL1
+ECPHD1H:
+	.word   32,40,15,-7
+	.long   0247ea60H,BIGPL1
+ECP2HD1:
+	.word   32,39,15,-8
+	.long   02481260H,BIGPL2
+ECP2HD1A:
+	.word   32,39,15,-8
+	.long   02483960H,BIGPL2
+ECP2HD1B:
+	.word   32,39,15,-8
+	.long   02486060H,BIGPL2
+ECP2HD1C:
+	.word   32,39,15,-8
+	.long   02488760H,BIGPL2
+ECP2HD1D:
+	.word   32,39,15,-8
+	.long   0248ae60H,BIGPL2
+ECP2HD1E:
+	.word   32,39,15,-8
+	.long   0248d560H,BIGPL2
+ECP2HD1F:
+	.word   32,39,15,-8
+	.long   0248fc60H,BIGPL2
+ECP2HD1G:
+	.word   32,39,15,-8
+	.long   02492360H,BIGPL2
+ECP2HD1H:
+	.word   32,39,15,-8
+	.long   02494a60H,BIGPL2
+ECP2HD2:
+	.word   32,41,15,-8
+	.long   02497160H,BIGPL2
+ECP2HD3:
+	.word   32,43,15,-8
+	.long   02499a60H,BIGPL2
+BUGEYE1A:
+	.word   32,40,15,-7
+	.long   0249c560H,BIGPL1
+BUGEYE1B:
+	.word   36,49,18,1
+	.long   0249ed60H,BIGPL1
+BUGEYE1C:
+	.word   32,40,15,-7
+	.long   024a2480H,BIGPL1
+BUGEYE1D:
+	.word   36,49,18,1
+	.long   024a4c80H,BIGPL1
+BUGEYE2A:
+	.word   36,48,18,1
+	.long   024a83a0H,BIGPL1
+BUGEYE2B:
+	.word   32,40,15,-7
+	.long   024ab9a0H,BIGPL1
+BUGEYE2C:
+	.word   36,48,18,1
+	.long   024ae1a0H,BIGPL1
+BUGEYE2D:
+	.word   36,48,18,1
+	.long   024b17a0H,BIGPL1
+BUGEYE2E:
+	.word   36,48,18,1
+	.long   024b4da0H,BIGPL1
+BUGEYE2F:
+	.word   36,48,18,1
+	.long   024b83a0H,BIGPL1
+BUGEYE2G:
+	.word   36,48,18,1
+	.long   024b17a0H,BIGPL1
+BUGEYE2H:
+	.word   36,48,18,1
+	.long   024ae1a0H,BIGPL1
+BUGEYE2I:
+	.word   36,48,18,1
+	.long   024ae1a0H,BIGPL1
+BUGEYE2J:
+	.word   36,48,18,1
+	.long   024bb9a0H,BIGPL1
+BUG2EYE1A:
+	.word   32,39,15,-8
+	.long   024befa0H,BIGPL2
+BUG2EYE1B:
+	.word   32,40,15,-8
+	.long   024c16a0H,BIGPL2
+BUG2EYE1C:
+	.word   32,39,15,-8
+	.long   024c3ea0H,BIGPL2
+BUG2EYE1D:
+	.word   32,40,16,-8
+	.long   024c65a0H,BIGPL2
+BUG2EYE2A:
+	.word   32,39,15,-8
+	.long   024c8da0H,BIGPL2
+BUG2EYE2B:
+	.word   32,39,15,-8
+	.long   024cb4a0H,BIGPL2
+BUG2EYE2C:
+	.word   32,40,16,-8
+	.long   024cdba0H,BIGPL2
+BUG2EYE2D:
+	.word   32,40,16,-8
+	.long   024d03a0H,BIGPL2
+BUG2EYE2E:
+	.word   32,40,16,-8
+	.long   024cdba0H,BIGPL2
+BUG2EYE2F:
+	.word   32,40,16,-8
+	.long   024d03a0H,BIGPL2
+BUG2EYE2G:
+	.word   32,40,16,-8
+	.long   024d03a0H,BIGPL2
+BUG2EYE2H:
+	.word   32,40,16,-8
+	.long   024cdba0H,BIGPL2
+BUG2EYE2I:
+	.word   32,40,16,-8
+	.long   024cdba0H,BIGPL2
+BUG2EYE2J:
+	.word   32,40,16,-8
+	.long   024d03a0H,BIGPL2
+BONES1:
+	.word   52,64,50,-49
+	.long   024d2ba0H,MTRP
+BONES2:
+	.word   52,59,51,-54
+	.long   024d93a0H,MTRP
+BONES3:
+	.word   48,54,48,-59
+	.long   024df380H,MTRP
+BONES4:
+	.word   44,48,44,-64
+	.long   024e4480H,MTRP
+BONES5:
+	.word   44,57,44,-69
+	.long   024e8680H,MTRP
+BONES6:
+	.word   44,63,42,-81
+	.long   024ed4e0H,MTRP
+BONEARM:
+	.word   36,21,75,-103
+	.long   024f2b80H,MTRP
+BONELEG2:
+	.word   44,73,65,-144
+	.long   024f4320H,MTRP
+BONELEG1:
+	.word   68,32,66,-113
+	.long   024fa780H,MTRP
+SHOCK1:
+	.word   84,221,82,-3
+	.long   024feb80H,SHKPAL
+SHOCK2:
+	.word   80,216,79,-5
+	.long   02522fa0H,SHKPAL
+SHOCK1A:
+	.word   24,34,21,-3
+	.long   02544ba0H,SHKPAL
+SHOCK1B:
+	.word   60,55,60,-37
+	.long   02546520H,SHKPAL
+SHOCK1C:
+	.word   84,64,82,-92
+	.long   0254cc40H,SHKPAL
+SHOCK1D:
+	.word   60,68,71,-156
+	.long   02557440H,SHKPAL
+SHOCK2A:
+	.word   20,38,19,-5
+	.long   0255f3c0H,SHKPAL
+SHOCK2B:
+	.word   56,41,53,-43
+	.long   02560b80H,SHKPAL
+SHOCK2C:
+	.word   80,69,79,-84
+	.long   02565340H,SHKPAL
+SHOCK2D:
+	.word   52,68,68,-153
+	.long   0256ffc0H,SHKPAL
+CLAMP1:
+	.word   24,44,19,-12
+	.long   02576e40H,CHAIRP
+CLAMP2:
+	.word   44,48,8,-10
+	.long   02578f40H,CHAIRP
+CLAMP3:
+	.word   44,24,3,-32
+	.long   0257d140H,CHAIRP
+SPARKL1:
+	.word   20,16,-1,5
+	.long   0257f240H,SHKPAL
+SPARKL2:
+	.word   28,28,-7,1
+	.long   0257fc40H,SHKPAL
+SPARKL3:
+	.word   32,44,-9,0
+	.long   025814c0H,SHKPAL
+SPARKL4:
+	.word   32,45,-9,-4
+	.long   025840c0H,SHKPAL
+SPARKL5:
+	.word   36,44,-10,-8
+	.long   02586dc0H,SHKPAL
+SPARKL6:
+	.word   40,34,-11,-22
+	.long   02589f40H,SHKPAL
+SPARKL7HOLD:
+	.word   40,34,-13,-26
+	.long   0258c9c0H,SHKPAL
+SPARKL9:
+	.word   40,32,-13,-28
+	.long   0258f440H,SHKPAL
+SPARKL10:
+	.word   40,30,-13,-30
+	.long   02591c40H,SHKPAL
+SPARKL11:
+	.word   40,28,-13,-32
+	.long   025941c0H,SHKPAL
+SPARKL12:
+	.word   40,26,-13,-34
+	.long   025964c0H,SHKPAL
+SPARKL13:
+	.word   40,24,-13,-36
+	.long   02598540H,SHKPAL
+SPARKL14:
+	.word   40,22,-13,-38
+	.long   0259a340H,SHKPAL
+SPARKL15:
+	.word   40,20,-13,-40
+	.long   0259bec0H,SHKPAL
+SPARKL16:
+	.word   40,18,-13,-42
+	.long   0259d7c0H,SHKPAL
+SPARKL17:
+	.word   40,16,-13,-44
+	.long   0259ee40H,SHKPAL
+SPARKL18:
+	.word   24,14,-30,-46
+	.long   025a0240H,SHKPAL
+SPARKL19:
+	.word   24,12,-30,-48
+	.long   025a0cc0H,SHKPAL
+SPARKL20:
+	.word   16,10,-35,-50
+	.long   025a15c0H,SHKPAL
+WISP1:
+	.word   20,12,11,-38
+	.long   025a1ac0H,CHAIRP
+WISP2:
+	.word   20,14,11,-35
+	.long   025a2240H,CHAIRP
+WISP3:
+	.word   16,19,11,-29
+	.long   025a2b00H,CHAIRP
+WISP4:
+	.word   16,24,12,-24
+	.long   025a3480H,CHAIRP
+WISP5:
+	.word   16,27,12,-22
+	.long   025a4080H,CHAIRP
+WISP6:
+	.word   16,30,13,-17
+	.long   025a4e00H,CHAIRP
+WISP7:
+	.word   16,39,12,-6
+	.long   025a5d00H,CHAIRP
+WISP8:
+	.word   16,41,12,1
+	.long   025a7080H,CHAIRP
+WISP9:
+	.word   16,41,11,4
+	.long   025a8500H,CHAIRP
+WISP10:
+	.word   20,41,14,5
+	.long   025a9980H,CHAIRP
+WISP11:
+	.word   20,37,15,5
+	.long   025ab320H,CHAIRP
+WISP12:
+	.word   20,28,16,5
+	.long   025aca40H,CHAIRP
+WISP13:
+	.word   16,15,14,4
+	.long   025adbc0H,CHAIRP
+WISP14:
+	.word   16,12,14,3
+	.long   025ae340H,CHAIRP
+WISP15:
+	.word   12,9,12,1
+	.long   025ae940H,CHAIRP
+GGWTTS:
+	.word   28,129,0,0
+	.long   025aeca0H,MTRP
+STRNGTHMTR:
+	.word   12,199,0,0
+	.long   025b5d80H,MTRP
+SM2:
+	.word   64,19,0,0
+	.long   025ba820H,MTRP
+SMARRW2:
+	.word   20,18,0,0
+	.long   025bce20H,MTRP
+GGSWRD:
+	.word   56,7,0,0
+	.long   025bd960H,MTRP
+AKTORSO1:
+	.word   68,69,68,-40
+	.long   025be5a0H,BOOBP
+AKTORSO2:
+	.word   68,77,68,-32
+	.long   025c7840H,BOOBP
+AKTORSO3:
+	.word   68,81,68,-28
+	.long   025d1be0H,BOOBP
+AKTORSO4:
+	.word   68,66,68,-43
+	.long   025dc800H,BOOBP
+AKHED1:
+	.word   36,45,16,-2
+	.long   025e5440H,BOOBP
+AKHED2:
+	.word   36,45,16,-2
+	.long   025e86e0H,BOOBP
+AKHED3:
+	.word   36,45,16,-2
+	.long   025eb980H,BOOBP
+AKHED4:
+	.word   36,45,16,-2
+	.long   025eec20H,BOOBP
+AKHED5:
+	.word   36,46,16,-2
+	.long   025f1ec0H,BOOBP
+AKHED6:
+	.word   36,46,16,-2
+	.long   025f5280H,BOOBP
+AKHED7:
+	.word   36,46,16,-2
+	.long   025f8640H,BOOBP
+AKHED8:
+	.word   36,46,16,-2
+	.long   025fba00H,BOOBP
+AKHED9:
+	.word   36,49,16,-2
+	.long   025fedc0H,BOOBP
+AKHED10:
+	.word   36,53,16,-1
+	.long   026024e0H,BOOBP
+BIGEYES1:
+	.word   36,46,16,-2
+	.long   02606080H,BOOBP
+BIGEYES2:
+	.word   36,46,16,-2
+	.long   02609440H,BOOBP
+BIGEYES3:
+	.word   36,46,16,-2
+	.long   02609440H,BOOBP
+BIGEYES4:
+	.word   36,46,16,-2
+	.long   0260c800H,BOOBP
+BIGEYES5:
+	.word   36,46,16,-2
+	.long   02609440H,BOOBP
+BIGEYES6:
+	.word   36,46,16,-2
+	.long   0260fbc0H,BOOBP
+BIGEYES7:
+	.word   36,46,16,-2
+	.long   0260c800H,BOOBP
+BIGEYES8:
+	.word   36,46,16,-2
+	.long   02609440H,BOOBP
+BIGEYES9:
+	.word   36,46,16,-2
+	.long   02609440H,BOOBP
+BIGEYES10:
+	.word   36,46,16,-2
+	.long   02612f80H,BOOBP
+AKLEG1:
+	.word   68,42,67,-99
+	.long   02616340H,BOOBP
+AKLEG2:
+	.word   48,70,65,-141
+	.long   0261bc80H,BOOBP
+	.TEXT
+

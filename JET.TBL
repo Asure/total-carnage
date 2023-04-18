@@ -1,72 +1,48 @@
 	.DATA
 JTBOD:
-	.word   240,34
-	.long   013fb70H
-	.word   105,-6,00H
-	.long   BLUJET
+	.word   240,34,105,-6
+	.long   021f2fe0H,BLUJET
 JTBOD2:
-	.word   240,34
-	.long   013fb70H
-	.word   105,-6,00H
-	.long   GRNJET
+	.word   240,34,105,-6
+	.long   02202ee0H,GRNJET
 JTSMWNG:
-	.word   41,19
-	.long   014fa70H
-	.word   106,-40,06000H
-	.long   BLUJET
+	.word   44,19,106,-40
+	.long   02212de0H,BLUJET
 JTBGWNG:
-	.word   100,42
-	.long   0150cc0H
-	.word   57,-40,06000H
-	.long   BLUJET
+	.word   100,42,57,-40
+	.long   02214800H,BLUJET
 JTWHL:
-	.word   16,13
-	.long   0156f30H
-	.word   -65,-35,06000H
-	.long   BLUJET
+	.word   16,13,-65,-35
+	.long   0221cb40H,BLUJET
 JTWNGTP:
-	.word   84,25
-	.long   0157410H
-	.word   114,19,06000H
-	.long   BLUJET
+	.word   84,25,114,19
+	.long   0221d1c0H,BLUJET
 JTSHD1:
-	.word   239,20
-	.long   015a550H
-	.word   98,-42,06000H
-	.long   BLUJET
+	.word   240,20,98,-42
+	.long   02221360H,BLUJET
 JTSHD2:
-	.word   97,41
-	.long   0161560H
-	.word   50,-62,06000H
-	.long   BLUJET
+	.word   100,41,50,-62
+	.long   0222a960H,BLUJET
 JTSHD3:
-	.word   40,18
-	.long   01672a0H
-	.word   100,-63,06000H
-	.long   BLUJET
+	.word   40,18,100,-63
+	.long   02232980H,BLUJET
 JETWRECK:
-	.word   240,34
-	.long   0168380H
-	.word   105,-6,06000H
+	.word   240,34,105,-6
+	.long   02234000H
 JTSMWNG2:
-	.word   41,19
-	.long   01742c0H
-	.word   106,-40,06000H
+	.word   44,19,106,-40
+	.long   02243f00H
 JTBGWNG2:
-	.word   98,42
-	.long   0175510H
-	.word   55,-40,06000H
+	.word   100,42,55,-40
+	.long   02245920H
 JTWNGTP2:
-	.word   84,25
-	.long   017b590H
-	.word   114,19,06000H
+	.word   84,25,114,19
+	.long   0224dc60H
 JTSHAD2A:
-	.word   95,41
-	.long   017e6d0H
-	.word   49,-61,06000H
+	.word   96,41,49,-61
+	.long   02251e00H
 JTSHAD3A:
-	.word   40,18
-	.long   0184220H
-	.word   102,-63,06000H
+	.word   40,18,102,-63
+	.long   02259900H
 	.TEXT
 
