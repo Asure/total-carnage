@@ -412,13 +412,13 @@ DBAT1:
 	.long   02909320H,DGP1
 DUM1:
 	.word   28,34,15,-7
-	.long   0290af20H,DGP2
+	.long   02909320H,DGP2
 DUM2:
 	.word   28,34,15,-7
-	.long   0290af20H,DGP3
+	.long   02909320H,DGP3
 DFLSHA1:
 	.word   20,19,10,10
-	.long   0290cce0H,DGP1
+	.long   0290af20H,DGP1
 FLMUP2:
 	.word   32,39,16,34
 	.long   0290bb00H
