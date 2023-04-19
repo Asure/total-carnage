@@ -3,3 +3,6 @@
 *.out
 *.map
 *.pyc
+ROM/la*.*
+ROM/ROM*.*
+ROM/U*.*

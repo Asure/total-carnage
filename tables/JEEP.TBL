@@ -1,0 +1,51 @@
+	.DATA
+JEEP:
+	.word   80,114,40,-7
+	.long   02758480H,JEEPP
+JEEPDRVRS:
+	.word   52,17,25,-53
+	.long   0276a180H,JEEPP
+JSHAD:
+	.word   24,90,-37,-30
+	.long   0276bd20H,JEEPP
+JEEP2:
+	.word   80,101,40,-20
+	.long   027700a0H,JEEPP
+JSHAD2:
+	.word   24,90,-37,-30
+	.long   0277fd20H,JEEPP
+JEEP4:
+	.word   132,76,57,-21
+	.long   027840a0H,JEEPP
+AKHSHAD:
+	.word   192,14,93,-86
+	.long   02797a20H,JEEPP
+AKHBITCH1:
+	.word   28,30,15,-38
+	.long   0279ce20H,BOOBP
+AKHLIMO:
+	.word   200,78,107,-7
+	.long   0279e860H,LIMOP
+AKHTIREA:
+	.word   32,21,0,0
+	.long   027bcfe0H,JEEPP
+AKHTIREB:
+	.word   32,21,0,0
+	.long   027be4e0H,JEEPP
+AKHBITCH2:
+	.word   28,30,14,-38
+	.long   027bf9e0H
+AKHBITCH3:
+	.word   28,30,17,-38
+	.long   027c1420H
+AKHBITCH4:
+	.word   28,30,15,-38
+	.long   027c2e60H
+AKHBITCH5:
+	.word   28,30,16,-38
+	.long   027c48a0H
+AKHBITCH6:
+	.word   32,30,19,-38
+	.long   027c62e0H
+	.TEXT
+

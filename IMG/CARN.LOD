@@ -549,31 +549,39 @@ COF>
 ---> FONT7A,FONT7B,FONT7C,FONT7D,FONT7E,FONT7F,FONT7G
 ;***> 02f1a7c0
 ---> FONT7H
-;***> 02f1aac0
 ---> FONT7I
-;***> 02f1aac0
+***> 02f1aac0
 ---> FONT7J
-***> 02f1a9c0
-; broken here!!
-;
-;
+***> 02f1acc0
 ---> FONT7K
-***> 02f1e140
+***> 02f1aec0
 ---> FONT7L
-;***> 02f1b0c0
+***> 02f1b0c0
 ---> FONT7M
 ;***> 02f1b3c0
 ---> FONT7N
 ;***> 02f1b5c0
 ---> FONT7O,FONT7P,FONT7Q,FONT7R,FONT7S,FONT7T
 ---> FONT7U,FONT7V,FONT7W,FONT7X,FONT7Y,FONT7Z,FONT7a,FONT7b,FONT7c,FONT7d
----> FONT7e,FONT7f,FONT7g,FONT7h,FONT7i,FONT7j,FONT7k,FONT7l,FONT7m,FONT7n
+---> FONT7e,FONT7f,FONT7g,FONT7h,FONT7i,FONT7j,FONT7k
+***> 02f1a9c0
+---> FONT7l
+***> 02f1e140
+---> FONT7m,FONT7n
 ---> FONT7o,FONT7p,FONT7q,FONT7r,FONT7s,FONT7t,FONT7u,FONT7v,FONT71,FONT72
 ---> FONT73,FONT74,FONT75,FONT76,FONT77,FONT78,FONT79,FONT70,FONT7excla
 ---> FONT7pound,FONT7doll,FONT7percen,FONT7and,FONT7ast,FONT7parenl
 ---> FONT7parenr,FONT7dash,FONT7line,FONT7equal,FONT7plus,FONT7bracl
----> FONT7bracr,FONT7backsp,FONT7paren2l,FONT7paren2r,FONT7break
----> FONT7semicol,FONT7apost,FONT7colon,FONT7quote,FONT7comma,FONT7period
+---> FONT7bracr,FONT7backsp,FONT7paren2l,FONT7paren2r
+***> 02f1a9c0
+---> FONT7break
+***> 02f22000
+---> FONT7semicol,FONT7apost,FONT7colon,FONT7quote
+***> 02f22100 
+---> FONT7comma
+***> 02f22340
+---> FONT7period
+***> 02f22380
 ---> FONT7forsp,FONT7less,FONT7more,FONT7quest
 ;
 ;
