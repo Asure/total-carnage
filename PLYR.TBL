@@ -19,468 +19,468 @@ P1S10T1:
 	.long   02f6f4c0H,nup1
 FLSH2:
 	.word   20,20,9,-7
-	.long   02f70140H,nup2a
+	.long   02f6f4c0H,nup2a
 PSHOCK1:
 	.word   32,35,16,-36
-	.long   02f70dc0H
+	.long   02f70140H
 PSHOCK3:
 	.word   40,47,19,-25
-	.long   02f730c0H
+	.long   02f72440H
 PSHOCK4:
 	.word   60,67,30,-16
-	.long   02f76b80H
+	.long   02f75f00H
 PSHOCK5:
 	.word   60,71,30,-11
-	.long   02f7e920H
+	.long   02f7dca0H
 PSHOCK6:
 	.word   60,73,31,-10
-	.long   02f86e40H
+	.long   02f861c0H
 PSHOCK7:
 	.word   60,71,30,-11
-	.long   02f8f720H
+	.long   02f8eaa0H
 PSHOCK8:
 	.word   60,71,30,-11
-	.long   02f97c40H
+	.long   02f96fc0H
 P1MGUN6:
 	.word   28,32,16,-7
-	.long   02fa0160H
+	.long   02f9f4e0H
 P1MGUN8:
 	.word   32,29,20,-7
-	.long   02fa1d60H
+	.long   02fa10e0H
 P1MGUN9:
 	.word   32,21,23,-7
-	.long   02fa3a60H
+	.long   02fa2de0H
 P1MGUN10:
 	.word   28,22,13,-5
-	.long   02fa4f60H
+	.long   02fa42e0H
 P1MGUN12:
 	.word   24,21,10,-6
-	.long   02fa62a0H
+	.long   02fa5620H
 P1MGUN6A:
 	.word   28,30,17,-7
-	.long   02fa7260H
+	.long   02fa65e0H
 P1MGUN8A:
 	.word   28,27,18,-7
-	.long   02fa8ca0H
+	.long   02fa8020H
 P1MGUN9A:
 	.word   32,21,21,-7
-	.long   02faa440H
+	.long   02fa97c0H
 P1MGUN10A:
 	.word   24,21,11,-7
-	.long   02fab940H
+	.long   02faacc0H
 P1MGUN12A:
 	.word   24,22,10,-7
-	.long   02fac900H
+	.long   02fabc80H
 P1FLAMR6:
 	.word   24,35,12,-7
-	.long   02fad980H
+	.long   02facd00H
 P1FLAMR8:
 	.word   28,30,19,-7
-	.long   02faf3c0H
+	.long   02fae740H
 P1FLAMR9:
 	.word   36,21,24,-7
-	.long   02fb0e00H
+	.long   02fb0180H
 P1FLAMR10:
 	.word   24,21,13,-6
-	.long   02fb25a0H
+	.long   02fb1920H
 P1FLAMR12:
 	.word   20,26,10,-2
-	.long   02fb3560H
+	.long   02fb28e0H
 P1SPRDWG6:
 	.word   32,23,11,-7
-	.long   02fb45a0H
+	.long   02fb3920H
 P1SPRDWG8:
 	.word   24,29,12,-7
-	.long   02fb5ca0H
+	.long   02fb5020H
 P1SPRDWG9:
 	.word   20,27,13,-7
-	.long   02fb7260H
+	.long   02fb65e0H
 P1SPRDWG10:
 	.word   24,21,16,-7
-	.long   02fb8340H
+	.long   02fb76c0H
 P1SPRDWG12:
 	.word   28,20,17,-7
-	.long   02fb9300H
+	.long   02fb8680H
 P1SPRDR6:
 	.word   24,34,13,-7
-	.long   02fba480H
+	.long   02fb9800H
 P1SPRDR8:
 	.word   28,30,19,-7
-	.long   02fbbe00H
+	.long   02fbb180H
 P1SPRDR9:
 	.word   32,21,23,-7
-	.long   02fbd840H
+	.long   02fbcbc0H
 P1SPRDR10:
 	.word   24,21,12,-6
-	.long   02fbed40H
+	.long   02fbe0c0H
 P1SPRDR12:
 	.word   24,28,10,-2
-	.long   02fbfd00H
+	.long   02fbf080H
 P1SPRD6A:
 	.word   24,33,13,-7
-	.long   02fc1200H
+	.long   02fc0580H
 P1SPRD8A:
 	.word   28,28,18,-7
-	.long   02fc2ac0H
+	.long   02fc1e40H
 P1SPRDR9A:
 	.word   32,21,21,-7
-	.long   02fc4340H
+	.long   02fc36c0H
 P1SPRDR10A:
 	.word   24,21,11,-7
-	.long   02fc5840H
+	.long   02fc4bc0H
 P1SPRD12A:
 	.word   24,28,10,-3
-	.long   02fc6800H
+	.long   02fc5b80H
 P1LARS6:
 	.word   24,24,14,-4
-	.long   02fc7d00H
+	.long   02fc7080H
 P1LARS8:
 	.word   28,25,18,-3
-	.long   02fc8f00H
+	.long   02fc8280H
 P1LARS9:
 	.word   36,22,20,-6
-	.long   02fca4e0H
+	.long   02fc9860H
 P1LARS10:
 	.word   24,29,9,2
-	.long   02fcbda0H
+	.long   02fcb120H
 P1LARS12:
 	.word   24,28,9,1
-	.long   02fcd360H
+	.long   02fcc6e0H
 P1LARS6A:
 	.word   24,34,14,-2
-	.long   02fce860H
+	.long   02fcdbe0H
 P1LARS8A:
 	.word   36,33,27,-2
-	.long   02fd01e0H
+	.long   02fcf560H
 P1LARS9A:
 	.word   48,24,32,-4
-	.long   02fd2700H
+	.long   02fd1a80H
 P1LARS10A:
 	.word   32,35,15,8
-	.long   02fd4b00H
+	.long   02fd3e80H
 P1LARS12A:
 	.word   24,36,9,9
-	.long   02fd6e00H
+	.long   02fd6180H
 P1GR6T1:
 	.word   24,21,14,-7
-	.long   02fd8900H
+	.long   02fd7c80H
 P1GR8T1:
 	.word   28,21,17,-7
-	.long   02fd98c0H
+	.long   02fd8c40H
 P1GR9T1:
 	.word   28,27,13,-1
-	.long   02fdab20H
+	.long   02fd9ea0H
 P1GR10T1:
 	.word   24,29,9,2
-	.long   02fdc2c0H
+	.long   02fdb640H
 P1GR12T1:
 	.word   24,28,8,1
-	.long   02fdd880H
+	.long   02fdcc00H
 PFLM1:
 	.word   28,40,17,-7
-	.long   02fded80H
+	.long   02fde100H
 PFLM2:
 	.word   32,40,17,-7
-	.long   02fe1080H
+	.long   02fe0400H
 PFLM3:
 	.word   32,41,18,-6
-	.long   02fe3880H
+	.long   02fe2c00H
 PFLM4:
 	.word   36,45,18,-2
-	.long   02fe6180H
+	.long   02fe5500H
 PLYD1:
 	.word   20,33,11,-9
-	.long   02fe9420H
+	.long   02fe87a0H
 PLYD2:
 	.word   20,32,10,-10
-	.long   02fea8c0H
+	.long   02fe9c40H
 PLYD3:
 	.word   20,32,7,-11
-	.long   02febcc0H
+	.long   02feb040H
 PLYD4:
 	.word   20,33,8,-11
-	.long   02fed0c0H
+	.long   02fec440H
 PLYD5:
 	.word   20,35,8,-10
-	.long   02fee560H
+	.long   02fed8e0H
 PLYD6:
 	.word   20,33,8,-11
-	.long   02fefb40H
+	.long   02feeec0H
 PLYD7:
 	.word   20,33,8,-11
-	.long   02ff0fe0H
+	.long   02ff0360H
 PLYD8:
 	.word   20,31,13,-16
-	.long   02ff2480H
+	.long   02ff1800H
 STRIKE1:
 	.word   20,46,13,-1
-	.long   02ff37e0H
+	.long   02ff2b60H
 STRIKE2:
 	.word   20,46,13,-1
-	.long   02ff54a0H
+	.long   02ff4820H
 STRIKE3:
 	.word   24,37,16,-10
-	.long   02ff7160H
+	.long   02ff64e0H
 STRIKE4:
 	.word   24,31,16,-16
-	.long   02ff8d20H
+	.long   02ff80a0H
 STRIKE5:
 	.word   24,31,15,-16
-	.long   02ffa460H
+	.long   02ff97e0H
 STRIKE6:
 	.word   24,32,14,-16
-	.long   02ffbba0H
+	.long   02ffaf20H
 STRIKE9:
 	.word   32,34,19,-16
-	.long   02ffd3a0H
+	.long   02ffc720H
 STRIKE10:
 	.word   28,30,17,-16
-	.long   02fff5a0H
+	.long   02ffe920H
 STRIKE11:
 	.word   28,25,18,-15
-	.long   03000fe0H
+	.long   03000360H
 STRIKE12:
 	.word   28,26,17,-11
-	.long   030025c0H
+	.long   03001940H
 STRIKE13:
 	.word   28,22,16,-12
-	.long   03003c80H
+	.long   03003000H
 STRIKE14:
 	.word   24,18,15,-14
-	.long   03004fc0H
+	.long   03004340H
 STRIKE15:
 	.word   20,9,12,-17
-	.long   03005d40H
+	.long   030050c0H
 STRIKE16:
 	.word   16,7,9,-18
-	.long   030062e0H
+	.long   03005660H
 STRIKE17:
 	.word   20,30,13,-16
-	.long   03006660H
+	.long   030059e0H
 FLY1:
 	.word   48,41,31,22
-	.long   03007920H
+	.long   03006ca0H
 FLY2:
 	.word   60,45,37,20
-	.long   0300b6a0H
+	.long   0300aa20H
 FLY3:
 	.word   56,51,22,19
-	.long   03010b00H
+	.long   0300fe80H
 FLY4:
 	.word   68,70,26,21
-	.long   03016440H
+	.long   030157c0H
 FLY5:
 	.word   76,82,29,26
-	.long   0301f900H
+	.long   0301ec80H
 FLY6:
 	.word   88,82,36,31
-	.long   0302bbc0H
+	.long   0302af40H
 FLY7:
 	.word   92,96,42,40
-	.long   03039d40H
+	.long   030390c0H
 FLY8:
 	.word   80,103,47,46
-	.long   0304b140H
+	.long   0304a4c0H
 LAND:
 	.word   40,43,16,16
-	.long   0305b2c0H
+	.long   0305a640H
 P1WG9T1:
 	.word   20,28,13,-7
-	.long   0305e880H
+	.long   0305dc00H
 P1WG8T1:
 	.word   24,28,12,-7
-	.long   0305fa00H
+	.long   0305ed80H
 P1WG10T1:
 	.word   24,21,16,-7
-	.long   03060f00H
+	.long   03060280H
 P1WG12T1:
 	.word   28,20,15,-7
-	.long   03061ec0H
+	.long   03061240H
 P1SH6L1:
 	.word   16,21,8,-24
-	.long   03063040H
+	.long   030623c0H
 P1SH8L1:
 	.word   12,21,5,-24
-	.long   03063ac0H
+	.long   03062e40H
 P1SH9L1:
 	.word   12,23,4,-24
-	.long   030642a0H
+	.long   03063620H
 P1S10L1:
 	.word   12,21,6,-24
-	.long   03064b40H
+	.long   03063ec0H
 P1S12L1:
 	.word   16,21,7,-24
-	.long   03065320H
+	.long   030646a0H
 P1SH9T1:
 	.word   28,21,19,-7
-	.long   03065da0H
+	.long   03065120H
 P1SH9T2:
 	.word   36,21,25,-7
-	.long   03067000H
+	.long   03066380H
 P1SH8T1:
 	.word   28,28,16,-7
-	.long   030687a0H
+	.long   03067b20H
 P1SH8T2:
 	.word   32,29,20,-7
-	.long   0306a020H
+	.long   030693a0H
 P1SH6T2:
 	.word   24,35,12,-7
-	.long   0306bd20H
+	.long   0306b0a0H
 P1S10T2:
 	.word   24,24,14,-4
-	.long   0306d760H
+	.long   0306cae0H
 P1S12T2:
 	.word   20,30,10,-3
-	.long   0306e960H
+	.long   0306dce0H
 P1S12T1:
 	.word   20,25,10,-7
-	.long   0306fc20H
+	.long   0306efa0H
 P1RN6L1:
 	.word   12,23,6,-24
-	.long   03070bc0H
+	.long   0306ff40H
 P1RN6L2:
 	.word   12,24,6,-24
-	.long   03071460H
+	.long   030707e0H
 P1RN6L3:
 	.word   12,22,5,-24
-	.long   03071d60H
+	.long   030710e0H
 P1RN6L4:
 	.word   12,22,5,-24
-	.long   030725a0H
+	.long   03071920H
 P1RN6L5:
 	.word   12,22,5,-24
-	.long   03072de0H
+	.long   03072160H
 P1RN6L6:
 	.word   12,24,5,-24
-	.long   03073620H
+	.long   030729a0H
 P1RN6L7:
 	.word   12,22,5,-24
-	.long   03073f20H
+	.long   030732a0H
 P1RN6L8:
 	.word   12,23,6,-24
-	.long   03074760H
+	.long   03073ae0H
 P1RN8L1:
 	.word   16,21,8,-24
-	.long   03075000H
+	.long   03074380H
 P1RN8L2:
 	.word   16,21,9,-24
-	.long   03075a80H
+	.long   03074e00H
 P1RN8L3:
 	.word   16,21,5,-24
-	.long   03076500H
+	.long   03075880H
 P1RN8L4:
 	.word   16,21,5,-24
-	.long   03076f80H
+	.long   03076300H
 P1RN8L5:
 	.word   16,22,5,-24
-	.long   03077a00H
+	.long   03076d80H
 P1RN8L6:
 	.word   12,24,5,-24
-	.long   03078500H
+	.long   03077880H
 P1RN8L7:
 	.word   16,21,5,-24
-	.long   03078e00H
+	.long   03078180H
 P1RN8L8:
 	.word   12,21,6,-24
-	.long   03079880H
+	.long   03078c00H
 P1RN9L1:
 	.word   12,21,6,-24
-	.long   0307a060H
+	.long   030793e0H
 P1RN9L2:
 	.word   20,21,12,-24
-	.long   0307a840H
+	.long   03079bc0H
 P1RN9L3:
 	.word   20,21,10,-24
-	.long   0307b560H
+	.long   0307a8e0H
 P1RN9L4:
 	.word   12,21,4,-24
-	.long   0307c280H
+	.long   0307b600H
 P1RN9L5:
 	.word   20,21,8,-24
-	.long   0307ca60H
+	.long   0307bde0H
 P1RN9L6:
 	.word   24,20,13,-24
-	.long   0307d780H
+	.long   0307cb00H
 P1RN9L7:
 	.word   20,20,9,-24
-	.long   0307e680H
+	.long   0307da00H
 P1RN9L8:
 	.word   12,20,4,-24
-	.long   0307f300H
+	.long   0307e680H
 P1R10L1:
 	.word   16,21,9,-24
-	.long   0307fa80H
+	.long   0307ee00H
 P1R10L2:
 	.word   12,21,5,-24
-	.long   03080500H
+	.long   0307f880H
 P1R10L3:
 	.word   16,21,5,-24
-	.long   03080ce0H
+	.long   03080060H
 P1R10L4:
 	.word   12,22,5,-24
-	.long   03081760H
+	.long   03080ae0H
 P1R10L5:
 	.word   12,20,5,-24
-	.long   03081fa0H
+	.long   03081320H
 P1R10L6:
 	.word   12,21,6,-24
-	.long   03082720H
+	.long   03081aa0H
 P1R10L7:
 	.word   12,20,7,-24
-	.long   03082f00H
+	.long   03082280H
 P1R12L1:
 	.word   12,22,5,-24
-	.long   03083680H
+	.long   03082a00H
 P1R12L2:
 	.word   12,22,5,-24
-	.long   03083ec0H
+	.long   03083240H
 P1R12L3:
 	.word   12,21,5,-24
-	.long   03084700H
+	.long   03083a80H
 P1R12L4:
 	.word   12,21,5,-24
-	.long   03084ee0H
+	.long   03084260H
 P1R12L5:
 	.word   12,24,5,-24
-	.long   030856c0H
+	.long   03084a40H
 P1R12L6:
 	.word   12,23,5,-24
-	.long   03085fc0H
+	.long   03085340H
 P1R12L7:
 	.word   12,21,5,-24
-	.long   03086860H
+	.long   03085be0H
 P1R12L8:
 	.word   12,21,5,-24
-	.long   03087040H
+	.long   030863c0H
 P1TH6L1:
 	.word   24,22,11,-24
-	.long   03087820H
+	.long   03086ba0H
 P1TH6L2:
 	.word   24,22,11,-24
-	.long   030888a0H
+	.long   03087c20H
 P1TH8L1:
 	.word   16,26,7,-20
-	.long   03089920H
+	.long   03088ca0H
 P1TH8L2:
 	.word   16,26,7,-20
-	.long   0308a620H
+	.long   030899a0H
 P1TH9L1:
 	.word   12,22,3,-24
-	.long   0308b320H
+	.long   0308a6a0H
 P1TH9L2:
 	.word   12,22,3,-24
-	.long   0308bb60H
+	.long   0308aee0H
 P1TH10L1:
 	.word   16,24,8,-22
-	.long   0308c3a0H
+	.long   0308b720H
 P1TH10L2:
 	.word   16,24,8,-22
-	.long   0308cfa0H
+	.long   0308c320H
 P1TH12L1:
 	.word   24,23,11,-24
-	.long   0308dba0H
+	.long   0308cf20H
 P1TH12L2:
 	.word   24,23,11,-24
-	.long   0308ece0H
+	.long   0308e060H
 	.TEXT
 
