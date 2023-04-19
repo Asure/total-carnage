@@ -178,471 +178,471 @@ FON15N:
 	.long   02f078c0H,DUXPAL
 FON15O:
 	.word   12,15,0,0
-	.long   02f07e60H,DUXPAL
+	.long   02efee20H,DUXPAL
 FON15P:
 	.word   12,15,0,0
-	.long   02f08400H,DUXPAL
+	.long   02f07e60H,DUXPAL
 FON15Q:
 	.word   16,17,0,0
-	.long   02f089a0H,DUXPAL
+	.long   02f08400H,DUXPAL
 FON15R:
 	.word   12,15,0,0
-	.long   02f09220H,DUXPAL
+	.long   02f08c80H,DUXPAL
 FON15S:
 	.word   12,15,0,0
-	.long   02f097c0H,DUXPAL
+	.long   02f09220H,DUXPAL
 FON15T:
 	.word   12,15,0,0
-	.long   02f09d60H,DUXPAL
+	.long   02f097c0H,DUXPAL
 FON15U:
 	.word   12,15,0,0
-	.long   02f0a300H,DUXPAL
+	.long   02f09d60H,DUXPAL
 FON15V:
 	.word   16,15,0,0
-	.long   02f0a8a0H,DUXPAL
+	.long   02f0a300H,DUXPAL
 FON15W:
 	.word   16,15,0,0
-	.long   02f0b020H,DUXPAL
+	.long   02f0aa80H,DUXPAL
 FON15X:
 	.word   16,15,0,0
-	.long   02f0b7a0H,DUXPAL
+	.long   02f0b200H,DUXPAL
 FON15Y:
 	.word   16,15,0,0
-	.long   02f0bf20H,DUXPAL
+	.long   02f0b980H,DUXPAL
 FON15Z:
 	.word   16,15,0,0
-	.long   02f0c6a0H,DUXPAL
+	.long   02f0c100H,DUXPAL
 FON15and:
 	.word   16,15,0,0
-	.long   02f0ce20H,DUXPAL
+	.long   02f0c880H,DUXPAL
 FON15apos:
 	.word   4,6,0,0
-	.long   02f0d5a0H,DUXPAL
+	.long   02f0d000H,DUXPAL
 FON15apos1:
 	.word   4,6,0,0
-	.long   02f0d660H,DUXPAL
+	.long   02f0d0c0H,DUXPAL
 FON15ast:
 	.word   8,7,-2,-3
-	.long   02f0d720H,DUXPAL
+	.long   02f0d180H,DUXPAL
 FON15backsp:
 	.word   12,15,0,0
-	.long   02f0d8e0H,DUXPAL
+	.long   02f0d340H,DUXPAL
 FON15brackl:
 	.word   8,19,0,0
-	.long   02f0de80H,DUXPAL
+	.long   02f0d8e0H,DUXPAL
 FON15brackr:
 	.word   8,19,0,0
-	.long   02f0e340H,DUXPAL
+	.long   02f0dda0H,DUXPAL
 FON15break:
 	.word   4,15,0,0
-	.long   02f0e800H,DUXPAL
+	.long   02f0e260H,DUXPAL
 FON15carr:
 	.word   12,5,0,0
-	.long   02f0e9e0H,DUXPAL
+	.long   02f0e440H,DUXPAL
 FON15colon:
 	.word   4,11,0,-2
-	.long   02f0ebc0H,DUXPAL
+	.long   02f0e620H,DUXPAL
 FON15comma:
 	.word   4,6,0,-10
-	.long   02f0ed20H,DUXPAL
+	.long   02f0d000H,DUXPAL
 FON15dash:
 	.word   8,3,0,-7
-	.long   02f0ede0H,DUXPAL
+	.long   02f0e780H,DUXPAL
 FON15doll:
 	.word   12,20,0,2
-	.long   02f0eea0H,DUXPAL
+	.long   02f0e840H,DUXPAL
 FON15engPOUN:
 	.word   12,15,0,0
-	.long   02f0f620H,DUXPAL
+	.long   02f0efc0H,DUXPAL
 FON15equal:
 	.word   8,8,-2,-4
-	.long   02f0fbc0H,DUXPAL
+	.long   02f0f560H,DUXPAL
 FON15excla:
 	.word   4,15,0,0
-	.long   02f0fdc0H,DUXPAL
+	.long   02f0f760H,DUXPAL
 FON15forsp:
 	.word   12,15,0,0
-	.long   02f0ffa0H,DUXPAL
+	.long   02f0f940H,DUXPAL
 FON15la:
 	.word   12,10,0,-5
-	.long   02f10540H,DUXPAL
+	.long   02f0fee0H,DUXPAL
 FON15lb:
 	.word   12,15,0,0
-	.long   02f10900H,DUXPAL
+	.long   02f102a0H,DUXPAL
 FON15lc:
 	.word   8,10,0,-5
-	.long   02f10ea0H,DUXPAL
+	.long   02f10840H,DUXPAL
 FON15ld:
 	.word   12,15,0,0
-	.long   02f11120H,DUXPAL
+	.long   02f10ac0H,DUXPAL
 FON15le:
 	.word   12,10,0,-5
-	.long   02f116c0H,DUXPAL
+	.long   02f11060H,DUXPAL
 FON15less:
 	.word   8,9,-2,-4
-	.long   02f11a80H,DUXPAL
+	.long   02f11420H,DUXPAL
 FON15lf:
 	.word   8,20,0,1
-	.long   02f11cc0H,DUXPAL
+	.long   02f11660H,DUXPAL
 FON15lg:
 	.word   12,15,0,-5
-	.long   02f121c0H,DUXPAL
+	.long   02f11b60H,DUXPAL
 FON15lh:
 	.word   12,15,0,0
-	.long   02f12760H,DUXPAL
+	.long   02f12100H,DUXPAL
 FON15li:
 	.word   4,15,0,0
-	.long   02f12d00H,DUXPAL
+	.long   02f126a0H,DUXPAL
 FON15line:
 	.word   12,3,0,-6
-	.long   02f12ee0H,DUXPAL
+	.long   02f12880H,DUXPAL
 FON15lj:
 	.word   4,20,0,1
-	.long   02f13000H,DUXPAL
+	.long   02f129a0H,DUXPAL
 FON15lk:
 	.word   12,15,0,0
-	.long   02f13280H,DUXPAL
+	.long   02f12c20H,DUXPAL
 FON15ll:
 	.word   4,15,0,0
-	.long   02f13820H,DUXPAL
+	.long   02f05e80H,DUXPAL
 FON15lm:
 	.word   16,10,0,-5
-	.long   02f13a00H,DUXPAL
+	.long   02f131c0H,DUXPAL
 FON15ln:
 	.word   12,10,0,-5
-	.long   02f13f00H,DUXPAL
+	.long   02f136c0H,DUXPAL
 FON15lo:
 	.word   12,10,0,-5
-	.long   02f142c0H,DUXPAL
+	.long   02f13a80H,DUXPAL
 FON15lp:
 	.word   12,14,0,-5
-	.long   02f14680H,DUXPAL
+	.long   02f13e40H,DUXPAL
 FON15lq:
 	.word   12,14,0,-5
-	.long   02f14bc0H,DUXPAL
+	.long   02f14380H,DUXPAL
 FON15lr:
 	.word   8,10,0,-5
-	.long   02f15100H,DUXPAL
+	.long   02f148c0H,DUXPAL
 FON15ls:
 	.word   12,10,0,-5
-	.long   02f15380H,DUXPAL
+	.long   02f14b40H,DUXPAL
 FON15lt:
 	.word   8,15,0,0
-	.long   02f15740H,DUXPAL
+	.long   02f14f00H,DUXPAL
 FON15lu:
 	.word   12,10,0,-5
-	.long   02f15b00H,DUXPAL
+	.long   02f152c0H,DUXPAL
 FON15lv:
 	.word   12,10,0,-5
-	.long   02f15ec0H,DUXPAL
+	.long   02f15680H,DUXPAL
 FON15lw:
 	.word   16,10,0,-5
-	.long   02f16280H,DUXPAL
+	.long   02f15a40H,DUXPAL
 FON15lx:
 	.word   12,10,0,-5
-	.long   02f16780H,DUXPAL
+	.long   02f15f40H,DUXPAL
 FON15ly:
 	.word   12,14,0,-5
-	.long   02f16b40H,DUXPAL
+	.long   02f16300H,DUXPAL
 FON15lz:
 	.word   12,10,0,-5
-	.long   02f17080H,DUXPAL
+	.long   02f16840H,DUXPAL
 FON15more:
 	.word   8,9,-3,-4
-	.long   02f17440H,DUXPAL
+	.long   02f16c00H,DUXPAL
 FON15paren2l:
 	.word   8,19,0,2
-	.long   02f17680H,DUXPAL
+	.long   02f16e40H,DUXPAL
 FON15paren2r:
 	.word   8,19,0,2
-	.long   02f17b40H,DUXPAL
+	.long   02f17300H,DUXPAL
 FON15parenl:
 	.word   8,17,0,1
-	.long   02f18000H,DUXPAL
+	.long   02f177c0H,DUXPAL
 FON15parenr:
 	.word   8,17,0,1
-	.long   02f18440H,DUXPAL
+	.long   02f17c00H,DUXPAL
 FON15perc:
 	.word   16,15,0,0
-	.long   02f18880H,DUXPAL
+	.long   02f18040H,DUXPAL
 FON15period:
 	.word   4,4,0,-11
-	.long   02f19000H,DUXPAL
+	.long   02f187c0H,DUXPAL
 FON15plus:
 	.word   8,8,-2,-4
-	.long   02f19080H,DUXPAL
+	.long   02f18840H,DUXPAL
 FON15poun:
 	.word   12,10,0,-2
-	.long   02f19280H,DUXPAL
+	.long   02f18a40H,DUXPAL
 FON15quest:
 	.word   12,15,0,0
-	.long   02f19640H,DUXPAL
+	.long   02f18e00H,DUXPAL
 FON15quote:
 	.word   12,6,0,1
-	.long   02f19be0H,DUXPAL
+	.long   02f193a0H,DUXPAL
 FON15rquote:
 	.word   12,6,0,1
-	.long   02f19e20H,DUXPAL
+	.long   02f195e0H,DUXPAL
 FON15semicol:
 	.word   4,13,0,-2
-	.long   02f1a060H,DUXPAL
+	.long   02f19820H,DUXPAL
 FONT7A:
 	.word   8,8,0,0
-	.long   02f1a200H,DUXPAL
+	.long   02f199c0H,DUXPAL
 FONT7B:
 	.word   8,8,0,0
-	.long   02f1a400H,DUXPAL
+	.long   02f19bc0H,DUXPAL
 FONT7C:
 	.word   8,8,0,0
-	.long   02f1a600H,DUXPAL
+	.long   02f19dc0H,DUXPAL
 FONT7D:
 	.word   8,8,0,0
-	.long   02f1a800H,DUXPAL
+	.long   02f19fc0H,DUXPAL
 FONT7E:
 	.word   8,8,0,0
-	.long   02f1aa00H,DUXPAL
+	.long   02f1a1c0H,DUXPAL
 FONT7F:
 	.word   8,8,0,0
-	.long   02f1ac00H,DUXPAL
+	.long   02f1a3c0H,DUXPAL
 FONT7G:
 	.word   8,8,0,0
-	.long   02f1ae00H,DUXPAL
+	.long   02f1a5c0H,DUXPAL
 FONT7H:
 	.word   8,8,0,0
-	.long   02f1b000H,DUXPAL
+	.long   02f1a7c0H,DUXPAL
 FONT7I:
 	.word   4,8,0,0
-	.long   02f1b200H,DUXPAL
+	.long   02f1a9c0H,DUXPAL
 FONT7J:
 	.word   8,8,0,0
-	.long   02f1b300H,DUXPAL
+	.long   02f1aac0H,DUXPAL
 FONT7K:
 	.word   8,8,0,0
-	.long   02f1b500H,DUXPAL
+	.long   02f1a9c0H,DUXPAL
 FONT7L:
 	.word   8,8,0,0
-	.long   02f1b700H,DUXPAL
+	.long   02f1e140H,DUXPAL
 FONT7M:
 	.word   12,8,0,0
-	.long   02f1b900H,DUXPAL
+	.long   02f1e340H,DUXPAL
 FONT7N:
 	.word   8,8,0,0
-	.long   02f1bc00H,DUXPAL
+	.long   02f1e640H,DUXPAL
 FONT7O:
 	.word   8,8,0,0
-	.long   02f1be00H,DUXPAL
+	.long   02f1e840H,DUXPAL
 FONT7P:
 	.word   8,8,0,0
-	.long   02f1c000H,DUXPAL
+	.long   02f1ea40H,DUXPAL
 FONT7Q:
 	.word   8,10,0,0
-	.long   02f1c200H,DUXPAL
+	.long   02f1ec40H,DUXPAL
 FONT7R:
 	.word   8,8,0,0
-	.long   02f1c480H,DUXPAL
+	.long   02f1eec0H,DUXPAL
 FONT7S:
 	.word   8,8,0,0
-	.long   02f1c680H,DUXPAL
+	.long   02f1f0c0H,DUXPAL
 FONT7T:
 	.word   8,8,0,0
-	.long   02f1c880H,DUXPAL
+	.long   02f1f2c0H,DUXPAL
 FONT7U:
 	.word   8,8,0,0
-	.long   02f1ca80H,DUXPAL
+	.long   02f1f4c0H,DUXPAL
 FONT7V:
 	.word   8,8,0,0
-	.long   02f1cc80H,DUXPAL
+	.long   02f1f6c0H,DUXPAL
 FONT7W:
 	.word   12,8,0,0
-	.long   02f1ce80H,DUXPAL
+	.long   02f1f8c0H,DUXPAL
 FONT7X:
 	.word   8,8,0,0
-	.long   02f1d180H,DUXPAL
+	.long   02f1fbc0H,DUXPAL
 FONT7Y:
 	.word   8,8,0,0
-	.long   02f1d380H,DUXPAL
+	.long   02f1fdc0H,DUXPAL
 FONT7Z:
 	.word   8,8,0,0
-	.long   02f1d580H,DUXPAL
+	.long   02f1ffc0H,DUXPAL
 FONT7a:
 	.word   8,6,0,-2
-	.long   02f1d780H,DUXPAL
+	.long   02f201c0H,DUXPAL
 FONT7b:
 	.word   8,8,0,0
-	.long   02f1d900H,DUXPAL
+	.long   02f20340H,DUXPAL
 FONT7c:
 	.word   8,6,0,-2
-	.long   02f1db00H,DUXPAL
+	.long   02f20540H,DUXPAL
 FONT7d:
 	.word   8,8,0,0
-	.long   02f1dc80H,DUXPAL
+	.long   02f206c0H,DUXPAL
 FONT7e:
 	.word   8,6,0,-2
-	.long   02f1de80H,DUXPAL
+	.long   02f208c0H,DUXPAL
 FONT7f:
 	.word   4,10,0,0
-	.long   02f1e000H,DUXPAL
+	.long   02f20a40H,DUXPAL
 FONT7g:
 	.word   8,8,0,-2
-	.long   02f1e140H,DUXPAL
+	.long   02f20b80H,DUXPAL
 FONT7h:
 	.word   8,8,0,0
-	.long   02f1e340H,DUXPAL
+	.long   02f20d80H,DUXPAL
 FONT7i:
 	.word   4,8,0,0
-	.long   02f1e540H,DUXPAL
+	.long   02f20f80H,DUXPAL
 FONT7j:
 	.word   4,10,-28,32
-	.long   02f1e640H,DUXPAL
+	.long   02f21080H,DUXPAL
 FONT7k:
 	.word   8,8,0,0
-	.long   02f1e780H,DUXPAL
+	.long   02f211c0H,DUXPAL
 FONT7l:
 	.word   4,8,0,0
-	.long   02f1e980H,DUXPAL
+	.long   02f213c0H,DUXPAL
 FONT7m:
 	.word   12,6,0,-2
-	.long   02f1ea80H,DUXPAL
+	.long   02f214c0H,DUXPAL
 FONT7n:
 	.word   8,6,0,-2
-	.long   02f1ecc0H,DUXPAL
+	.long   02f21700H,DUXPAL
 FONT7o:
 	.word   8,6,0,-2
-	.long   02f1ee40H,DUXPAL
+	.long   02f21880H,DUXPAL
 FONT7p:
 	.word   8,8,0,-2
-	.long   02f1efc0H,DUXPAL
+	.long   02f21a00H,DUXPAL
 FONT7q:
 	.word   8,8,0,-2
-	.long   02f1f1c0H,DUXPAL
+	.long   02f21c00H,DUXPAL
 FONT7r:
 	.word   8,6,0,-2
-	.long   02f1f3c0H,DUXPAL
+	.long   02f21e00H,DUXPAL
 FONT7s:
 	.word   8,6,0,-2
-	.long   02f1f540H,DUXPAL
+	.long   02f21f80H,DUXPAL
 FONT7t:
 	.word   8,8,0,0
-	.long   02f1f6c0H,DUXPAL
+	.long   02f22100H,DUXPAL
 FONT7u:
 	.word   8,6,0,-2
-	.long   02f1f8c0H,DUXPAL
+	.long   02f22300H,DUXPAL
 FONT7v:
 	.word   8,6,0,-2
-	.long   02f1fa40H,DUXPAL
+	.long   02f22480H,DUXPAL
 FONT71:
 	.word   4,8,0,0
-	.long   02f1fbc0H,DUXPAL
+	.long   02f22600H,DUXPAL
 FONT72:
 	.word   8,8,0,0
-	.long   02f1fcc0H,DUXPAL
+	.long   02f22700H,DUXPAL
 FONT73:
 	.word   8,8,0,0
-	.long   02f1fec0H,DUXPAL
+	.long   02f22900H,DUXPAL
 FONT74:
 	.word   8,8,0,0
-	.long   02f200c0H,DUXPAL
+	.long   02f22b00H,DUXPAL
 FONT75:
 	.word   8,8,0,0
-	.long   02f202c0H,DUXPAL
+	.long   02f22d00H,DUXPAL
 FONT76:
 	.word   8,8,0,0
-	.long   02f204c0H,DUXPAL
+	.long   02f22f00H,DUXPAL
 FONT77:
 	.word   8,8,0,0
-	.long   02f206c0H,DUXPAL
+	.long   02f23100H,DUXPAL
 FONT78:
 	.word   8,8,0,0
-	.long   02f208c0H,DUXPAL
+	.long   02f23300H,DUXPAL
 FONT79:
 	.word   8,8,0,0
-	.long   02f20ac0H,DUXPAL
+	.long   02f23500H,DUXPAL
 FONT70:
 	.word   8,8,0,0
-	.long   02f20cc0H,DUXPAL
+	.long   02f23700H,DUXPAL
 FONT7excla:
 	.word   4,8,0,0
-	.long   02f20ec0H,DUXPAL
+	.long   02f23900H,DUXPAL
 FONT7pound:
 	.word   12,8,0,0
-	.long   02f20fc0H,DUXPAL
+	.long   02f23a00H,DUXPAL
 FONT7doll:
 	.word   8,9,0,1
-	.long   02f212c0H,DUXPAL
+	.long   02f23d00H,DUXPAL
 FONT7percen:
 	.word   12,8,0,0
-	.long   02f21500H,DUXPAL
+	.long   02f23f40H,DUXPAL
 FONT7and:
 	.word   8,8,0,0
-	.long   02f21800H,DUXPAL
+	.long   02f24240H,DUXPAL
 FONT7ast:
 	.word   8,8,1,-1
-	.long   02f21a00H,DUXPAL
+	.long   02f24440H,DUXPAL
 FONT7parenl:
 	.word   4,10,0,1
-	.long   02f21c00H,DUXPAL
+	.long   02f24640H,DUXPAL
 FONT7parenr:
 	.word   4,10,0,1
-	.long   02f21d40H,DUXPAL
+	.long   02f24780H,DUXPAL
 FONT7dash:
 	.word   8,2,0,-4
-	.long   02f21e80H,DUXPAL
+	.long   02f248c0H,DUXPAL
 FONT7line:
 	.word   8,2,0,-6
-	.long   02f21f00H,DUXPAL
+	.long   02f24940H,DUXPAL
 FONT7equal:
 	.word   8,5,0,-2
-	.long   02f21f80H,DUXPAL
+	.long   02f249c0H,DUXPAL
 FONT7plus:
 	.word   8,6,0,-2
-	.long   02f220c0H,DUXPAL
+	.long   02f24b00H,DUXPAL
 FONT7bracl:
 	.word   4,10,0,0
-	.long   02f22240H,DUXPAL
+	.long   02f24c80H,DUXPAL
 FONT7bracr:
 	.word   4,10,0,0
-	.long   02f22380H,DUXPAL
+	.long   02f24dc0H,DUXPAL
 FONT7backsp:
 	.word   8,8,0,0
-	.long   02f224c0H,DUXPAL
+	.long   02f24f00H,DUXPAL
 FONT7paren2l:
 	.word   4,10,0,0
-	.long   02f226c0H,DUXPAL
+	.long   02f25100H,DUXPAL
 FONT7paren2r:
 	.word   4,10,0,0
-	.long   02f22800H,DUXPAL
+	.long   02f25240H,DUXPAL
 FONT7break:
 	.word   4,8,0,0
-	.long   02f22940H,DUXPAL
+	.long   02f25380H,DUXPAL
 FONT7semicol:
 	.word   4,8,0,0
-	.long   02f22a40H,DUXPAL
+	.long   02f25480H,DUXPAL
 FONT7apost:
 	.word   4,4,0,0
-	.long   02f22b40H,DUXPAL
+	.long   02f25580H,DUXPAL
 FONT7colon:
 	.word   4,6,0,-1
-	.long   02f22bc0H,DUXPAL
+	.long   02f25600H,DUXPAL
 FONT7quote:
 	.word   8,4,0,0
-	.long   02f22c80H,DUXPAL
+	.long   02f256c0H,DUXPAL
 FONT7comma:
 	.word   4,4,0,-5
-	.long   02f22d80H,DUXPAL
+	.long   02f257c0H,DUXPAL
 FONT7period:
 	.word   4,2,0,-6
-	.long   02f22e00H,DUXPAL
+	.long   02f25840H,DUXPAL
 FONT7forsp:
 	.word   8,8,0,0
-	.long   02f22e40H,DUXPAL
+	.long   02f25880H,DUXPAL
 FONT7less:
 	.word   4,7,0,0
-	.long   02f23040H,DUXPAL
+	.long   02f25a80H,DUXPAL
 FONT7more:
 	.word   8,10,0,0
-	.long   02f23120H,DUXPAL
+	.long   02f25b60H,DUXPAL
 FONT7quest:
 	.word   8,8,0,0
-	.long   02f233a0H,DUXPAL
+	.long   02f25de0H,DUXPAL
 	.TEXT
 
